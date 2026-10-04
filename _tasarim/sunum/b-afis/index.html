@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hanedan Pilav | Lezzet Hanedanlığı, 1998’den beri</title>
+<meta name="description" content="Hanedan Pilav: 1998’den beri İstanbul’da günlük 1 ton üretim kapasitesi, franchise ve bayilik, toplu yemek ve organizasyon hizmeti.">
+<meta name="theme-color" content="#F6C417">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="img/ikon-64.png" sizes="64x64" type="image/png">
+<link rel="apple-touch-icon" href="img/ikon-180.png">
+<link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/schibsted-grotesk-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+document.documentElement.className = "js";
+try { if (localStorage.getItem("hp-dil") === "en") document.documentElement.lang = "en"; } catch (e) {}
+</script>
+<style>
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/schibsted-grotesk-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:swap;src:url(fonts/schibsted-grotesk-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+:root{
+  --sari:#F6C417;
+  --murekkep:#151412;
+  --murekkep-2:#2B2925;
+  --sari-soluk:#C9A227;
+  --sari-cizgi:rgba(246,196,23,.32);
+  --wa:#25D366;
+  --cizgi:3px;
+  --ince:1.5px;
+  --font:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --max:1520px;
+  --kenar:clamp(16px,3.4vw,56px);
+  --ks:max(var(--kenar),env(safe-area-inset-left));
+  --kd:max(var(--kenar),env(safe-area-inset-right));
+  --ara:clamp(12px,1.6vw,24px);
+  --bolum:clamp(84px,9.5vw,156px);
+  --bas-h:80px;
+  --bas-dus:16px;
+  --plaka-w:196px;
+  --plaka-sarkma:28px;
+  --plaka-kompakt:-19px;
+  --logo-kompakt:.74;
+  --fab:60px;
+  --fab-sag:max(16px,calc(env(safe-area-inset-right) + 16px));
+  --fab-alt:max(16px,calc(env(safe-area-inset-bottom) + 16px));
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--bas-h) + 16px);scroll-padding-bottom:calc(var(--fab) + 40px);background:var(--sari)}
+html.kilit{overflow:hidden}
+body{position:relative;background:var(--sari);color:var(--murekkep);font-family:var(--font);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:rgba(21,20,18,.12);overflow-x:clip}
+a{color:inherit;text-decoration:none;touch-action:manipulation}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation}
+img,svg{display:block;max-width:100%}
+ul{list-style:none}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+:focus-visible{outline:3px solid var(--murekkep);outline-offset:3px}
+.ters :focus-visible{outline-color:var(--sari)}
+.gizli{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.atla{position:absolute;left:var(--kenar);top:-100px;z-index:60;background:var(--murekkep);color:var(--sari);padding:12px 18px;font-weight:800}
+.atla:focus{top:12px}
+#icerik:focus{outline:none}
+.tel-no{white-space:nowrap;font-variant-numeric:tabular-nums}
+
+.izgara{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--ara);max-width:var(--max);margin-inline:auto;padding-inline:var(--ks) var(--kd)}
+.ters{background:var(--murekkep);color:var(--sari)}
+.bolum-baslik{font-size:clamp(46px,7.4vw,120px);font-weight:900;line-height:.9;letter-spacing:-.05em}
+
+/* Ok: çizgi + uç; font glifine bağlı değil */
+.ok{display:inline-block;position:relative;width:20px;height:2.5px;background:currentColor;flex:none}
+.ok::after{content:"";position:absolute;right:0;top:50%;width:9px;height:9px;border-top:2.5px solid currentColor;border-right:2.5px solid currentColor;transform:translate(0,-50%) rotate(45deg)}
+
+/* Butonlar: tek köşe sistemi, radius 0 */
+.btn{--b:var(--murekkep);--y:var(--sari);display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:56px;padding:0 22px;font-size:16px;font-weight:800;line-height:1.1;background:var(--b);color:var(--y);border:var(--cizgi) solid var(--b);white-space:nowrap}
+.btn .ok{transition:transform .2s ease}
+.btn:hover{background:var(--murekkep-2);border-color:var(--murekkep-2)}
+.btn:hover .ok{transform:translateX(4px)}
+.btn:active{transform:translateY(1px)}
+.btn-ikincil{background:transparent;color:var(--b)}
+.btn-ikincil:hover{background:var(--b);color:var(--y);border-color:var(--b)}
+.ters .btn{--b:var(--sari);--y:var(--murekkep)}
+.ters .btn:hover{background:#FFD447;border-color:#FFD447}
+.link-ok{display:inline-flex;align-items:center;gap:14px;min-height:44px;font-weight:800;font-size:17px;padding:4px 0 2px;border-bottom:var(--cizgi) solid currentColor}
+.link-ok .ok{transition:transform .2s ease}
+.link-ok:hover .ok{transform:translateX(5px)}
+
+/* Dil seçici */
+.dil{display:inline-flex;align-items:stretch;border:var(--ince) solid currentColor}
+.dil button{min-width:44px;min-height:44px;padding:0 8px;font-size:13px;font-weight:800;letter-spacing:.04em}
+.dil button[aria-pressed="true"]{background:var(--murekkep);color:var(--sari)}
+.dil button:not([aria-pressed="true"]):hover{background:rgba(21,20,18,.1)}
+.ters .dil button[aria-pressed="true"]{background:var(--sari);color:var(--murekkep)}
+.no-js .dil{display:none}
+
+/* Başlık: yapışkan, kaydırınca kompakt (yalnız transform) */
+.bas{position:sticky;top:0;z-index:30;background:var(--sari);border-bottom:var(--cizgi) solid var(--murekkep);transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.bas-ic{position:relative;display:flex;align-items:center;gap:clamp(18px,2.4vw,40px);height:var(--bas-h);max-width:var(--max);margin-inline:auto;padding-inline:var(--ks) var(--kd)}
+.bas-ic>*{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.plaka{position:relative;z-index:2;align-self:flex-start;flex:none;display:flex;align-items:flex-end;justify-content:center;width:var(--plaka-w);height:calc(var(--bas-h) + var(--plaka-sarkma));padding:0 14px 16px;background:var(--murekkep)}
+.plaka img{width:100%;height:auto;transform-origin:50% 100%;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.plaka:focus-visible{outline-offset:4px}
+.bas.kompakt{transform:translateY(calc(var(--bas-dus) * -1))}
+.bas.kompakt .bas-ic>:not(.plaka){transform:translateY(calc(var(--bas-dus) / 2))}
+.bas.kompakt .plaka{transform:translateY(var(--plaka-kompakt))}
+.bas.kompakt .plaka img{transform:scale(var(--logo-kompakt))}
+.nav{display:flex;gap:clamp(18px,2.2vw,34px);font-size:16px;font-weight:700}
+.nav a,.bas-tel{position:relative;display:inline-flex;align-items:center;min-height:44px}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:3px;background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .2s ease}
+.nav a:hover::after{transform:scaleX(1)}
+.bas-sag{margin-left:auto;display:flex;align-items:center;gap:clamp(14px,1.6vw,24px)}
+.bas-tel{font-size:16px;font-weight:700}
+.bas-tel:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.bas .btn{min-height:48px;padding:0 18px;font-size:15px}
+.menu-ac{display:none;align-items:center;gap:10px;min-height:44px;padding:0 16px;background:var(--murekkep);color:var(--sari);font-weight:800;font-size:15px}
+.menu-ac i{display:grid;gap:4px;width:18px}
+.menu-ac i::before,.menu-ac i::after{content:"";height:2.5px;background:currentColor}
+.menu-yedek{display:none}
+
+/* Mobil menü: tam ekran dialog */
+.menu{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;border:0;padding:0;background:var(--sari);color:var(--murekkep);overflow-y:auto;overscroll-behavior:contain}
+.menu::backdrop{background:var(--sari)}
+.menu[open]{display:flex;flex-direction:column}
+.menu-ust{display:flex;align-items:flex-start;justify-content:space-between;padding:0 var(--kd) 0 var(--ks);border-bottom:var(--cizgi) solid var(--murekkep);height:var(--bas-h)}
+.menu-ust .plaka{height:calc(var(--bas-h) + var(--plaka-sarkma))}
+.menu-kapat{align-self:center;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 16px;border:var(--cizgi) solid var(--murekkep);font-weight:800;font-size:15px}
+.menu-kapat i{position:relative;width:16px;height:16px}
+.menu-kapat i::before,.menu-kapat i::after{content:"";position:absolute;left:-2px;right:-2px;top:7px;height:2.5px;background:currentColor;transform:rotate(45deg)}
+.menu-kapat i::after{transform:rotate(-45deg)}
+.menu-govde{flex:1;display:flex;flex-direction:column;padding:calc(var(--plaka-sarkma) + 28px) var(--kd) calc(28px + env(safe-area-inset-bottom)) var(--ks)}
+.menu-nav li{border-bottom:var(--ince) solid var(--murekkep)}
+.menu-nav li:first-child{border-top:var(--cizgi) solid var(--murekkep)}
+.menu-nav a{display:flex;align-items:center;justify-content:space-between;padding:14px 0;font-size:clamp(34px,9vw,54px);font-weight:900;letter-spacing:-.04em;line-height:1.05}
+.menu-nav a .ok{width:26px}
+.menu-alt{margin-top:auto;padding-top:36px;display:grid;gap:22px}
+.menu-alt .btn{width:100%}
+.menu-satir{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;font-weight:700}
+.menu-satir a{display:inline-flex;align-items:center;min-height:44px;border-bottom:2px solid currentColor}
+.menu .dil button{min-width:52px;min-height:44px;font-size:15px}
+
+/* Fotoğraf yeri: kasıtlı placeholder, raster doku + oran + çekim notu */
+.yer{position:relative;margin:0;container-type:inline-size;border:var(--cizgi) solid var(--murekkep);overflow:hidden;background:var(--sari);--maske:radial-gradient(ellipse 60% 46% at 55% 60%,#000 28%,rgba(0,0,0,.55) 52%,transparent 76%)}
+.yer::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,var(--murekkep) 0 2.1px,transparent 2.5px) 0 0/9px 9px;-webkit-mask:var(--maske);mask:var(--maske)}
+.yer::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,var(--murekkep) 0 1.1px,transparent 1.5px) 4.5px 4.5px/9px 9px;-webkit-mask:linear-gradient(200deg,#000 0,transparent 40%);mask:linear-gradient(200deg,#000 0,transparent 40%)}
+.yer.alt-doku{--maske:linear-gradient(0deg,#000 0,#000 18%,rgba(0,0,0,.5) 46%,transparent 72%)}
+.yer.sol-doku{--maske:radial-gradient(ellipse 70% 60% at 20% 70%,#000 25%,rgba(0,0,0,.5) 50%,transparent 78%)}
+.yer-not{position:absolute;z-index:1;left:0;top:0;max-width:calc(100% - 24px);padding:9px 12px 10px;background:var(--sari);border-right:var(--cizgi) solid var(--murekkep);border-bottom:var(--cizgi) solid var(--murekkep);font-family:var(--mono);font-size:12px;font-weight:500;line-height:1.4}
+.yer-not b{display:block;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.yer-oran{position:absolute;z-index:1;left:0;bottom:0;padding:8px 13px 10px;background:var(--murekkep);color:var(--sari);font-size:clamp(24px,2.8vw,44px);font-weight:900;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+@container (max-width:240px){.yer-not{font-size:10.5px;padding:7px 9px 8px}.yer-oran{font-size:24px;padding:6px 9px 7px}}
+.r45{aspect-ratio:4/5}.r32{aspect-ratio:3/2}.r11{aspect-ratio:1/1}
+
+/* 2. Afiş açılışı */
+.afis{padding-top:clamp(48px,4.6vw,64px);padding-bottom:clamp(56px,6vw,96px);align-items:start}
+.kunye{grid-column:1/span 6;grid-row:1;font-size:16px;font-weight:700;line-height:1.35}
+.afis h1{grid-column:1/span 7;grid-row:2;justify-self:start;width:max-content;max-width:100%;margin-top:14px;font-weight:900;letter-spacing:-.045em}
+.afis h1>span{display:block}
+.h1-son{display:flex!important;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px 20px}
+.kapasite{--kol:clamp(20px,2.6vw,40px);position:relative;flex:none;margin:.5em .02em 0 auto;padding:9px 12px 10px;background:var(--murekkep);color:var(--sari);font-size:13px;font-weight:800;line-height:1.2;letter-spacing:.07em;text-transform:uppercase}
+.kapasite::before{content:"";position:absolute;right:16px;bottom:100%;width:3px;height:var(--kol,28px);background:var(--murekkep)}
+.afis .ince{font-size:clamp(44px,6vw,92px);line-height:.95}
+.afis .h1-son .ince{font-size:inherit}
+.h1-son{font-size:clamp(44px,6vw,92px);line-height:.95}
+.h1-son .kapasite{font-size:clamp(12px,1vw,15px);line-height:1.2;letter-spacing:.07em}
+.afis .dev{font-size:clamp(150px,22vw,330px);line-height:.8;letter-spacing:-.065em;word-spacing:.12em;margin:.04em 0 .06em -.045em;white-space:nowrap}
+.afis-alt{grid-column:1/span 7;grid-row:3;margin-top:30px}
+.spot{font-size:18px;font-weight:500;line-height:1.45;max-width:31em}
+.afis .eylem{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.afis>.yer{grid-column:8/span 5;grid-row:1/span 3;align-self:start;justify-self:end;width:min(100%,520px);margin-top:4px}
+
+/* 3. Kimlik bandı */
+.kimlik dl{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.kimlik dl>div{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:clamp(20px,2.2vw,30px) var(--ara);border-left:var(--ince) solid var(--sari-cizgi)}
+.kimlik dl>div:first-child{border-left:0;padding-left:0}
+.kimlik dd{order:-1;font-size:clamp(24px,2.4vw,36px);font-weight:900;line-height:1;letter-spacing:-.03em}
+.kimlik dt{font-size:12px;font-weight:700;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;color:var(--sari-soluk)}
+
+/* 4. Hizmetler: asimetrik pano (1 büyük + 2 yığılı) */
+.hizmet{padding-top:var(--bolum);padding-bottom:calc(var(--bolum) * .55)}
+.hizmet .bolum-baslik{grid-column:1/span 10}
+.pano{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--ara);margin-top:clamp(40px,5vw,76px)}
+.pano h3{font-size:clamp(28px,2.7vw,42px);font-weight:900;line-height:1;letter-spacing:-.035em}
+.pano p{margin-top:16px;font-size:17px;font-weight:500;line-height:1.5;max-width:30em}
+.p-a{grid-column:1/span 7;grid-row:1/span 2;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:48px;min-height:clamp(440px,40vw,620px);padding:clamp(28px,3.4vw,56px)}
+.p-a::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,var(--sari) 0 1.9px,transparent 2.3px) 0 0/9px 9px;-webkit-mask:radial-gradient(ellipse 55% 60% at 100% 0,#000 10%,rgba(0,0,0,.45) 45%,transparent 72%);mask:radial-gradient(ellipse 55% 60% at 100% 0,#000 10%,rgba(0,0,0,.45) 45%,transparent 72%);pointer-events:none}
+.p-a>*{position:relative;z-index:1}
+.p-a h3{font-size:clamp(44px,5.6vw,92px);line-height:.92;letter-spacing:-.05em;max-width:7em}
+.p-a p{font-size:18px;max-width:26em}
+.p-a .link-ok{margin-top:24px}
+.p-b,.p-c{grid-column:8/span 5;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(24px,2.6vw,40px);border:var(--cizgi) solid var(--murekkep)}
+.p-c::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,var(--murekkep) 0 1.8px,transparent 2.2px) 0 0/9px 9px;-webkit-mask:var(--pc-maske);mask:var(--pc-maske);pointer-events:none}
+.p-c{--pc-maske:radial-gradient(ellipse 48% 75% at 100% 100%,#000 12%,rgba(0,0,0,.4) 48%,transparent 74%)}
+.p-c>*{position:relative;z-index:1}
+.p-c p{max-width:22em}
+.p-b .link-ok,.p-c .link-ok{align-self:flex-start}
+
+/* 5. Kurumsal hikaye */
+.hikaye{padding-top:calc(var(--bolum) * .55);padding-bottom:var(--bolum);row-gap:0}
+.hikaye-cizgi{grid-column:1/-1;border-top:var(--cizgi) solid var(--murekkep);margin-bottom:clamp(36px,4.4vw,64px)}
+.yil{grid-column:1/span 5;font-size:clamp(150px,19.5vw,300px);font-weight:900;line-height:.78;letter-spacing:-.075em;margin-left:-.04em;font-variant-numeric:tabular-nums}
+.yil span{display:block}
+.hikaye-metin{grid-column:7/span 6}
+.hikaye h2{font-size:clamp(40px,4.8vw,76px);font-weight:900;line-height:.95;letter-spacing:-.045em}
+.hikaye-metin>p{margin-top:24px;font-size:19px;font-weight:500;max-width:32em}
+.defter{margin-top:40px;border-top:var(--cizgi) solid var(--murekkep)}
+.defter>div{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--ara);padding:20px 0;border-bottom:var(--ince) solid var(--murekkep)}
+.defter dt{font-size:20px;font-weight:800;letter-spacing:-.01em;line-height:1.3}
+.defter dd{font-size:17px;font-weight:500;line-height:1.45}
+.hikaye .link-ok{margin-top:36px}
+
+/* 6. Bayilerimiz: harita */
+.bayiler{padding-block:var(--bolum);align-items:center}
+.bayiler-metin{grid-column:1/span 4}
+.bayiler h2{font-size:clamp(40px,4.6vw,72px);font-weight:900;line-height:.95;letter-spacing:-.045em}
+.bayiler-metin>p{margin-top:24px;font-size:18px;font-weight:500}
+.merkez-kunye{margin-top:28px;padding-top:18px;border-top:var(--ince) solid var(--sari-cizgi);font-size:16px;line-height:1.45}
+.merkez-kunye b{display:block;margin-bottom:4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sari-soluk)}
+.bayiler .btn{margin-top:32px}
+.harita{grid-column:5/span 8;margin:0}
+.harita-cizim{position:relative}
+.harita-svg{width:100%;height:auto}
+.ilceler path{fill:url(#rast);stroke:var(--murekkep);stroke-width:2.4;stroke-linejoin:round}
+.merkez-ilce{fill:var(--sari);stroke:var(--murekkep);stroke-width:1.5;stroke-linejoin:round}
+.olcek path{fill:none;stroke:var(--sari);stroke-width:2.5}
+.deniz,.olcek-etiket{position:absolute;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--sari-soluk);white-space:nowrap}
+.pin{position:absolute;width:0;height:0}
+.pin-isaret{position:absolute;left:-9px;top:-9px;width:18px;height:18px;background:var(--murekkep);border:var(--cizgi) solid var(--sari);box-shadow:0 0 0 3px var(--murekkep)}
+.pin-cizgi{position:absolute;left:-1.5px;bottom:12px;width:3px;height:clamp(28px,4.2vw,64px);background:var(--sari)}
+.pin-etiket{position:absolute;left:-1.5px;bottom:calc(12px + clamp(28px,4.2vw,64px));padding:8px 12px 9px;background:var(--sari);color:var(--murekkep);border:var(--cizgi) solid var(--murekkep);white-space:nowrap;line-height:1.15}
+.pin-etiket small{display:block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.pin-etiket b{font-size:18px;font-weight:900;letter-spacing:-.02em}
+.harita figcaption{margin-top:18px;padding-top:14px;border-top:var(--ince) solid var(--sari-cizgi);font-size:14px;color:var(--sari-soluk);max-width:46em}
+
+/* 7. Galeri şeridi */
+.galeri{padding-block:var(--bolum)}
+.galeri-bas{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 32px}
+.serit-kap{max-width:var(--max);margin:clamp(36px,4.4vw,64px) auto 0;padding-inline:var(--ks) var(--kd)}
+.serit{display:flex;align-items:flex-end;gap:var(--ara)}
+.serit>li{flex:var(--r) 1 0;min-width:0}
+.serit .yer{aspect-ratio:var(--ar)}
+
+/* 8. Bayilik kapanışı */
+.kapanis{padding-block:var(--bolum);row-gap:0}
+.kapanis h2{grid-column:1/span 11;font-size:clamp(52px,8.2vw,136px);font-weight:900;line-height:.88;letter-spacing:-.055em}
+.kapanis-sol{grid-column:1/span 6;margin-top:clamp(32px,4vw,56px)}
+.kapanis-sol p{font-size:19px;font-weight:500;max-width:30em}
+.kapanis-sol .btn{margin-top:32px}
+.kapanis-sag{grid-column:8/span 5;margin-top:clamp(32px,4vw,56px);align-self:end}
+.kapanis-sag>div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--ara);align-items:baseline;padding:16px 0;border-top:var(--ince) solid var(--sari-cizgi)}
+.kapanis-sag>div:last-child{border-bottom:var(--ince) solid var(--sari-cizgi)}
+.kapanis-sag dt{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sari-soluk)}
+.kapanis-sag dd{font-size:clamp(20px,1.8vw,26px);font-weight:800;letter-spacing:-.02em;line-height:1.25}
+.kapanis-sag a{display:inline-flex;align-items:center;min-height:44px;border-bottom:2px solid currentColor}
+.kapanis-sag a:hover{box-shadow:0 1px 0 currentColor}
+
+/* 9. Alt bilgi: sarı zemin, siyah plaka */
+.alt{padding-top:clamp(64px,7vw,104px)}
+.alt .izgara{row-gap:40px}
+.alt-marka{grid-column:1/span 4}
+.alt-marka .plaka{height:auto;padding:18px 16px;width:220px}
+.alt-marka p{margin-top:22px;font-size:16px;font-weight:500;line-height:1.5;max-width:24em}
+.alt h2{margin-bottom:12px;font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.alt-kolon{font-size:16px;line-height:1.5}
+.alt-merkez{grid-column:5/span 3}
+.alt-sayfa{grid-column:8/span 2}
+.alt-iletisim{grid-column:10/span 3}
+.alt-kolon a{display:inline-flex;align-items:center;min-height:44px;border-bottom:1.5px solid transparent}
+.alt-kolon a:hover{border-bottom-color:currentColor}
+.alt-kolon ul+h2,.alt-kolon p+h2{margin-top:24px}
+.imza{grid-column:1/-1;margin-top:clamp(24px,4vw,64px);font-size:clamp(40px,10.3vw,166px);font-weight:900;line-height:.82;letter-spacing:-.06em;white-space:nowrap;padding-bottom:.06em}
+.imza span{display:inline}
+.alt-son{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;padding:18px 0 calc(var(--fab) + 36px + env(safe-area-inset-bottom));border-top:var(--cizgi) solid var(--murekkep);font-size:14px;font-weight:600}
+.alt-son a{display:inline-flex;align-items:center;min-height:44px;border-bottom:1.5px solid currentColor}
+.alt-son .dil{margin-left:auto}
+
+/* 10. WhatsApp FAB */
+.wa{position:fixed;z-index:40;right:var(--fab-sag);bottom:var(--fab-alt);display:flex;align-items:center;height:var(--fab);background:var(--murekkep);color:var(--sari);border:2px solid var(--sari);box-shadow:0 0 0 2px var(--murekkep);transition:transform .2s ease}
+.wa:hover{transform:translateY(-2px)}
+.wa:focus-visible{outline:3px solid var(--murekkep);outline-offset:4px;box-shadow:0 0 0 2px var(--murekkep),0 0 0 5px var(--sari)}
+.wa-ikon{display:grid;place-items:center;width:calc(var(--fab) - 4px);height:100%;flex:none}
+.wa-ikon svg{width:30px;height:30px;fill:var(--wa)}
+.wa-etiket{padding-right:18px;font-size:15px;font-weight:800;white-space:nowrap}
+
+/* Önizleme notu: akış içinde, başlığın üstünde; hiçbir CTA veya FAB ile çakışmaz */
+.onizleme{display:flex;align-items:center;gap:12px;max-width:var(--max);margin-inline:auto;padding:0 var(--kd) 0 var(--ks);min-height:44px;border-bottom:var(--ince) solid var(--murekkep)}
+.onizleme[hidden]{display:none}
+.onizleme p{flex:1;padding:8px 0;font-family:var(--mono);font-size:12.5px;font-weight:500;line-height:1.4}
+.onizleme-kapat{flex:none;display:grid;place-items:center;width:44px;height:44px;margin-right:-10px}
+.onizleme-kapat i{position:relative;width:14px;height:14px}
+.onizleme-kapat i::before,.onizleme-kapat i::after{content:"";position:absolute;left:-2px;right:-2px;top:6px;height:2.5px;background:currentColor;transform:rotate(45deg)}
+.onizleme-kapat i::after{transform:rotate(-45deg)}
+.onizleme-kapat:hover{background:rgba(21,20,18,.1)}
+
+/* Bildirim: başlığın altında ortada; FAB ve CTA bölgelerinin dışında */
+.toast{position:fixed;z-index:45;left:50%;top:calc(var(--bas-h) + var(--plaka-sarkma) + 14px + var(--not-h,0px));width:max-content;max-width:min(560px,calc(100vw - 32px));padding:13px 18px 14px;background:var(--murekkep);color:var(--sari);border:2px solid var(--sari);box-shadow:0 0 0 2px var(--murekkep);font-size:15px;font-weight:700;line-height:1.35;opacity:0;transform:translate(-50%,-8px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+.toast.acik{opacity:1;transform:translate(-50%,0)}
+.toast:empty{visibility:hidden}
+
+/* Hareket: sade; azaltılmış harekette kapalı */
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .afis .dev{animation:yuksel .9s cubic-bezier(.2,.8,.2,1) .05s both}
+  .afis>.yer{animation:belir .9s ease .25s both}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+@keyframes yuksel{from{opacity:0;transform:translateY(.1em)}to{opacity:1;transform:none}}
+@keyframes belir{from{opacity:0}to{opacity:1}}
+
+/* Kırılımlar */
+@media (max-width:1239px){
+  .bas-tel{display:none}
+}
+@media (max-width:1023px){
+  :root{--bas-h:64px;--bas-dus:6px;--plaka-w:132px;--plaka-sarkma:16px;--plaka-kompakt:-9px;--logo-kompakt:.84}
+  .plaka{padding:0 10px 11px}
+  .nav,.bas-sag>.dil,.bas-sag>.btn{display:none}
+  .js .menu-ac{display:inline-flex}
+  .no-js .menu-yedek{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;background:var(--murekkep);color:var(--sari);font-weight:800}
+
+  .afis{padding-top:calc(var(--plaka-sarkma) + 36px)}
+  .kunye,.afis h1,.afis-alt,.afis>.yer{grid-column:1/-1;grid-row:auto}
+  .afis h1{margin-top:18px}
+  .afis .ince{font-size:clamp(40px,11vw,84px)}
+  .afis .dev{font-size:40.5vw}
+  .afis-alt{margin-top:24px}
+  .spot{font-size:17px;max-width:34em}
+  .afis>.yer{margin-top:44px}
+
+  .kimlik dl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kimlik dl>div{padding:20px 0 20px var(--ara)}
+  .kimlik dl>div:nth-child(odd){border-left:0;padding-left:0}
+  .kimlik dl>div:nth-child(n+3){border-top:var(--ince) solid var(--sari-cizgi)}
+
+  .hizmet .bolum-baslik{grid-column:1/-1}
+  .p-a{grid-column:1/-1;grid-row:auto;min-height:0}
+  .p-b{grid-column:1/span 6}
+  .p-c{grid-column:7/span 6}
+
+  .yil{grid-column:1/-1;font-size:clamp(120px,31vw,260px);display:flex;gap:.04em}
+  .hikaye-metin{grid-column:1/-1;margin-top:40px}
+
+  .bayiler-metin,.harita{grid-column:1/-1}
+  .harita{margin-top:56px}
+
+  .kapanis h2,.kapanis-sol,.kapanis-sag{grid-column:1/-1}
+
+  .alt-marka{grid-column:1/-1}
+  .alt-merkez{grid-column:1/span 6}
+  .alt-sayfa{grid-column:7/span 6}
+  .alt-iletisim{grid-column:1/-1}
+  .imza{font-size:clamp(56px,16.4vw,160px);white-space:normal;line-height:.84}
+  .imza span{display:block}
+  :root{--fab:52px}
+  .wa-ikon{width:calc(var(--fab) - 4px)}
+  .wa-ikon svg{width:28px;height:28px}
+  .wa-etiket{position:absolute;right:calc(100% + 10px);top:50%;padding:8px 12px;background:var(--murekkep);color:var(--sari);border:2px solid var(--sari);transform:translateY(-50%);opacity:0;pointer-events:none;transition:opacity .15s ease}
+  .wa:hover .wa-etiket,.wa:focus-visible .wa-etiket{opacity:1}
+}
+@media (max-width:699px){
+  body{font-size:17px}
+  .afis .eylem{flex-direction:column;align-items:flex-start;gap:10px}
+  .afis .eylem .btn{padding:0 18px;gap:14px}
+  .p-b,.p-c{grid-column:1/-1}
+  .p-a{padding:28px 22px 30px}
+  .p-a h3{font-size:clamp(40px,12vw,60px)}
+  .p-c{--pc-maske:radial-gradient(ellipse 50% 60% at 100% 100%,#000 10%,rgba(0,0,0,.4) 46%,transparent 72%)}
+  .defter>div{grid-template-columns:1fr;gap:4px}
+  .hikaye-metin>p,.kapanis-sol p{font-size:17px}
+  .serit-kap{padding-inline:0}
+  .serit{overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--ks) var(--kd);padding:0 var(--kd) 14px var(--ks);align-items:flex-end;scrollbar-width:thin}
+  .serit>li{flex:none;scroll-snap-align:start}
+  .serit .yer{height:300px;width:auto}
+  .kapanis-sag>div{grid-template-columns:1fr;gap:4px}
+  .alt-merkez,.alt-sayfa{grid-column:1/-1}
+  .alt-son{flex-direction:column;align-items:flex-start}
+  .alt-son .dil{margin-left:0}
+  .alt-son .dil button{min-width:48px;min-height:44px}
+  .deniz{font-size:10px}
+  .ilceler path{fill:url(#rast-iri);stroke-width:3}
+  .pin-etiket b{font-size:15px}
+  .pin-etiket{left:auto;right:-1.5px}
+  .kimlik dd{font-size:clamp(22px,6.4vw,34px)}
+  .pin-etiket{padding:6px 9px 7px}
+}
+</style>
+</head>
+<body>
+<div id="ust" aria-hidden="true" style="position:absolute;top:0;left:0;width:1px;height:120px;pointer-events:none"></div>
+<a class="atla" href="#icerik" data-i18n="atla">İçeriğe geç</a>
+<div class="onizleme" id="onizleme" hidden>
+  <p data-i18n="not.metin">Tasarım önizlemesi: fotoğraf alanları çekimden sonra doldurulacak.</p>
+  <button type="button" class="onizleme-kapat" aria-label="Notu kapat" data-i18n-attr="aria-label:not.kapat"><i aria-hidden="true"></i></button>
+</div>
+
+<header class="bas" id="bas">
+  <div class="bas-ic">
+    <a class="plaka" href="#ust" data-i18n-attr="aria-label:logo.link"><img src="img/logo.png" width="722" height="262" alt="Hanedan Pilav, Lezzet Hanedanlığı, 1998’den beri" data-i18n-attr="alt:logo.alt" fetchpriority="high"></a>
+    <nav class="nav" data-i18n-attr="aria-label:nav.etiket" aria-label="Ana menü">
+      <a href="#kurumsal" data-i18n="nav.kurumsal">Kurumsal</a>
+      <a href="#bayilerimiz" data-i18n="nav.bayiler">Bayilerimiz</a>
+      <a href="#galeri" data-i18n="nav.galeri">Galeri</a>
+      <a href="#iletisim" data-i18n="nav.iletisim">İletişim</a>
+    </nav>
+    <div class="bas-sag">
+      <a class="bas-tel tel-no" href="tel:+905336163754">+90 533 616 37 54</a>
+      <div class="dil" role="group" aria-label="Dil seçimi" data-i18n-attr="aria-label:dil.etiket">
+        <button type="button" data-dil="tr" aria-pressed="true" lang="tr" aria-label="TR, Türkçe">TR</button>
+        <button type="button" data-dil="en" aria-pressed="false" lang="en" aria-label="EN, English">EN</button>
+      </div>
+      <a class="btn" href="#bayilik" data-sayfa><span data-i18n="cta.bayilik">Bayilik Başvurusu</span></a>
+      <button class="menu-ac" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i><span data-i18n="menu.ac">Menü</span></button>
+      <a class="menu-yedek" href="#iletisim" data-i18n="menu.ac">Menü</a>
+    </div>
+  </div>
+</header>
+
+<dialog class="menu" id="menu" aria-label="Site menüsü" data-i18n-attr="aria-label:menu.etiket">
+  <div class="menu-ust">
+    <a class="plaka" href="#ust" data-i18n-attr="aria-label:logo.link" aria-label="Hanedan Pilav ana sayfa"><img src="img/logo.png" width="722" height="262" alt="" loading="lazy"></a>
+    <button class="menu-kapat" type="button"><i aria-hidden="true"></i><span data-i18n="menu.kapat">Kapat</span></button>
+  </div>
+  <div class="menu-govde">
+    <nav class="menu-nav" aria-label="Mobil menü" data-i18n-attr="aria-label:nav.mobil">
+      <ul>
+        <li><a href="#kurumsal"><span data-i18n="nav.kurumsal">Kurumsal</span><span class="ok" aria-hidden="true"></span></a></li>
+        <li><a href="#bayilerimiz"><span data-i18n="nav.bayiler">Bayilerimiz</span><span class="ok" aria-hidden="true"></span></a></li>
+        <li><a href="#galeri"><span data-i18n="nav.galeri">Galeri</span><span class="ok" aria-hidden="true"></span></a></li>
+        <li><a href="#iletisim"><span data-i18n="nav.iletisim">İletişim</span><span class="ok" aria-hidden="true"></span></a></li>
+      </ul>
+    </nav>
+    <div class="menu-alt">
+      <a class="btn" href="#bayilik" data-sayfa><span data-i18n="cta.bayilik">Bayilik Başvurusu</span><span class="ok" aria-hidden="true"></span></a>
+      <div class="menu-satir">
+        <a class="tel-no" href="tel:+905336163754">+90 533 616 37 54</a>
+        <a href="https://wa.me/905336163754" data-wa target="_blank" rel="noopener" data-i18n="wa.kisa">WhatsApp’tan yazın</a>
+      </div>
+      <div class="menu-satir">
+        <span data-i18n="saat.kisa">Her gün 09:00-17:00</span>
+        <div class="dil" role="group" aria-label="Dil seçimi" data-i18n-attr="aria-label:dil.etiket">
+          <button type="button" data-dil="tr" aria-pressed="true" lang="tr" aria-label="TR, Türkçe">TR</button>
+          <button type="button" data-dil="en" aria-pressed="false" lang="en" aria-label="EN, English">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<main id="icerik" tabindex="-1">
+
+  <!-- 2. Afiş açılışı -->
+  <section class="afis izgara" aria-labelledby="h-afis">
+    <p class="kunye" data-i18n="afis.kunye"><span lang="tr" translate="no">Lezzet Hanedanlığı</span>, İstanbul.</p>
+    <h1 id="h-afis"><span class="ince" data-i18n="afis.h1a">Günlük</span> <span class="dev">1&nbsp;ton</span> <span class="h1-son"><span class="ince" data-i18n="afis.h1b">pilav.</span> <span class="kapasite" data-i18n="afis.kapasite">Üretim<br>kapasitesi</span></span></h1>
+    <div class="afis-alt">
+      <p class="spot" data-i18n="afis.spot">Pilavımızı geleneksel lezzetiyle, titiz hijyen standartlarında üretiyor; şube ve lojistik ağımızla sofralara ulaştırıyoruz.</p>
+      <div class="eylem">
+        <a class="btn" href="#bayilik" data-sayfa><span data-i18n="cta.bayilik">Bayilik Başvurusu</span><span class="ok" aria-hidden="true"></span></a>
+        <a class="btn btn-ikincil" href="#iletisim" data-sayfa><span data-i18n="cta.toplu">Toplu Yemek Teklifi</span></a>
+      </div>
+    </div>
+    <figure class="yer r45" role="img" aria-label="Fotoğraf alanı, 4:5 dikey: kazandan servis" data-i18n-attr="aria-label:yer.hero.aria">
+      <span class="yer-not" aria-hidden="true"><b data-i18n="yer.etiket">Fotoğraf alanı</b><span data-i18n="yer.hero">Kazandan servis, dikey kadraj, gün ışığı</span></span>
+      <span class="yer-oran" aria-hidden="true">4:5</span>
+    </figure>
+  </section>
+
+  <!-- 3. Kimlik bandı -->
+  <section class="kimlik ters" aria-labelledby="h-kimlik">
+    <div class="izgara">
+      <h2 class="gizli" id="h-kimlik" data-i18n="kimlik.baslik">Kısaca Hanedan Pilav</h2>
+      <dl>
+        <div><dt data-i18n="kimlik.k1">Kuruluş</dt><dd>1998</dd></div>
+        <div><dt data-i18n="kimlik.k2">Günlük üretim kapasitesi</dt><dd>1&nbsp;ton</dd></div>
+        <div><dt data-i18n="kimlik.k3">Şube ve lojistik ağı</dt><dd data-i18n="kimlik.d3">İstanbul geneli</dd></div>
+        <div><dt data-i18n="kimlik.k4">Merkez</dt><dd>Sultangazi</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 4. Hizmetler -->
+  <section class="hizmet izgara" id="hizmetler" aria-labelledby="h-hizmet">
+    <h2 class="bolum-baslik" id="h-hizmet" data-i18n="hizmet.baslik">Yatırımcıya, firmaya, sofraya.</h2>
+    <div class="pano">
+      <article class="p-a ters">
+        <h3 data-i18n="hizmet.a.baslik">Franchise ve bayilik</h3>
+        <div>
+          <p data-i18n="hizmet.a.metin">Büyümeye devam eden franchise ve bayilik yapımız, yatırımcılara sürdürülebilir bir iş modeli sunar.</p>
+          <a class="link-ok" href="#bayilik"><span data-i18n="cta.nasil">Nasıl başvurulur?</span><span class="ok" aria-hidden="true"></span></a>
+        </div>
+      </article>
+      <article class="p-b">
+        <div>
+          <h3 data-i18n="hizmet.b.baslik">Toplu yemek ve organizasyon</h3>
+          <p data-i18n="hizmet.b.metin">Yüksek üretim kapasitemizle kurumsal firmalara, toplu yemeklere ve organizasyonlara profesyonel ve güvenilir hizmet sunuyoruz.</p>
+        </div>
+        <a class="link-ok" href="#iletisim" data-sayfa><span data-i18n="cta.toplu">Toplu Yemek Teklifi</span><span class="ok" aria-hidden="true"></span></a>
+      </article>
+      <article class="p-c">
+        <div>
+          <h3 data-i18n="hizmet.c.baslik">Bayilerimizi bulun</h3>
+          <p data-i18n="hizmet.c.metin">Size en yakın Hanedan Pilav bayisini adresi ve telefonuyla birlikte görün.</p>
+        </div>
+        <a class="link-ok" href="#bayilerimiz" data-sayfa><span data-i18n="cta.bayi">En Yakın Bayi</span><span class="ok" aria-hidden="true"></span></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5. Kurumsal hikaye -->
+  <section class="hikaye izgara" id="kurumsal" aria-labelledby="h-hikaye">
+    <div class="hikaye-cizgi" aria-hidden="true"></div>
+    <p class="yil" aria-hidden="true"><span>19</span><span>98</span></p>
+    <div class="hikaye-metin">
+      <h2 id="h-hikaye" data-i18n="hikaye.baslik">Geleneksel lezzet, modern üretim.</h2>
+      <p data-i18n="hikaye.metin"><span translate="no">Hanedan Pilav</span>, geleneksel lezzet anlayışını modern üretim standartlarıyla birleştirir.</p>
+      <dl class="defter">
+        <div><dt data-i18n="hikaye.d1">Geleneksel lezzet</dt><dd data-i18n="hikaye.d1m">İlk günden bu yana değişmeyen lezzet anlayışı.</dd></div>
+        <div><dt data-i18n="hikaye.d2">Modern üretim</dt><dd data-i18n="hikaye.d2m">Yüksek üretim kapasitesi ve operasyonel süreklilik.</dd></div>
+        <div><dt data-i18n="hikaye.d3">Hijyen</dt><dd data-i18n="hikaye.d3m">Titizlikle uygulanan hijyen standartları, lezzetle birlikte iş modelimizin önceliği.</dd></div>
+      </dl>
+      <a class="link-ok" href="#kurumsal" data-sayfa><span data-i18n="hikaye.link">Kurumsal sayfası</span><span class="ok" aria-hidden="true"></span></a>
+    </div>
+  </section>
+
+  <!-- 6. Bayilerimiz -->
+  <section class="bayiler-kap ters" id="bayilerimiz" aria-labelledby="h-bayiler">
+    <div class="bayiler izgara">
+      <div class="bayiler-metin">
+        <h2 id="h-bayiler" data-i18n="bayiler.baslik">İstanbul geneline uzanan ağ.</h2>
+        <p data-i18n="bayiler.metin">Bayi konumları ve iletişim bilgileri Bayilerimiz sayfasında listelenir.</p>
+        <p class="merkez-kunye"><b data-i18n="kimlik.k4">Merkez</b>Yunus Emre, Adem Yavuz Cd. No:76<br>34260 Sultangazi/İstanbul</p>
+        <a class="btn" href="#bayilerimiz" data-sayfa><span data-i18n="cta.bayi">En Yakın Bayi</span><span class="ok" aria-hidden="true"></span></a>
+      </div>
+      <figure class="harita">
+        <div class="harita-cizim" role="img" aria-label="İstanbul ilçe haritası; yalnız Sultangazi’deki merkez işaretli." data-i18n-attr="aria-label:harita.aria">
+          <svg class="harita-svg" viewBox="0 0 1000 529" aria-hidden="true" focusable="false"><defs><pattern id="rast" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.7" fill="#F6C417"/></pattern><pattern id="rast-iri" width="11" height="11" patternUnits="userSpaceOnUse"><circle cx="5.5" cy="5.5" r="2.7" fill="#F6C417"/></pattern></defs><g class="ilceler"><path d="M545.2 452.9 546.0 454.3 544.4 456.6 540.2 457.0 540.3 455.2 537.0 450.9 543.0 449.2 545.4 451.6ZM591.2 493.1 590.0 493.8 587.5 491.7 588.7 488.0ZM579.0 499.6 574.6 499.6 572.2 497.2 574.5 494.1 572.4 489.5 573.7 485.4 570.8 484.5 574.5 483.7 575.0 478.0 584.3 475.2 586.7 478.7 580.3 486.9 580.5 494.2ZM558.9 474.0 562.4 471.7 561.7 469.8 565.9 468.9 569.3 475.9 568.3 475.2 568.0 476.2 569.2 476.3 565.0 479.1 560.9 479.8 561.3 478.0 558.9 477.7 558.4 480.3 554.9 479.5 554.7 477.0ZM546.1 469.2 545.5 467.5 552.1 468.9 552.2 471.7 553.5 472.6 549.3 475.9 545.5 475.1 543.5 473.1ZM503.2 475.7 502.3 474.8 504.2 473.9 504.7 475.5ZM515.3 481.4 514.3 483.1 512.6 481.0Z"/><path d="M349.6 324.9 347.1 327.4 340.0 324.2 337.8 327.8 338.1 329.2 336.3 329.8 335.3 334.0 325.8 314.4 323.3 316.2 322.7 319.2 320.9 318.5 320.7 314.4 317.4 313.4 314.9 307.3 314.0 309.3 312.6 308.1 309.0 308.7 302.1 317.1 299.9 316.3 300.3 313.2 305.9 307.5 302.6 299.5 308.8 292.1 311.6 284.2 314.5 282.5 316.3 270.2 309.9 249.0 309.9 239.5 308.3 241.0 306.3 238.1 307.8 235.0 306.8 233.2 307.6 229.8 306.3 228.3 306.5 222.1 299.2 220.0 294.0 221.0 291.1 214.0 291.0 210.4 294.8 208.3 294.7 203.0 297.1 197.6 297.4 188.2 305.2 158.9 301.4 150.7 285.9 147.4 278.7 139.4 266.7 136.4 264.6 134.8 264.5 125.0 265.5 123.2 288.0 135.0 297.5 137.8 307.5 145.3 333.9 159.5 340.6 161.8 346.6 161.8 355.2 166.1 357.2 165.7 358.2 162.9 360.1 162.4 362.3 164.5 361.8 165.9 361.5 164.7 360.3 164.9 361.5 167.0 377.9 175.3 383.6 177.3 385.8 176.3 392.1 176.8 394.9 175.5 399.6 179.1 402.9 178.2 405.3 182.8 410.7 186.0 408.5 186.5 409.0 188.9 412.7 189.6 412.3 185.1 413.3 186.7 411.0 192.9 408.7 207.8 406.9 210.2 406.3 214.1 403.2 214.6 405.5 221.9 407.7 222.3 411.9 229.0 412.5 236.0 416.8 241.2 416.3 245.2 422.5 247.2 428.4 255.7 426.0 259.8 427.6 262.7 427.0 269.2 428.7 272.0 427.9 276.7 424.9 277.3 426.6 298.2 425.6 302.5 421.8 301.5 413.3 294.6 408.5 294.4 403.7 300.6 400.7 301.8 397.0 305.7 393.0 305.8 391.1 304.2 388.1 305.2 386.2 302.5 385.0 309.8 381.8 317.0 379.1 318.7 376.7 318.8 363.0 309.8 359.3 311.8 355.3 317.6 355.3 318.7 357.4 319.8Z"/><path d="M576.8 415.8 575.1 418.6 572.9 419.7 563.6 403.5 554.0 397.6 553.6 388.9 559.0 386.8 565.1 387.4 574.9 395.2 584.7 394.6 599.8 396.5 612.7 399.5 618.7 403.7 606.8 409.5 606.0 407.7 603.8 408.4 598.2 405.3 591.9 410.8 585.9 409.7 580.3 410.6Z"/><path d="M388.4 358.8 388.1 363.2 396.2 405.7 390.4 409.3 388.8 412.3 382.4 411.4 380.6 412.1 380.8 413.2 376.0 411.2 377.3 412.9 374.4 410.7 367.8 409.7 368.4 406.4 365.7 402.0 362.3 399.2 360.6 393.3 360.5 391.8 362.3 391.1 364.4 392.7 367.5 392.6 369.3 386.4 366.7 384.4 368.4 382.4 369.3 373.6 363.9 371.6 363.7 368.6 366.9 365.1 363.7 364.2 363.2 361.3 359.5 356.3 368.9 353.0 368.4 345.2 365.3 338.3 363.8 331.6 364.6 326.3 363.0 322.5 367.2 325.8 371.4 332.9 371.2 334.5 381.3 345.4 384.2 350.3 386.2 351.5 389.6 350.6 390.4 351.6 390.8 353.6Z"/><path d="M423.5 374.7 429.4 379.6 437.0 377.0 440.1 378.5 441.7 376.6 442.2 378.5 447.1 379.2 453.2 388.5 455.2 387.3 458.2 381.7 458.6 388.5 460.2 391.7 444.9 397.8 428.7 397.2 423.9 392.2 422.2 382.7 421.1 382.4 422.2 374.2Z"/><path d="M437.6 420.2 433.0 422.6 430.8 420.9 429.3 421.1 429.1 422.2 430.7 422.2 429.8 422.7 423.4 421.7 415.0 413.8 405.7 407.9 404.9 401.5 409.8 402.2 414.3 399.8 418.4 403.0 418.5 399.3 416.6 395.0 419.6 392.3 423.2 392.9 428.0 397.1 442.4 398.1 463.1 390.5 465.8 388.2 463.7 392.7 464.9 395.5 462.7 404.1 463.3 407.2 462.5 406.0 456.3 409.7 457.1 410.9 454.4 412.3 455.0 413.0 457.7 410.9 455.3 413.3 450.8 410.0 443.8 409.6 442.6 411.0 443.9 412.4 442.5 411.2 443.6 412.7 442.3 411.4 441.3 412.0 441.1 414.5Z"/><path d="M460.8 355.4 460.2 351.5 457.1 345.7 457.2 341.5 468.0 349.6 477.0 364.6 475.6 364.2 476.0 366.8 479.8 373.8 477.7 375.6 473.7 371.1 467.3 374.3 465.4 369.2 462.3 367.6 460.3 363.8Z"/><path d="M425.4 345.5 433.0 346.3 439.7 349.7 444.8 344.9 448.0 345.4 446.1 348.4 445.3 356.7 447.8 360.5 448.4 366.0 453.5 367.2 454.2 373.8 447.4 373.6 449.5 380.0 448.0 381.0 447.1 379.2 442.2 378.5 441.7 376.6 440.1 378.5 437.0 377.0 429.4 379.6 423.5 374.7 422.1 361.2Z"/><path d="M365.9 324.6 363.0 322.5 364.6 326.3 363.8 331.6 365.3 338.3 368.4 345.2 368.5 353.6 364.1 354.4 361.4 352.1 354.7 350.0 346.0 342.3 344.2 335.7 338.3 327.8 340.0 324.2 341.3 325.6 347.9 327.0 352.5 322.0 357.4 319.8 355.3 318.7 355.3 317.6 359.3 311.8 363.0 309.8 376.7 318.8 379.1 318.7 381.8 317.0 385.0 309.8 386.2 302.5 388.1 305.2 391.1 304.2 395.9 306.1 403.7 300.6 408.5 294.4 410.6 294.2 413.3 294.6 423.5 302.5 430.5 303.1 432.1 306.8 440.6 314.0 440.5 318.0 442.9 321.4 443.2 325.0 439.5 337.5 434.9 347.1 425.7 344.9 423.8 352.1 413.6 350.3 395.0 352.3 389.6 350.6 386.2 351.5 384.2 350.3 381.3 345.4 371.2 334.5 371.0 332.1Z"/><path d="M558.7 319.8 561.2 316.6 565.3 314.8 566.1 309.9 563.0 303.8 557.0 301.8 556.4 300.8 559.0 299.8 556.8 300.4 552.9 298.0 556.3 290.5 553.5 286.1 554.1 283.8 560.6 280.2 560.8 274.6 568.1 272.6 570.6 273.2 571.6 271.0 573.5 271.7 576.5 268.5 577.3 262.6 576.2 260.3 582.7 258.4 582.0 255.6 581.0 257.5 579.9 257.3 582.2 254.9 584.7 254.5 588.0 251.9 592.1 251.8 593.2 250.7 592.9 248.2 594.4 247.5 597.8 249.1 599.6 244.4 601.8 244.0 604.9 246.2 615.8 247.0 617.3 246.0 617.0 244.6 617.8 246.0 620.8 246.1 625.4 243.3 624.5 239.8 626.2 239.7 626.7 241.3 628.9 240.2 631.4 241.8 633.9 240.5 637.6 242.0 639.7 239.3 645.0 237.1 645.6 240.2 649.5 239.8 650.6 241.9 652.1 240.9 661.7 245.5 671.6 246.7 676.1 249.5 680.3 249.2 682.2 250.3 682.9 249.5 681.5 253.0 682.8 258.1 678.3 263.5 677.6 266.8 678.7 281.5 679.7 280.7 681.3 288.3 686.0 287.3 687.0 286.0 689.7 290.7 689.3 292.3 692.0 291.2 695.0 293.7 693.4 298.3 698.4 299.2 699.1 301.6 698.9 305.1 696.9 308.9 692.9 310.0 691.5 309.0 692.0 307.4 689.8 307.0 680.5 309.4 676.5 306.8 672.7 309.6 668.2 309.4 659.3 305.0 657.2 312.9 654.6 312.2 648.2 315.8 646.7 314.1 645.2 316.0 643.3 315.9 643.3 318.7 641.3 319.3 641.9 321.3 640.5 324.2 638.9 324.9 638.1 323.7 635.9 325.0 634.0 323.2 633.8 319.8 633.0 320.0 631.8 322.0 627.9 323.7 628.1 328.7 623.5 332.6 620.8 332.8 618.0 344.1 619.4 349.7 621.9 353.8 620.9 355.3 615.5 357.2 612.7 356.3 602.5 356.8 601.3 355.5 600.8 356.9 594.4 360.0 588.1 361.2 587.8 364.1 586.3 365.3 584.1 357.5 579.8 359.6 571.3 352.2 565.5 352.2 565.1 350.5 566.2 350.2 563.6 349.4 559.1 350.5 556.9 349.6 553.2 344.0 549.5 341.1 551.1 330.2 549.5 328.1 550.8 324.4 554.0 321.9 558.0 321.8Z"/><path d="M324.9 398.1 331.5 386.2 331.7 381.6 334.4 381.8 335.2 380.4 350.5 388.1 361.3 390.1 362.3 391.1 360.5 391.8 360.6 393.3 362.2 398.9 368.4 406.4 368.2 410.5 366.7 410.3 366.0 411.9 365.9 410.9 363.8 411.1 360.7 413.3 360.6 417.2 360.2 414.6 359.3 414.6 359.3 417.1 358.4 414.8 358.3 416.9 357.7 413.8 357.6 417.2 356.5 415.1 356.7 418.2 356.3 415.9 355.7 418.1 354.7 418.2 354.6 416.4 353.8 418.2 352.9 416.9 354.3 420.9 351.9 420.4 351.8 418.5 347.2 417.9 350.2 418.4 350.9 417.3 347.4 416.7 345.5 417.0 347.2 418.7 344.5 417.2 328.9 418.6 321.8 415.5 319.6 416.3 317.7 414.7 318.8 416.3 316.8 416.3 319.6 417.0 318.7 417.7 316.6 416.3 317.3 412.6 318.2 413.2 316.0 410.1 318.1 405.4 316.7 400.5 317.1 394.6 321.1 394.3Z"/><path d="M491.7 365.2 487.2 360.0 487.8 357.9 491.5 355.9 491.7 349.8 493.3 349.5 492.4 351.3 495.1 353.7 495.4 357.2 498.5 357.3 501.7 362.5 505.5 362.4 508.4 365.3 514.1 366.7 515.4 368.3 514.7 371.1 511.8 374.0 506.0 378.2 504.0 378.3 501.2 376.2 500.5 372.1 498.1 370.2 493.9 369.6Z"/><path d="M518.7 358.8 516.9 355.9 519.1 348.5 523.4 351.0 525.4 345.1 521.1 335.8 520.2 330.7 524.7 322.1 529.0 327.1 534.0 327.1 529.1 330.4 538.4 332.7 538.3 336.6 544.7 337.0 544.7 339.0 539.6 341.3 540.6 347.7 538.5 348.7 535.7 353.4 533.8 359.8 515.4 368.3 514.1 365.0 515.9 365.7 515.9 361.3Z"/><path d="M314.5 382.4 306.1 380.5 308.1 382.2 305.0 380.5 302.2 380.7 301.4 382.4 300.3 381.7 300.2 383.6 301.4 383.4 294.7 387.9 292.2 393.0 290.8 401.8 289.3 402.8 277.9 395.0 274.0 394.0 273.4 392.3 273.4 393.6 272.6 392.8 273.9 394.6 272.4 390.5 260.2 384.0 251.8 376.3 233.7 367.1 217.8 361.0 214.7 360.8 216.4 339.3 220.0 336.3 225.0 338.3 230.2 342.9 235.4 340.6 241.1 342.4 247.3 347.6 254.9 347.8 259.2 354.9 268.2 353.5 272.5 348.7 276.3 347.3 276.7 345.5 279.2 346.5 281.4 344.5 276.7 336.1 273.0 325.0 280.2 321.4 287.5 325.5 292.0 331.1 295.5 330.9 299.9 316.3 302.1 317.1 309.0 308.7 312.6 308.1 314.0 309.3 314.9 307.3 317.4 313.4 320.7 314.4 320.9 318.5 322.7 319.2 323.3 316.2 325.8 314.4 335.3 334.0 332.8 336.1 328.8 347.2 332.6 357.9 332.4 363.7 330.2 370.1 332.9 378.7 335.2 380.4 334.4 381.8 331.7 381.6 331.5 386.2 324.9 398.1 321.1 394.3 317.1 394.6 318.5 387.0 317.0 384.0Z"/><path d="M460.6 370.2 456.1 371.6 454.1 367.2 448.4 366.0 447.6 364.4 447.9 360.7 445.3 356.7 445.3 352.8 446.1 348.4 448.0 345.4 444.8 344.9 439.7 349.7 434.9 347.1 439.5 337.5 443.2 325.4 442.9 321.4 449.5 332.6 457.2 341.5 457.1 345.7 460.7 353.3 460.3 363.8 462.0 367.4 466.1 370.4 468.1 378.8 467.1 380.1 461.2 381.1 460.5 377.7 463.3 373.4Z"/><path d="M346.2 342.5 354.7 350.0 363.9 353.8 359.5 356.3 363.2 361.3 363.7 364.2 366.9 365.1 363.7 368.6 363.9 371.6 369.3 373.6 368.4 382.4 366.7 384.4 369.3 386.4 367.2 392.7 363.9 392.6 359.3 389.0 350.5 388.1 332.9 378.7 330.2 369.6 332.4 363.7 332.5 357.3 328.8 347.8 332.8 336.1 335.3 334.0 336.3 329.8 338.1 329.2 338.3 327.8 344.2 335.7Z"/><path d="M493.7 285.1 493.7 286.6 496.6 286.6 496.2 288.2 497.3 289.1 501.6 288.1 505.5 291.2 505.7 295.3 499.2 303.9 500.1 305.4 497.5 308.6 498.8 315.0 496.9 317.7 500.4 321.1 494.6 323.3 494.7 326.1 501.2 331.9 501.6 335.4 499.6 336.1 499.4 339.5 496.1 343.7 495.3 347.6 491.2 350.7 489.6 349.8 490.9 355.1 487.0 356.2 485.5 358.1 487.2 363.9 490.0 365.7 487.4 367.6 487.7 370.6 482.5 376.5 479.0 372.9 476.0 366.8 475.6 364.2 477.0 364.6 473.2 358.5 476.0 356.0 478.8 357.3 479.6 355.7 481.3 356.8 481.3 355.5 484.2 354.4 485.4 355.2 487.3 353.3 486.0 353.4 484.8 351.0 485.7 349.1 483.8 346.9 481.3 346.4 478.3 348.5 474.6 345.1 476.4 343.3 475.4 340.5 479.1 331.1 476.2 328.4 477.5 324.8 476.3 323.5 478.1 320.5 476.8 317.3 473.0 317.2 471.2 311.8 468.6 312.5 471.0 310.2 468.4 307.7 467.4 304.6 462.9 302.0 460.4 296.7 458.1 296.5 455.3 298.6 455.7 293.3 454.1 291.7 451.2 292.3 451.3 288.8 448.6 287.0 439.3 292.8 434.4 298.8 434.6 304.3 432.2 303.0 425.6 302.5 426.6 298.2 424.9 277.3 427.9 276.7 428.7 272.0 427.0 269.2 427.6 262.7 426.0 259.8 428.4 255.7 422.5 247.2 416.3 245.2 416.8 241.2 412.5 236.0 411.9 229.0 407.7 222.3 405.5 221.9 403.2 214.6 406.3 214.1 406.9 210.2 408.7 207.8 411.8 191.0 416.9 193.0 420.0 192.1 428.1 198.1 428.0 199.5 435.8 202.4 440.7 202.8 445.4 206.1 454.7 209.5 461.6 211.3 468.9 210.7 472.7 212.9 478.7 212.9 486.3 217.5 492.4 219.3 487.8 226.6 484.0 239.3 486.2 245.7 486.8 245.0 488.5 246.3 494.3 246.7 494.6 247.7 491.5 258.2 493.0 263.8 494.7 264.7Z"/><path d="M506.0 381.5 510.8 381.1 511.6 384.0 510.6 388.4 506.9 391.8 494.7 391.2 494.5 393.1 498.1 393.8 490.7 395.1 487.4 393.8 487.1 391.5 481.7 398.1 482.8 397.4 482.5 398.6 479.6 400.7 477.3 400.6 478.6 382.0 479.9 379.0 487.7 370.6 487.3 367.9 488.5 366.4 490.1 365.6 492.7 371.5 496.3 373.8 500.6 379.6Z"/><path d="M483.8 355.0 481.3 355.5 481.3 356.8 479.6 355.7 478.8 357.3 476.0 356.0 473.2 358.5 468.0 349.6 458.0 342.4 455.0 338.7 458.2 335.1 462.3 333.0 472.3 332.5 478.3 330.3 479.1 331.1 475.4 340.5 476.4 343.3 474.5 344.6 478.3 348.5 481.3 346.4 483.8 346.9 485.7 349.1 484.8 351.0 486.0 353.4 487.3 353.3 485.4 355.2Z"/><path d="M460.6 370.2 463.3 373.4 460.5 377.7 461.2 381.1 467.1 380.1 468.1 378.8 468.2 379.6 465.8 388.2 460.2 391.7 458.6 388.5 458.2 381.7 455.2 387.3 453.2 388.5 448.0 381.0 449.5 380.0 447.4 374.4 449.4 372.9 454.0 374.3 453.5 367.2 455.1 368.3 456.1 371.6Z"/><path d="M531.5 390.8 536.0 384.5 539.0 386.2 541.0 385.9 541.0 391.6 559.4 400.3 563.6 403.5 572.9 419.7 567.8 421.5 564.4 424.7 562.7 424.5 564.5 425.7 561.7 424.6 560.9 422.6 558.1 423.5 553.5 420.6 551.5 417.3 546.2 417.0 541.8 413.0 540.1 412.7 538.3 415.4 536.2 413.2 533.5 414.6 534.3 409.9 534.4 411.8 535.7 412.7 536.6 411.8 534.8 408.2 535.5 409.7 537.2 408.9 536.8 407.3 535.5 407.9 536.5 406.7 534.3 404.4 528.6 407.0 524.9 397.6 527.6 398.5 529.5 396.9 528.8 395.3 526.2 395.2 527.0 394.6 525.4 392.5 526.3 391.8 528.2 393.7Z"/><path d="M602.8 446.2 608.6 444.6 614.0 444.7 616.5 443.1 616.9 444.8 619.0 443.8 621.9 433.4 627.5 425.0 629.7 424.2 631.4 426.6 632.9 426.7 640.1 425.3 641.7 428.4 643.0 436.2 644.5 438.0 641.7 444.0 638.3 445.8 640.2 458.2 638.3 459.9 635.7 459.5 633.0 463.8 629.2 460.4 628.6 465.6 626.3 465.3 625.9 471.4 624.7 473.2 611.2 467.3 606.7 468.2 595.5 458.9 592.6 457.7 590.7 458.3 587.5 456.0 586.3 454.3 586.6 451.8 588.4 449.8 590.9 449.4 592.6 452.3Z"/><path d="M509.9 324.7 510.3 327.3 517.1 325.8 519.5 327.3 521.7 336.7 519.9 337.0 521.1 342.4 518.0 343.2 512.2 341.0 511.8 344.9 508.9 346.9 507.4 345.8 502.5 350.2 498.3 357.5 495.4 357.2 495.1 353.7 492.4 350.7 495.6 347.1 496.1 343.7 499.4 339.5 499.6 336.1 501.6 335.4 501.6 332.8 494.7 326.1 494.6 323.3 500.4 321.1 501.7 321.8 500.8 324.4 505.0 324.5 505.6 323.3 506.5 324.5 508.7 323.3Z"/><path d="M396.0 404.8 388.1 363.2 388.6 357.7 390.8 353.6 390.4 351.6 396.1 352.3 413.6 350.3 423.8 352.1 422.0 361.9 423.5 374.7 422.2 374.2 421.0 382.0 422.2 382.7 423.9 392.2 428.7 397.2 426.0 396.2 423.2 392.9 419.6 392.3 416.6 395.0 418.5 399.3 418.4 403.0 414.3 399.8 409.8 402.2 404.9 401.5 405.7 407.6 404.6 405.4 405.7 403.3 403.2 399.4 405.8 404.2 402.8 404.6 404.3 405.0 405.5 407.8 402.3 405.9 401.9 402.8 401.4 404.8 399.6 405.7 396.2 405.7Z"/><path d="M575.1 418.6 580.7 410.5 585.9 409.7 591.9 410.8 598.2 405.3 603.8 408.4 606.0 407.7 606.8 409.5 616.0 405.0 616.7 409.6 618.3 408.4 620.0 409.0 619.6 410.0 623.1 408.6 624.0 409.7 620.4 418.4 624.2 423.6 625.1 428.3 621.6 434.1 619.0 443.8 616.9 444.8 616.5 443.1 614.0 444.7 603.0 446.0 592.6 452.3 590.9 449.4 588.6 449.8 586.8 451.2 586.3 454.3 581.1 446.1 578.0 445.8 576.8 443.9 578.5 442.7 576.8 443.8 574.1 439.7 575.4 436.7 573.4 438.8 570.6 432.9 570.8 430.6 568.8 429.6 568.2 432.8 568.7 429.5 564.7 424.3 567.8 421.5Z"/><path d="M716.6 416.2 713.7 423.4 711.5 422.6 711.4 424.0 708.8 424.8 707.6 427.0 704.6 426.8 702.9 430.8 694.4 435.5 684.9 438.2 685.9 441.3 684.5 449.6 680.6 452.8 680.6 465.1 674.0 472.7 670.0 474.1 673.0 476.7 672.7 479.5 674.3 482.7 672.7 483.7 669.2 484.3 668.6 482.6 665.8 482.6 664.9 485.7 662.3 488.1 660.6 486.9 660.4 488.8 658.5 488.9 652.6 486.6 649.4 489.2 643.1 485.7 646.5 487.1 649.3 485.2 645.1 482.2 644.9 485.5 644.2 483.5 646.1 480.4 645.0 481.1 635.5 475.2 634.1 475.8 634.7 477.2 633.7 478.0 636.7 480.1 630.5 477.8 628.1 474.9 624.7 473.2 625.9 471.4 626.3 465.3 628.6 465.6 629.2 460.4 633.0 463.8 635.7 459.5 638.3 459.9 640.2 458.2 638.3 445.8 641.7 444.0 644.5 438.0 652.3 436.6 653.6 436.6 653.6 437.7 664.6 433.5 671.7 426.1 672.6 419.7 668.1 419.7 661.2 408.7 659.9 392.1 660.6 389.1 664.3 385.2 664.6 382.4 687.9 382.1 693.4 376.3 697.4 375.6 698.4 374.4 696.1 370.0 696.5 366.7 698.9 363.4 695.9 358.2 698.4 353.1 701.3 354.4 704.8 360.1 704.7 369.4 707.4 372.3 716.2 376.5 718.8 376.8 723.3 375.0 731.7 379.2 730.5 382.5 732.9 383.1 733.1 386.9 735.4 386.4 733.6 390.9 736.2 392.8 737.0 395.0 741.1 393.3 756.9 379.1 758.0 372.8 764.9 369.0 767.1 371.8 766.0 381.3 763.0 384.3 762.7 387.1 768.7 392.5 769.4 400.5 766.6 401.4 758.7 409.2 757.2 412.5 758.8 415.0 757.5 417.7 755.8 417.8 755.8 420.6 753.6 419.9 751.2 424.6 747.9 425.0 744.3 422.5 743.0 419.3 744.5 412.0 743.3 405.8 739.5 408.8 725.5 410.6 719.8 419.0Z"/><path d="M623.7 410.2 623.1 408.6 619.6 410.0 620.0 409.0 618.3 408.4 616.7 409.6 616.0 405.0 618.7 403.7 613.3 399.9 612.6 397.5 613.5 394.8 611.7 388.7 609.7 386.8 614.3 385.1 612.4 383.5 619.6 384.1 623.7 382.1 634.5 381.5 636.2 378.2 639.9 378.2 639.9 376.4 641.4 377.1 642.6 375.9 641.9 374.1 646.4 374.3 649.6 372.9 653.2 368.1 654.0 364.6 657.5 363.0 659.2 359.2 661.9 357.8 666.7 361.0 668.0 359.9 672.7 360.5 677.7 359.0 681.5 360.6 689.9 360.9 690.3 365.4 696.5 366.7 696.1 370.0 698.4 374.4 693.4 376.3 687.9 382.1 664.6 382.4 664.3 385.2 660.1 391.1 647.4 389.6 644.1 399.0 642.8 408.2 639.3 413.0 641.7 421.8 641.5 424.3 640.1 425.3 631.9 426.7 629.7 424.2 627.5 425.0 625.1 428.3 624.2 423.6 620.4 418.4Z"/><path d="M492.4 219.3 495.0 219.3 501.7 224.8 527.4 230.6 534.1 229.9 534.3 227.8 536.7 226.1 536.5 223.1 538.3 223.2 539.5 225.0 542.1 222.8 544.5 224.2 547.7 224.1 549.6 227.0 551.1 225.1 553.4 226.3 553.5 228.8 556.3 224.4 557.1 228.2 559.6 227.5 559.6 230.3 562.4 228.9 563.1 231.6 563.9 230.5 565.9 231.6 566.1 233.9 568.7 233.1 569.8 234.8 570.7 234.2 570.3 235.9 573.3 235.5 571.7 237.1 575.3 238.0 574.6 241.4 574.9 238.4 573.9 237.9 573.2 239.7 574.2 240.9 570.4 246.5 570.6 249.3 573.1 251.1 569.9 256.2 567.3 256.4 566.2 258.6 563.0 260.2 558.1 268.7 555.9 269.9 553.7 277.0 547.6 279.9 545.9 283.1 535.6 289.0 539.6 293.7 543.6 295.5 546.3 300.3 544.5 301.0 547.9 302.9 553.2 310.3 552.5 313.2 548.2 317.9 545.9 316.7 544.5 317.4 546.2 317.6 547.0 320.4 543.8 328.1 544.6 327.9 546.0 332.6 544.7 339.0 544.7 337.0 538.3 336.6 538.4 332.7 529.1 330.4 534.0 327.1 529.0 327.1 524.7 322.1 520.4 329.5 520.4 333.0 518.4 326.1 511.0 327.4 508.7 323.3 506.5 324.5 505.6 323.3 505.0 324.5 500.8 324.4 501.7 321.8 496.9 317.7 498.8 315.0 497.1 310.6 497.7 308.0 505.7 294.7 505.5 291.2 503.3 288.6 497.3 289.1 496.2 288.2 496.6 286.6 493.7 286.6 494.7 264.7 493.0 263.8 491.5 258.2 494.6 247.7 494.3 246.7 488.5 246.3 486.8 245.0 486.2 245.7 484.1 239.8 487.8 226.6Z"/><path d="M112.2 344.2 103.8 344.5 97.7 346.6 91.3 347.0 83.9 349.6 81.3 353.2 76.8 352.2 56.9 355.3 42.6 364.4 35.4 365.4 24.0 371.4 22.6 366.1 17.9 367.4 16.4 364.3 13.2 363.5 11.1 366.1 10.5 363.8 7.4 364.5 9.8 360.1 8.9 358.1 9.7 354.1 8.0 349.3 12.3 345.3 10.8 344.9 10.9 342.5 8.0 342.9 7.8 339.7 9.8 337.4 7.5 334.7 9.4 327.9 6.0 326.3 8.2 321.8 6.7 320.6 8.7 319.4 6.5 318.5 8.1 314.8 8.2 310.7 6.4 310.4 9.8 297.2 8.5 292.5 9.0 289.7 11.8 285.1 25.9 285.0 25.8 282.8 27.3 282.4 31.3 273.7 29.6 270.8 28.2 260.1 19.5 245.7 19.0 240.4 20.4 233.6 27.9 225.9 35.2 223.4 43.0 217.3 49.0 215.5 51.6 209.1 53.8 208.2 58.4 202.3 58.0 197.8 60.8 195.0 64.3 197.2 66.7 196.3 67.2 194.6 71.6 196.3 73.0 195.1 74.1 196.5 77.9 195.5 86.9 182.6 89.3 182.3 85.0 178.6 82.4 170.6 87.5 162.7 87.6 158.5 85.8 152.4 91.0 155.9 99.7 155.8 121.9 164.5 125.3 170.9 129.0 164.1 133.5 166.4 136.2 166.6 140.5 164.4 143.6 165.3 151.3 163.2 153.5 158.3 155.8 157.9 160.2 163.7 157.7 168.2 157.4 171.9 152.2 178.2 153.2 182.5 158.4 187.1 160.3 186.6 164.1 191.3 174.5 187.6 181.1 189.4 178.5 191.4 174.1 203.4 167.0 210.7 170.7 210.9 170.5 215.0 172.2 215.9 173.2 221.5 178.4 227.0 177.8 231.1 183.8 234.9 191.3 233.4 192.9 235.5 192.5 237.7 195.4 246.3 202.4 252.3 203.1 255.0 206.4 254.8 206.1 256.8 208.4 259.5 205.9 262.5 206.0 264.4 202.9 265.6 203.4 267.9 204.9 268.0 206.4 270.8 201.9 278.1 204.1 279.1 204.6 285.5 208.2 284.8 211.1 286.9 209.8 290.7 211.7 294.4 210.1 297.6 213.5 307.2 209.3 308.0 212.8 310.7 214.8 327.6 216.9 330.4 214.0 339.3 216.2 342.6 215.0 345.9 216.1 349.2 214.7 360.8 205.2 357.6 201.9 358.3 195.5 356.8 195.2 355.5 189.6 354.1 186.7 355.1 175.9 354.6 161.3 350.8 149.5 351.3 144.7 347.4 140.2 345.5 139.8 346.3 139.0 344.8 140.8 345.6 141.1 344.7 139.9 345.0 140.9 343.7 139.5 344.1 140.8 343.2 137.7 341.4 129.5 341.6 125.1 346.1Z"/><path d="M660.1 391.1 661.2 408.7 668.1 419.7 672.6 419.7 671.7 426.1 664.6 433.5 653.6 437.7 653.6 436.6 652.3 436.6 644.5 438.0 640.1 425.3 641.5 424.3 641.7 421.8 639.2 414.0 642.9 408.1 646.6 390.8 648.3 389.4Z"/><path d="M651.3 513.3 652.0 511.5 654.5 511.1 656.6 506.6 655.6 503.8 652.6 503.8 648.9 500.2 650.2 501.6 651.5 500.7 649.5 499.2 650.1 498.4 648.2 498.4 650.7 492.0 652.2 492.3 652.4 491.3 650.5 496.8 652.3 500.2 655.9 502.4 656.7 501.4 657.9 502.2 656.9 501.2 658.9 498.6 658.4 497.4 662.4 495.0 660.6 486.9 662.3 488.1 664.1 486.8 665.8 482.6 668.6 482.6 669.7 484.4 674.3 482.7 672.7 475.7 670.0 474.1 674.0 472.7 680.6 465.1 680.6 452.8 684.5 449.6 685.9 441.3 684.9 438.2 694.4 435.5 702.9 430.8 704.6 426.8 707.6 427.0 708.8 424.8 711.4 424.0 711.5 422.6 712.0 423.6 714.4 422.9 716.4 416.1 719.8 419.0 725.5 410.6 739.5 408.8 743.3 405.8 744.5 412.0 743.0 419.3 744.4 424.2 742.3 427.3 736.5 429.8 736.7 432.0 735.0 433.6 736.4 435.1 735.8 436.3 737.6 436.9 738.5 447.9 741.5 448.6 742.6 447.4 744.4 450.6 737.4 458.4 724.4 460.2 723.3 472.6 718.2 472.1 706.5 477.2 700.2 483.2 698.7 486.2 700.6 487.9 697.4 492.3 702.1 499.7 698.6 506.9 698.0 513.6 690.8 508.9 686.6 517.7 679.2 512.7 678.1 514.9 678.3 513.5 677.7 514.2 677.0 513.1 677.0 514.7 675.7 513.5 676.9 515.8 674.6 514.2 673.9 515.8 675.6 516.3 671.2 517.3 667.9 514.5 664.5 514.0 663.4 515.5 665.4 517.1 655.4 515.4 649.4 517.2 647.7 519.0 649.6 518.5 648.6 521.5 645.4 523.0 646.2 519.5 644.1 515.2 646.0 515.2 648.8 512.4 650.0 512.3 647.8 513.9 648.9 514.9 650.5 514.8Z"/><path d="M465.1 406.2 463.5 405.2 464.4 405.7 463.6 407.2 462.8 404.4 464.9 395.5 463.7 392.7 467.7 383.7 467.3 374.3 473.7 371.1 477.7 375.6 479.8 373.8 482.4 376.4 478.6 382.0 477.3 400.6 473.7 402.1 469.3 406.3Z"/><path d="M198.8 87.8 265.1 122.9 264.6 134.8 266.7 136.4 278.7 139.4 285.9 147.4 301.4 150.7 305.2 158.9 297.4 188.2 297.1 197.6 294.7 203.0 294.8 208.3 291.0 210.4 291.1 214.0 294.0 221.0 300.4 220.1 306.2 221.7 306.8 223.0 306.3 228.3 307.4 229.0 306.8 233.2 307.8 235.0 306.3 238.1 308.3 241.0 309.9 239.5 309.9 249.0 311.5 257.0 316.2 267.4 315.8 279.2 314.5 282.5 311.0 285.2 308.8 292.1 302.6 299.5 305.9 307.5 299.8 314.4 298.4 323.8 295.5 330.9 292.0 331.1 287.5 325.5 280.2 321.4 273.0 325.0 276.7 336.1 281.4 344.5 279.2 346.5 276.7 345.5 276.3 347.3 274.0 347.7 271.3 349.7 270.6 352.0 266.6 354.0 259.2 354.9 254.9 347.8 247.3 347.6 241.1 342.4 237.6 341.2 235.4 340.6 230.2 342.9 225.0 338.3 220.0 336.3 217.8 337.2 215.8 341.1 214.0 339.3 216.9 330.4 214.8 327.6 212.8 310.7 209.3 308.0 213.5 307.2 210.1 297.6 211.7 294.4 209.8 290.7 211.1 286.9 208.2 284.8 204.6 285.5 204.1 279.1 201.9 278.1 206.4 270.8 204.9 268.0 203.4 267.9 202.9 265.6 206.0 264.4 205.9 262.5 208.4 259.5 206.1 256.8 206.4 254.8 203.1 255.0 202.4 252.3 195.4 246.3 192.5 237.7 192.9 235.5 191.3 233.4 183.8 234.9 177.8 231.1 178.4 227.0 173.2 221.5 172.2 215.9 170.5 215.0 170.7 210.9 167.0 210.7 174.1 203.4 178.5 191.4 181.1 189.4 174.5 187.6 164.1 191.3 160.3 186.6 158.4 187.1 153.2 182.5 152.2 178.2 157.4 171.9 157.7 168.2 160.2 163.7 155.8 157.9 153.5 158.3 151.3 163.2 143.6 165.3 140.5 164.4 136.2 166.6 133.5 166.4 129.0 164.1 125.3 170.9 121.9 164.5 99.7 155.8 91.0 155.9 85.8 152.4 87.6 158.5 87.5 162.7 82.4 170.6 85.0 178.6 89.3 182.3 86.9 182.6 77.9 195.5 74.1 196.5 73.0 195.1 71.6 196.3 67.2 194.6 66.7 196.3 64.1 197.2 61.1 194.9 59.4 196.3 58.6 194.5 58.9 180.4 64.3 164.1 64.6 148.3 69.0 138.0 70.3 125.7 74.3 125.5 76.4 123.3 81.0 121.7 75.0 109.4 76.7 98.7 75.5 84.8 73.0 82.5 72.3 77.9 69.7 77.8 66.4 75.1 62.7 68.7 55.5 66.1 56.7 61.9 55.2 56.3 57.9 53.7 58.5 51.2 66.0 50.5 68.8 47.2 72.5 47.0 79.7 39.6 80.5 35.5 77.6 32.8 80.0 32.5 80.9 29.9 79.2 28.3 81.5 27.3 82.3 24.6 81.0 22.6 78.7 22.0 78.9 20.3 81.4 18.8 81.8 16.6 86.5 12.2 88.3 8.3 93.1 6.0 96.7 9.4 103.0 10.4 102.8 12.8 103.8 13.4 111.1 14.9 111.0 17.0 113.1 18.0 110.5 18.8 110.4 20.0 113.7 23.3 112.6 24.3 112.9 26.7 116.2 27.5 116.0 30.3 119.7 30.2 119.2 32.2 122.7 36.8 130.6 42.8 129.2 43.7 129.9 45.9 135.7 46.6 135.9 48.8 143.1 52.7 143.0 54.7 149.5 57.4 150.5 60.6 155.6 64.7 158.6 65.1Z"/><path d="M716.0 330.6 713.2 331.1 711.5 333.4 713.2 335.2 716.2 335.9 716.3 338.1 713.7 338.8 713.9 341.1 710.4 344.0 711.4 345.7 709.0 347.0 707.6 350.7 703.7 354.5 701.6 354.9 698.4 353.1 697.3 354.1 695.9 358.2 698.9 363.4 696.5 366.7 690.3 365.4 689.9 360.9 681.5 360.6 677.7 359.0 672.7 360.5 668.0 359.9 666.7 361.0 661.9 357.8 659.2 359.2 657.5 363.0 654.0 364.6 652.9 368.6 649.0 373.3 641.9 374.1 642.6 375.9 641.4 377.1 639.9 376.4 639.9 378.2 636.2 378.2 634.5 381.5 623.7 382.1 619.6 384.1 608.9 382.7 602.5 372.6 597.7 369.5 591.0 368.2 586.7 369.5 586.1 365.9 587.8 364.1 588.1 361.2 594.4 360.0 600.8 356.9 601.2 355.5 602.5 356.8 612.7 356.3 615.5 357.2 620.9 355.3 621.9 353.8 619.4 349.7 618.0 344.1 620.8 332.8 623.5 332.6 628.1 328.7 627.9 323.7 631.8 322.0 633.0 320.0 633.8 319.8 634.0 323.2 635.9 325.0 638.1 323.7 639.1 324.9 641.4 322.9 641.3 319.3 643.3 318.7 643.3 315.9 645.2 316.0 646.7 314.1 648.2 315.8 654.6 312.2 657.2 312.9 659.3 305.0 668.2 309.4 672.7 309.6 676.5 306.8 680.5 309.4 689.8 307.0 692.0 307.4 691.5 309.0 692.9 310.0 697.4 309.8 700.0 311.5 702.9 309.5 706.5 312.6 707.7 320.6 711.1 322.5 712.3 324.6 717.1 326.5 717.4 328.9Z"/><path d="M558.8 376.7 559.6 376.3 557.5 373.2 560.8 371.6 563.1 365.9 561.6 358.0 558.9 355.4 560.0 352.8 559.1 350.5 563.6 349.4 566.2 350.2 565.1 350.5 565.5 352.2 571.3 352.2 579.8 359.6 584.1 357.5 584.3 360.4 586.3 362.9 586.7 369.5 591.0 368.2 598.1 369.7 602.5 372.6 608.7 382.6 614.0 383.8 614.3 385.1 609.7 386.8 611.7 388.7 613.7 399.5 585.8 394.7 574.3 395.0 566.0 388.0 562.0 386.4Z"/><path d="M558.2 349.8 560.0 351.9 558.9 355.4 561.6 358.0 563.1 365.9 560.8 371.6 557.5 373.2 559.6 376.3 558.9 378.7 562.0 386.4 553.6 388.9 554.0 397.6 541.0 391.6 541.0 385.9 539.0 386.2 536.0 384.5 528.4 393.6 526.3 391.8 523.3 392.0 522.7 390.9 524.2 391.0 523.7 389.7 521.7 389.4 520.8 387.8 522.7 387.9 520.9 385.4 522.4 386.5 522.2 383.5 523.1 384.0 520.7 377.9 522.3 375.5 524.1 375.4 533.1 367.3 543.4 360.8 543.6 352.0 545.8 348.7 545.3 343.6 549.5 341.1Z"/><path d="M881.2 290.0 886.7 286.9 890.6 287.7 892.1 286.0 893.5 288.7 899.2 286.5 903.7 287.8 903.7 289.5 905.4 287.9 910.1 289.9 910.1 292.4 913.4 291.1 925.1 297.9 938.2 301.0 940.9 299.5 942.9 300.6 941.3 298.8 945.9 297.7 947.4 299.2 952.3 298.8 953.0 300.9 957.3 298.6 962.7 297.9 967.6 298.2 968.9 299.7 969.8 297.9 973.3 298.4 974.1 299.1 972.1 300.4 973.2 302.5 972.9 310.1 970.1 313.1 971.0 314.0 972.3 313.1 970.9 314.4 972.7 318.7 971.9 322.1 973.4 326.1 979.8 328.6 992.1 327.3 993.9 330.5 992.7 333.4 993.5 337.3 991.7 337.9 992.0 339.8 983.9 335.4 974.7 334.5 974.0 335.7 967.4 331.9 965.3 332.6 960.7 331.2 961.2 336.0 958.3 339.9 960.8 345.7 961.1 350.5 958.3 351.1 958.5 354.1 955.4 356.4 955.5 365.7 948.7 365.7 945.7 371.7 942.8 373.0 938.1 378.1 935.9 378.1 934.1 380.4 932.0 380.8 932.1 384.1 930.6 384.9 928.3 383.3 921.8 382.3 919.2 378.8 915.1 380.3 913.5 385.6 912.0 382.7 912.7 379.5 908.3 378.4 906.9 375.4 905.6 375.8 904.5 374.4 900.3 376.6 895.8 376.8 892.5 373.9 888.0 365.5 886.5 369.5 884.3 369.1 884.5 365.5 882.6 363.3 880.8 364.1 879.3 368.1 876.9 370.5 873.5 369.5 872.9 371.6 869.4 370.0 867.8 371.6 869.0 375.3 868.8 380.4 869.4 382.4 872.3 383.3 872.7 385.6 875.4 387.7 874.7 391.2 871.7 391.7 868.8 394.4 866.6 399.0 861.7 400.0 861.2 402.9 859.8 403.3 861.2 405.0 857.6 407.8 857.4 412.5 855.2 415.1 852.3 416.1 851.5 414.8 847.4 417.9 846.9 416.8 843.6 416.4 843.4 414.3 841.6 412.8 832.6 411.8 822.7 405.0 821.3 405.9 819.3 405.0 818.3 401.8 819.3 398.7 821.1 397.6 821.5 392.4 820.4 387.7 818.6 389.0 817.6 388.0 815.4 390.4 816.8 384.4 814.5 379.1 816.0 375.1 811.2 372.2 805.0 371.1 803.2 369.4 802.7 371.0 799.3 369.8 795.0 366.7 792.8 366.9 791.4 369.2 785.4 368.3 784.7 370.7 782.1 370.1 780.2 371.7 777.3 364.8 774.9 363.5 771.9 366.2 770.5 365.1 770.6 367.9 767.6 371.5 764.9 369.0 758.0 372.8 756.9 379.1 749.4 386.7 737.6 395.0 733.6 390.9 735.4 386.4 733.1 386.9 732.9 383.1 730.5 382.5 731.7 379.2 723.3 375.0 718.8 376.8 716.2 376.5 707.4 372.3 704.7 369.4 704.8 360.1 701.6 354.9 706.5 351.9 709.0 347.0 711.4 345.7 710.4 344.0 713.7 341.5 713.7 338.8 716.3 338.1 716.2 335.9 713.2 335.2 711.5 333.4 713.2 331.1 716.6 330.3 717.4 327.5 707.7 320.6 705.6 311.4 702.9 309.5 700.0 311.5 696.1 309.8 698.9 305.1 699.1 301.6 698.4 299.2 693.4 298.3 695.0 293.7 693.5 292.0 692.0 291.2 689.3 292.3 689.7 290.7 687.0 286.0 686.0 287.3 681.3 288.3 681.5 286.1 679.6 284.1 680.1 281.9 679.7 280.7 678.7 281.5 678.0 278.3 678.8 274.4 677.2 271.7 677.6 266.8 678.3 263.5 682.8 258.1 681.5 253.0 682.9 249.5 695.2 253.3 704.0 251.9 705.8 252.9 711.2 250.6 712.7 252.4 720.8 254.3 736.6 260.6 743.7 261.7 768.5 270.4 775.4 271.1 798.0 277.9 814.4 279.5 817.7 276.8 816.8 275.1 817.8 276.2 820.5 274.9 819.0 273.0 815.8 274.5 819.6 272.2 820.9 273.8 822.9 273.0 823.0 274.6 824.2 274.2 825.0 275.3 827.6 273.7 828.3 276.8 832.4 277.4 833.1 279.5 836.7 280.6 838.2 278.9 839.6 281.4 845.8 283.5 849.9 282.5 855.2 285.7 858.4 284.4 867.2 284.3 867.0 286.0 868.7 287.1Z"/><path d="M498.9 356.1 502.5 350.2 507.4 345.8 508.9 346.9 511.9 344.7 512.2 341.0 518.0 343.2 521.0 342.5 519.9 337.0 521.7 336.7 525.4 345.1 523.4 351.0 519.1 348.5 516.9 355.9 518.7 358.8 515.9 361.3 515.7 366.0 514.3 364.9 514.1 366.7 512.7 366.7 508.4 365.3 505.5 362.4 501.7 362.5 498.8 358.7Z"/></g><path class="merkez-ilce" d="M461.0 333.5 455.0 338.7 449.5 332.6 440.6 318.4 440.6 314.0 430.1 303.9 432.2 303.0 434.6 304.3 434.4 298.8 439.3 292.8 448.6 287.0 451.3 288.8 451.2 292.3 454.1 291.7 455.7 293.3 454.7 298.0 455.9 298.6 458.1 296.5 460.4 296.7 461.9 300.7 467.4 304.6 468.4 307.7 471.0 310.2 468.6 312.5 471.2 311.8 473.0 317.2 476.8 317.3 478.1 320.5 476.3 323.5 477.5 324.8 476.2 328.1 478.3 330.3 472.3 332.5Z"/><g class="olcek"><path d="M40 488.01262432018063V495.01262432018063H99.4V488.01262432018063"/></g></svg>
+          <span class="deniz" style="right:1%;top:5%" aria-hidden="true" data-i18n="harita.karadeniz">Karadeniz</span>
+          <span class="deniz" style="left:24%;top:86%" aria-hidden="true" data-i18n="harita.marmara">Marmara Denizi</span>
+          <span class="olcek-etiket" aria-hidden="true" style="left:4%;top:85.5%">10 km</span>
+          <span class="pin" style="left:45.49%;top:59.25%" aria-hidden="true">
+            <span class="pin-cizgi"></span>
+            <span class="pin-etiket"><small data-i18n="kimlik.k4">Merkez</small><b>Sultangazi</b></span>
+            <span class="pin-isaret"></span>
+          </span>
+        </div>
+        <figcaption data-i18n="harita.not">Haritada yalnız merkezimiz işaretlidir.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7. Galeri şeridi -->
+  <section class="galeri" id="galeri" aria-labelledby="h-galeri">
+    <div class="izgara">
+      <div class="galeri-bas">
+        <h2 class="bolum-baslik" id="h-galeri" data-i18n="galeri.baslik">Galeri</h2>
+        <a class="link-ok" href="#galeri" data-sayfa><span data-i18n="galeri.link">Tüm Galeri</span><span class="ok" aria-hidden="true"></span></a>
+      </div>
+    </div>
+    <div class="serit-kap">
+      <ul class="serit" tabindex="0" aria-label="Galeri önizlemesi" data-i18n-attr="aria-label:galeri.serit">
+        <li style="--r:.8;--ar:4/5">
+          <figure class="yer" role="img" aria-label="Fotoğraf alanı, 4:5: tabakta pilav" data-i18n-attr="aria-label:yer.g1.aria">
+            <span class="yer-not" aria-hidden="true"><b data-i18n="yer.etiket">Fotoğraf alanı</b><span data-i18n="yer.g1">Tabakta pilav, üstten, gün ışığı</span></span>
+            <span class="yer-oran" aria-hidden="true">4:5</span>
+          </figure>
+        </li>
+        <li style="--r:1.5;--ar:3/2">
+          <figure class="yer sol-doku" role="img" aria-label="Fotoğraf alanı, 3:2: üretim alanı" data-i18n-attr="aria-label:yer.g2.aria">
+            <span class="yer-not" aria-hidden="true"><b data-i18n="yer.etiket">Fotoğraf alanı</b><span data-i18n="yer.g2">Üretim alanı, geniş açı, ekip iş başında</span></span>
+            <span class="yer-oran" aria-hidden="true">3:2</span>
+          </figure>
+        </li>
+        <li style="--r:1;--ar:1/1">
+          <figure class="yer alt-doku" role="img" aria-label="Fotoğraf alanı, 1:1: şube cephesi" data-i18n-attr="aria-label:yer.g3.aria">
+            <span class="yer-not" aria-hidden="true"><b data-i18n="yer.etiket">Fotoğraf alanı</b><span data-i18n="yer.g3">Şube cephesi, tabela okunur</span></span>
+            <span class="yer-oran" aria-hidden="true">1:1</span>
+          </figure>
+        </li>
+        <li style="--r:.8;--ar:4/5">
+          <figure class="yer" role="img" aria-label="Fotoğraf alanı, 4:5: toplu yemek servisi" data-i18n-attr="aria-label:yer.g4.aria">
+            <span class="yer-not" aria-hidden="true"><b data-i18n="yer.etiket">Fotoğraf alanı</b><span data-i18n="yer.g4">Toplu yemek servisi, yakın plan</span></span>
+            <span class="yer-oran" aria-hidden="true">4:5</span>
+          </figure>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. Bayilik kapanışı -->
+  <section class="kapanis-kap ters" id="bayilik" aria-labelledby="h-kapanis">
+    <div class="kapanis izgara">
+      <h2 id="h-kapanis" data-i18n="kapanis.baslik"><span translate="no">Hanedan Pilav</span> bayisi olun.</h2>
+      <div class="kapanis-sol">
+        <p data-i18n="kapanis.metin">Bayilik başvurularını form üzerinden ya da telefonla alıyoruz.</p>
+        <a class="btn" href="#bayilik" data-sayfa><span data-i18n="cta.bayilik">Bayilik Başvurusu</span><span class="ok" aria-hidden="true"></span></a>
+      </div>
+      <dl class="kapanis-sag">
+        <div><dt data-i18n="kapanis.tel">Telefon</dt><dd><a class="tel-no" href="tel:+905336163754">+90 533 616 37 54</a></dd></div>
+        <div><dt data-i18n="kapanis.mesaj">Mesaj</dt><dd><a href="https://wa.me/905336163754" data-wa target="_blank" rel="noopener" data-i18n="wa.kisa">WhatsApp’tan yazın</a></dd></div>
+        <div><dt data-i18n="saat.baslik">Çalışma saatleri</dt><dd data-i18n="saat.kisa">Her gün 09:00-17:00</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<!-- 9. Alt bilgi -->
+<footer class="alt" id="iletisim">
+  <div class="izgara">
+    <div class="alt-marka">
+      <a class="plaka" href="#ust" data-i18n-attr="aria-label:logo.link" aria-label="Hanedan Pilav ana sayfa"><img src="img/logo.png" width="722" height="262" alt="" loading="lazy"></a>
+      <p data-i18n="alt.cumle"><span translate="no">Hanedan Pilav</span>; franchise ve bayilik, toplu yemek ve organizasyon hizmetleri sunar.</p>
+    </div>
+    <div class="alt-kolon alt-merkez">
+      <h2 data-i18n="kimlik.k4">Merkez</h2>
+      <p>Yunus Emre, Adem Yavuz Cd. No:76<br>34260 Sultangazi/İstanbul</p>
+    </div>
+    <nav class="alt-kolon alt-sayfa" aria-labelledby="h-sayfalar">
+      <h2 id="h-sayfalar" data-i18n="alt.sayfalar">Sayfalar</h2>
+      <ul>
+        <li><a href="#kurumsal" data-i18n="nav.kurumsal">Kurumsal</a></li>
+        <li><a href="#bayilerimiz" data-i18n="nav.bayiler">Bayilerimiz</a></li>
+        <li><a href="#galeri" data-i18n="nav.galeri">Galeri</a></li>
+        <li><a href="#iletisim" data-i18n="nav.iletisim">İletişim</a></li>
+      </ul>
+    </nav>
+    <div class="alt-kolon alt-iletisim">
+      <h2 data-i18n="nav.iletisim">İletişim</h2>
+      <ul>
+        <li><a class="tel-no" href="tel:+905336163754">+90 533 616 37 54</a></li>
+        <li><a href="https://wa.me/905336163754" data-wa target="_blank" rel="noopener" data-i18n="wa.kisa">WhatsApp’tan yazın</a></li>
+      </ul>
+      <h2 data-i18n="saat.baslik">Çalışma saatleri</h2>
+      <p data-i18n="saat.kisa">Her gün 09:00-17:00</p>
+    </div>
+    <p class="imza" aria-hidden="true" translate="no" lang="tr"><span>Lezzet </span><span>Hanedanlığı</span></p>
+    <div class="alt-son">
+      <span>© 1998-2026 <span translate="no">Hanedan Pilav</span></span>
+      <a href="#kvkk" data-sayfa data-i18n="alt.kvkk">KVKK Aydınlatma Metni</a>
+      <div class="dil" role="group" aria-label="Dil seçimi" data-i18n-attr="aria-label:dil.etiket">
+        <button type="button" data-dil="tr" aria-pressed="true" lang="tr" aria-label="TR, Türkçe">TR</button>
+        <button type="button" data-dil="en" aria-pressed="false" lang="en" aria-label="EN, English">EN</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 10. WhatsApp FAB -->
+<a class="wa" href="https://wa.me/905336163754" data-wa target="_blank" rel="noopener" aria-label="WhatsApp’tan yazın (yeni sekmede açılır)" data-i18n-attr="aria-label:wa.aria">
+  <span class="wa-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+  <span class="wa-etiket" data-i18n="wa.kisa">WhatsApp’tan yazın</span>
+</a>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+(function () {
+  var EN = {
+    "atla": "Skip to content",
+    "logo.link": "Hanedan Pilav home",
+    "logo.alt": "Hanedan Pilav, Lezzet Hanedanlığı, since 1998",
+    "nav.etiket": "Main menu",
+    "nav.mobil": "Mobile menu",
+    "nav.kurumsal": "About",
+    "nav.bayiler": "Locations",
+    "nav.galeri": "Gallery",
+    "nav.iletisim": "Contact",
+    "dil.etiket": "Language",
+    "menu.ac": "Menu",
+    "menu.kapat": "Close",
+    "menu.etiket": "Site menu",
+    "cta.bayilik": "Apply for a Franchise",
+    "cta.toplu": "Get a Catering Quote",
+    "cta.bayi": "Find a Location",
+    "cta.nasil": "How to Apply",
+    "afis.kunye": "<span lang=\"tr\" translate=\"no\">Lezzet Hanedanlığı</span>, Istanbul.",
+    "afis.kapasite": "Production<br>capacity",
+    "afis.h1a": "Every day,",
+    "afis.h1b": "of pilaf.",
+    "afis.spot": "We cook our pilaf the traditional way, to strict hygiene standards, and serve it through our locations and logistics network.",
+    "yer.etiket": "Photo placeholder",
+    "yer.hero": "Serving from the pot, portrait frame, daylight",
+    "yer.hero.aria": "Photo placeholder, 4:5 portrait: serving from the pot",
+    "kimlik.baslik": "Hanedan Pilav at a glance",
+    "kimlik.k1": "Founded",
+    "kimlik.k2": "Daily production capacity",
+    "kimlik.k3": "Locations and logistics network",
+    "kimlik.d3": "Across Istanbul",
+    "kimlik.k4": "Headquarters",
+    "hizmet.baslik": "For investors, companies and your table.",
+    "hizmet.a.baslik": "Franchising",
+    "hizmet.a.metin": "Our growing franchise program offers investors a sustainable business model.",
+    "hizmet.b.baslik": "Catering and events",
+    "hizmet.b.metin": "With our high production capacity, we provide corporate clients, group meals and events with professional, reliable service.",
+    "hizmet.c.baslik": "Our locations",
+    "hizmet.c.metin": "See the Hanedan Pilav location nearest to you, with its address and phone number.",
+    "hikaye.baslik": "Traditional taste, modern production.",
+    "hikaye.metin": "<span translate=\"no\">Hanedan Pilav</span> brings a traditional approach to flavor together with modern production standards.",
+    "hikaye.d1": "Traditional taste",
+    "hikaye.d1m": "The same approach to flavor since day one.",
+    "hikaye.d2": "Modern production",
+    "hikaye.d2m": "High production capacity and operational continuity.",
+    "hikaye.d3": "Hygiene",
+    "hikaye.d3m": "Strict hygiene standards, a priority in our business model alongside taste.",
+    "hikaye.link": "About Hanedan Pilav",
+    "bayiler.baslik": "A network across Istanbul.",
+    "bayiler.metin": "Location addresses and contact details are listed on our Locations page.",
+    "harita.aria": "Map of Istanbul districts; only the headquarters in Sultangazi is marked.",
+    "harita.karadeniz": "Black Sea",
+    "harita.marmara": "Sea of Marmara",
+    "harita.not": "Only our headquarters is marked on this map.",
+    "galeri.baslik": "Gallery",
+    "galeri.link": "View Full Gallery",
+    "galeri.serit": "Gallery preview",
+    "yer.g1": "Pilaf on the plate, top-down, daylight",
+    "yer.g1.aria": "Photo placeholder, 4:5: pilaf on the plate",
+    "yer.g2": "Production area, wide angle, team at work",
+    "yer.g2.aria": "Photo placeholder, 3:2: production area",
+    "yer.g3": "Storefront, sign legible",
+    "yer.g3.aria": "Photo placeholder, 1:1: storefront",
+    "yer.g4": "Catering service, close-up",
+    "yer.g4.aria": "Photo placeholder, 4:5: catering service",
+    "kapanis.baslik": "Become a <span translate=\"no\">Hanedan Pilav</span> franchisee.",
+    "kapanis.metin": "We accept franchise applications through our online form or by phone.",
+    "kapanis.tel": "Phone",
+    "kapanis.mesaj": "Message",
+    "saat.baslik": "Opening hours",
+    "saat.kisa": "Every day, 09:00-17:00",
+    "wa.kisa": "Message us on WhatsApp",
+    "wa.aria": "Message us on WhatsApp (opens in a new tab)",
+    "alt.cumle": "<span translate=\"no\">Hanedan Pilav</span> offers franchise opportunities, catering and event services.",
+    "alt.sayfalar": "Pages",
+    "alt.kvkk": "Privacy Notice (KVKK)",
+    "not.metin": "Design preview: photo areas will be filled after the shoot.",
+    "not.kapat": "Close note"
+  };
+  var META = {
+    tr: {
+      title: document.title,
+      desc: document.querySelector('meta[name="description"]').getAttribute("content"),
+      wa: "Merhaba, Hanedan Pilav hakkında bilgi almak istiyorum."
+    },
+    en: {
+      title: "Hanedan Pilav | Lezzet Hanedanlığı, since 1998",
+      desc: "Hanedan Pilav: serving Istanbul since 1998 with a daily production capacity of one ton, franchise opportunities, and catering for corporate clients and events.",
+      wa: "Hello, I would like to get some information about Hanedan Pilav."
+    }
+  };
+  var TR = {}, TRA = [];
+  var metinler = document.querySelectorAll("[data-i18n]");
+  metinler.forEach(function (el) {
+    var k = el.getAttribute("data-i18n");
+    if (!(k in TR)) TR[k] = el.innerHTML;
+  });
+  var nitelikler = document.querySelectorAll("[data-i18n-attr]");
+  nitelikler.forEach(function (el) {
+    el.getAttribute("data-i18n-attr").split(";").forEach(function (cift) {
+      var p = cift.split(":"), ad = p[0], k = p[1];
+      if (!(k in TR)) TR[k] = el.getAttribute(ad) || "";
+      TRA.push([el, ad, k]);
+    });
+  });
+  function uygula(dil) {
+    var sozluk = dil === "en" ? EN : TR;
+    document.documentElement.lang = dil;
+    metinler.forEach(function (el) {
+      var v = sozluk[el.getAttribute("data-i18n")];
+      if (v != null && el.innerHTML !== v) el.innerHTML = v;
+    });
+    TRA.forEach(function (t) {
+      var v = sozluk[t[2]];
+      if (v != null) t[0].setAttribute(t[1], v);
+    });
+    document.title = META[dil].title;
+    document.querySelector('meta[name="description"]').setAttribute("content", META[dil].desc);
+    var wa = "https://wa.me/905336163754?text=" + encodeURIComponent(META[dil].wa);
+    document.querySelectorAll("[data-wa]").forEach(function (a) { a.href = wa; });
+    document.querySelectorAll("[data-dil]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-dil") === dil));
+    });
+  }
+  var ilk = document.documentElement.lang === "en" ? "en" : "tr";
+  uygula(ilk);
+  document.querySelectorAll("[data-dil]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var d = b.getAttribute("data-dil");
+      uygula(d);
+      try { localStorage.setItem("hp-dil", d); } catch (e) {}
+    });
+  });
+
+  // Kompakt başlık: kaydırma dinleyicisi yerine IntersectionObserver
+  var bas = document.getElementById("bas");
+  var isaret = document.getElementById("ust");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (g) {
+      bas.classList.toggle("kompakt", !g[0].isIntersecting);
+    }).observe(isaret);
+  }
+
+  var azHareket = window.matchMedia("(prefers-reduced-motion: reduce)");
+  function hedefeGit(hash) {
+    var h = document.getElementById(hash.slice(1));
+    if (!h) return;
+    h.scrollIntoView({ behavior: azHareket.matches ? "auto" : "smooth", block: "start" });
+    if (history.pushState) history.pushState(null, "", hash);
+  }
+
+  // Mobil menü: modal dialog, odak tuzağı, Escape, odak iadesi, arka plan kilidi
+  var menu = document.getElementById("menu");
+  var ac = document.querySelector(".menu-ac");
+  var kapat = menu.querySelector(".menu-kapat");
+  var odaklanabilir = 'a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  function menuAc() {
+    if (typeof menu.showModal !== "function") { location.hash = "iletisim"; return; }
+    document.documentElement.classList.add("kilit");
+    menu.showModal();
+    ac.setAttribute("aria-expanded", "true");
+    kapat.focus();
+  }
+  function menuKapat() {
+    if (!menu.open) return;
+    // Kilit hemen kalkmalı; yoksa ardından gelen kaydırma kilitli sayfada kaybolur
+    document.documentElement.classList.remove("kilit");
+    menu.close();
+  }
+  ac.addEventListener("click", menuAc);
+  kapat.addEventListener("click", menuKapat);
+  menu.addEventListener("close", function () {
+    document.documentElement.classList.remove("kilit");
+    ac.setAttribute("aria-expanded", "false");
+    ac.focus({ preventScroll: true });
+  });
+  menu.addEventListener("keydown", function (e) {
+    if (e.key !== "Tab") return;
+    var l = Array.prototype.filter.call(menu.querySelectorAll(odaklanabilir), function (el) { return el.offsetParent !== null; });
+    if (!l.length) return;
+    var ilkEl = l[0], son = l[l.length - 1];
+    if (e.shiftKey && document.activeElement === ilkEl) { e.preventDefault(); son.focus(); }
+    else if (!e.shiftKey && document.activeElement === son) { e.preventDefault(); ilkEl.focus(); }
+  });
+  var genis = window.matchMedia("(min-width: 1024px)");
+  var genisDinle = function (m) { if (m.matches) menuKapat(); };
+  if (genis.addEventListener) genis.addEventListener("change", genisDinle);
+
+  // Sunum davranışı: alt sayfaya gidecek bağlantılar sayfada kalır, bildirim gösterir
+  var BILDIRIM = {
+    tr: "Bu sayfa, seçilen tasarım yönüyle hazırlanacak.",
+    en: "This page will be built in the selected design direction."
+  };
+  var toast = document.getElementById("toast"), toastSure, toastTemiz;
+  function bildir() {
+    clearTimeout(toastSure); clearTimeout(toastTemiz);
+    toast.classList.remove("acik");
+    toast.textContent = "";
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        toast.textContent = BILDIRIM[document.documentElement.lang === "en" ? "en" : "tr"];
+        toast.classList.add("acik");
+      });
+    });
+    toastSure = setTimeout(function () {
+      toast.classList.remove("acik");
+      toastTemiz = setTimeout(function () { toast.textContent = ""; }, 250);
+    }, 3500);
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a");
+    if (!a) return;
+    if (a.hasAttribute("data-sayfa")) {
+      e.preventDefault();
+      menuKapat();
+      bildir();
+      return;
+    }
+    if (menu.contains(a) && a.getAttribute("href").charAt(0) === "#") {
+      e.preventDefault();
+      menuKapat();
+      hedefeGit(a.getAttribute("href"));
+    }
+  });
+
+  // Önizleme notu: oturumda bir kez, kapatılabilir
+  var not = document.getElementById("onizleme");
+  var gorulmus = false;
+  try { gorulmus = sessionStorage.getItem("hp-onizleme") === "1"; } catch (e) {}
+  if (!gorulmus) {
+    not.hidden = false;
+    document.documentElement.style.setProperty("--not-h", not.offsetHeight + "px");
+    try { sessionStorage.setItem("hp-onizleme", "1"); } catch (e) {}
+  }
+  not.querySelector(".onizleme-kapat").addEventListener("click", function () {
+    not.hidden = true;
+    document.documentElement.style.removeProperty("--not-h");
+    document.querySelector(".bas .plaka").focus();
+  });
+})();
+</script>
+</body>
+</html>

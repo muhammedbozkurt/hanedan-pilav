@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hanedan Pilav · 1998’den beri değişmeyen lezzet</title>
+<meta name="description" content="Hanedan Pilav: 1998’den beri değişmeyen lezzet. Günlük 1 ton üretim kapasitesi, İstanbul geneli şube ve lojistik ağı, bayilik ve toplu yemek hizmeti.">
+<meta name="theme-color" content="#F4C20D">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="preload" href="fonts/rokkitt-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js')</script>
+<style>
+@font-face{font-family:"Rokkitt";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/rokkitt-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Rokkitt";font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/rokkitt-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:200 800;font-display:swap;src:url(fonts/plus-jakarta-sans-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:200 800;font-display:swap;src:url(fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+/*
+  Biçim kuralı (tek sistem): plakalar ve paneller 14px, düğmeler 8px, etiketler hap, WhatsApp diski daire.
+  Motif bütçesi: tente yalnız başlıkta, vitrin çerçevesi yalnız açılış fotoğrafında, vidalı emaye plaka yalnız bayilik kapanışında.
+*/
+:root{
+  --kraft:#D9C7A1;
+  --kraft-acik:#E5D6B6;
+  --kraft-koyu:#C4AF86;
+  --emaye:#FBF7EC;
+  --sari:#F4C20D;
+  --sari-acik:#FFD43B;
+  --kara:#151515;
+  --ikincil:#4A4234;
+  --soluk:#CFC6B3;
+  --deniz-yazi:#776B54;
+  --cizgi:rgba(21,21,21,.18);
+  --wa:#1DA851;
+  --slab:"Rokkitt",Rockwell,"Roboto Slab",Georgia,serif;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --kenar:clamp(18px,4vw,56px);
+  --kap:1320px;
+  --r-plaka:14px;
+  --r-dugme:8px;
+  --kanvas-h:10px;
+  --bar-h:72px;
+  --sacak-r:8px;
+  --kisalt:16px;
+  --ust-h:calc(var(--kanvas-h) + var(--bar-h) + var(--sacak-r));
+  --bolum:clamp(72px,9vw,128px);
+  --fab-d:58px;
+  --fab-sag:16px;
+  /* FAB şeridi: metin taşıyan bloklar sağda bu kadar boşluk bırakır, böylece FAB hiçbir kırılımda metnin üstüne düşmez. */
+  --fab-serit:max(0px,calc(var(--fab-d) + var(--fab-sag) + 8px - var(--kenar)));
+  --fab-pay:calc(var(--fab-d) + 36px + env(safe-area-inset-bottom));
+  --egri:cubic-bezier(.2,.7,.2,1);
+  --ok-ikon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='%23000'%3E%3Cpath d='M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z'/%3E%3C/svg%3E");
+  --vida:radial-gradient(circle at 50% 50%,#fff 0 .9px,#8F877A 1.4px 3.6px,transparent 4.1px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light;scroll-padding-top:calc(var(--bar-h) - var(--kisalt) + var(--sacak-r) + 12px)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;animation:none!important}}
+body{background:var(--kraft);color:var(--kara);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;padding-top:var(--ust-h);min-width:320px}
+html.menu-acik,html.menu-acik body{overflow:hidden}
+a{color:inherit;text-decoration:none}
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+ul{list-style:none}
+.ikon{width:22px;height:22px;flex:none}
+:focus-visible{outline:3px solid var(--kara);outline-offset:3px;border-radius:4px}
+.koyu :focus-visible{outline-color:var(--sari)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;padding:0;margin:-1px}
+.nw{white-space:nowrap}
+.kap{width:100%;max-width:calc(var(--kap) + 2 * var(--kenar));margin-inline:auto;padding-inline:max(var(--kenar),env(safe-area-inset-left)) max(var(--kenar),env(safe-area-inset-right))}
+.atla{position:fixed;left:12px;top:12px;z-index:100;background:var(--kara);color:var(--sari);font:700 15px/1 var(--sans);padding:14px 18px;border-radius:var(--r-dugme);transform:translateY(-200%);transition:transform .2s}
+.atla:focus{transform:none}
+#icerik:focus{outline:0}
+
+/* Düğmeler */
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:3px 24px 0;font:750 17px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--kara);background:var(--sari);border:2px solid var(--kara);border-radius:var(--r-dugme);box-shadow:0 4px 0 var(--kara);transition:transform .12s var(--egri),box-shadow .12s var(--egri),background-color .15s}
+.dugme:hover{background:var(--sari-acik)}
+.dugme:active{transform:translateY(3px);box-shadow:0 1px 0 var(--kara)}
+.dugme-emaye{background:var(--emaye)}
+.dugme-emaye:hover{background:#fff}
+.dugme-kara{background:var(--kara);color:var(--sari);box-shadow:0 4px 0 rgba(21,21,21,.32)}
+.dugme-kara:hover{background:#2A2927}
+.dugme-kara:active{box-shadow:0 1px 0 rgba(21,21,21,.32)}
+.dugme-kucuk{min-height:44px;padding:3px 16px 0;font-size:15px;box-shadow:0 3px 0 rgba(21,21,21,.3)}
+.dugme .ikon{width:20px;height:20px}
+.etiket{display:inline-flex;align-items:center;background:var(--kara);color:var(--sari);font:700 12.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;padding:8px 14px 7px;border-radius:999px}
+.metin-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font:750 18px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding:4px 0 0;border-bottom:2px solid var(--kara)}
+.metin-link .ikon{width:20px;height:20px;transition:transform .2s var(--egri)}
+.metin-link:hover .ikon{transform:translateX(4px)}
+
+/* Dil seçici */
+.dil{display:inline-flex;border:2px solid var(--kara);border-radius:var(--r-dugme);overflow:hidden}
+.dil button{min-width:44px;min-height:44px;padding:3px 10px 0;font:750 15px/1 var(--slab);letter-spacing:.06em;transition:background-color .15s,color .15s}
+.dil button[aria-pressed="true"]{background:var(--kara);color:var(--sari)}
+.dil button[aria-pressed="false"]:hover{background:rgba(21,21,21,.1)}
+.dil button:focus-visible{outline-offset:-5px}
+.koyu .dil{border-color:rgba(251,247,236,.45)}
+.koyu .dil button[aria-pressed="true"]{background:var(--sari);color:var(--kara)}
+.koyu .dil button[aria-pressed="false"]:hover{background:rgba(251,247,236,.12)}
+.koyu .dil button:focus-visible{outline-color:var(--emaye)}
+
+/* Tente: başlık */
+.tente{position:fixed;inset:0 0 auto 0;z-index:40;transition:transform .28s var(--egri)}
+.kanvas{height:var(--kanvas-h);background:repeating-linear-gradient(90deg,var(--sari) 0 40px,var(--emaye) 40px 80px);box-shadow:inset 0 -2px 0 var(--kara)}
+.sacak{background:var(--sari);padding-bottom:var(--sacak-r);
+  -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--sacak-r)) no-repeat,radial-gradient(circle at 50% 0,#000 calc(var(--sacak-r) - .5px),transparent var(--sacak-r)) bottom left/calc(2 * var(--sacak-r)) var(--sacak-r) repeat-x;
+  mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--sacak-r)) no-repeat,radial-gradient(circle at 50% 0,#000 calc(var(--sacak-r) - .5px),transparent var(--sacak-r)) bottom left/calc(2 * var(--sacak-r)) var(--sacak-r) repeat-x}
+.sacak-ic{height:var(--bar-h);display:flex;align-items:center;gap:16px;transition:transform .28s var(--egri)}
+.logo{flex:none;display:flex;align-items:center;min-height:44px;border-radius:6px}
+.logo img{height:48px;width:auto;transform-origin:left center;transition:transform .28s var(--egri)}
+.ust-nav{margin-left:clamp(12px,2.2vw,36px);margin-right:auto}
+.ust-nav ul{display:flex;gap:clamp(18px,2vw,30px)}
+.ust-nav a{display:inline-flex;align-items:center;min-height:44px;font:750 17px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding:3px 0 0;border-bottom:2px solid transparent;transition:border-color .15s}
+.ust-nav a:hover{border-bottom-color:var(--kara)}
+.ust-sag{display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);margin-left:auto}
+.ust-tel{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:750 17px/1 var(--slab);letter-spacing:.03em;white-space:nowrap;padding-top:2px}
+.ust-tel:hover .ust-tel-no{text-decoration:underline;text-underline-offset:3px}
+.menu-ac{display:none;align-items:center;gap:8px;min-height:44px;padding:3px 14px 0;border:2px solid var(--kara);border-radius:var(--r-dugme);font:750 16px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase}
+.menu-ac .ikon{margin-top:-3px}
+.tente.kompakt{transform:translateY(calc(-1 * (var(--kanvas-h) + var(--kisalt))));filter:drop-shadow(0 2px 0 rgba(21,21,21,.14))}
+.tente.kompakt .sacak-ic{transform:translateY(calc(var(--kisalt) / 2))}
+.tente.kompakt .logo img{transform:scale(.8)}
+
+/* Mobil menü */
+.mm{position:fixed;inset:0;z-index:60;background:var(--kara);color:var(--emaye);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.mm[hidden]{display:none}
+.mm-bar{position:sticky;top:0;z-index:1;background:var(--sari);color:var(--kara);padding-bottom:var(--sacak-r);flex:none;
+  -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--sacak-r)) no-repeat,radial-gradient(circle at 50% 0,#000 calc(var(--sacak-r) - .5px),transparent var(--sacak-r)) bottom left/calc(2 * var(--sacak-r)) var(--sacak-r) repeat-x;
+  mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--sacak-r)) no-repeat,radial-gradient(circle at 50% 0,#000 calc(var(--sacak-r) - .5px),transparent var(--sacak-r)) bottom left/calc(2 * var(--sacak-r)) var(--sacak-r) repeat-x}
+.mm-bar .kap{height:calc(var(--bar-h) - var(--kisalt));display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mm-bar .logo img{height:38px}
+.mm-bar :focus-visible{outline-color:var(--kara)}
+.menu-kapat{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:3px 14px 0;border:2px solid var(--kara);border-radius:var(--r-dugme);font:750 16px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase}
+.menu-kapat .ikon{margin-top:-3px}
+.mm-govde{flex:1;display:flex;flex-direction:column;gap:32px;padding-top:20px}
+.mm-nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;font:800 clamp(34px,9vw,46px)/1.05 var(--slab);padding:16px 0 13px;border-bottom:1px solid rgba(251,247,236,.14)}
+.mm-nav a .ikon{width:26px;height:26px;color:var(--sari)}
+.mm-govde .dugme{width:100%}
+.mm-alt{display:grid;gap:14px;font-size:15px;color:var(--soluk)}
+.mm-alt a{display:inline-flex;align-items:center;gap:12px;min-height:44px;font:750 20px/1 var(--slab);color:var(--emaye);letter-spacing:.02em}
+.mm-alt a .ikon{color:var(--sari)}
+.mm-alt .wa-mini{width:30px;height:30px}
+.mm-alt .satir{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:8px}
+@media (prefers-reduced-motion:no-preference){
+  .mm:not([hidden]){animation:mm-gir .22s var(--egri)}
+  @keyframes mm-gir{from{opacity:0;transform:translateY(-8px)}}
+}
+
+/* Açılış: dükkân cephesi */
+.acilis{padding-block:clamp(32px,4.4vw,60px) clamp(48px,5.4vw,76px)}
+.acilis-ic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.acilis-metin{grid-column:1 / span 6;padding-right:clamp(0px,2vw,32px)}
+h1{font:800 clamp(42px,5.1vw,76px)/.97 var(--slab);letter-spacing:-.012em}
+.spot{margin-top:24px;font-size:clamp(16px,1.3vw,19px);line-height:1.55;font-weight:500;color:var(--ikincil);max-width:31em;text-wrap:pretty}
+.eylemler{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
+.cephe{grid-column:7 / span 6;position:relative}
+.vitrin{position:relative;aspect-ratio:4 / 3;border:8px solid var(--kara);border-radius:var(--r-plaka);overflow:hidden;box-shadow:inset 0 0 0 1.5px rgba(244,194,13,.8);background:
+  linear-gradient(115deg,transparent 0 30%,rgba(255,255,255,.12) 30% 36%,transparent 36% 40%,rgba(255,255,255,.06) 40% 42%,transparent 42%),
+  radial-gradient(55% 45% at 72% 24%,rgba(244,194,13,.30),transparent 70%),
+  radial-gradient(120% 100% at 50% 100%,#5B5444 0%,#2F2C26 55%,#1D1C19 100%)}
+.cekim{position:absolute;left:clamp(16px,2.2vw,28px);right:clamp(16px,2.2vw,28px);bottom:clamp(16px,2.2vw,26px);display:grid;gap:4px;max-width:30em;font-size:13px;line-height:1.45;color:rgba(251,247,236,.66);transition:opacity .2s}
+.cekim b{display:flex;align-items:center;gap:8px;font-weight:600;color:rgba(251,247,236,.9)}
+.cekim b .ikon{width:16px;height:16px;opacity:.85}
+@media (prefers-reduced-motion:no-preference){
+  .acilis-metin>*{animation:yuksel .6s var(--egri) both}
+  .acilis-metin>:nth-child(2){animation-delay:.06s}
+  .acilis-metin>:nth-child(3){animation-delay:.12s}
+  .cephe{animation:yuksel .7s .1s var(--egri) both}
+  @keyframes yuksel{from{opacity:0;transform:translateY(14px)}}
+}
+
+/* Künye bandı */
+.kunye{background:var(--kara);color:var(--emaye)}
+.kunye dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-block:clamp(40px,5vw,64px)}
+.kalem{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:12px;padding-inline:clamp(16px,2.2vw,36px);border-left:1px solid rgba(244,194,13,.28)}
+.kalem:first-child{padding-left:0;border-left:0}
+.kalem dd{font:800 clamp(38px,4.2vw,62px)/1 var(--slab);letter-spacing:-.01em;color:var(--sari);white-space:nowrap}
+.kalem dt{font-size:15px;line-height:1.45;color:var(--soluk);max-width:17em}
+
+/* Bölüm genel */
+.bolum{padding-block:var(--bolum)}
+h2{font:800 clamp(34px,4vw,58px)/1 var(--slab);letter-spacing:-.01em;text-wrap:balance}
+
+/* Hizmetler: satır listesi */
+.hizmet-liste{margin-top:clamp(32px,4vw,56px);border-top:2px solid var(--kara)}
+.hizmet-liste>li{border-bottom:1px solid var(--cizgi)}
+.hizmet{display:grid;grid-template-columns:40px minmax(0,1.1fr) minmax(0,1fr) 52px;column-gap:clamp(16px,2.6vw,44px);align-items:center;padding:clamp(24px,2.6vw,34px) 16px;margin-inline:-16px;border-radius:var(--r-plaka);transition:background-color .2s}
+.hizmet:hover{background:var(--kraft-acik)}
+.hizmet-ikon .ikon{width:36px;height:36px}
+.hizmet h3{font:750 clamp(26px,2.7vw,40px)/1.05 var(--slab);letter-spacing:-.005em}
+.hizmet p{font-size:16px;line-height:1.55;color:var(--ikincil);max-width:40ch}
+.ok{width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--kara);border-radius:var(--r-dugme);transition:background-color .2s,color .2s,transform .2s var(--egri)}
+.hizmet:hover .ok{background:var(--kara);color:var(--sari);transform:translateX(4px)}
+
+/* Kurumsal hikaye */
+.hikaye{padding-top:0}
+.hikaye-ic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.hikaye-foto{grid-column:1 / span 5}
+.hikaye-metin{grid-column:7 / span 6}
+.foto{position:relative;border-radius:var(--r-plaka);overflow:hidden;background:radial-gradient(110% 90% at 30% 15%,#5A5241,#2C2924 58%,#1C1B18)}
+.foto-45{aspect-ratio:4 / 5}
+.hikaye-metin h2{margin-top:20px}
+.giris{margin-top:22px;font-size:18px;line-height:1.6;font-weight:500;color:var(--ikincil);max-width:34em;text-wrap:pretty}
+.ilkeler{margin-top:32px;border-top:2px solid var(--kara)}
+.ilkeler li{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:4px 24px;align-items:baseline;padding:16px 0 15px;border-bottom:1px solid var(--cizgi)}
+.ilkeler h3{font:750 21px/1.2 var(--slab)}
+.ilkeler p{font-size:16px;color:var(--ikincil)}
+.hikaye-metin .metin-link{margin-top:32px}
+
+/* Bayilerimiz: harita */
+.bayiler{padding-top:0}
+.harita-pano{position:relative;aspect-ratio:2.15 / 1;border-radius:var(--r-plaka);background:var(--emaye);box-shadow:inset 0 0 0 2px var(--kara);overflow:hidden;isolation:isolate}
+.harita{position:absolute;inset:0;overflow:hidden;border-radius:inherit;z-index:-1}
+.harita-tuval{position:absolute;width:82%;left:18%;top:3.6%;aspect-ratio:1000 / 529}
+.harita-svg{width:100%;height:100%}
+.ilceler path{fill:#DCCAA3;stroke:var(--emaye);stroke-width:1.1;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.merkez-ilce{fill:var(--sari);stroke:var(--kara);stroke-width:1.6;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.deniz{position:absolute;transform:translate(-50%,-50%);font:700 11.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--deniz-yazi);white-space:nowrap}
+.deniz-k{left:44%;top:9%}
+.deniz-m{left:36%;top:88%}
+.pin{position:absolute;left:45.49%;top:59.25%;width:0;height:0}
+.pin-nokta{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:var(--kara);box-shadow:0 0 0 4px var(--sari),0 0 0 6px var(--kara)}
+.pin-tabela{position:absolute;left:22px;top:-17px;display:flex;align-items:center;gap:8px;white-space:nowrap;background:var(--kara);color:var(--sari);font:750 15px/1 var(--slab);letter-spacing:.07em;text-transform:uppercase;padding:10px 12px 8px;border-radius:6px}
+.pin-tabela::before{content:"";position:absolute;right:100%;top:50%;width:8px;height:2px;background:var(--kara)}
+.harita-kart{position:absolute;left:clamp(20px,2.6vw,40px);top:clamp(20px,2.6vw,40px);width:min(480px,40%);background:var(--emaye);border-radius:10px;box-shadow:inset 0 0 0 2px var(--kara);padding:clamp(24px,2.6vw,38px)}
+.harita-kart h2{font-size:clamp(30px,3.1vw,46px)}
+.harita-kart p{margin-top:18px;font-size:16px;line-height:1.6;color:var(--ikincil)}
+.harita-kart .dugme{margin-top:26px}
+.harita-kart .adres{display:flex;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid var(--cizgi);font-size:14px;line-height:1.5}
+.harita-kart .adres .ikon{width:20px;height:20px;margin-top:1px}
+
+/* Galeri şeridi */
+.galeri{padding-top:0}
+.galeri-bas{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
+.serit-kap{margin-top:clamp(28px,3.4vw,48px)}
+.serit{display:grid;grid-template-columns:.8fr 1.5fr 1fr .8fr;gap:16px;align-items:end}
+.serit li{position:relative;border-radius:var(--r-plaka);overflow:hidden;background:radial-gradient(110% 90% at 30% 15%,#5A5241,#2C2924 58%,#1C1B18)}
+.serit li:nth-child(2){background:radial-gradient(90% 80% at 70% 30%,#6A5F48,#37322A 60%,#221F1B)}
+.serit li:nth-child(3){background:radial-gradient(70% 70% at 50% 45%,#7A6E55,#45403A 62%,#2A2723)}
+.serit li:nth-child(4){background:radial-gradient(110% 90% at 70% 20%,#4A4840,#292825 60%,#1B1B19)}
+.kare{position:absolute;inset:0}
+.r45{aspect-ratio:4 / 5}
+.r32{aspect-ratio:3 / 2}
+.r11{aspect-ratio:1 / 1}
+.serit li.yari .cekim{opacity:0}
+
+/* Bayilik kapanışı: emaye plaka */
+.bayilik{padding-top:0}
+.plaka-sari{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px;align-items:center;background:var(--sari);border-radius:var(--r-plaka);box-shadow:inset 0 0 0 7px var(--sari),inset 0 0 0 9px var(--kara),0 5px 0 rgba(21,21,21,.22);padding:clamp(40px,5.6vw,84px)}
+.plaka-sari::before{content:"";position:absolute;inset:17px;pointer-events:none;background:var(--vida) top left/10px 10px no-repeat,var(--vida) top right/10px 10px no-repeat,var(--vida) bottom left/10px 10px no-repeat,var(--vida) bottom right/10px 10px no-repeat}
+.plaka-metin{grid-column:1 / span 7}
+.plaka-sari h2{margin-top:20px;font-size:clamp(38px,5.2vw,76px);line-height:.96}
+.plaka-sari p{margin-top:20px;font-size:18px;line-height:1.55;font-weight:500;max-width:32em;text-wrap:pretty}
+.plaka-sari .dugme{margin-top:32px}
+.plaka-iletisim{grid-column:9 / span 4;border-top:2px solid var(--kara)}
+.plaka-iletisim li{border-bottom:1px solid rgba(21,21,21,.28)}
+.plaka-iletisim .satir{display:grid;grid-template-columns:30px minmax(0,1fr);gap:2px 14px;align-items:center;padding:16px 0 15px}
+.plaka-iletisim .satir>.ikon,.plaka-iletisim .satir>.wa-mini{grid-row:1 / span 2;width:26px;height:26px}
+.plaka-iletisim .k{font:700 12px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.plaka-iletisim .v{font:750 24px/1.15 var(--slab);letter-spacing:.01em}
+.plaka-iletisim a.satir:hover .v{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+.wa-mini{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--wa);color:#fff;flex:none}
+.wa-mini .wa-glif{width:58%;height:58%}
+
+/* Alt bilgi */
+.alt{background:var(--kara);color:var(--soluk);font-size:15px;padding-top:clamp(56px,6vw,88px);padding-bottom:calc(28px + var(--fab-pay))}
+.alt-ic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px}
+.alt-marka{grid-column:1 / span 4}
+.alt-marka img{width:156px}
+.alt-marka p{margin-top:20px;color:var(--emaye);font-size:16px;line-height:1.55;max-width:24em}
+.alt-merkez{grid-column:6 / span 3}
+.alt-sayfalar{grid-column:9 / span 2}
+.alt-iletisim{grid-column:11 / span 2}
+.alt h2{font:700 12.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--sari);margin-bottom:14px}
+.alt address{font-style:normal;line-height:1.6}
+.alt-sayfalar a,.alt-iletisim a,.alt-son a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+.alt-iletisim li>span{display:inline-flex;align-items:center;min-height:44px}
+.alt a:hover{color:var(--emaye);text-decoration:underline;text-underline-offset:3px}
+.alt-iletisim li+li{margin-top:2px}
+.alt-son{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;border-top:1px solid rgba(251,247,236,.14);padding-top:24px;font-size:14px}
+.alt-son-sag{display:flex;align-items:center;flex-wrap:wrap;gap:16px 24px}
+
+/* WhatsApp düğmesi */
+.wa-fab{position:fixed;z-index:30;right:max(var(--fab-sag),calc(env(safe-area-inset-right) + 12px));bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px));display:block;border-radius:50%;transition:opacity .25s,transform .25s var(--egri),visibility .25s}
+.wa-fab.gizli{opacity:0;visibility:hidden;transform:translateY(14px)}
+.wa-disk{width:var(--fab-d);height:var(--fab-d);display:grid;place-items:center;border-radius:50%;background:var(--wa);color:#fff;border:2px solid var(--kara);box-shadow:0 4px 0 var(--kara);transition:transform .15s var(--egri)}
+.wa-disk .wa-glif{width:52%;height:52%}
+.wa-etiket{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);padding:10px 12px 8px;background:var(--emaye);color:var(--kara);font:750 15px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;border:2px solid var(--kara);border-radius:var(--r-dugme);opacity:0;pointer-events:none;transition:opacity .15s}
+.wa-fab:hover .wa-disk{transform:translateY(-2px)}
+.wa-fab:hover .wa-etiket,.wa-fab:focus-visible .wa-etiket{opacity:1}
+.wa-fab:focus-visible{outline:3px solid var(--kara);outline-offset:6px;box-shadow:0 0 0 6px var(--sari);border-radius:50%}
+
+/* Sunum: bildirim ve önizleme notu */
+.toast{position:fixed;z-index:55;left:50%;top:calc(var(--ust-h) + 12px);display:flex;align-items:center;gap:12px;width:max-content;max-width:calc(100% - 2 * var(--kenar));padding:13px 18px 12px 14px;background:var(--kara);color:var(--emaye);font:500 15px/1.45 var(--sans);border-radius:var(--r-dugme);box-shadow:inset 0 0 0 1.5px rgba(244,194,13,.7),0 4px 0 rgba(21,21,21,.22);opacity:0;visibility:hidden;transform:translate(-50%,-6px);transition:opacity .2s,transform .2s var(--egri),visibility .2s;pointer-events:none}
+.tente.kompakt~.toast{top:calc(var(--bar-h) - var(--kisalt) + var(--sacak-r) + 12px)}
+.toast.acik{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.toast .ikon{color:var(--sari);width:20px;height:20px}
+.onizleme{display:flex;align-items:center;gap:12px;margin-top:clamp(14px,2vw,22px);padding:4px 4px 4px 16px;border-radius:var(--r-plaka);background:var(--kraft-acik);box-shadow:inset 0 0 0 1px var(--cizgi);font-size:14px;line-height:1.45;color:var(--ikincil)}
+.onizleme[hidden]{display:none}
+.onizleme>.ikon{width:18px;height:18px;flex:none}
+.onizleme p{flex:1;min-width:0;padding-block:8px}
+.onizleme button{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:var(--r-dugme);transition:background-color .15s}
+.onizleme button:hover{background:rgba(21,21,21,.08)}
+.onizleme button .ikon{width:18px;height:18px}
+
+/* FAB şeridi: metin blokları */
+.kunye dl,.hikaye-metin,.bolum .kap>h2,.galeri-bas{padding-right:var(--fab-serit)}
+.hizmet{padding-right:calc(16px + var(--fab-serit))}
+.alt-ic{padding-right:calc(var(--kenar) + var(--fab-serit))}
+
+/* Duyarlı daralmalar */
+@media (min-width:900px) and (max-width:1199px){
+  .eylemler .dugme{flex:1 1 auto}
+}
+@media (max-width:1279px){
+  .ust-tel-no{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+  .ust-tel{width:44px;justify-content:center;border:2px solid var(--kara);border-radius:var(--r-dugme);padding-top:0}
+}
+@media (max-width:1199px){
+  .alt-marka{grid-column:1 / -1}
+  .alt-merkez{grid-column:1 / span 5}
+  .alt-sayfalar{grid-column:6 / span 3}
+  .alt-iletisim{grid-column:9 / span 4}
+}
+@media (max-width:1099px){
+  :root{--bar-h:66px;--kanvas-h:8px;--kisalt:10px;--sacak-r:7px}
+  .ust-nav,.ust-sag .dil{display:none}
+  .js .menu-ac{display:inline-flex}
+  .logo img{height:44px}
+}
+@media (max-width:899px){
+  .acilis-metin,.cephe{grid-column:1 / -1}
+  .acilis-metin{padding-right:var(--fab-serit)}
+  .vitrin .cekim,.hikaye-foto .cekim{right:calc(16px + var(--fab-serit))}
+  h1{font-size:min(10vw,66px)}
+  .cephe{margin-top:44px}
+  .hikaye-foto,.hikaye-metin{grid-column:1 / -1}
+  .hikaye-foto{aspect-ratio:16 / 9}
+  .hikaye-metin{margin-top:36px}
+  .kunye dl{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .kalem:nth-child(3){padding-left:0;border-left:0}
+  .harita-pano{aspect-ratio:auto;display:flex;flex-direction:column}
+  .harita-kart{position:static;width:auto;box-shadow:none;background:transparent;padding:clamp(26px,5vw,40px);padding-right:max(clamp(26px,5vw,40px),var(--fab-serit))}
+  .harita{position:relative;inset:auto;z-index:auto;aspect-ratio:4 / 3;border-radius:0;border-top:2px solid var(--kara)}
+  .harita-tuval{width:160%;left:-22.8%;top:-6%}
+  .deniz-k{left:44%;top:10%}
+  .deniz-m{left:30%;top:88%}
+  .plaka-metin,.plaka-iletisim{grid-column:1 / -1}
+  .alt-marka{grid-column:1 / -1}
+  .alt-merkez{grid-column:1 / span 6}
+  .alt-sayfalar{grid-column:7 / span 3}
+  .alt-iletisim{grid-column:10 / span 3}
+}
+@media (max-width:1099px){
+  .serit-kap{margin-inline:calc(-1 * var(--kenar));overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--kenar);scrollbar-width:thin;scrollbar-color:var(--kraft-koyu) transparent}
+  .serit{display:flex;gap:12px;width:max-content;padding-inline:var(--kenar);padding-bottom:12px}
+  .serit li{flex:none;height:min(320px,74vw);scroll-snap-align:start}
+  .serit-kap:focus-visible{outline-offset:-3px}
+}
+@media (max-width:1023px){
+  :root{--fab-d:52px;--fab-sag:12px}
+}
+@media (max-width:767px){
+  .hizmet{grid-template-columns:30px minmax(0,1fr);row-gap:8px;padding-left:12px;padding-right:calc(12px + var(--fab-serit));margin-inline:-12px}
+  .hizmet-ikon{grid-row:1}
+  .hizmet-ikon .ikon{width:28px;height:28px}
+  .hizmet h3{grid-column:2;grid-row:1}
+  .hizmet .ok{display:none}
+  .hizmet p{grid-column:2;grid-row:2}
+  .hizmet h3::after{content:"";display:inline-block;width:.62em;height:.62em;margin-left:.3em;vertical-align:-.02em;background:currentColor;-webkit-mask:var(--ok-ikon) center/contain no-repeat;mask:var(--ok-ikon) center/contain no-repeat}
+  .ilkeler li{grid-template-columns:1fr}
+  .alt-merkez{grid-column:1 / -1}
+  .alt-sayfalar{grid-column:1 / span 6}
+  .alt-iletisim{grid-column:7 / span 6}
+}
+@media (max-width:639px){
+  :root{--bar-h:62px;--kanvas-h:6px;--kisalt:8px;--sacak-r:6px;--bolum:76px}
+  body{font-size:16px}
+  .ust-cta{display:none}
+  .logo img{height:40px}
+  .kanvas{background:repeating-linear-gradient(90deg,var(--sari) 0 28px,var(--emaye) 28px 56px)}
+  .eylemler{display:grid;grid-template-columns:max-content;gap:14px}
+  .harita-kart .dugme .ikon{display:none}
+  .harita-kart .dugme{padding-inline:18px;letter-spacing:.04em}
+  .alt-merkez,.alt-sayfalar,.alt-iletisim{grid-column:1 / -1}
+  .plaka-metin,.plaka-iletisim{padding-right:max(0px,calc(var(--fab-serit) - 26px))}
+  .vitrin{border-width:6px}
+  .kunye dl{grid-template-columns:1fr;row-gap:0;padding-block:28px}
+  .kalem,.kalem:nth-child(3){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px;align-items:center;padding:16px 0;border-left:0;border-top:1px solid rgba(244,194,13,.22)}
+  .kalem:first-child{border-top:0}
+  .kunye dl{padding-right:0}
+  .kalem dd{grid-row:1;grid-column:1;font-size:34px}
+  .kalem dt{grid-row:1;grid-column:2;font-size:14px;padding-right:var(--fab-serit)}
+  .alt-ic{padding-right:var(--kenar)}
+  .harita{aspect-ratio:1 / 1}
+  .hikaye-foto{aspect-ratio:4 / 3}
+  .harita-tuval{width:200%;left:-41%;top:-12.7%}
+  .deniz-k{left:45%;top:19%}
+  .deniz-m{left:44%;top:84%}
+  .pin-tabela{font-size:14px;left:0;top:auto;bottom:20px;transform:translateX(-50%)}
+  .pin-tabela::before{right:auto;left:50%;top:100%;width:2px;height:8px;margin-left:-1px}
+  .plaka-sari{padding:44px 26px 34px;box-shadow:inset 0 0 0 6px var(--sari),inset 0 0 0 8px var(--kara),0 4px 0 rgba(21,21,21,.22)}
+  .plaka-sari::before{inset:14px}
+  .plaka-sari .dugme{width:100%}
+  .plaka-iletisim .v{font-size:22px}
+}
+@media (max-width:379px){
+  .kalem dd{font-size:30px}
+  .pin-tabela{font-size:13px;padding:9px 10px 7px}
+}
+</style>
+</head>
+<body id="ust">
+<a class="atla" href="#icerik" data-i18n="atla">İçeriğe geç</a>
+
+<header class="tente" id="tente">
+  <div class="kanvas" aria-hidden="true"></div>
+  <div class="sacak">
+    <div class="kap sacak-ic">
+      <a class="logo" href="#ust"><img src="img/logo-saydam.png" width="520" height="188" alt="Hanedan Pilav anasayfa" data-i18n-attr="alt:logoAlt"></a>
+      <nav class="ust-nav" aria-label="Ana menü" data-i18n-attr="aria-label:navAria">
+        <ul>
+          <li><a href="#kurumsal" data-i18n="nav1">Kurumsal</a></li>
+          <li><a href="#bayilerimiz" data-i18n="nav2">Bayilerimiz</a></li>
+          <li><a href="#galeri" data-i18n="nav3">Galeri</a></li>
+          <li><a href="#iletisim" data-i18n="nav4">İletişim</a></li>
+        </ul>
+      </nav>
+      <div class="ust-sag">
+        <div class="dil" role="group" aria-label="Dil" data-i18n-attr="aria-label:dilAria">
+          <button type="button" data-dil="tr" aria-pressed="true">TR<span class="sr" lang="tr"> Türkçe</span></button>
+          <button type="button" data-dil="en" aria-pressed="false">EN<span class="sr" lang="en"> English</span></button>
+        </div>
+        <a class="ust-tel" href="tel:+905336163754"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,154.8l-47.09-21.11-.18-.08a19.94,19.94,0,0,0-19,1.75,13.08,13.08,0,0,0-1.12.84l-22.31,19c-13-7.05-26.43-20.37-33.49-33.21l19.06-22.66a11.76,11.76,0,0,0,.85-1.15,20,20,0,0,0,1.66-18.83,1.42,1.42,0,0,1-.08-.18L101.2,32A20.06,20.06,0,0,0,80.42,20.15,60.27,60.27,0,0,0,28,80c0,81.61,66.39,148,148,148a60.27,60.27,0,0,0,59.85-52.42A20.06,20.06,0,0,0,224,154.8ZM176,204A124.15,124.15,0,0,1,52,80,36.29,36.29,0,0,1,80.48,44.46l18.82,42L80.14,109.28a12,12,0,0,0-.86,1.16A20,20,0,0,0,78,130.08c9.42,19.28,28.83,38.56,48.31,48A20,20,0,0,0,146,176.63a11.63,11.63,0,0,0,1.11-.85l22.43-19.07,42,18.81A36.29,36.29,0,0,1,176,204Z"/></svg><span class="sr" data-i18n="telSr">Telefon:</span><span class="ust-tel-no">+90 533 616 37 54</span></a>
+        <a class="dugme dugme-kara dugme-kucuk ust-cta" href="#basvuru" data-sayfa data-i18n="ctaBayilik">Bayilik Başvurusu</a>
+        <button class="menu-ac" type="button" aria-expanded="false" aria-controls="mobil-menu"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128ZM40,76H216a12,12,0,0,0,0-24H40a12,12,0,0,0,0,24ZM216,180H40a12,12,0,0,0,0,24H216a12,12,0,0,0,0-24Z"/></svg><span data-i18n="menu">Menü</span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mm koyu" id="mobil-menu" role="dialog" aria-modal="true" aria-label="Site menüsü" data-i18n-attr="aria-label:menuAria" hidden>
+  <div class="mm-bar">
+    <div class="kap">
+      <a class="logo" href="#ust"><img src="img/logo-saydam.png" width="520" height="188" alt="Hanedan Pilav anasayfa" data-i18n-attr="alt:logoAlt"></a>
+      <button class="menu-kapat" type="button"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></svg><span data-i18n="kapat">Kapat</span></button>
+    </div>
+  </div>
+  <div class="kap mm-govde">
+    <nav class="mm-nav" aria-label="Ana menü" data-i18n-attr="aria-label:navAria">
+      <ul>
+        <li><a href="#kurumsal"><span data-i18n="nav1">Kurumsal</span><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a></li>
+        <li><a href="#bayilerimiz"><span data-i18n="nav2">Bayilerimiz</span><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a></li>
+        <li><a href="#galeri"><span data-i18n="nav3">Galeri</span><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a></li>
+        <li><a href="#iletisim"><span data-i18n="nav4">İletişim</span><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="dugme" href="#basvuru" data-sayfa data-i18n="ctaBayilik">Bayilik Başvurusu</a>
+    <div class="mm-alt">
+      <a href="tel:+905336163754"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,154.8l-47.09-21.11-.18-.08a19.94,19.94,0,0,0-19,1.75,13.08,13.08,0,0,0-1.12.84l-22.31,19c-13-7.05-26.43-20.37-33.49-33.21l19.06-22.66a11.76,11.76,0,0,0,.85-1.15,20,20,0,0,0,1.66-18.83,1.42,1.42,0,0,1-.08-.18L101.2,32A20.06,20.06,0,0,0,80.42,20.15,60.27,60.27,0,0,0,28,80c0,81.61,66.39,148,148,148a60.27,60.27,0,0,0,59.85-52.42A20.06,20.06,0,0,0,224,154.8ZM176,204A124.15,124.15,0,0,1,52,80,36.29,36.29,0,0,1,80.48,44.46l18.82,42L80.14,109.28a12,12,0,0,0-.86,1.16A20,20,0,0,0,78,130.08c9.42,19.28,28.83,38.56,48.31,48A20,20,0,0,0,146,176.63a11.63,11.63,0,0,0,1.11-.85l22.43-19.07,42,18.81A36.29,36.29,0,0,1,176,204Z"/></svg><span class="sr" data-i18n="telSr">Telefon:</span>+90 533 616 37 54</a>
+      <a href="https://wa.me/905336163754?text=Merhaba%2C%20Hanedan%20Pilav%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" data-i18n-attr="href:waHref"><span class="wa-mini"><svg class="wa-glif" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><span data-i18n="waEtiket">WhatsApp’tan yazın</span><span class="sr" data-i18n="yeniSekme"> (yeni sekmede açılır)</span></a>
+      <div class="satir">
+        <span data-i18n="saat">Her gün 09:00-17:00</span>
+        <div class="dil" role="group" aria-label="Dil" data-i18n-attr="aria-label:dilAria">
+          <button type="button" data-dil="tr" aria-pressed="true">TR<span class="sr" lang="tr"> Türkçe</span></button>
+          <button type="button" data-dil="en" aria-pressed="false">EN<span class="sr" lang="en"> English</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M108,84a16,16,0,1,1,16,16A16,16,0,0,1,108,84Zm128,44A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Zm-72,36.68V132a20,20,0,0,0-20-20,12,12,0,0,0-4,23.32V168a20,20,0,0,0,20,20,12,12,0,0,0,4-23.32Z"/></svg><span class="toast-metin"></span></div>
+
+<main id="icerik" tabindex="-1">
+  <div class="kap">
+    <div class="onizleme" id="onizleme" role="note" hidden><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><p data-i18n="not">Tasarım önizlemesi: fotoğraf alanları çekimden sonra doldurulacak.</p><button type="button" class="not-kapat" aria-label="Notu kapat" data-i18n-attr="aria-label:notKapat"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,191.51a12,12,0,0,1-17,17L128,145,64.49,208.49a12,12,0,0,1-17-17L111,128,47.51,64.49a12,12,0,0,1,17-17L128,111l63.51-63.52a12,12,0,0,1,17,17L145,128Z"/></svg></button></div>
+  </div>
+  <section class="acilis" aria-labelledby="acilis-baslik">
+    <div class="kap acilis-ic">
+      <div class="acilis-metin">
+        <h1 id="acilis-baslik" data-i18n="h1">1998’den beri <span class="nw">değişmeyen lezzet.</span></h1>
+        <p class="spot" data-i18n="spot">Şubede tabak tabak, organizasyonda kazan kazan. Günlük 1&nbsp;ton üretim kapasitesiyle bayilerimize ve kurumsal firmalara hizmet veriyoruz.</p>
+        <div class="eylemler">
+          <a class="dugme" href="#basvuru" data-sayfa data-i18n="ctaBayilik">Bayilik Başvurusu</a>
+          <a class="dugme dugme-emaye" href="#teklif" data-sayfa data-i18n="ctaToplu">Toplu Yemek Teklifi</a>
+        </div>
+      </div>
+      <div class="cephe">
+        <div class="vitrin" role="img" aria-label="Fotoğraf alanı: Hanedan Pilav dükkân cephesi" data-i18n-attr="aria-label:vitrinAria">
+          <p class="cekim" aria-hidden="true"><b><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><span data-i18n="vitrinOran">Fotoğraf: dükkân cephesi, 4:3</span></b><span data-i18n="vitrinNot">Tabela okunur, vitrin içeriden sıcak ışıkla aydınlık, akşamüstü.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kunye koyu" aria-labelledby="kunye-baslik">
+    <h2 class="sr" id="kunye-baslik" data-i18n="kunyeBaslik">Kısaca Hanedan Pilav</h2>
+    <div class="kap">
+      <dl>
+        <div class="kalem"><dt data-i18n="k1t">Kuruluş yılımız</dt><dd>1998</dd></div>
+        <div class="kalem"><dt data-i18n="k2t">Günlük üretim kapasitesi</dt><dd data-i18n="k2d">1 ton</dd></div>
+        <div class="kalem"><dt data-i18n="k3t">Geneline yayılan şube ve lojistik ağı</dt><dd data-i18n="k3d">İstanbul</dd></div>
+        <div class="kalem"><dt data-i18n="k4t">Merkezimiz</dt><dd lang="tr" translate="no">Sultangazi</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="hizmetler bolum" id="hizmetler" aria-labelledby="hizmet-baslik">
+    <div class="kap">
+      <h2 id="hizmet-baslik" data-i18n="hizmetH2">Esnaf samimiyeti, kurumsal düzen.</h2>
+      <ul class="hizmet-liste">
+        <li><a class="hizmet" href="#bayilik">
+          <span class="hizmet-ikon"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M253.88,108.11l-25.53-51a20,20,0,0,0-26.83-9L178.34,59.7,131.7,44.58a12.14,12.14,0,0,0-7.4,0L77.66,59.7,54.48,48.11a20,20,0,0,0-26.83,9L2.12,108.11a20,20,0,0,0,9,26.83l26.67,13.34,51.18,37.41A12.15,12.15,0,0,0,93,187.62l62,16a12.27,12.27,0,0,0,3,.38,12,12,0,0,0,8.48-3.52l52.62-52.62,25.83-12.92a20,20,0,0,0,8.95-26.83Zm-58.12,29.15-27.52-26a12,12,0,0,0-16.76.26c-9.66,9.74-25.06,16.81-40.81,9.55l38.19-37h22.72l25.81,51.63ZM47.32,71.37,60.59,78l-22,43.9-13.27-6.63Zm107,107.3L101.23,165l-42-30.66L85.17,82.5,128,68.61l1.69.55L90,107.68l-.13.12a20,20,0,0,0,3.4,31c20.95,13.39,46,12.07,66.33-2.73l19.2,18.15Zm63-56.77-22-43.9,13.27-6.63,21.95,43.9ZM118.55,219a12,12,0,0,1-14.62,8.62l-26.6-6.87a12,12,0,0,1-4.08-1.93L48.92,201a12,12,0,0,1,14.16-19.37l22.47,16.42,24.38,6.29A12,12,0,0,1,118.55,219Z"/></svg></span>
+          <h3 data-i18n="s1h">Franchise ve bayilik</h3>
+          <p data-i18n="s1p">Yatırımcılar için sürdürülebilir bir iş modeli: kendi Hanedan Pilav şubenizi açın.</p>
+          <span class="ok"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span>
+        </a></li>
+        <li><a class="hizmet" href="#iletisim">
+          <span class="hizmet-ikon"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M253.76,93A12,12,0,0,0,237,90.24l-9,6.44V80a12,12,0,0,0-12-12H40A12,12,0,0,0,28,80V96.68l-9-6.44A12,12,0,1,0,5,109.76l23,16.42V184a36,36,0,0,0,36,36H192a36,36,0,0,0,36-36V126.18l23-16.42A12,12,0,0,0,253.76,93ZM204,184a12,12,0,0,1-12,12H64a12,12,0,0,1-12-12V92H204ZM76,40V16a12,12,0,0,1,24,0V40a12,12,0,0,1-24,0Zm40,0V16a12,12,0,0,1,24,0V40a12,12,0,0,1-24,0Zm40,0V16a12,12,0,0,1,24,0V40a12,12,0,0,1-24,0Z"/></svg></span>
+          <h3 data-i18n="s2h">Toplu yemek ve organizasyon</h3>
+          <p data-i18n="s2p">Kurumsal firmalara ve organizasyonlara, yüksek üretim kapasitesiyle profesyonel ve güvenilir hizmet.</p>
+          <span class="ok"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span>
+        </a></li>
+        <li><a class="hizmet" href="#bayilerimiz">
+          <span class="hizmet-ikon"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,60a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,60Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,124Zm0-112a92.1,92.1,0,0,0-92,92c0,77.36,81.64,135.4,85.12,137.83a12,12,0,0,0,13.76,0,259,259,0,0,0,42.18-39C205.15,170.57,220,136.37,220,104A92.1,92.1,0,0,0,128,12Zm31.3,174.71A249.35,249.35,0,0,1,128,216.89a249.35,249.35,0,0,1-31.3-30.18C80,167.37,60,137.31,60,104a68,68,0,0,1,136,0C196,137.31,176,167.37,159.3,186.71Z"/></svg></span>
+          <h3 data-i18n="s3h">Bayilerimizi bulun</h3>
+          <p data-i18n="s3p">Size en yakın Hanedan Pilav şubesini bulun.</p>
+          <span class="ok"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></span>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="hikaye bolum" id="kurumsal" aria-labelledby="hikaye-baslik">
+    <div class="kap hikaye-ic">
+      <div class="foto foto-45 hikaye-foto" role="img" aria-label="Fotoğraf alanı: üretim mutfağı" data-i18n-attr="aria-label:hikayeFotoAria">
+        <p class="cekim" aria-hidden="true"><b><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><span data-i18n="hikayeFotoOran">Fotoğraf: üretim mutfağı, 4:5</span></b><span data-i18n="hikayeFotoNot">Geniş plan; paslanmaz tezgâhlar, düzen ve temizlik.</span></p>
+      </div>
+      <div class="hikaye-metin">
+        <span class="etiket" data-i18n="hikayeEtiket">Kurumsal</span>
+        <h2 id="hikaye-baslik" data-i18n="hikayeH2">Geleneksel lezzet, modern üretim.</h2>
+        <p class="giris" data-i18n="hikayeP">Hanedan Pilav, kuruluşundan bu yana gıda sektöründe köklü bir güven markası haline geldi.</p>
+        <ul class="ilkeler">
+          <li><h3 data-i18n="i1h">Lezzet</h3><p data-i18n="i1p">Geleneksel pişirme anlayışına bağlı mutfak.</p></li>
+          <li><h3 data-i18n="i2h">Hijyen</h3><p data-i18n="i2p">Titizlikle uygulanan hijyen standartları.</p></li>
+          <li><h3 data-i18n="i3h">Süreklilik</h3><p data-i18n="i3p">Operasyonel sürekliliği önceleyen üretim ve lojistik.</p></li>
+        </ul>
+        <a class="metin-link" href="#kurumsal-sayfa" data-sayfa><span data-i18n="hikayeLink">Kurumsal hikayemiz</span><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bayiler bolum" id="bayilerimiz" aria-labelledby="bayi-baslik">
+    <div class="kap">
+      <div class="harita-pano">
+        <div class="harita-kart">
+          <h2 id="bayi-baslik" data-i18n="bayiH2">İstanbul geneline yayılan bir ağ.</h2>
+          <p data-i18n="bayiP">Şubelerimizin tam listesi ve size en yakın bayi, Bayilerimiz sayfasında.</p>
+          <a class="dugme" href="#bayi-listesi" data-sayfa><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,60a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,60Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,124Zm0-112a92.1,92.1,0,0,0-92,92c0,77.36,81.64,135.4,85.12,137.83a12,12,0,0,0,13.76,0,259,259,0,0,0,42.18-39C205.15,170.57,220,136.37,220,104A92.1,92.1,0,0,0,128,12Zm31.3,174.71A249.35,249.35,0,0,1,128,216.89a249.35,249.35,0,0,1-31.3-30.18C80,167.37,60,137.31,60,104a68,68,0,0,1,136,0C196,137.31,176,167.37,159.3,186.71Z"/></svg><span data-i18n="bayiCta">En Yakın Bayiyi Bul</span></a>
+        </div>
+        <div class="harita" role="img" aria-label="İstanbul ilçe haritası. Yalnız Sultangazi’deki merkezimiz işaretli." data-i18n-attr="aria-label:haritaAria">
+          <div class="harita-tuval">
+            <svg class="harita-svg" viewBox="0 0 1000 529" aria-hidden="true" focusable="false"><g class="ilceler"><path d="M573.3,511.9 572.9,511.2 574.0,511.3 574.0,512.9ZM545.2,452.9 546.0,454.3 544.4,456.6 540.2,457.0 540.3,455.2 538.4,453.7 537.0,450.9 539.1,449.5 543.0,449.2 545.4,451.6ZM555.9,470.4 555.9,468.2 556.7,468.8ZM591.2,493.1 590.0,493.8 587.5,491.7 588.7,488.0ZM579.0,499.6 574.6,499.6 573.3,497.3 572.2,497.2 574.5,494.1 572.4,489.5 573.7,485.4 570.8,484.5 574.5,483.7 575.0,478.0 581.8,475.2 584.3,475.2 586.7,478.7 582.5,485.1 580.3,486.9 580.5,494.2 579.3,495.6 579.8,498.4ZM558.9,474.0 562.4,471.7 561.7,469.8 565.9,468.9 569.3,475.9 568.3,475.2 568.0,476.2 569.2,476.3 565.0,479.1 560.9,479.8 561.3,478.0 558.9,477.7 558.4,480.3 554.9,479.5 554.7,477.0 556.5,474.8ZM546.1,469.2 545.5,467.5 552.1,468.9 552.2,471.7 553.5,472.6 549.3,475.9 545.5,475.1 543.5,473.1ZM503.2,475.7 502.4,475.9 502.3,474.8 504.2,473.9 504.7,475.5ZM515.3,481.4 515.8,482.0 514.3,483.1 512.6,481.0Z"/><path d="M349.6,324.9 347.1,327.4 346.5,326.4 341.3,325.6 340.0,324.2 337.8,327.8 338.1,329.2 336.3,329.8 335.3,334.0 333.3,331.7 334.0,331.1 333.1,328.8 331.1,326.3 330.0,321.5 328.2,319.8 325.8,314.4 323.3,316.2 322.7,319.2 320.9,318.5 320.7,314.4 319.2,313.3 317.4,313.4 314.9,307.3 314.0,309.3 312.6,308.1 312.0,308.9 310.8,308.1 309.0,308.7 302.1,317.1 299.9,316.3 300.3,313.2 305.9,307.5 302.6,299.5 308.8,292.1 311.6,284.2 314.5,282.5 315.8,279.2 316.3,270.2 316.0,266.6 311.5,257.0 309.9,249.0 310.5,246.9 309.9,239.5 308.3,241.0 306.3,238.1 307.8,235.0 306.8,233.2 307.6,229.8 306.3,228.3 306.5,222.1 299.2,220.0 294.0,221.0 292.0,218.1 291.1,214.0 291.0,210.4 294.8,208.3 294.7,203.0 297.1,197.6 297.4,188.2 305.2,158.9 301.4,150.7 285.9,147.4 278.7,139.4 266.7,136.4 264.6,134.8 264.5,125.0 265.5,123.2 288.0,135.0 297.5,137.8 307.5,145.3 333.9,159.5 340.6,161.8 346.6,161.8 348.7,163.6 355.2,166.1 357.2,165.7 358.2,162.9 360.1,162.4 362.3,164.5 361.8,165.9 361.5,164.7 360.3,164.9 361.5,167.0 377.9,175.3 383.6,177.3 385.8,176.3 389.2,177.2 392.1,176.8 394.9,175.5 399.6,179.1 402.9,178.2 405.3,182.8 410.7,186.0 408.9,185.7 408.5,186.5 409.0,188.9 412.7,189.6 413.1,186.8 412.3,185.1 413.3,186.7 412.8,189.9 411.0,192.9 408.7,207.8 406.9,210.2 406.3,214.1 403.2,214.0 403.2,214.6 405.5,221.9 407.7,222.3 411.9,229.0 411.4,231.8 412.5,236.0 415.2,238.2 416.8,241.2 416.3,245.2 422.5,247.2 425.6,253.0 427.0,253.4 428.4,255.7 427.6,258.5 426.0,259.8 427.6,262.7 427.0,269.2 428.7,272.0 427.9,276.7 425.1,276.6 424.9,277.3 424.9,284.3 426.1,287.1 425.4,290.6 426.2,291.6 426.6,298.2 425.6,299.3 425.6,302.5 421.8,301.5 413.3,294.6 408.5,294.4 403.7,300.6 400.7,301.8 397.0,305.7 393.0,305.8 391.1,304.2 388.1,305.2 386.2,302.5 385.0,309.8 381.8,317.0 379.1,318.7 376.7,318.8 363.0,309.8 359.3,311.8 355.3,317.6 355.3,318.7 357.4,319.8 352.5,322.0Z"/><path d="M576.8,415.8 575.1,418.6 572.9,419.7 569.2,414.6 563.6,403.5 554.0,397.6 553.6,388.9 559.0,386.8 562.0,386.4 565.1,387.4 571.8,393.6 574.9,395.2 584.7,394.6 599.8,396.5 605.7,398.7 612.7,399.5 618.7,403.7 606.8,409.5 606.0,407.7 603.8,408.4 602.9,407.0 598.2,405.3 595.8,406.4 594.0,409.7 591.9,410.8 585.9,409.7 580.3,410.6Z"/><path d="M388.4,358.8 388.1,363.2 396.2,405.7 394.4,406.0 390.4,409.3 388.8,412.3 382.4,411.4 380.6,412.1 380.8,413.2 378.2,412.9 378.0,412.0 376.0,411.2 375.8,412.1 377.3,412.9 374.4,410.7 367.8,409.7 368.4,406.4 365.7,402.0 362.3,399.2 360.6,393.3 360.5,391.8 362.3,391.1 364.4,392.7 367.5,392.6 367.9,388.8 369.3,386.4 366.7,384.4 368.4,382.4 369.3,373.6 366.9,373.3 366.5,371.9 363.9,371.6 363.7,368.6 366.9,365.1 363.7,364.2 363.2,361.3 359.5,356.3 368.9,353.0 368.0,350.0 368.4,345.2 365.3,338.3 363.8,331.6 364.6,326.3 363.0,322.5 367.2,325.8 371.4,332.9 371.2,334.5 381.3,345.4 382.8,348.5 384.7,349.6 384.2,350.3 386.2,351.5 389.6,350.6 390.4,351.6 390.8,353.6Z"/><path d="M423.5,374.7 429.4,379.6 431.5,379.2 432.1,378.0 437.0,377.0 437.6,378.0 440.1,378.5 441.7,376.6 442.2,378.5 445.2,378.7 447.1,380.0 447.1,379.2 453.2,388.5 455.2,387.3 458.2,381.7 458.6,388.5 460.2,391.7 444.9,397.8 428.7,397.2 428.1,395.9 426.1,395.6 423.9,392.2 422.2,382.7 421.1,382.4 422.2,374.2Z"/><path d="M437.6,420.2 437.3,421.1 435.8,420.6 435.8,421.6 433.0,422.6 430.8,420.9 430.3,421.7 429.3,421.1 429.1,422.2 430.7,422.2 429.8,422.7 425.1,422.1 423.9,421.0 423.4,421.7 420.6,418.2 417.4,416.6 415.0,413.8 405.7,407.9 406.0,404.2 404.9,401.5 409.8,402.2 414.3,399.8 418.4,403.0 419.1,402.5 418.5,399.3 417.8,399.4 416.6,395.0 416.9,393.9 419.6,392.3 423.2,392.9 425.6,395.9 428.0,397.1 442.4,398.1 463.1,390.5 465.8,388.2 463.7,392.7 464.9,395.5 462.7,404.1 463.3,407.2 463.1,405.9 462.5,406.0 456.3,409.7 457.1,410.9 456.0,410.8 454.4,412.3 455.0,413.0 457.7,410.9 455.3,413.3 450.8,410.0 443.8,409.6 442.6,411.0 443.9,412.4 442.5,411.2 443.6,412.7 442.3,411.4 441.3,412.0 440.5,413.9 441.1,414.5Z"/><path d="M460.8,355.4 460.2,351.5 457.1,345.7 457.2,341.5 468.0,349.6 469.3,353.0 472.5,356.0 477.0,364.6 475.6,364.2 476.0,366.8 479.8,373.8 477.7,375.6 473.7,371.1 467.3,374.3 465.4,369.2 462.3,367.6 460.3,363.8Z"/><path d="M425.4,345.5 425.7,344.9 433.0,346.3 439.7,349.7 441.6,348.9 444.8,344.9 448.0,345.4 446.1,348.4 445.3,356.7 446.2,356.9 447.8,360.5 447.6,364.4 448.4,366.0 453.5,367.2 454.2,373.8 449.4,372.9 447.4,373.6 449.5,380.0 448.0,381.0 447.1,379.2 447.1,380.0 445.2,378.7 442.2,378.5 441.7,376.6 440.1,378.5 437.6,378.0 437.0,377.0 432.1,378.0 431.5,379.2 429.4,379.6 423.5,374.7 423.4,367.8 422.1,361.2Z"/><path d="M365.9,324.6 363.0,322.5 364.6,326.3 363.8,331.6 365.3,338.3 368.4,345.2 368.5,353.6 364.1,354.4 361.4,352.1 354.7,350.0 346.0,342.3 344.2,335.7 340.7,329.7 338.3,327.8 340.0,324.2 341.3,325.6 347.9,327.0 352.5,322.0 357.4,319.8 355.3,318.7 355.3,317.6 359.3,311.8 363.0,309.8 376.7,318.8 379.1,318.7 381.8,317.0 385.0,309.8 386.2,302.5 388.1,305.2 391.1,304.2 393.0,305.8 395.9,306.1 400.7,301.8 403.7,300.6 408.5,294.4 410.6,294.2 413.3,294.6 423.5,302.5 430.5,303.1 430.3,304.4 432.1,306.8 440.6,314.0 440.5,318.0 442.9,321.4 443.2,325.0 439.5,337.5 436.6,344.9 434.9,347.1 425.7,344.9 423.8,352.1 413.6,350.3 395.0,352.3 390.4,351.6 389.6,350.6 386.2,351.5 384.2,350.3 384.7,349.6 382.8,348.5 381.3,345.4 371.2,334.5 371.0,332.1Z"/><path d="M558.7,319.8 561.2,316.6 565.3,314.8 566.1,309.9 563.7,306.6 563.0,303.8 560.2,302.2 557.0,301.8 556.4,300.8 559.0,299.8 556.8,300.4 552.9,298.0 556.3,290.5 553.5,286.1 554.1,283.8 555.2,282.5 558.0,282.0 560.6,280.2 561.5,278.2 560.8,274.6 568.1,272.6 570.6,273.2 571.6,271.0 573.5,271.7 573.5,270.6 576.5,268.5 577.3,262.6 576.2,260.3 582.7,258.4 583.0,256.6 582.0,255.6 580.7,256.8 581.0,257.5 579.9,257.3 582.2,254.9 584.7,254.5 588.0,251.9 590.4,252.6 592.1,251.8 593.2,250.7 592.9,248.2 594.4,247.5 597.8,249.1 599.6,244.4 601.8,244.0 604.9,246.2 605.5,245.5 608.2,246.5 615.8,247.0 617.3,246.0 617.0,244.6 617.9,245.0 617.8,246.0 620.8,246.1 623.7,245.2 625.4,243.3 623.9,240.6 624.5,239.8 626.2,239.7 626.7,241.3 628.4,241.2 628.9,240.2 631.4,241.8 633.9,240.5 634.8,241.6 635.8,241.1 637.6,242.0 639.7,239.3 645.0,237.1 645.6,240.2 649.5,239.8 650.6,241.9 652.1,240.9 652.8,242.0 655.7,242.0 661.7,245.5 671.6,246.7 674.5,247.7 676.1,249.5 680.3,249.2 682.2,250.3 682.9,249.5 681.5,253.0 682.8,258.1 678.3,263.5 677.6,266.8 678.3,267.4 677.2,271.4 678.7,273.7 678.0,276.0 678.7,281.5 679.7,280.7 679.6,284.1 681.1,284.9 681.3,288.3 686.0,287.3 687.0,286.0 688.4,289.6 689.7,290.7 689.3,292.3 692.0,291.2 695.0,293.7 693.4,298.3 695.1,298.0 698.4,299.2 699.1,301.6 698.9,305.1 696.9,308.9 696.1,309.8 692.9,310.0 691.5,309.0 692.0,307.4 689.8,307.0 680.5,309.4 676.5,306.8 673.7,308.1 672.7,309.6 668.2,309.4 666.0,307.6 662.7,307.1 659.3,305.0 659.3,307.8 657.8,309.6 657.2,312.9 654.6,312.2 653.8,313.4 648.2,315.8 646.7,314.1 645.2,316.0 643.3,315.9 643.3,318.7 641.3,319.3 641.9,321.3 640.5,324.2 638.9,324.9 638.1,323.7 635.9,325.0 634.0,323.2 633.8,319.8 633.0,320.0 631.8,322.0 627.9,323.7 628.1,328.7 625.1,331.4 623.6,331.5 623.5,332.6 622.2,332.1 621.6,333.3 620.8,332.8 621.1,334.4 618.0,344.1 619.4,349.7 621.9,353.8 620.9,355.3 617.9,355.5 615.5,357.2 612.7,356.3 602.5,356.8 601.3,355.5 600.8,356.9 594.4,360.0 591.4,360.1 591.0,361.3 588.1,361.2 587.8,364.1 586.3,365.3 586.3,362.9 584.3,360.4 584.1,357.5 579.8,359.6 577.1,358.1 574.0,353.6 571.3,352.2 565.5,352.2 565.1,350.5 566.2,350.2 563.6,349.4 559.1,350.5 556.9,349.6 553.2,344.0 549.5,341.1 550.8,336.4 550.1,331.2 551.1,330.2 549.5,328.1 550.8,324.4 554.0,321.9 558.0,321.8Z"/><path d="M324.9,398.1 328.3,390.5 331.5,386.2 331.7,381.6 334.4,381.8 335.2,380.4 350.5,388.1 358.8,388.9 361.3,390.1 362.3,391.1 360.5,391.8 360.6,393.3 362.2,398.9 365.7,402.0 368.4,406.4 368.2,410.5 366.7,410.3 366.0,411.9 365.9,410.9 363.8,411.1 361.9,412.3 361.8,413.4 360.7,413.3 360.6,417.2 360.2,414.6 359.3,414.6 359.3,417.1 359.1,414.7 358.4,414.8 358.3,416.9 357.7,413.8 357.6,417.2 357.3,415.2 356.5,415.1 356.7,418.2 356.3,415.9 355.6,416.1 355.7,418.1 354.7,418.2 354.6,416.4 353.8,416.6 353.8,418.2 353.7,416.6 352.9,416.9 353.0,419.4 354.3,420.9 351.9,420.4 351.8,418.5 347.2,417.9 350.2,418.4 350.9,417.3 347.4,416.7 345.5,417.0 347.2,418.7 344.5,417.2 328.9,418.6 321.8,415.5 319.6,416.3 317.7,414.7 317.2,415.4 318.8,416.3 317.2,415.5 316.8,416.3 318.8,417.5 319.6,417.0 318.7,417.7 316.6,416.3 317.7,413.9 317.3,412.6 317.9,413.9 318.2,413.2 316.0,410.1 318.1,405.4 316.7,400.5 317.1,394.6 319.4,393.9 319.9,395.0 321.1,394.3Z"/><path d="M491.7,365.2 488.4,362.6 487.2,360.0 487.8,357.9 491.5,355.9 491.7,349.8 493.3,349.5 492.4,351.3 495.1,353.7 495.4,357.2 498.5,357.3 498.8,358.7 501.6,361.1 501.7,362.5 505.5,362.4 508.4,365.3 509.0,364.8 514.1,366.7 515.4,368.3 514.4,369.5 514.7,371.1 513.6,371.1 511.8,374.0 506.0,378.2 504.0,378.3 501.2,376.2 500.5,372.1 498.1,370.2 493.9,369.6 494.4,369.0Z"/><path d="M518.7,358.8 516.9,355.9 518.1,354.4 519.1,348.5 521.1,348.8 523.4,351.0 525.4,345.1 524.9,342.3 521.1,335.8 520.2,330.7 524.7,322.1 526.7,325.6 529.0,327.1 534.0,327.1 531.6,329.6 529.1,330.4 538.4,332.7 538.3,336.6 544.7,337.0 544.7,339.0 539.6,341.3 540.6,347.7 538.5,348.7 537.9,351.1 535.7,353.4 533.8,359.8 515.4,368.3 514.1,366.7 514.1,365.0 515.9,365.7 515.2,363.8 516.1,363.5 515.9,361.3 516.7,359.6 517.9,360.1Z"/><path d="M314.5,382.4 310.3,381.0 307.5,380.7 307.4,381.5 307.5,380.7 306.1,380.5 306.2,381.6 308.1,382.2 305.0,380.5 302.2,380.7 301.4,382.4 300.3,381.7 300.2,383.6 301.7,382.5 301.4,383.4 294.7,387.9 294.3,390.4 292.2,393.0 290.8,401.8 289.3,402.8 287.6,400.8 277.9,395.0 274.0,394.0 273.4,392.3 273.4,393.6 272.6,392.8 273.9,394.6 272.6,393.1 273.4,392.0 272.4,390.5 260.2,384.0 259.1,381.9 251.8,376.3 233.7,367.1 217.8,361.0 214.7,360.8 216.1,349.2 215.3,349.0 215.0,345.9 216.4,339.3 217.8,337.2 218.5,337.6 220.0,336.3 225.0,338.3 227.0,341.1 230.2,342.9 233.7,342.1 235.4,340.6 241.1,342.4 247.3,347.6 254.9,347.8 259.2,354.9 268.2,353.5 270.6,352.0 272.5,348.7 276.3,347.3 276.7,345.5 279.2,346.5 281.4,344.5 276.7,336.1 273.0,325.0 280.2,321.4 287.5,325.5 292.0,331.1 295.5,330.9 298.4,323.8 299.9,316.3 302.1,317.1 309.0,308.7 310.8,308.1 312.0,308.9 312.6,308.1 314.0,309.3 314.9,307.3 317.4,313.4 319.2,313.3 320.7,314.4 320.9,318.5 322.7,319.2 323.3,316.2 325.8,314.4 328.2,319.8 330.0,321.5 331.1,326.3 333.1,328.8 334.0,331.1 333.3,331.7 335.3,334.0 332.8,336.1 333.2,337.1 328.8,347.2 332.6,357.9 332.4,363.7 330.2,370.1 332.8,376.1 332.9,378.7 335.2,380.4 334.4,381.8 331.7,381.6 331.5,386.2 328.3,390.5 324.9,398.1 321.1,394.3 319.9,395.0 319.4,393.9 317.1,394.6 318.5,387.0 317.0,384.0Z"/><path d="M460.6,370.2 456.1,371.6 454.1,367.2 448.4,366.0 447.6,364.4 447.9,360.7 446.2,356.9 445.3,356.7 445.3,352.8 446.1,348.4 448.0,345.4 444.8,344.9 441.6,348.9 439.7,349.7 434.9,347.1 436.6,344.9 439.5,337.5 443.2,325.4 442.9,321.4 449.5,332.6 457.2,341.5 457.1,345.7 460.7,353.3 460.3,363.8 462.0,367.4 466.1,370.4 468.1,378.8 467.1,380.1 461.2,381.1 461.5,378.9 460.5,377.7 463.3,373.4Z"/><path d="M346.2,342.5 354.7,350.0 359.7,351.3 363.9,353.8 364.1,354.4 359.5,356.3 363.2,361.3 363.7,364.2 366.9,365.1 363.7,368.6 363.9,371.6 366.5,371.9 366.9,373.3 369.3,373.6 368.4,382.4 366.7,384.4 369.3,386.4 367.2,392.7 363.9,392.6 359.3,389.0 350.5,388.1 332.9,378.7 330.2,369.6 332.4,363.7 332.5,357.3 328.8,347.8 333.2,337.1 332.8,336.1 335.3,334.0 336.3,329.8 338.1,329.2 338.3,327.8 340.7,329.7 344.2,335.7Z"/><path d="M493.7,285.1 493.7,286.6 496.6,286.6 496.2,288.2 497.3,289.1 501.6,288.1 503.3,288.6 505.5,291.2 505.7,295.3 502.0,299.8 501.1,302.6 499.2,303.9 500.1,305.4 497.5,308.6 497.1,310.6 498.8,315.0 496.9,317.7 500.4,321.1 497.7,322.8 494.6,323.3 494.7,326.1 496.3,326.7 501.2,331.9 501.6,335.4 499.6,336.1 499.4,339.5 496.1,343.7 495.3,347.6 491.2,350.7 489.6,349.8 490.9,355.1 487.0,356.2 485.5,358.1 485.3,359.8 487.2,363.9 490.0,365.7 487.4,367.6 487.7,370.6 485.8,371.8 482.5,376.5 479.0,372.9 476.0,366.8 475.6,364.2 477.0,364.6 473.2,358.5 475.1,357.8 476.0,356.0 478.8,357.3 479.6,355.7 479.9,356.6 480.6,355.8 481.3,356.8 481.3,355.5 482.7,355.8 484.2,354.4 485.4,355.2 487.3,353.3 486.0,353.4 484.8,351.0 485.2,350.0 485.9,350.2 485.7,349.1 484.6,349.1 483.8,346.9 481.3,346.4 478.3,348.5 474.6,345.1 476.4,343.3 475.4,340.5 479.1,331.1 476.2,328.4 477.5,324.8 476.3,323.5 478.1,320.5 476.8,317.3 473.0,317.2 473.0,315.2 471.4,313.5 471.2,311.8 468.6,312.5 471.0,310.2 468.4,307.7 467.4,304.6 462.9,302.0 460.4,296.7 458.1,296.5 455.3,298.6 454.7,297.3 455.7,293.3 454.1,291.7 451.2,292.3 451.3,288.8 448.6,287.0 439.3,292.8 438.4,295.0 434.4,298.8 434.6,304.3 432.2,303.0 425.6,302.5 425.6,299.3 426.6,298.2 426.2,291.6 425.4,290.6 426.1,287.1 424.9,284.3 424.9,277.3 425.1,276.6 427.9,276.7 428.7,272.0 427.0,269.2 427.6,262.7 426.0,259.8 427.6,258.5 428.4,255.7 427.0,253.4 425.6,253.0 422.5,247.2 416.3,245.2 416.8,241.2 415.2,238.2 412.5,236.0 411.4,231.8 411.9,229.0 407.7,222.3 405.5,221.9 403.2,214.6 403.2,214.0 406.3,214.1 406.9,210.2 408.7,207.8 411.8,191.0 412.5,190.4 416.9,193.0 420.0,192.1 425.7,197.2 428.1,198.1 428.0,199.5 435.8,202.4 440.7,202.8 445.4,206.1 454.7,209.5 461.6,211.3 468.9,210.7 472.7,212.9 478.7,212.9 486.3,217.5 492.4,219.3 491.9,221.6 489.3,223.2 487.8,226.6 488.0,228.5 484.0,239.3 485.3,240.9 485.2,244.0 486.2,243.7 486.2,245.7 486.8,245.0 488.5,246.3 494.3,246.7 494.6,247.7 494.3,250.8 491.5,258.2 493.0,263.8 494.7,264.7Z"/><path d="M506.0,381.5 510.8,381.1 511.6,384.0 510.6,388.4 508.3,390.9 506.4,391.5 506.9,391.8 500.1,391.1 498.1,391.2 500.3,392.0 496.7,391.9 494.7,391.2 494.5,393.1 498.1,393.8 494.4,393.7 490.7,395.1 487.4,393.8 487.1,391.5 485.2,392.7 481.7,398.1 482.4,398.5 482.8,397.4 482.5,398.6 481.6,398.3 479.6,400.7 477.3,400.6 478.6,382.0 479.9,379.0 487.7,370.6 487.3,367.9 488.5,366.4 490.1,365.6 492.7,371.5 494.2,373.3 496.3,373.8 500.6,379.6Z"/><path d="M483.8,355.0 481.3,355.5 481.3,356.8 480.6,355.8 479.9,356.6 479.6,355.7 478.8,357.3 476.0,356.0 475.1,357.8 473.2,358.5 472.5,356.0 469.3,353.0 468.0,349.6 458.0,342.4 455.0,338.7 458.2,335.1 462.3,333.0 472.3,332.5 478.3,330.3 479.1,331.1 475.4,340.5 476.4,343.3 474.5,344.6 475.5,346.7 478.3,348.5 481.3,346.4 483.8,346.9 484.6,349.1 485.7,349.1 485.9,350.2 485.2,350.0 484.8,351.0 486.0,353.4 487.3,353.3 485.4,355.2 484.2,354.4Z"/><path d="M460.6,370.2 463.3,373.4 460.5,377.7 461.5,378.9 461.2,381.1 467.1,380.1 468.1,378.8 468.2,379.6 467.7,383.7 465.8,388.2 460.2,391.7 458.6,388.5 458.2,381.7 455.2,387.3 453.2,388.5 448.0,381.0 449.5,380.0 447.4,374.4 447.9,373.3 449.4,372.9 454.0,374.3 453.5,367.2 455.1,368.3 456.1,371.6Z"/><path d="M531.5,390.8 531.4,389.5 536.0,384.5 539.0,386.2 541.0,385.9 541.0,391.6 559.4,400.3 563.6,403.5 569.2,414.6 572.9,419.7 567.8,421.5 564.4,424.7 564.1,424.1 562.7,424.5 564.5,425.7 561.7,424.6 560.9,422.6 558.1,423.5 555.7,421.1 553.5,420.6 551.5,417.3 546.2,417.0 546.5,416.4 545.6,416.6 544.1,414.2 541.8,413.0 540.1,412.7 538.3,415.4 536.2,413.2 534.7,414.8 533.5,414.6 534.3,409.9 534.4,411.8 535.7,412.7 536.6,411.8 534.8,408.2 535.5,409.7 537.2,408.9 536.4,408.5 537.1,408.3 536.8,407.3 535.5,407.9 536.5,406.7 534.3,404.4 532.2,406.0 529.9,406.0 528.6,407.0 527.4,405.1 527.6,402.4 524.9,397.6 527.6,398.5 529.5,396.9 528.8,395.3 526.2,395.2 527.0,394.6 525.4,392.5 526.3,391.8 528.2,393.7Z"/><path d="M602.8,446.2 608.6,444.6 614.0,444.7 616.5,443.1 616.9,444.8 619.0,443.8 621.9,433.4 627.5,425.0 629.7,424.2 630.9,424.9 631.4,426.6 632.9,426.7 640.1,425.3 641.7,428.4 643.0,436.2 644.5,438.0 641.7,444.0 638.3,445.8 639.4,448.8 638.6,449.5 639.8,451.0 640.2,458.2 638.3,459.9 635.7,459.5 635.4,461.2 633.0,463.8 629.2,460.4 628.6,465.6 626.3,465.3 625.9,471.4 624.7,473.2 620.0,470.6 619.8,471.2 618.8,469.8 616.0,469.7 611.2,467.3 609.3,468.4 606.7,468.2 604.1,465.0 595.5,458.9 592.6,457.7 590.7,458.3 587.5,456.0 586.3,454.3 587.1,453.3 586.6,451.8 588.4,449.8 590.9,449.4 592.6,452.3 596.5,450.4 595.6,449.7Z"/><path d="M509.9,324.7 510.3,327.3 515.5,326.9 517.1,325.8 519.5,327.3 519.7,331.3 521.7,336.7 519.9,337.0 521.3,340.3 521.1,342.4 518.0,343.2 512.2,341.0 511.8,344.9 508.9,346.9 507.4,345.8 505.1,348.7 502.5,350.2 498.3,357.5 495.4,357.2 495.1,353.7 492.4,350.7 495.6,347.1 496.1,343.7 499.4,339.5 499.6,336.1 501.6,335.4 501.6,332.8 497.1,327.4 494.7,326.1 494.6,323.3 497.7,322.8 500.4,321.1 501.7,321.8 500.8,324.4 505.0,324.5 505.6,323.3 506.5,324.5 508.7,323.3Z"/><path d="M396.0,404.8 388.1,363.2 388.6,357.7 390.8,353.6 390.4,351.6 396.1,352.3 413.6,350.3 423.8,352.1 422.0,361.9 423.4,367.8 423.5,374.7 422.2,374.2 421.0,382.0 422.2,382.7 423.9,392.2 426.1,395.6 428.1,395.9 428.7,397.2 426.0,396.2 423.2,392.9 419.6,392.3 416.9,393.9 416.6,395.0 417.8,399.4 418.5,399.3 419.1,402.5 418.4,403.0 414.3,399.8 409.8,402.2 404.9,401.5 406.0,404.2 405.7,407.6 404.6,405.4 406.0,404.5 405.7,403.3 403.2,399.4 405.8,404.2 402.8,404.6 404.3,405.0 405.5,407.8 402.3,405.9 401.7,404.5 402.8,404.5 401.8,403.9 401.9,402.8 401.4,404.8 399.6,405.7 396.2,405.7Z"/><path d="M575.1,418.6 578.8,412.1 580.7,410.5 585.9,409.7 591.9,410.8 594.0,409.7 595.8,406.4 598.2,405.3 602.9,407.0 603.8,408.4 606.0,407.7 606.8,409.5 616.0,405.0 616.7,409.6 618.3,408.4 620.0,409.0 619.6,410.0 623.1,408.6 624.0,409.7 620.4,418.4 624.2,423.6 625.1,428.3 621.6,434.1 619.0,443.8 616.9,444.8 616.5,443.1 614.0,444.7 608.6,444.6 603.0,446.0 595.6,449.7 596.5,450.4 592.6,452.3 590.9,449.4 588.6,449.8 586.8,451.2 587.1,453.5 586.3,454.3 583.2,450.7 581.1,446.1 578.0,445.8 576.8,443.9 578.5,442.7 576.8,443.8 574.1,439.7 575.4,436.7 573.4,438.8 573.8,437.9 570.6,432.9 570.8,430.6 568.8,429.6 568.2,432.8 568.7,429.5 564.7,424.3 567.8,421.5Z"/><path d="M716.6,416.2 716.0,419.6 713.7,423.4 712.0,423.6 711.5,422.6 711.4,424.0 708.8,424.8 707.6,427.0 704.6,426.8 702.9,430.8 694.4,435.5 684.9,438.2 685.9,441.3 684.5,449.6 684.0,450.9 680.6,452.8 681.3,457.7 679.9,458.7 681.2,461.3 680.6,465.1 674.0,472.7 670.0,474.1 673.0,476.7 672.7,479.5 674.3,482.7 672.7,483.7 669.2,484.3 668.6,482.6 665.8,482.6 664.9,485.7 664.1,485.5 664.1,486.8 662.3,488.1 660.6,486.9 660.4,488.8 658.5,488.9 654.0,488.0 652.6,486.6 651.8,487.9 651.5,487.3 650.7,487.9 650.6,489.1 649.4,489.2 643.1,485.7 646.5,487.1 649.3,485.2 646.3,482.2 645.1,482.2 644.9,485.5 644.2,483.5 646.1,480.4 645.0,481.1 645.5,480.5 642.4,478.6 635.5,475.2 635.1,476.0 634.1,475.8 634.7,477.2 633.7,478.0 636.7,480.1 630.5,477.8 628.1,474.9 624.7,473.2 625.9,471.4 626.3,465.3 628.6,465.6 629.2,460.4 633.0,463.8 635.4,461.2 635.7,459.5 638.3,459.9 640.2,458.2 639.8,451.0 638.6,449.5 639.4,448.8 638.3,445.8 641.7,444.0 644.5,438.0 652.3,436.6 653.6,436.6 653.6,437.7 656.9,435.8 664.6,433.5 671.7,426.1 672.6,419.7 672.1,419.0 668.1,419.7 666.8,416.3 663.5,413.2 661.2,408.7 661.8,406.4 659.9,392.1 660.6,389.1 664.3,385.2 664.6,382.4 668.0,383.0 687.9,382.1 693.4,376.3 697.4,375.6 698.4,374.4 696.1,370.0 696.5,366.7 698.9,363.4 695.9,358.2 698.4,353.1 701.3,354.4 704.8,360.1 704.0,364.0 704.7,369.4 707.4,372.3 716.2,376.5 718.8,376.8 721.8,375.0 723.3,375.0 731.7,379.2 730.5,382.5 732.9,383.1 733.7,384.7 733.1,386.9 734.2,385.9 735.4,386.4 733.6,390.9 736.2,392.8 737.0,395.0 741.1,393.3 749.4,386.7 754.1,381.8 754.2,380.7 756.9,379.1 758.0,376.9 758.0,372.8 764.9,369.0 767.1,371.8 766.0,375.3 766.0,381.3 763.0,384.3 762.7,387.1 767.4,392.3 768.7,392.5 769.4,400.5 766.6,401.4 761.1,408.0 758.7,409.2 757.2,412.5 758.7,413.6 758.8,415.0 757.5,417.7 755.8,417.8 755.8,420.6 754.4,419.4 753.6,419.9 751.2,424.6 747.9,425.0 744.3,422.5 743.0,419.3 744.5,412.0 743.3,405.8 739.5,408.8 725.5,410.6 723.1,412.8 719.8,419.0Z"/><path d="M623.7,410.2 623.1,408.6 619.6,410.0 620.0,409.0 618.3,408.4 616.7,409.6 616.0,405.0 618.7,403.7 613.3,399.9 613.4,397.6 612.6,397.5 613.5,394.8 611.7,388.7 609.7,386.8 614.3,385.1 614.0,383.8 612.4,383.5 616.9,383.2 619.6,384.1 623.7,382.1 634.5,381.5 636.2,378.2 639.9,378.2 639.9,376.4 640.0,377.1 641.4,377.1 642.6,375.9 641.9,374.1 646.4,374.3 649.6,372.9 653.2,368.1 654.0,364.6 657.5,363.0 659.2,359.2 661.9,357.8 666.7,361.0 668.0,359.9 672.7,360.5 677.7,359.0 681.5,360.6 689.9,360.9 690.3,365.4 691.9,365.0 696.5,366.7 696.1,370.0 698.4,374.4 697.4,375.6 693.4,376.3 687.9,382.1 668.0,383.0 664.6,382.4 664.3,385.2 661.1,388.4 660.1,391.1 647.4,389.6 645.7,396.2 644.1,399.0 642.8,408.2 639.3,413.0 641.7,421.8 641.5,424.3 640.1,425.3 637.9,426.3 631.9,426.7 629.7,424.2 627.5,425.0 625.1,428.3 624.2,423.6 620.4,418.4Z"/><path d="M492.4,219.3 495.0,219.3 499.1,221.8 500.0,224.0 501.7,224.8 508.8,225.9 518.1,229.3 527.4,230.6 534.1,229.9 534.3,227.8 536.7,226.1 536.5,223.1 538.3,223.2 538.2,224.2 539.5,225.0 542.1,222.8 544.5,224.2 547.7,224.1 548.4,226.3 549.6,227.0 551.1,225.1 551.1,225.9 553.4,226.3 552.8,228.3 553.5,228.8 555.0,227.6 556.3,224.4 557.4,226.3 557.1,228.2 559.6,227.5 558.9,227.9 559.6,230.3 562.4,228.9 563.1,231.6 563.9,230.5 565.9,231.6 566.1,233.9 567.4,232.7 568.7,233.1 570.0,233.9 569.8,234.8 570.7,234.2 570.3,235.9 572.1,235.0 573.3,235.5 571.7,237.1 575.3,238.0 574.6,241.4 574.2,239.4 574.9,238.4 573.9,237.9 573.2,239.7 574.2,240.9 571.3,244.4 572.1,245.3 570.4,246.5 570.6,249.3 573.1,251.1 572.0,251.5 572.7,251.9 569.9,256.2 568.9,257.1 567.3,256.4 566.2,258.6 563.0,260.2 558.1,268.7 555.9,269.9 554.2,273.1 553.7,277.0 547.6,279.9 545.9,283.1 543.3,283.7 535.6,289.0 535.8,290.4 538.1,291.6 539.6,293.7 543.6,295.5 546.3,300.3 544.5,301.0 547.9,302.9 549.5,306.4 552.4,308.4 553.2,310.3 552.5,313.2 548.2,317.9 545.9,316.7 544.5,317.4 546.2,317.6 547.0,320.4 543.8,328.1 544.6,327.9 544.4,329.9 546.0,332.6 545.8,337.7 544.7,339.0 544.7,337.0 538.3,336.6 538.4,332.7 529.1,330.4 531.6,329.6 534.0,327.1 529.0,327.1 526.7,325.6 524.7,322.1 520.4,329.5 520.4,333.0 519.6,327.5 518.4,326.1 511.0,327.4 508.7,323.3 506.5,324.5 505.6,323.3 505.0,324.5 500.8,324.4 501.7,321.8 496.9,317.7 498.8,315.0 497.1,310.6 497.7,308.0 500.1,305.4 499.2,303.9 501.1,302.6 505.7,294.7 505.5,291.2 503.3,288.6 497.3,289.1 496.2,288.2 496.6,286.6 493.7,286.6 494.7,264.7 493.0,263.8 491.5,258.2 494.3,250.8 494.6,247.7 494.3,246.7 488.5,246.3 486.8,245.0 486.2,245.7 486.2,243.7 485.2,244.0 485.3,240.9 484.1,239.8 488.0,228.5 487.8,226.6 489.3,223.2 491.9,221.6Z"/><path d="M112.2,344.2 103.8,344.5 97.7,346.6 91.3,347.0 83.9,349.6 81.3,353.2 76.8,352.2 56.9,355.3 42.6,364.4 35.4,365.4 24.0,371.4 23.1,370.5 22.6,366.1 17.9,367.4 16.4,364.3 13.2,363.5 11.1,366.1 10.5,363.8 8.6,363.6 8.7,364.8 7.4,364.5 9.8,360.1 9.6,358.1 8.9,358.1 9.7,354.1 8.0,349.3 12.3,345.3 10.8,344.9 10.9,342.5 8.0,342.9 7.8,339.7 9.8,337.4 7.5,334.7 9.4,327.9 6.0,326.3 8.2,321.8 6.7,320.6 8.7,319.4 6.5,318.5 8.1,314.8 8.2,310.7 6.4,310.4 9.8,297.2 8.5,292.5 9.0,289.7 11.8,285.1 25.9,285.0 25.8,282.8 27.3,282.4 31.3,273.7 29.6,270.8 27.8,262.3 28.2,260.1 19.5,245.7 19.0,240.4 20.4,233.6 27.9,225.9 35.2,223.4 43.0,217.3 49.0,215.5 51.6,209.1 53.8,208.2 55.9,205.9 56.1,204.3 58.4,202.3 58.0,197.8 60.8,195.0 64.3,197.2 66.7,196.3 67.2,194.6 71.6,196.3 73.0,195.1 74.2,195.7 74.1,196.5 77.9,195.5 78.8,193.3 86.1,185.1 86.9,182.6 89.3,182.3 88.7,180.9 86.8,180.8 85.0,178.6 83.6,172.2 82.4,170.6 87.5,162.7 87.6,158.5 85.8,152.4 87.4,154.3 91.0,155.9 99.7,155.8 121.9,164.5 125.3,170.9 126.3,167.4 129.0,164.1 133.5,166.4 136.2,166.6 140.5,164.4 143.6,165.3 144.6,164.2 151.3,163.2 153.5,158.3 155.8,157.9 160.2,163.7 159.3,166.8 157.7,168.2 156.8,171.2 157.4,171.9 152.2,178.2 153.2,182.5 158.4,187.1 160.3,186.6 164.1,191.3 169.2,188.8 171.8,189.0 174.5,187.6 181.1,189.4 178.5,191.4 175.9,200.5 174.2,201.5 174.1,203.4 167.0,210.7 170.7,210.9 170.5,215.0 172.2,215.9 173.2,221.5 175.0,222.3 178.4,227.0 177.8,231.1 181.2,232.4 183.8,234.9 185.4,233.9 186.7,234.7 191.3,233.4 191.4,234.7 192.9,235.5 192.5,237.7 195.4,246.3 202.4,252.3 203.1,255.0 204.2,254.3 206.4,254.8 206.1,256.8 208.4,259.5 205.9,262.5 206.6,263.5 206.0,264.4 204.0,264.5 202.9,265.6 203.4,267.9 204.9,268.0 206.4,270.8 205.2,271.3 203.8,275.6 201.9,278.1 204.1,279.1 204.6,285.5 207.4,285.7 208.2,284.8 211.1,286.9 209.8,290.7 211.7,294.4 210.1,297.6 213.5,307.2 209.3,308.0 212.8,310.7 212.9,318.4 214.8,327.6 216.9,330.4 214.5,335.3 214.0,339.3 216.2,342.6 215.0,345.9 215.3,349.0 216.1,349.2 214.7,360.8 205.2,357.6 201.9,358.3 199.2,357.1 195.5,356.8 195.2,355.5 189.6,354.1 186.7,355.1 175.9,354.6 172.6,353.0 161.3,350.8 149.5,351.3 144.7,347.4 140.2,345.5 139.8,346.3 139.0,344.8 140.8,345.6 141.1,344.7 139.9,345.0 141.0,344.7 140.9,343.7 139.5,344.1 140.8,343.2 137.7,341.4 129.5,341.6 125.1,346.1Z"/><path d="M660.1,391.1 661.8,406.4 661.2,408.7 663.5,413.2 666.8,416.3 668.1,419.7 672.1,419.0 672.6,419.7 671.7,426.1 664.6,433.5 656.9,435.8 653.6,437.7 653.6,436.6 652.3,436.6 644.5,438.0 643.0,436.2 641.7,428.4 640.1,425.3 641.5,424.3 641.7,421.8 639.2,414.0 642.9,408.1 644.0,399.3 645.7,396.2 646.6,390.8 648.3,389.4Z"/><path d="M651.3,513.3 652.0,511.5 654.5,511.1 656.6,506.6 655.6,503.8 652.6,503.8 648.9,500.2 650.2,501.6 651.5,500.7 649.9,499.8 650.9,499.4 649.5,499.2 650.1,498.4 648.2,498.4 650.7,492.0 652.2,492.3 652.4,491.3 652.0,494.8 650.5,496.8 652.3,500.2 655.9,502.4 656.7,501.4 657.9,502.2 656.9,501.2 658.9,498.6 658.4,497.4 659.6,495.7 661.4,496.4 662.4,495.0 660.4,488.8 660.6,486.9 662.3,488.1 664.1,486.8 665.8,482.6 668.6,482.6 669.7,484.4 674.3,482.7 672.7,479.5 672.7,475.7 670.0,474.1 674.0,472.7 680.6,465.1 681.2,461.3 679.9,458.7 681.3,457.7 680.6,452.8 684.0,450.9 684.5,449.6 685.9,441.3 684.9,438.2 694.4,435.5 702.9,430.8 704.6,426.8 707.6,427.0 708.8,424.8 711.4,424.0 711.5,422.6 712.0,423.6 714.4,422.9 716.4,416.1 719.8,419.0 723.1,412.8 725.5,410.6 739.5,408.8 743.3,405.8 744.5,412.0 743.0,419.3 744.4,424.2 742.3,427.3 736.5,429.8 736.7,432.0 735.0,433.6 736.4,435.1 735.8,436.3 737.6,436.9 737.5,445.4 738.5,447.9 741.5,448.6 742.6,447.4 744.4,449.0 744.4,450.6 737.4,458.4 724.4,460.2 723.3,472.6 718.2,472.1 714.7,474.4 706.5,477.2 703.6,479.5 702.1,482.5 700.2,483.2 698.7,486.2 700.6,487.9 697.4,492.3 702.1,499.7 698.6,506.9 698.0,513.6 693.8,510.1 690.8,508.9 686.6,517.7 684.6,516.4 684.7,517.3 684.0,515.5 681.5,513.8 679.5,512.8 679.1,513.5 679.2,512.7 678.1,514.9 678.3,513.5 677.7,514.2 677.0,513.1 677.0,514.7 676.7,513.3 675.7,513.5 676.9,515.8 675.5,515.7 674.6,514.2 673.9,515.8 675.6,516.3 673.1,516.1 671.2,517.3 667.9,514.5 664.5,514.0 663.4,515.5 665.4,517.1 660.7,515.6 659.2,516.6 655.4,515.4 652.3,517.1 649.4,517.2 649.1,518.6 647.8,518.2 647.7,519.0 649.0,519.4 649.6,518.5 648.6,521.5 645.4,523.0 646.2,519.5 644.1,515.2 646.0,515.2 648.8,512.4 650.0,512.3 647.8,513.9 648.9,514.9 650.5,514.8Z"/><path d="M465.1,406.2 465.3,405.6 464.4,406.4 464.9,405.3 463.5,405.2 464.4,405.7 463.6,407.2 462.8,404.4 464.9,395.5 463.7,392.7 467.7,383.7 468.2,379.6 467.3,374.3 473.7,371.1 477.7,375.6 479.8,373.8 482.4,376.4 479.9,379.0 478.6,382.0 477.3,400.6 473.7,402.1 472.0,404.7 469.3,406.3Z"/><path d="M198.8,87.8 235.5,107.7 254.7,116.7 265.1,122.9 264.0,132.0 264.6,134.8 266.7,136.4 278.7,139.4 285.9,147.4 301.4,150.7 305.2,158.9 297.4,188.2 297.1,197.6 294.7,203.0 294.8,208.3 291.0,210.4 291.1,214.0 292.0,218.1 294.0,221.0 300.4,220.1 306.2,221.7 306.8,223.0 306.0,223.8 306.8,225.1 306.3,228.3 307.4,229.0 306.8,233.2 307.8,235.0 306.3,238.1 308.3,241.0 309.9,239.5 310.5,246.9 309.9,249.0 311.5,257.0 316.2,267.4 315.8,279.2 314.5,282.5 311.0,285.2 308.8,292.1 302.6,299.5 305.9,307.5 299.8,314.4 298.4,323.8 295.5,330.9 292.0,331.1 287.5,325.5 280.2,321.4 273.0,325.0 276.7,336.1 281.4,344.5 279.2,346.5 276.7,345.5 276.3,347.3 274.0,347.7 271.3,349.7 270.6,352.0 266.6,354.0 259.2,354.9 254.9,347.8 247.3,347.6 241.1,342.4 237.6,341.2 235.4,340.6 233.7,342.1 230.2,342.9 227.0,341.1 225.0,338.3 220.0,336.3 218.5,337.6 217.8,337.2 215.8,341.1 214.0,339.3 214.5,335.3 216.9,330.4 214.8,327.6 212.9,318.4 212.8,310.7 209.3,308.0 213.5,307.2 210.1,297.6 211.7,294.4 209.8,290.7 211.1,286.9 208.2,284.8 207.4,285.7 204.6,285.5 204.1,279.1 201.9,278.1 203.8,275.6 205.2,271.3 206.4,270.8 204.9,268.0 203.4,267.9 202.9,265.6 204.0,264.5 206.0,264.4 206.6,263.5 205.9,262.5 208.4,259.5 206.1,256.8 206.4,254.8 204.2,254.3 203.1,255.0 202.4,252.3 195.4,246.3 192.5,237.7 192.9,235.5 191.4,234.7 191.3,233.4 186.7,234.7 185.4,233.9 183.8,234.9 181.2,232.4 177.8,231.1 178.4,227.0 175.0,222.3 173.2,221.5 172.2,215.9 170.5,215.0 170.7,210.9 167.0,210.7 174.1,203.4 174.2,201.5 175.9,200.5 178.5,191.4 181.1,189.4 174.5,187.6 171.8,189.0 169.2,188.8 164.1,191.3 160.3,186.6 158.4,187.1 153.2,182.5 152.2,178.2 157.4,171.9 156.8,171.2 157.7,168.2 159.3,166.8 160.2,163.7 155.8,157.9 153.5,158.3 151.3,163.2 144.6,164.2 143.6,165.3 140.5,164.4 136.2,166.6 133.5,166.4 129.0,164.1 126.3,167.4 125.3,170.9 121.9,164.5 99.7,155.8 91.0,155.9 87.4,154.3 85.8,152.4 87.6,158.5 87.5,162.7 82.4,170.6 83.6,172.2 85.0,178.6 86.8,180.8 88.7,180.9 89.3,182.3 86.9,182.6 86.1,185.1 78.8,193.3 77.9,195.5 74.1,196.5 74.2,195.7 73.0,195.1 71.6,196.3 67.2,194.6 66.7,196.3 64.1,197.2 61.1,194.9 59.4,196.3 58.6,194.5 59.2,193.6 58.2,192.9 58.9,180.4 64.3,164.1 64.6,148.3 69.0,138.0 70.3,125.7 74.3,125.5 76.4,123.3 81.0,121.7 77.5,116.4 75.0,109.4 76.7,98.7 75.6,92.7 75.5,84.8 73.0,82.5 72.3,77.9 69.7,77.8 69.5,76.8 66.4,75.1 62.7,68.7 59.3,66.7 55.5,66.1 56.7,61.9 55.2,56.3 57.9,53.7 58.5,51.2 66.0,50.5 68.8,47.2 72.5,47.0 79.7,39.6 80.5,35.5 77.6,32.8 80.0,32.5 80.9,29.9 79.2,28.3 80.1,27.2 81.5,27.3 82.3,24.6 81.0,22.6 78.7,22.0 78.9,20.3 81.4,18.8 81.8,16.6 82.7,16.6 84.0,13.5 86.5,12.2 88.3,8.3 93.1,6.0 96.7,9.4 103.0,10.4 102.8,12.8 103.8,13.4 108.4,13.9 107.8,15.0 109.0,14.3 111.1,14.9 111.0,17.0 113.1,18.0 110.5,18.8 110.4,20.0 111.3,21.9 113.7,23.3 113.8,24.1 112.6,24.3 112.9,26.7 116.2,27.5 116.0,30.3 119.7,30.2 119.2,32.2 122.7,36.8 123.6,36.6 126.7,40.4 130.6,42.8 129.2,43.7 129.9,45.9 131.7,46.9 134.0,45.7 135.7,46.6 135.9,48.8 138.3,51.0 143.1,52.7 143.0,54.7 144.3,55.2 144.7,54.6 147.6,57.1 149.5,57.4 150.5,60.6 153.7,62.2 155.6,64.7 158.6,65.1 161.9,67.8Z"/><path d="M716.0,330.6 713.2,331.1 711.5,333.4 713.2,335.2 716.2,335.9 716.3,338.1 713.7,338.8 713.9,341.1 710.4,344.0 711.4,345.7 709.0,347.0 707.6,350.7 703.7,354.5 701.6,354.9 698.4,353.1 697.3,354.1 695.9,358.2 698.9,363.4 696.5,366.7 691.9,365.0 690.3,365.4 689.9,360.9 681.5,360.6 677.7,359.0 672.7,360.5 668.0,359.9 666.7,361.0 661.9,357.8 659.2,359.2 657.5,363.0 654.0,364.6 652.9,368.6 649.0,373.3 646.4,374.3 641.9,374.1 642.6,375.9 641.4,377.1 640.0,377.1 639.9,376.4 639.9,378.2 636.2,378.2 634.5,381.5 623.7,382.1 619.6,384.1 608.9,382.7 602.5,372.6 597.7,369.5 591.0,368.2 587.3,370.0 586.7,369.5 586.1,365.9 587.8,364.1 588.1,361.2 591.0,361.3 591.4,360.1 594.4,360.0 600.8,356.9 601.2,355.5 602.5,356.8 612.7,356.3 615.5,357.2 617.9,355.5 620.9,355.3 621.9,353.8 619.4,349.7 618.0,344.1 621.1,334.4 620.8,332.8 621.6,333.3 622.2,332.1 623.5,332.6 623.6,331.5 625.1,331.4 628.1,328.7 627.9,323.7 631.8,322.0 633.0,320.0 633.8,319.8 634.0,323.2 635.9,325.0 638.1,323.7 639.1,324.9 641.4,322.9 641.3,319.3 643.3,318.7 643.3,315.9 645.2,316.0 646.7,314.1 648.2,315.8 653.8,313.4 654.6,312.2 657.2,312.9 657.8,309.6 659.3,307.8 659.3,305.0 662.7,307.1 666.0,307.6 668.2,309.4 672.7,309.6 673.7,308.1 676.5,306.8 680.5,309.4 689.8,307.0 692.0,307.4 691.5,309.0 692.9,310.0 697.4,309.8 700.0,311.5 702.9,309.5 706.5,312.6 707.7,320.6 711.1,322.5 712.3,324.6 717.1,326.5 717.4,328.9Z"/><path d="M558.8,376.7 559.6,376.3 557.5,373.2 560.8,371.6 563.1,365.9 561.6,358.0 560.7,356.3 558.9,355.4 560.0,352.8 559.1,350.5 563.6,349.4 566.2,350.2 565.1,350.5 565.5,352.2 571.3,352.2 574.0,353.6 577.1,358.1 579.8,359.6 584.1,357.5 584.3,360.4 586.3,362.9 586.7,369.5 587.3,370.0 591.0,368.2 598.1,369.7 602.5,372.6 606.9,378.5 608.7,382.6 614.0,383.8 614.3,385.1 609.7,386.8 611.7,388.7 613.5,395.1 612.6,397.5 613.4,397.6 613.7,399.5 585.8,394.7 574.3,395.0 566.0,388.0 562.0,386.4Z"/><path d="M558.2,349.8 560.0,351.9 558.9,355.4 560.7,356.3 561.6,358.0 563.1,365.9 560.8,371.6 557.5,373.2 559.6,376.3 558.8,376.7 558.9,378.7 562.0,386.4 553.6,388.9 554.0,397.6 541.0,391.6 541.0,385.9 539.0,386.2 536.0,384.5 528.4,393.6 526.3,391.8 525.4,392.5 523.3,392.0 522.7,390.9 524.2,391.0 523.7,389.7 521.7,389.4 520.8,387.8 522.7,387.9 520.9,385.4 522.4,386.5 521.9,385.4 523.0,384.5 522.2,383.5 523.1,384.0 520.7,377.9 522.3,375.5 524.1,375.4 533.1,367.3 543.4,360.8 543.6,352.0 545.8,348.7 545.3,343.6 549.2,342.1 549.5,341.1 553.2,344.0 556.2,348.9Z"/><path d="M881.2,290.0 883.5,289.6 884.3,288.1 885.9,288.1 886.7,286.9 889.6,286.9 890.6,287.7 892.1,286.0 892.2,287.9 893.5,288.7 894.8,287.5 899.2,286.5 903.7,287.8 903.1,288.8 903.7,289.5 905.4,287.9 906.0,288.9 907.1,288.5 910.1,289.9 910.1,292.4 912.0,290.9 913.4,291.1 921.4,295.0 925.1,297.9 938.2,301.0 940.5,300.7 940.9,299.5 942.9,300.6 941.3,298.8 945.9,297.7 947.4,299.2 952.3,298.8 951.8,299.7 953.0,300.9 957.3,298.6 961.8,298.8 962.7,297.9 967.6,298.2 968.9,299.7 969.8,297.9 973.3,298.4 974.1,299.1 972.1,300.4 973.2,302.5 972.9,310.1 970.1,313.1 971.0,314.0 972.3,313.1 970.9,314.4 972.7,318.7 971.9,322.1 973.4,326.1 974.4,327.3 979.8,328.6 983.2,327.5 986.8,328.2 988.3,326.9 992.1,327.3 993.9,330.5 992.7,333.4 993.5,337.3 991.7,337.9 992.0,339.8 985.8,337.4 983.9,335.4 974.7,334.5 974.0,335.7 973.7,334.9 970.6,334.6 967.4,331.9 965.3,332.6 960.7,331.2 961.2,336.0 958.3,339.9 960.8,345.7 961.1,350.5 960.6,351.3 958.3,351.1 958.5,354.1 955.4,356.4 955.5,365.7 949.8,364.9 948.7,365.7 945.7,371.7 942.8,373.0 938.1,378.1 935.9,378.1 934.1,380.4 932.0,380.8 932.1,384.1 930.6,384.9 928.3,383.3 921.8,382.3 919.2,378.8 918.4,379.7 915.1,380.3 913.5,385.6 912.0,382.7 912.7,379.5 908.3,378.4 906.9,375.4 905.6,375.8 904.5,374.4 900.3,376.6 895.8,376.8 892.5,373.9 888.0,365.5 886.5,369.5 884.3,369.1 884.5,365.5 882.6,363.3 880.8,364.1 879.3,368.1 876.9,370.5 873.5,369.5 872.9,371.6 869.4,370.0 867.8,371.6 869.0,375.3 868.8,380.4 869.4,382.4 872.3,383.3 872.7,385.6 875.4,387.7 874.7,391.2 871.7,391.7 871.9,392.5 868.8,394.4 866.6,399.0 861.7,400.0 861.2,402.9 859.8,403.3 861.2,405.0 860.5,406.1 858.7,406.1 857.6,407.8 857.4,412.5 855.2,415.1 854.0,416.1 852.3,416.1 851.5,414.8 847.4,417.9 846.9,416.8 845.8,417.3 843.6,416.4 843.4,414.3 841.6,412.8 840.5,413.4 836.8,411.9 832.6,411.8 826.4,408.3 822.7,405.0 821.3,405.9 819.3,405.0 818.3,401.8 819.3,398.7 821.1,397.6 821.5,392.4 820.4,387.7 818.6,389.0 817.6,388.0 815.4,390.4 816.8,384.4 814.5,379.1 816.0,375.1 811.2,372.2 805.0,371.1 803.2,369.4 802.7,371.0 799.3,369.8 795.0,366.7 792.8,366.9 791.4,369.2 789.4,368.2 788.3,369.2 787.3,368.2 785.4,368.3 784.5,369.2 784.7,370.7 782.1,370.1 781.3,371.5 780.2,371.7 779.0,370.0 779.7,368.7 777.3,364.8 776.6,365.1 774.9,363.5 772.5,364.7 771.9,366.2 770.5,365.1 770.6,367.9 767.6,371.5 764.9,369.0 758.0,372.8 758.0,376.9 756.9,379.1 754.2,380.7 754.1,381.8 749.4,386.7 741.1,393.3 737.6,395.0 733.6,390.9 735.4,386.4 734.2,385.9 733.1,386.9 733.7,384.7 732.9,383.1 730.5,382.5 731.7,379.2 723.3,375.0 721.8,375.0 718.8,376.8 716.2,376.5 707.4,372.3 704.7,369.4 704.0,364.0 704.8,360.1 701.6,354.9 703.7,354.5 706.5,351.9 709.0,347.0 711.4,345.7 710.4,344.0 713.7,341.5 713.7,338.8 716.3,338.1 716.2,335.9 713.2,335.2 711.5,333.4 713.2,331.1 716.6,330.3 717.4,327.5 717.1,326.5 712.3,324.6 711.1,322.5 707.7,320.6 706.5,312.6 705.6,311.4 702.9,309.5 700.0,311.5 696.1,309.8 698.9,305.1 699.1,301.6 698.4,299.2 695.1,298.0 693.4,298.3 695.0,293.7 693.5,292.0 692.0,291.2 689.3,292.3 689.7,290.7 688.4,289.6 687.0,286.0 686.0,287.3 681.3,288.3 681.5,286.1 679.6,284.1 680.1,281.9 679.7,280.7 678.7,281.5 678.0,278.3 678.8,274.4 677.2,271.7 678.3,267.4 677.6,266.8 678.3,263.5 682.8,258.1 681.5,253.0 682.9,249.5 684.8,250.8 689.4,250.8 689.9,251.9 693.1,252.0 695.2,253.3 700.8,253.1 704.0,251.9 705.8,252.9 711.2,250.6 712.7,252.4 720.8,254.3 736.6,260.6 743.7,261.7 768.5,270.4 775.4,271.1 798.0,277.9 811.4,279.8 814.4,279.5 817.7,276.8 816.8,275.1 817.8,276.2 820.5,274.9 820.3,273.7 819.0,273.0 815.8,274.5 819.6,272.2 820.9,273.8 822.9,273.0 823.0,274.6 824.2,274.2 825.0,275.3 825.8,274.0 827.2,274.5 827.6,273.7 828.6,275.0 828.3,276.8 832.4,277.4 832.1,278.4 833.1,279.5 836.7,280.6 838.2,278.9 838.8,279.6 838.2,280.1 839.6,281.4 845.8,283.5 848.4,283.5 848.8,282.5 849.9,282.5 851.9,284.5 855.2,285.7 858.4,284.4 860.6,285.1 861.3,284.3 861.5,285.2 862.8,284.3 864.2,285.1 864.4,284.2 867.2,284.3 867.0,286.0 868.7,287.1 877.7,288.5Z"/><path d="M498.9,356.1 502.5,350.2 505.1,348.7 507.4,345.8 508.9,346.9 511.9,344.7 512.2,341.0 518.0,343.2 521.0,342.5 521.3,340.3 519.9,337.0 521.7,336.7 524.9,342.3 525.4,345.1 523.4,351.0 521.1,348.8 519.1,348.5 518.1,354.4 516.9,355.9 518.7,358.8 517.9,360.1 516.7,359.6 515.9,361.3 515.7,366.0 514.3,364.9 514.1,366.7 512.7,366.7 509.0,364.8 508.4,365.3 505.5,362.4 501.7,362.5 501.6,361.1 498.8,358.7Z"/></g><path class="merkez-ilce" d="M461.0,333.5 457.0,336.1 455.0,338.7 449.5,332.6 442.2,319.6 440.6,318.4 440.6,314.0 432.1,306.8 430.1,303.9 432.2,303.0 434.6,304.3 434.4,298.8 438.4,295.0 439.3,292.8 448.6,287.0 451.3,288.8 451.2,292.3 454.1,291.7 455.7,293.3 454.7,298.0 455.9,298.6 458.1,296.5 460.4,296.7 461.9,300.7 467.4,304.6 468.4,307.7 471.0,310.2 468.6,312.5 471.2,311.8 471.4,313.5 473.0,315.2 473.0,317.2 476.8,317.3 478.1,320.5 476.3,323.5 477.5,324.8 476.2,328.1 478.3,330.3 472.3,332.5 465.6,332.4Z"/></svg>
+            <span class="deniz deniz-k" aria-hidden="true" data-i18n="deniz1">Karadeniz</span>
+            <span class="deniz deniz-m" aria-hidden="true" data-i18n="deniz2">Marmara Denizi</span>
+            <span class="pin" aria-hidden="true"><span class="pin-nokta"></span><span class="pin-tabela"><span data-i18n="pinEtiket">Merkez</span> · <span lang="tr" translate="no">Sultangazi</span></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="galeri bolum" id="galeri" aria-labelledby="galeri-baslik">
+    <div class="kap">
+      <div class="galeri-bas">
+        <h2 id="galeri-baslik" data-i18n="galeriH2">Kazandan tabağa.</h2>
+        <a class="metin-link" href="#galeri-sayfa" data-sayfa><span data-i18n="galeriLink">Tüm galeri</span><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a>
+      </div>
+      <div class="serit-kap" role="region" aria-label="Galeri şeridi" data-i18n-attr="aria-label:galeriAria">
+        <ul class="serit">
+          <li class="r45"><div class="kare" role="img" aria-label="Fotoğraf alanı: kazan başında usta" data-i18n-attr="aria-label:g1Aria"><p class="cekim" aria-hidden="true"><b><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><span data-i18n="g1b">Fotoğraf: kazan başında usta, 4:5</span></b><span data-i18n="g1">Buhar ve sıcak ışık.</span></p></div></li>
+          <li class="r32"><div class="kare" role="img" aria-label="Fotoğraf alanı: organizasyon servisi" data-i18n-attr="aria-label:g2Aria"><p class="cekim" aria-hidden="true"><b><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><span data-i18n="g2b">Fotoğraf: organizasyon servisi, 3:2</span></b><span data-i18n="g2">Geniş açı, kurulu masalar.</span></p></div></li>
+          <li class="r11"><div class="kare" role="img" aria-label="Fotoğraf alanı: tabakta pilav" data-i18n-attr="aria-label:g3Aria"><p class="cekim" aria-hidden="true"><b><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><span data-i18n="g3b">Fotoğraf: tabakta pilav, 1:1</span></b><span data-i18n="g3">Üstten çekim, doğal ışık.</span></p></div></li>
+          <li class="r45"><div class="kare" role="img" aria-label="Fotoğraf alanı: üretim alanında hijyen" data-i18n-attr="aria-label:g4Aria"><p class="cekim" aria-hidden="true"><b><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M208,52H182.42L170,33.34A12,12,0,0,0,160,28H96a12,12,0,0,0-10,5.34L73.57,52H48A28,28,0,0,0,20,80V192a28,28,0,0,0,28,28H208a28,28,0,0,0,28-28V80A28,28,0,0,0,208,52Zm4,140a4,4,0,0,1-4,4H48a4,4,0,0,1-4-4V80a4,4,0,0,1,4-4H80a12,12,0,0,0,10-5.34L102.42,52h51.15L166,70.66A12,12,0,0,0,176,76h32a4,4,0,0,1,4,4ZM128,84a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,84Zm0,72a24,24,0,1,1,24-24A24,24,0,0,1,128,156Z"/></svg><span data-i18n="g4b">Fotoğraf: üretim alanı, 4:5</span></b><span data-i18n="g4">Eldiven ve bone, hijyen detayı.</span></p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bayilik bolum" id="bayilik" aria-labelledby="plaka-baslik">
+    <div class="kap">
+      <div class="plaka-sari">
+        <div class="plaka-metin">
+          <span class="etiket" data-i18n="plakaEtiket">Franchise</span>
+          <h2 id="plaka-baslik" data-i18n="plakaH2">Hanedan Pilav bayisi olun.</h2>
+          <p data-i18n="plakaP">Büyümeye devam eden bayilik ağımıza katılın. Başvuru formunu doldurun ya da bize doğrudan ulaşın.</p>
+          <a class="dugme dugme-kara" href="#basvuru" data-sayfa data-i18n="ctaBayilik">Bayilik Başvurusu</a>
+        </div>
+        <ul class="plaka-iletisim">
+          <li><a class="satir" href="tel:+905336163754"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M224,154.8l-47.09-21.11-.18-.08a19.94,19.94,0,0,0-19,1.75,13.08,13.08,0,0,0-1.12.84l-22.31,19c-13-7.05-26.43-20.37-33.49-33.21l19.06-22.66a11.76,11.76,0,0,0,.85-1.15,20,20,0,0,0,1.66-18.83,1.42,1.42,0,0,1-.08-.18L101.2,32A20.06,20.06,0,0,0,80.42,20.15,60.27,60.27,0,0,0,28,80c0,81.61,66.39,148,148,148a60.27,60.27,0,0,0,59.85-52.42A20.06,20.06,0,0,0,224,154.8ZM176,204A124.15,124.15,0,0,1,52,80,36.29,36.29,0,0,1,80.48,44.46l18.82,42L80.14,109.28a12,12,0,0,0-.86,1.16A20,20,0,0,0,78,130.08c9.42,19.28,28.83,38.56,48.31,48A20,20,0,0,0,146,176.63a11.63,11.63,0,0,0,1.11-.85l22.43-19.07,42,18.81A36.29,36.29,0,0,1,176,204Z"/></svg><span class="k" data-i18n="telK">Telefon</span><span class="v nw">+90 533 616 37 54</span></a></li>
+          <li><a class="satir" href="https://wa.me/905336163754?text=Merhaba%2C%20Hanedan%20Pilav%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" data-i18n-attr="href:waHref"><span class="wa-mini"><svg class="wa-glif" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span><span class="k" data-i18n="mesajK">Mesaj</span><span class="v" data-i18n="waEtiket">WhatsApp’tan yazın</span><span class="sr" data-i18n="yeniSekme"> (yeni sekmede açılır)</span></a></li>
+          <li><div class="satir"><svg class="ikon" aria-hidden="true" focusable="false" viewBox="0 0 256 256" fill="currentColor"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm0,192a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm68-84a12,12,0,0,1-12,12H128a12,12,0,0,1-12-12V72a12,12,0,0,1,24,0v44h44A12,12,0,0,1,196,128Z"/></svg><span class="k" data-i18n="saatK">Çalışma saatleri</span><span class="v" data-i18n="saat">Her gün 09:00-17:00</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="alt koyu" id="iletisim">
+  <div class="kap alt-ic">
+    <div class="alt-marka">
+      <img src="img/logo-saydam.png" width="520" height="188" alt="Hanedan Pilav" loading="lazy">
+      <p data-i18n="altCumle"><span lang="tr">Lezzet Hanedanlığı</span>: pilav şubeleri, bayilik ve toplu yemek hizmeti.</p>
+    </div>
+    <div class="alt-merkez">
+      <h2 data-i18n="altMerkez">Merkez</h2>
+      <address lang="tr">Yunus Emre, Adem Yavuz Cd. No:76<br>34260 Sultangazi/İstanbul</address>
+    </div>
+    <nav class="alt-sayfalar" aria-label="Sayfalar" data-i18n-attr="aria-label:altSayfalar">
+      <h2 data-i18n="altSayfalar">Sayfalar</h2>
+      <ul>
+        <li><a href="#kurumsal" data-i18n="nav1">Kurumsal</a></li>
+        <li><a href="#bayilerimiz" data-i18n="nav2">Bayilerimiz</a></li>
+        <li><a href="#galeri" data-i18n="nav3">Galeri</a></li>
+        <li><a href="#iletisim" data-i18n="nav4">İletişim</a></li>
+        <li><a href="#basvuru" data-sayfa data-i18n="ctaBayilik">Bayilik Başvurusu</a></li>
+      </ul>
+    </nav>
+    <div class="alt-iletisim">
+      <h2 data-i18n="altIletisim">İletişim</h2>
+      <ul>
+        <li><a class="nw" href="tel:+905336163754">+90 533 616 37 54</a></li>
+        <li><a href="https://wa.me/905336163754?text=Merhaba%2C%20Hanedan%20Pilav%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" data-i18n-attr="href:waHref"><span data-i18n="waEtiket">WhatsApp’tan yazın</span><span class="sr" data-i18n="yeniSekme"> (yeni sekmede açılır)</span></a></li>
+        <li><span data-i18n="saat">Her gün 09:00-17:00</span></li>
+      </ul>
+    </div>
+    <div class="alt-son">
+      <span>© 1998-2026 Hanedan Pilav</span>
+      <div class="alt-son-sag">
+        <a href="#kvkk" data-sayfa data-i18n="kvkk">KVKK Aydınlatma Metni</a>
+        <div class="dil" role="group" aria-label="Dil" data-i18n-attr="aria-label:dilAria">
+          <button type="button" data-dil="tr" aria-pressed="true">TR<span class="sr" lang="tr"> Türkçe</span></button>
+          <button type="button" data-dil="en" aria-pressed="false">EN<span class="sr" lang="en"> English</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/905336163754?text=Merhaba%2C%20Hanedan%20Pilav%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp’tan yazın (yeni sekmede açılır)" data-i18n-attr="href:waHref;aria-label:waAria">
+  <span class="wa-etiket" aria-hidden="true" data-i18n="waEtiket">WhatsApp’tan yazın</span>
+  <span class="wa-disk"><svg class="wa-glif" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+</a>
+
+<script>
+(function(){
+  var html=document.documentElement;
+  var EN={
+    atla:'Skip to content',
+    logoAlt:'Hanedan Pilav home',
+    navAria:'Main menu',
+    nav1:'About',nav2:'Locations',nav3:'Gallery',nav4:'Contact',
+    dilAria:'Language',
+    telSr:'Phone:',
+    ctaBayilik:'Become a Franchisee',
+    menu:'Menu',kapat:'Close',menuAria:'Site menu',
+    not:'Design preview: photo areas will be filled after the shoot.',notKapat:'Close note',
+    h1:'Made the same way <span class="nw">since 1998.</span>',
+    spot:'By the plate or by the pot: one metric&nbsp;ton of daily capacity, serving our franchisees and corporate clients.',
+    ctaToplu:'Get a Catering Quote',
+    vitrinAria:'Photo slot: Hanedan Pilav shop front',
+    vitrinOran:'Photo: shop front, 4:3',
+    vitrinNot:'Sign legible, window lit warmly from inside, early evening.',
+    kunyeBaslik:'Hanedan Pilav at a glance',
+    k1t:'Founded',
+    k2t:'Daily production capacity (metric ton)',k2d:'1 ton',
+    k3t:'Locations and logistics across the city',k3d:'Istanbul',
+    k4t:'Headquarters',
+    hizmetH2:'Local-shop warmth, corporate standards.',
+    s1h:'Franchise',
+    s1p:'A sustainable business model for investors: open your own Hanedan Pilav franchise.',
+    s2h:'Catering and events',
+    s2p:'Professional, reliable catering for companies and large events, backed by high production capacity.',
+    s3h:'Find a location',
+    s3p:'Find the Hanedan Pilav location nearest you.',
+    hikayeFotoAria:'Photo slot: production kitchen',
+    hikayeFotoOran:'Photo: production kitchen, 4:5',
+    hikayeFotoNot:'Wide shot; stainless counters, order and cleanliness.',
+    hikayeEtiket:'About us',
+    hikayeH2:'Traditional flavor, modern production.',
+    hikayeP:'Since its founding, Hanedan Pilav has grown into a long-trusted name in the food industry.',
+    i1h:'Flavor',i1p:'A kitchen rooted in traditional cooking.',
+    i2h:'Hygiene',i2p:'Rigorous hygiene standards.',
+    i3h:'Continuity',i3p:'Production and logistics built for operational continuity.',
+    hikayeLink:'Read our story',
+    bayiH2:'Locations across Istanbul.',
+    bayiP:'The full list, including the location nearest you, is on our Locations page.',
+    bayiCta:'Find a Location',
+    haritaAria:'Map of Istanbul districts. Only our Sultangazi headquarters is marked.',
+    deniz1:'Black Sea',deniz2:'Sea of Marmara',
+    pinEtiket:'HQ',
+    galeriH2:'From the pot to the plate.',
+    galeriLink:'Full gallery',
+    galeriAria:'Gallery strip',
+    g1b:'Photo: cook at the pot, 4:5',g1:'Steam and warm light.',g1Aria:'Photo slot: cook at the pot',
+    g2b:'Photo: event service, 3:2',g2:'Wide angle, tables set.',g2Aria:'Photo slot: event service',
+    g3b:'Photo: pilaf on the plate, 1:1',g3:'Overhead, natural light.',g3Aria:'Photo slot: pilaf on the plate',
+    g4b:'Photo: production floor, 4:5',g4:'Gloves and hairnets, hygiene detail.',g4Aria:'Photo slot: hygiene on the production floor',
+    plakaEtiket:'Franchise',
+    plakaH2:'Hang your own Hanedan Pilav sign.',
+    plakaP:'Hanedan Pilav is growing through franchising. Fill out the application form or contact us directly.',
+    telK:'Phone',mesajK:'Message',
+    waEtiket:'Chat on WhatsApp',
+    waAria:'Chat on WhatsApp (opens in a new tab)',
+    yeniSekme:' (opens in a new tab)',
+    waHref:'https://wa.me/905336163754?text='+encodeURIComponent('Hello, I would like some information about Hanedan Pilav.'),
+    saatK:'Hours',saat:'Every day, 09:00-17:00',
+    altCumle:'<span lang="tr">Lezzet Hanedanlığı</span>: pilaf restaurants, franchising and catering.',
+    altMerkez:'Headquarters',altSayfalar:'Pages',altIletisim:'Contact',
+    kvkk:'Privacy Notice (KVKK)'
+  };
+  var META={
+    tr:{t:document.title,d:document.querySelector('meta[name="description"]').getAttribute('content')},
+    en:{t:'Hanedan Pilav · Made the same way since 1998',d:'Hanedan Pilav, made the same way since 1998. Franchise opportunities, catering and locations across Istanbul.'}
+  };
+  var metin=document.querySelectorAll('[data-i18n]');
+  var nitelik=document.querySelectorAll('[data-i18n-attr]');
+  var TR={},TRA={};
+  function cozumle(el){return el.getAttribute('data-i18n-attr').split(';').map(function(p){var i=p.indexOf(':');return [p.slice(0,i),p.slice(i+1)]})}
+  metin.forEach(function(el){TR[el.getAttribute('data-i18n')]=el.innerHTML});
+  nitelik.forEach(function(el){cozumle(el).forEach(function(a){TRA[a[1]]=el.getAttribute(a[0])})});
+  function uygula(dil){
+    var en=dil==='en';
+    metin.forEach(function(el){var k=el.getAttribute('data-i18n');var v=en?EN[k]:TR[k];if(v!=null)el.innerHTML=v});
+    nitelik.forEach(function(el){cozumle(el).forEach(function(a){var v=en?EN[a[1]]:TRA[a[1]];if(v!=null)el.setAttribute(a[0],v)})});
+    html.lang=dil;
+    document.title=META[dil].t;
+    document.querySelector('meta[name="description"]').setAttribute('content',META[dil].d);
+    document.querySelectorAll('[data-dil]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-dil')===dil))});
+  }
+  var kayitli=null;
+  try{kayitli=localStorage.getItem('hp-dil')}catch(e){}
+  if(kayitli==='en')uygula('en');
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-dil]');
+    if(!b)return;
+    var dil=b.getAttribute('data-dil');
+    uygula(dil);
+    try{localStorage.setItem('hp-dil',dil)}catch(e2){}
+  });
+
+  var tente=document.getElementById('tente');
+  var isaret=document.createElement('div');
+  isaret.setAttribute('aria-hidden','true');
+  isaret.style.cssText='position:absolute;top:0;left:0;width:1px;height:56px;pointer-events:none;visibility:hidden';
+  document.body.prepend(isaret);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(g){tente.classList.toggle('kompakt',!g[0].isIntersecting)}).observe(isaret);
+  }
+
+  var fab=document.querySelector('.wa-fab');
+  var plaka=document.querySelector('.plaka-sari');
+  if('IntersectionObserver' in window&&plaka){
+    new IntersectionObserver(function(g){fab.classList.toggle('gizli',g[0].isIntersecting)},{threshold:.3}).observe(plaka);
+  }
+
+  var ac=document.querySelector('.menu-ac');
+  var mm=document.getElementById('mobil-menu');
+  var kapat=mm.querySelector('.menu-kapat');
+  var disari=[document.querySelector('.atla'),tente,document.getElementById('icerik'),document.querySelector('.alt'),fab];
+  function odaklar(){return Array.prototype.filter.call(mm.querySelectorAll('a[href],button:not([disabled])'),function(el){return el.getClientRects().length>0})}
+  function tus(e){
+    if(e.key==='Escape'){e.preventDefault();menuKapat(true);return}
+    if(e.key!=='Tab')return;
+    var f=odaklar();if(!f.length)return;
+    var ilk=f[0],son=f[f.length-1];
+    if(e.shiftKey&&(document.activeElement===ilk||!mm.contains(document.activeElement))){e.preventDefault();son.focus()}
+    else if(!e.shiftKey&&(document.activeElement===son||!mm.contains(document.activeElement))){e.preventDefault();ilk.focus()}
+  }
+  function menuAc(){
+    mm.hidden=false;
+    ac.setAttribute('aria-expanded','true');
+    html.classList.add('menu-acik');
+    disari.forEach(function(el){if(el)el.inert=true});
+    document.addEventListener('keydown',tus);
+    kapat.focus();
+  }
+  function menuKapat(odakGeri){
+    if(mm.hidden)return;
+    mm.hidden=true;
+    ac.setAttribute('aria-expanded','false');
+    html.classList.remove('menu-acik');
+    disari.forEach(function(el){if(el)el.inert=false});
+    document.removeEventListener('keydown',tus);
+    if(odakGeri)ac.focus();
+  }
+  ac.addEventListener('click',menuAc);
+  kapat.addEventListener('click',function(){menuKapat(true)});
+  mm.addEventListener('click',function(e){if(e.target.closest('a[href^="#"]'))menuKapat(false)});
+  var genis=window.matchMedia('(min-width:1100px)');
+  function genisDegisti(){if(genis.matches)menuKapat(false)}
+  if(genis.addEventListener)genis.addEventListener('change',genisDegisti);
+
+  var toast=document.getElementById('toast');
+  var toastMetin=toast.querySelector('.toast-metin');
+  var TOAST={tr:'Bu sayfa, seçilen tasarım yönüyle hazırlanacak.',en:'This page will be built in the selected design direction.'};
+  var toastZaman=0;
+  function toastGoster(){
+    clearTimeout(toastZaman);
+    toastMetin.textContent='';
+    toast.classList.add('acik');
+    setTimeout(function(){toastMetin.textContent=TOAST[html.lang==='en'?'en':'tr']},60);
+    toastZaman=setTimeout(function(){toast.classList.remove('acik');setTimeout(function(){if(!toast.classList.contains('acik'))toastMetin.textContent=''},300)},3500);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-sayfa]');
+    if(!a)return;
+    e.preventDefault();
+    menuKapat(false);
+    toastGoster();
+  });
+
+  var not=document.getElementById('onizleme');
+  var notGoruldu=false;
+  try{notGoruldu=sessionStorage.getItem('hp-onizleme')==='1'}catch(e){}
+  if(!notGoruldu){
+    not.hidden=false;
+    try{sessionStorage.setItem('hp-onizleme','1')}catch(e){}
+  }
+  not.querySelector('.not-kapat').addEventListener('click',function(){
+    not.hidden=true;
+    document.getElementById('icerik').focus({preventScroll:true});
+  });
+
+  var serit=document.querySelector('.serit-kap');
+  function seritKontrol(){
+    if(serit.scrollWidth>serit.clientWidth+2)serit.setAttribute('tabindex','0');
+    else serit.removeAttribute('tabindex');
+  }
+  if('ResizeObserver' in window)new ResizeObserver(seritKontrol).observe(serit);else seritKontrol();
+  if('IntersectionObserver' in window){
+    var kareGozcu=new IntersectionObserver(function(g){g.forEach(function(x){x.target.classList.toggle('yari',x.intersectionRatio<.98)})},{root:serit,threshold:[.98]});
+    serit.querySelectorAll('li').forEach(function(li){kareGozcu.observe(li)});
+  }
+})();
+</script>
+</body>
+</html>
