@@ -45,8 +45,11 @@ final class FormIslem
     private const TELEFON_YABANCI = '/^(?:\+|00)(?!90)[1-9][0-9]{9,13}$/';
 
     // FILTER_VALIDATE_EMAIL'in kabul ettiklerinin alt kümesi: ASCII nokta-atom yerel kısım, ASCII ana makine adı.
-    private const EPOSTA = '/^[A-Za-z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&\'*+\/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+(?:[A-Za-z]{2,63}|xn--[A-Za-z0-9-]{1,59})$/';
+    private const EPOSTA = '/^[A-Za-z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&\'*+\/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+(?:[A-Za-z]{2,63}|xn--[A-Za-z0-9](?:[A-Za-z0-9-]{0,57}[A-Za-z0-9])?)$/';
     private const EPOSTA_YEREL_EN_COK = 64;
+    private const TUZ_EN_AZ = 32;
+    private const KILIT_DENEME = 20;
+    private const KILIT_BEKLEME_US = 50000;
 
     /**
      * @param array<string, mixed> $sunucu $_SERVER biçimli istek bilgisi
@@ -60,7 +63,7 @@ final class FormIslem
         $json = self::jsonIstendi($sunucu);
         $hiz = self::hizAyarlari($cfg);
         // Süresi dolan IP özetleri her istekte silinir: hiçbir özet pencere_sn'den uzun kalmaz.
-        self::eskiDosyalariSil($hiz['dizin'], $simdi - $hiz['pencere']);
+        self::eskiDosyalariSil($hiz['dizin'], $simdi - $hiz['pencere'], $hiz['varsayilan']);
 
         if (strtoupper(self::metin($sunucu['REQUEST_METHOD'] ?? '')) !== 'POST') {
             return self::cevap(405, ['ok' => false, 'hata' => 'yontem'], null, ['Allow: POST']);
@@ -328,12 +331,12 @@ final class FormIslem
 
     private static function tuzGecerli(string $tuz): bool
     {
-        return trim($tuz) !== '' && stripos($tuz, 'DEGISTIR') === false;
+        return strlen($tuz) >= self::TUZ_EN_AZ && stripos($tuz, 'DEGISTIR') === false;
     }
 
     /**
      * @param array<string, mixed> $cfg
-     * @return array{adet:int, pencere:int, dizin:string}
+     * @return array{adet:int, pencere:int, dizin:string, varsayilan:bool}
      */
     private static function hizAyarlari(array $cfg): array
     {
@@ -342,26 +345,32 @@ final class FormIslem
         if ($dizin === '') {
             $dizin = self::metin($hiz['dizin'] ?? '');
         }
-        if ($dizin === '') {
+        $varsayilan = $dizin === '';
+        if ($varsayilan) {
             $dizin = sys_get_temp_dir() . '/hanedan-hiz';
         }
         return [
             'adet' => max(1, (int) ($hiz['adet'] ?? 5)),
             'pencere' => max(1, (int) ($hiz['pencere_sn'] ?? 600)),
             'dizin' => rtrim($dizin, '/'),
+            'varsayilan' => $varsayilan,
         ];
     }
 
     /**
      * Dizin ya da dosya hatasında bilerek açık kalır (gönderim engellenmez); günlüğe yalnız kod yazılır.
      *
-     * @param array{adet:int, pencere:int, dizin:string} $hiz
+     * @param array{adet:int, pencere:int, dizin:string, varsayilan:bool} $hiz
      */
     private static function hizSiniriGec(string $ip, array $hiz, string $tuz, int $simdi): bool
     {
         $dizin = $hiz['dizin'];
         if (!is_dir($dizin) && !@mkdir($dizin, 0700, true) && !is_dir($dizin)) {
             error_log('hanedan-form: hiz_dizini_yok');
+            return true;
+        }
+        if ($hiz['varsayilan'] && !self::dizinGuvenli($dizin)) {
+            error_log('hanedan-form: hiz_dizini_guvensiz');
             return true;
         }
         $kilit = self::kilitAl($dizin);
@@ -393,9 +402,9 @@ final class FormIslem
         }
     }
 
-    private static function eskiDosyalariSil(string $dizin, int $esik): void
+    private static function eskiDosyalariSil(string $dizin, int $esik, bool $varsayilan): void
     {
-        if (!is_dir($dizin)) {
+        if (!is_dir($dizin) || ($varsayilan && !self::dizinGuvenli($dizin))) {
             return;
         }
         $kilit = self::kilitAl($dizin);
@@ -428,12 +437,30 @@ final class FormIslem
             error_log('hanedan-form: hiz_kilidi_acilamadi');
             return null;
         }
-        if (!flock($f, LOCK_EX)) {
-            fclose($f);
-            error_log('hanedan-form: hiz_kilidi_alinamadi');
-            return null;
+        // Engellemeyen kilit, en çok ~1 sn denenir: takılan bir süreç formu kilitlemesin.
+        for ($i = 0; $i < self::KILIT_DENEME; $i++) {
+            if (flock($f, LOCK_EX | LOCK_NB)) {
+                return $f;
+            }
+            usleep(self::KILIT_BEKLEME_US);
         }
-        return $f;
+        fclose($f);
+        error_log('hanedan-form: hiz_kilidi_alinamadi');
+        return null;
+    }
+
+    /** Paylaşılan geçici dizinde başkasının önceden açtığı ya da herkese açık dizin kullanılmaz. */
+    private static function dizinGuvenli(string $dizin): bool
+    {
+        clearstatcache(true, $dizin);
+        $uid = getmyuid();
+        $sahip = @fileowner($dizin);
+        $izin = @fileperms($dizin);
+        return !is_link($dizin)
+            && $uid !== false
+            && $sahip === $uid
+            && $izin !== false
+            && ($izin & 0777) === 0700;
     }
 
     /**

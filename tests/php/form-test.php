@@ -32,7 +32,7 @@ function yapilandirma(string $tmp, string $log, array $ek = []): array
         'izinli_originler' => ['example.test'],
         'hiz_siniri' => ['adet' => 5, 'pencere_sn' => 600],
         'hiz_dizini' => $tmp . '/hiz',
-        'hiz_tuzu' => 'test-tuzu',
+        'hiz_tuzu' => 'test-tuzu-test-tuzu-test-tuzu-test-tuzu',
         'min_sure_ms' => 2000,
     ], $ek);
 }
@@ -215,7 +215,7 @@ kontrol('yabanci origin 403', $s['kod'] === 403 && ($s['json']['hata'] ?? '') ==
 $s = FormIslem::isle(sunucu(['HTTP_ORIGIN' => '', 'HTTP_REFERER' => '']), gecerliIletisim(), $cfg);
 kontrol('origin ve referer yok 403', $s['kod'] === 403);
 
-foreach (['yok' => null, 'bos' => '', 'bosluk' => '   ', 'ornek' => 'DEGISTIR-rastgele-bir-dize', 'kucuk' => 'degistir'] as $ad => $tuz) {
+foreach (['yok' => null, 'bos' => '', 'bosluk' => '   ', 'ornek' => 'DEGISTIR-rastgele-bir-dize', 'kucuk' => 'degistir', 'kisa31' => str_repeat('a', 31)] as $ad => $tuz) {
     $c = yapilandirma($tmp, $log);
     if ($tuz === null) {
         unset($c['hiz_tuzu']);
@@ -288,6 +288,74 @@ kontrol('30 gun sonra hatali tek istek bile eski ozeti siler', hizDosyalari($tmp
 touch($tmp . '/dosya');
 $s = FormIslem::isle(sunucu(), gecerliIletisim(), yapilandirma($tmp, $log, ['hiz_dizini' => $tmp . '/dosya/hiz']));
 kontrol('hiz dizini olusturulamazsa bilincli acik kalir', $s['kod'] === 200);
+
+echo "Hız sınırı: kilit ve varsayılan dizin güvenliği\n";
+$tuz32 = str_repeat('a', 32);
+kontrol('hiz_tuzu tam 32 karakter kabul edilir', FormIslem::isle(sunucu(), gecerliIletisim(), yapilandirma($tmp, $log, ['hiz_tuzu' => $tuz32]))['kod'] === 200);
+
+// php-wasm'da flock engellemez ve fileowner() her zaman 0 döner; bu yetenekler yoksa ilgili sınama atlanır, mantık yerel PHP'de çalışır.
+mkdir($tmp . '/yetenek', 0700);
+$ya = fopen($tmp . '/yetenek/k', 'c');
+$yb = fopen($tmp . '/yetenek/k', 'c');
+flock($ya, LOCK_EX);
+$kilitDestegi = !flock($yb, LOCK_EX | LOCK_NB);
+fclose($ya);
+fclose($yb);
+$sahipDestegi = fileowner($tmp . '/yetenek') === getmyuid();
+
+if ($kilitDestegi) {
+    $cfgK = yapilandirma($tmp, $log, ['hiz_dizini' => $tmp . '/hiz-kilit']);
+    mkdir($tmp . '/hiz-kilit', 0700, true);
+    $tutucu = fopen($tmp . '/hiz-kilit/.kilit', 'c');
+    flock($tutucu, LOCK_EX);
+    $onceki = ini_set('error_log', $tmp . '/php-hata.log');
+    $bas = microtime(true);
+    $s = FormIslem::isle(sunucu(), gecerliIletisim(), $cfgK, 7000);
+    $sure = microtime(true) - $bas;
+    ini_set('error_log', (string) $onceki);
+    $gunluk = is_file($tmp . '/php-hata.log') ? (string) file_get_contents($tmp . '/php-hata.log') : '';
+    kontrol('kilit alinamazsa form yine de basarili (fail-open)', $s['kod'] === 200, (string) json_encode($s));
+    kontrol('kilit en cok ~1 sn beklenir', $sure >= 0.5 && $sure < 3.0, (string) $sure);
+    kontrol('kilit hatasi kodla gunluge yazilir, kisisel veri yok', str_contains($gunluk, 'hiz_kilidi_alinamadi') && !str_contains($gunluk, 'ayse@') && !str_contains($gunluk, '203.0.113'));
+    kontrol('kilit alinamazken ozet dosyasi yazilmaz', hizDosyalari($tmp . '/hiz-kilit') === []);
+    flock($tutucu, LOCK_UN);
+    fclose($tutucu);
+    FormIslem::isle(sunucu(), gecerliIletisim(), $cfgK, 7001);
+    kontrol('kilit serbest kalinca ozet yazilir', count(hizDosyalari($tmp . '/hiz-kilit')) === 1);
+} else {
+    kontrol('kilit sinamasi atlandi (flock engellemiyor)', true);
+}
+
+if ($sahipDestegi) {
+    $guvenli = new ReflectionMethod(FormIslem::class, 'dizinGuvenli');
+    $guvenli->setAccessible(true);
+    mkdir($tmp . '/g700', 0700);
+    mkdir($tmp . '/g755', 0700);
+    chmod($tmp . '/g755', 0755);
+    kontrol('dizinGuvenli: 0700 ve kendi dizinimiz', $guvenli->invoke(null, $tmp . '/g700') === true);
+    kontrol('dizinGuvenli: 0755 reddedilir', $guvenli->invoke(null, $tmp . '/g755') === false);
+
+    $eskiTmp = getenv('TMPDIR');
+    $tmpK = $tmp . '/sistem-gecici';
+    mkdir($tmpK, 0700);
+    putenv('TMPDIR=' . $tmpK);
+    if (sys_get_temp_dir() === $tmpK) {
+        $cfgD = yapilandirma($tmp, $log);
+        unset($cfgD['hiz_dizini']);
+        mkdir($tmpK . '/hanedan-hiz', 0755);
+        chmod($tmpK . '/hanedan-hiz', 0755);
+        $s = FormIslem::isle(sunucu(), gecerliIletisim(), $cfgD, 7100);
+        kontrol('varsayilan dizin 0755 ise sinir atlanir, form calisir', $s['kod'] === 200 && hizDosyalari($tmpK . '/hanedan-hiz') === []);
+        chmod($tmpK . '/hanedan-hiz', 0700);
+        FormIslem::isle(sunucu(), gecerliIletisim(), $cfgD, 7101);
+        kontrol('varsayilan dizin 0700 ise sinir uygulanir', count(hizDosyalari($tmpK . '/hanedan-hiz')) === 1);
+    }
+    putenv($eskiTmp === false ? 'TMPDIR' : 'TMPDIR=' . $eskiTmp);
+} else {
+    $guvenli = new ReflectionMethod(FormIslem::class, 'dizinGuvenli');
+    $guvenli->setAccessible(true);
+    kontrol('sahip denetimi: sahip uyusmazsa dizin guvensiz sayilir (wasm)', $guvenli->invoke(null, $tmp . '/yetenek') === false);
+}
 
 echo "Hız sınırı: IPv6 /64 ve istemci adresi\n";
 kontrol('IPv6 ayni /64 ayni anahtar', FormIslem::ipAnahtari('2001:db8:1:2::1') === FormIslem::ipAnahtari('2001:db8:1:2:ffff:ffff:ffff:ffff'));

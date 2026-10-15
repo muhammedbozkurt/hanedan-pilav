@@ -65,3 +65,24 @@ test("todo değerleri ve eksik alanlar reddedilir", () => {
   assert.deepEqual(alanlar({ ...TAM, eposta: { todo: "gerekli" } }), ["eposta"]);
   assert.deepEqual(alanlar({ ...TAM, eposta: undefined }), ["eposta"]);
 });
+
+test("TR ve EN aynı olan IkiDil değer reddedilir; dilden bağımsız alanlar muaf", () => {
+  assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki("2 yıl", "2 yıl") }), ["saklamaSuresi"]);
+  assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki(" 2 yıl", "2 yıl ") }), ["saklamaSuresi"]);
+  assert.deepEqual(alanlar({ ...TAM, unvan: iki("Hanedan Ltd.", "Hanedan Ltd.") }), []);
+});
+
+test("yeni yer tutucu kalıpları: …, TBA ve tek başına tire", () => {
+  for (const yt of ["…", "Yakında…", "TBA", "tba", "-", " - "]) {
+    assert.deepEqual(alanlar({ ...TAM, unvan: yt }), ["unvan"], yt);
+    assert.deepEqual(alanlar({ ...TAM, barindirma: iki(yt, "Hosting Inc.") }), ["barindirma"], yt);
+  }
+  assert.deepEqual(alanlar({ ...TAM, vergiDairesi: "Bağcılar - Sultangazi" }), []);
+});
+
+test("eposta geçerli e-posta biçiminde olmalı", () => {
+  for (const e of ["info", "info@", "info@hanedanpilav", "a b@c.com", "info@@c.com", "a@b.xn---"]) {
+    assert.deepEqual(alanlar({ ...TAM, eposta: e }), ["eposta"], e);
+  }
+  assert.deepEqual(alanlar({ ...TAM, eposta: "info@hanedanpilav.com" }), []);
+});

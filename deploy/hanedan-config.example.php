@@ -36,16 +36,17 @@ return [
     'izinli_originler' => ['ornek-alan-adi.com', 'www.ornek-alan-adi.com'],
 
     // IP başına: pencere_sn saniyede en çok adet GEÇERLİ gönderim (hatalı gönderimler sayılmaz).
+    // pencere_sn değişirse app/content/site.ts içindeki yasal.ipSuresi (TR ve EN) de güncellenmelidir.
     // IPv6 adresleri /64 önekine göre gruplanır. IP düz yazılmaz, hiz_tuzu ile HMAC özeti dosya adı olur;
     // özet dosyası son kabul edilen gönderimden pencere_sn sonra, bir sonraki form isteğinde silinir.
     'hiz_siniri' => ['adet' => 5, 'pencere_sn' => 600],
 
     // Hız sınırı özet dosyalarının dizini. Web kökünün DIŞINDA olmalı (ör. /var/www/vhosts/ALANADI/hanedan-hiz).
-    // null ise sistem geçici dizini kullanılır. Dizin yazılamazsa form çalışmayı sürdürür, sınır uygulanmaz.
+    // null ise sistem geçici dizini altında hanedan-hiz kullanılır (dizin bu PHP kullanıcısına ait ve 0700 değilse sınır uygulanmaz). Dizin yazılamazsa form çalışmayı sürdürür, sınır uygulanmaz.
     'hiz_dizini' => null,
 
-    // Zorunlu: uzun, rastgele bir dize (ör. `openssl rand -hex 32` çıktısı). Boş bırakılır ya da
-    // "DEGISTIR" içerirse form 500 döner.
+    // Zorunlu: en az 32 karakterlik rastgele bir dize (ör. `openssl rand -hex 32` çıktısı). Boş, 32 karakterden
+    // kısa ya da "DEGISTIR" içerirse form 500 döner.
     'hiz_tuzu' => 'DEGISTIR-rastgele-bir-dize',
 
     // Sunucunun önünde CDN ya da ters vekil varsa onun IP/CIDR listesi (ör. ['10.0.0.0/8', '2001:db8::/32']).

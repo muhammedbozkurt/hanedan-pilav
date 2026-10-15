@@ -3,6 +3,7 @@
 // yer tutucu veya eksik EN değer yayın kapısını (check:yayin) düşürür.
 // Yayın öncesi denetim betiği bu dosyayı Node ile doğrudan içe aktarır: yalnız göreli `.ts` içe aktarma ve tip silinebilir sözdizimi.
 import { SITE, type Todo, isTodo } from "../../content/site.ts";
+import { epostaGecerli } from "../form/dogrula.ts";
 
 export type IkiDil = { readonly tr: string; readonly en: string };
 export type YasalDeger = string | IkiDil | Todo | null;
@@ -48,12 +49,13 @@ export const YASAL_OPSIYONEL: readonly YasalAlan[] = ["kep", "mersisNo"];
 // Düz metin yeterli olan alanlar dilden bağımsızdır; geri kalanı TR ve EN ayrı yazılmalıdır.
 const DILDEN_BAGIMSIZ: readonly YasalAlan[] = ["unvan", "mersisNo", "vergiDairesi", "vergiNo", "eposta", "kep"];
 
-const YER_TUTUCU = /\[[^\]]*\]|\.\.\.|\btodo\b|\bTBD\b|\bTBC\b|\bXXX+\b|DE[GĞ][Iİı]?[SŞ][Iİı]?T[Iİı]R|lorem|müşteriden alınacak/i;
+const YER_TUTUCU = /\[[^\]]*\]|\.\.\.|…|^-$|\btodo\b|\bTBD\b|\bTBC\b|\bTBA\b|\bXXX+\b|DE[GĞ][Iİı]?[SŞ][Iİı]?T[Iİı]R|lorem|müşteriden alınacak/i;
 
-function metinSorunu(metin: string): string | null {
+function metinSorunu(metin: string, alan: YasalAlan): string | null {
   const m = metin.trim();
   if (m === "") return "boş";
   if (YER_TUTUCU.test(m)) return "yer tutucu içeriyor";
+  if (alan === "eposta" && !epostaGecerli(m)) return "geçerli e-posta biçiminde değil";
   return null;
 }
 
@@ -64,13 +66,14 @@ export function alanSorunu(alan: YasalAlan, deger: YasalDeger | undefined): stri
   if (isTodo(deger)) return deger.todo;
   if (typeof deger === "string") {
     if (!DILDEN_BAGIMSIZ.includes(alan)) return "TR ve EN değer ayrı verilmeli ({ tr, en })";
-    return metinSorunu(deger);
+    return metinSorunu(deger, alan);
   }
   if (typeof deger !== "object") return "geçersiz değer";
   for (const dil of ["tr", "en"] as const) {
-    const sorun = typeof deger[dil] === "string" ? metinSorunu(deger[dil]) : "yok";
+    const sorun = typeof deger[dil] === "string" ? metinSorunu(deger[dil], alan) : "yok";
     if (sorun !== null) return `${dil.toUpperCase()} değeri ${sorun}`;
   }
+  if (!DILDEN_BAGIMSIZ.includes(alan) && deger.tr.trim() === deger.en.trim()) return "TR ve EN değer aynı (çeviri eksik olabilir)";
   return null;
 }
 

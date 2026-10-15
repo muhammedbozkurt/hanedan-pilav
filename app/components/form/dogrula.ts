@@ -41,7 +41,7 @@ export function telefonGecerli(telefon: string): boolean {
 
 // Sunucudaki FILTER_VALIDATE_EMAIL'in reddettiklerini de reddeder: ASCII nokta-atom yerel kısım, ASCII ana makine adı.
 const EPOSTA =
-  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+(?:[A-Za-z]{2,63}|xn--[A-Za-z0-9-]{1,59})$/;
+  /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+(?:[A-Za-z]{2,63}|xn--[A-Za-z0-9](?:[A-Za-z0-9-]{0,57}[A-Za-z0-9])?)$/;
 const EPOSTA_YEREL_EN_COK = 64;
 
 export function epostaGecerli(eposta: string): boolean {

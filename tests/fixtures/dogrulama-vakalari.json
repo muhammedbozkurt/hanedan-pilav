@@ -36,6 +36,8 @@
     { "ad": "telefon: satır sonu", "tur": "iletisim", "degisiklik": { "telefon": "0532 123 45 67\nX: y" }, "hatalar": { "telefon": "gecersiz" } },
     { "ad": "e-posta: sade", "tur": "iletisim", "degisiklik": { "eposta": "ayse@example.com" }, "hatalar": {} },
     { "ad": "e-posta: nokta, artı etiket, .com.tr", "tur": "iletisim", "degisiklik": { "eposta": "ad.soyad+etiket@ornek.com.tr" }, "hatalar": {} },
+    { "ad": "e-posta: xn-- TLD tire ile bitemez", "tur": "iletisim", "degisiklik": { "eposta": "a@b.xn---" }, "hatalar": { "eposta": "gecersiz" } },
+    { "ad": "e-posta: xn--abc- TLD tire ile bitemez", "tur": "iletisim", "degisiklik": { "eposta": "a@b.xn--abc-" }, "hatalar": { "eposta": "gecersiz" } },
     { "ad": "e-posta: büyük harf", "tur": "iletisim", "degisiklik": { "eposta": "AYSE@EXAMPLE.COM" }, "hatalar": {} },
     { "ad": "e-posta: punycode alan adı", "tur": "iletisim", "degisiklik": { "eposta": "ali@xn--rnek-zoa.com.tr" }, "hatalar": {} },
     { "ad": "e-posta: başta ve sonda NBSP kırpılır", "tur": "iletisim", "degisiklik": { "eposta": " ayse@example.com " }, "hatalar": {} },

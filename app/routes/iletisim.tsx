@@ -24,7 +24,7 @@ export default function Iletisim() {
         <Kap>
           <div className={s.izgara}>
             <Bilgiler />
-            <div className={s.formKolon}>
+            <div className={s.formKolon} data-fab-gizle="">
               <h2 id="form-baslik">{m.form.baslik}</h2>
               <p className={s.formMetin}>{m.form.metin}</p>
               <IletisimFormu className={s.form} />

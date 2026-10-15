@@ -43,6 +43,30 @@ test("data-fab-gizle bölümü görünürken FAB çekilir", async ({ page }) => 
   await expect(fab).toHaveAttribute("data-gizli", "false");
 });
 
+test("iletişim formu görünürken FAB çekilir ve form alanlarını hiçbir kaydırma konumunda örtmez (390)", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 780 });
+  await page.goto("/iletisim");
+  const fab = page.locator("[data-wa-fab]");
+  const form = page.locator("form").first();
+  await form.scrollIntoViewIfNeeded();
+  await expect(fab).toHaveAttribute("data-gizli", "true");
+  const alanlar = form.locator("input:not([type=hidden]), textarea, select, button[type=submit]");
+  const adet = await alanlar.count();
+  expect(adet).toBeGreaterThan(3);
+  for (let i = 0; i < adet; i++) {
+    const alan = alanlar.nth(i);
+    if (!(await alan.isVisible())) continue;
+    await alan.scrollIntoViewIfNeeded();
+    const f = await fab.boundingBox();
+    const b = await alan.boundingBox();
+    if (!f || !b || !(await fab.isVisible())) continue;
+    const kesisir = f.x < b.x + b.width && f.x + f.width > b.x && f.y < b.y + b.height && f.y + f.height > b.y;
+    expect(kesisir, `FAB ${i}. alanı örtüyor`).toBe(false);
+  }
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(fab).toHaveAttribute("data-gizli", "false");
+});
+
 test("Bayilik Başvurusu düğmesi bayimiz-olun bölümüne gider", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");

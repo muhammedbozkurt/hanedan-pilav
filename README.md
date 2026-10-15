@@ -114,10 +114,21 @@ Güvenlik önerileri:
 - [ ] Mevcut WordPress sitesinin dosya ve veritabanı yedeği alındı (elle, otomatikleştirilmez).
 - [ ] Canlı `httpdocs` içeriği yedekten sonra temizlendi (elle; `hanedan-config.php` web kökünün üstünde kalır).
 - [ ] `hanedan-config.php` canlı hesapta web kökünün bir üstünde, form e-posta ayarları doğru.
+- [ ] Plesk zamanlanmış görevi (aşağıdaki "IP özeti temizliği") kurulu ve çalışıyor; zorunludur, çünkü gizlilik metni özetin 10 dakikada bir silindiğini söyler.
 - [ ] `FTP_DIR_PRODUCTION` ayarlı, `production` environment onay kuralı tanımlı.
 - [ ] Actions sekmesinden "Deploy" elle çalıştırıldı ve onaylandı.
 - [ ] `scripts/yayin-kontrol.sh https://www.hanedanpilav.com production` hatasız.
 - [ ] Search Console'da `https://www.hanedanpilav.com/sitemap.xml` gönderildi.
+
+### IP özeti temizliği (Plesk zamanlanmış görevi)
+
+Hız sınırı özetleri, form betiğine gelen her istekte silinir. Trafik olmayan saatlerde de silinmeleri için Plesk > Zamanlanmış Görevler'de her 10 dakikada bir şu komut çalıştırılır:
+
+```bash
+curl -fsS -o /dev/null -w '' --max-time 20 https://www.hanedanpilav.com/api/form.php || true
+```
+
+Betik GET isteğine 405 döner (beklenen); `-f` bu yanıtı hata sayar, `|| true` görevin hata vermemesini sağlar. Temizlik 405 dönmeden önce yapılır. `pencere_sn` değişirse `app/content/site.ts` içindeki `yasal.ipSuresi` de güncellenir.
 
 ### Duman testi
 

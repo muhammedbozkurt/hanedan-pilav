@@ -58,8 +58,8 @@ export const SITE = {
     saklamaSuresi: todo("Form e-postalarının saklama süresi (TR/EN), örneğin talebin sonuçlanmasından itibaren kaç ay/yıl."),
     // Form betiğinin gerçek davranışı: yalnız geçerli gönderimde IP'nin HMAC özeti oluşur, pencere_sn (600) dolunca betiğe gelen ilk istekte silinir.
     ipSuresi: {
-      tr: "IP adresinizin kendisi değil, ondan türetilen tek yönlü bir özet 10 dakikalık hız sınırı penceresi boyunca kullanılır; pencere dolduktan sonra form betiğine gelen ilk istekte kalıcı olarak silinir.",
-      en: "Not your IP address itself but a one-way hash derived from it is used for the 10-minute rate-limit window; once the window has passed, it is permanently deleted on the next request to the form script.",
+      tr: "Hız sınırı için IP adresinizin kendisi değil, ondan türetilen tek yönlü bir özet kullanılır. Özet yalnız geçerli bir gönderimde oluşturulur. Hız sınırı penceresi son geçerli gönderimden itibaren 10 dakikadır; yeni bir geçerli gönderim süreyi uzatır. Süre dolunca özet, form betiğine gelen ilk istekte ve ayrıca sunucuda 10 dakikada bir çalışan zamanlanmış görevle silinir.",
+      en: "For rate limiting, we use a one-way hash derived from your IP address, not the address itself. The hash is created only when a valid submission is made. The rate-limit window is 10 minutes from the most recent valid submission; each new valid submission extends it. Once the window has passed, the hash is deleted on the first request to the form script and also by a scheduled task that runs on the server every 10 minutes.",
     },
     sunucuKayitlari: todo(
       "Barındırma sunucusunun erişim kaydı (IP, tarih/saat, istenen sayfa) tutup tutmadığı ve saklama süresi (TR/EN).",
