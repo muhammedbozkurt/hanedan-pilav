@@ -1,0 +1,51 @@
+{
+  "name": "hanedan-pilav",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "react-router dev --port 8780",
+    "build": "react-router build",
+    "postbuild": "node scripts/sitemap.ts && node scripts/yayin-hazirla.ts",
+    "check:yayin": "node scripts/check-yayin.ts",
+    "typecheck": "react-router typegen && tsc --noEmit && node scripts/check-css-modulleri.ts",
+    "check:metin": "node scripts/check-metin.ts",
+    "check:rotalar": "node scripts/check-rotalar.ts",
+    "serve": "node scripts/sunucu.ts build/client 8781",
+    "test:e2e": "playwright test",
+    "test:php": "PHP=8.2 npx -y @php-wasm/cli tests/php/form-test.php",
+    "verify": "npm run typecheck && npm run check:metin && npm run test:unit && npm run build && npm run check:rotalar && npm run test:e2e",
+    "test:unit": "node --test \"tests/unit/**/*.test.ts\"",
+    "cekim-listesi": "node scripts/cekim-listesi.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "5.3.0",
+    "@fontsource-variable/rokkitt": "5.3.0",
+    "@phosphor-icons/react": "2.1.10",
+    "@react-router/node": "7.18.4",
+    "isbot": "5.2.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-router": "7.18.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@react-router/dev": "7.18.4",
+    "@types/d3-geo": "3.1.1",
+    "@types/node": "24.19.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "d3-geo": "3.1.1",
+    "mapshaper": "0.7.87",
+    "osmtogeojson": "3.0.0-beta.5",
+    "typescript": "5.9.3",
+    "vite": "7.3.7"
+  },
+  "overrides": {
+    "osmtogeojson": {
+      "@xmldom/xmldom": "0.8.15"
+    }
+  }
+}

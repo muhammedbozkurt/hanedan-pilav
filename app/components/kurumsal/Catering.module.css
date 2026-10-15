@@ -1,0 +1,16 @@
+.izgara{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.metin{grid-column:1 / span 6;padding-right:clamp(0px,2vw,32px)}
+.foto{grid-column:7 / span 6}
+.paragraf{margin-top:22px;font-size:18px;line-height:1.6;font-weight:500;color:var(--ikincil);max-width:32em;text-wrap:pretty}
+.alanlar{display:grid;gap:14px;margin-top:28px}
+.alanlar li{display:flex;align-items:center;gap:14px;font:750 21px/1.2 var(--slab);letter-spacing:.005em}
+.alanlar .ikon{width:24px;height:24px}
+.eylem{margin-top:36px}
+
+@media (max-width:899px){
+  .metin,.foto{grid-column:1 / -1}
+  .foto{margin-top:44px}
+}
+@media (max-width:639px){
+  .eylem{width:100%}
+}

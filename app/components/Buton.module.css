@@ -1,0 +1,14 @@
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:3px 24px 0;font:750 17px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--kara);background:var(--sari);border:2px solid var(--kara);border-radius:var(--r-dugme);box-shadow:0 4px 0 var(--kara);transition:transform .12s var(--egri),box-shadow .12s var(--egri),background-color .15s}
+.dugme:hover{background:var(--sari-acik)}
+.dugme:active{transform:translateY(3px);box-shadow:0 1px 0 var(--kara)}
+.emaye{background:var(--emaye)}
+.emaye:hover{background:#fff}
+.kara{background:var(--kara);color:var(--sari);box-shadow:0 4px 0 rgba(21,21,21,.32)}
+.kara:hover{background:var(--kara-hover)}
+.kara:active{box-shadow:0 1px 0 rgba(21,21,21,.32)}
+.kucuk{min-height:44px;padding:3px 16px 0;font-size:15px;box-shadow:0 3px 0 rgba(21,21,21,.3)}
+.dugme :global(.ikon){width:20px;height:20px}
+
+.metin-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font:750 18px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding:4px 0 0;border-bottom:2px solid var(--kara)}
+.metin-link :global(.ikon){width:20px;height:20px;transition:transform .2s var(--egri)}
+.metin-link:hover :global(.ikon){transform:translateX(4px)}

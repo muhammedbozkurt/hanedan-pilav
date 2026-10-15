@@ -1,0 +1,17 @@
+.duzen{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start}
+.baslik{grid-column:1 / span 4;padding-top:clamp(20px,2.2vw,30px)}
+.liste{grid-column:5 / -1;border-top:2px solid color-mix(in srgb,var(--sari) 55%,transparent)}
+.madde{display:grid;grid-template-columns:32px minmax(0,1fr) minmax(0,1.2fr);column-gap:clamp(16px,2vw,32px);align-items:start;padding:clamp(24px,2.6vw,34px) 0;border-bottom:1px solid color-mix(in srgb,var(--sari) 22%,transparent)}
+.madde .ikon{width:32px;height:32px;color:var(--sari)}
+.madde h3{font:750 clamp(24px,2.2vw,32px)/1.1 var(--slab);letter-spacing:-.005em;color:var(--sari);text-wrap:balance}
+.madde p{font-size:16px;line-height:1.6;color:var(--soluk);max-width:34em;text-wrap:pretty}
+
+@media (max-width:1099px){
+  .baslik{grid-column:1 / -1;padding-top:0}
+  .liste{grid-column:1 / -1;margin-top:clamp(32px,4vw,48px)}
+}
+@media (max-width:767px){
+  .madde{grid-template-columns:28px minmax(0,1fr);column-gap:14px;row-gap:10px;padding:24px 0}
+  .madde .ikon{grid-row:1 / span 2;width:28px;height:28px;margin-top:2px}
+  .madde p{grid-column:2;max-width:min(34em,calc(100% - var(--fab-serit)))}
+}

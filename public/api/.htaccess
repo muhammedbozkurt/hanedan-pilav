@@ -1,0 +1,17 @@
+# Yalnız form.php dışarıdan erişilebilir; src/, vendor/ ve diğer her dosya reddedilir.
+Options -Indexes
+DirectoryIndex disabled
+
+<IfModule mod_authz_core.c>
+  Require all denied
+  <Files "form.php">
+    Require all granted
+  </Files>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order deny,allow
+  Deny from all
+  <Files "form.php">
+    Allow from all
+  </Files>
+</IfModule>

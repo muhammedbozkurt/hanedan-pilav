@@ -1,0 +1,9 @@
+.icerik{padding-block:clamp(36px,5vw,72px) var(--bolum)}
+.izgara{display:grid;gap:56px}
+.formKolon{min-width:0}
+.formKolon h2{font-size:clamp(28px,3vw,42px);line-height:1.04}
+.formMetin{margin:12px 0 24px;font-size:17px;line-height:1.55;color:var(--ikincil);max-width:34em;text-wrap:pretty}
+.form{max-width:none}
+@media (min-width:1024px){
+  .izgara{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,5vw,80px);align-items:start}
+}

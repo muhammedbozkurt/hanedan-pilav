@@ -1,0 +1,16 @@
+.kutu{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;color:var(--emaye);overflow:hidden}
+.kutu:not([open]){display:none}
+.kutu::backdrop{background:rgba(21,21,21,.92)}
+.ic{position:relative;display:grid;place-items:center;width:100%;height:100%;padding:72px clamp(16px,6vw,88px) 40px}
+.sahne{display:grid;place-items:center;width:100%;height:100%;touch-action:pan-y;user-select:none}
+.foto{max-width:100%;max-height:100%;object-fit:contain;border-radius:var(--r-plaka)}
+.sayac{position:absolute;top:22px;left:clamp(16px,4vw,32px);font:700 14px/1 var(--sans);letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--emaye)}
+.kapat,.ok{position:absolute;display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--emaye);border-radius:var(--r-dugme);background:var(--kara);color:var(--emaye);cursor:pointer;transition:background-color .2s,color .2s}
+.kapat:hover,.ok:hover{background:var(--sari);color:var(--kara);border-color:var(--sari)}
+.kapat:focus-visible,.ok:focus-visible{outline:3px solid var(--sari);outline-offset:3px}
+.kapat{top:12px;right:clamp(12px,3vw,28px)}
+.ok{top:50%;transform:translateY(-50%)}
+.solOk{left:clamp(8px,2vw,24px)}
+.sagOk{right:clamp(8px,2vw,24px)}
+@media (max-width:639px){.ok{top:auto;bottom:16px;transform:none}.solOk{left:16px}.sagOk{right:16px}.ic{padding:68px 12px 80px}}
+@media (prefers-reduced-motion:reduce){.kapat,.ok{transition:none}}

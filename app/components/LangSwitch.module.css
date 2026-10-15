@@ -1,0 +1,9 @@
+.dil{display:inline-flex;border:2px solid var(--kara);border-radius:var(--r-dugme);overflow:hidden}
+.secenek{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:3px 10px 0;font:750 15px/1 var(--slab);letter-spacing:.06em;transition:background-color .15s,color .15s}
+.aktif{background:var(--kara);color:var(--sari)}
+a.secenek:hover{background:rgba(21,21,21,.1)}
+.secenek:focus-visible{outline-offset:-5px}
+.koyu{border-color:rgba(251,247,236,.45)}
+.koyu .aktif{background:var(--sari);color:var(--kara)}
+.koyu a.secenek:hover{background:rgba(251,247,236,.12)}
+.koyu .secenek:focus-visible{outline-color:var(--emaye)}

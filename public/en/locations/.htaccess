@@ -1,0 +1,4 @@
+# Bilinmeyen bayi adresleri gerçek 404 koduyla, istemci router'ının eşleyeceği rotayla uyumlu kabukla yanıtlanır:
+# prerender 404 sayfası bu alt ağaçta hidrasyon uyuşmazlığı verir (bkz. scripts/yayin-hazirla.ts).
+# Yalnız ErrorDocument içerir; kök .htaccess kuralları bu dizinde de geçerli kalır.
+ErrorDocument 404 /en/locations/__bilinmeyen.html

@@ -1,0 +1,11 @@
+.bant{padding-block:clamp(44px,5vw,72px);background:var(--sari)}
+.ic{display:flex;align-items:center;justify-content:space-between;gap:28px 48px}
+.metin h2{font-size:clamp(30px,3.3vw,48px);line-height:1.02;max-width:16em}
+.metin p{margin-top:12px;font-size:17px;line-height:1.55;font-weight:500;max-width:34em;text-wrap:pretty}
+
+@media (max-width:767px){
+  .ic{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:639px){
+  .ic>:last-child{width:100%}
+}

@@ -1,0 +1,19 @@
+.govde{padding-block:clamp(48px,5.4vw,80px) var(--bolum)}
+.devam h2{font:700 12.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.devam ul{border-top:2px solid var(--kara)}
+.devam li{border-bottom:1px solid var(--cizgi)}
+.satir{display:grid;grid-template-columns:40px minmax(0,1.1fr) minmax(0,1fr) 52px;column-gap:clamp(16px,2.6vw,44px);align-items:center;padding:clamp(22px,2.4vw,30px) 16px;margin-inline:-16px;border-radius:var(--r-plaka);transition:background-color .2s}
+.satir:hover{background:var(--kraft-acik)}
+.simge :global(.ikon){width:34px;height:34px}
+.ad{font:750 clamp(26px,2.7vw,40px)/1.05 var(--slab);letter-spacing:-.005em;text-wrap:balance}
+.aciklama{font-size:16px;line-height:1.55;color:var(--ikincil);text-wrap:pretty}
+.ok{width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--kara);border-radius:var(--r-dugme);transition:background-color .2s,color .2s,transform .2s var(--egri)}
+.satir:hover .ok{background:var(--kara);color:var(--sari);transform:translateX(4px)}
+@media (max-width:767px){
+  .satir{grid-template-columns:30px minmax(0,1fr) 44px;grid-template-areas:"simge ad ok" ". aciklama ok";gap:6px 14px;margin-inline:0;padding-inline:0}
+  .simge{grid-area:simge}
+  .simge :global(.ikon){width:26px;height:26px}
+  .ad{grid-area:ad}
+  .aciklama{grid-area:aciklama}
+  .ok{grid-area:ok;width:44px;height:44px}
+}

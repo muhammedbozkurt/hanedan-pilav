@@ -1,0 +1,22 @@
+.izgara{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.foto{grid-column:1 / span 5}
+.metin{grid-column:7 / span 6}
+.metin h2{margin-top:20px}
+.giris{margin-top:22px;font-size:18px;line-height:1.6;font-weight:500;color:var(--ikincil);max-width:min(34em,calc(100% - var(--fab-serit)));text-wrap:pretty}
+.ilkeler{margin-top:32px;border-top:2px solid var(--kara)}
+.ilkeler li{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:4px 24px;align-items:baseline;padding:16px 0 15px;border-bottom:1px solid var(--cizgi)}
+.ilkeler h3{font:750 21px/1.2 var(--slab)}
+.ilkeler p{font-size:16px;color:var(--ikincil)}
+.link{margin-top:32px}
+@media (max-width:899px){
+  .foto,.metin{grid-column:1 / -1}
+  /* Gorsel oranı satır içi stil olarak gelir; dar ekranda fotoğraf alanı aynı kareyi daha yatay keser. */
+  .foto{aspect-ratio:16 / 9 !important}
+  .metin{margin-top:36px}
+}
+@media (max-width:767px){
+  .ilkeler li{grid-template-columns:1fr}
+}
+@media (max-width:639px){
+  .foto{aspect-ratio:4 / 3 !important}
+}

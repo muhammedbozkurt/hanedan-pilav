@@ -1,0 +1,36 @@
+.acilis{padding-block:clamp(32px,4.4vw,60px) clamp(48px,5.4vw,76px)}
+.ic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.metin{grid-column:1 / span 6;padding-right:clamp(0px,2vw,32px)}
+.giris{margin-top:24px;font-size:clamp(16px,1.3vw,19px);line-height:1.55;font-weight:500;color:var(--ikincil);max-width:31em;text-wrap:pretty}
+.eylemler{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
+.cephe{grid-column:7 / span 6;position:relative}
+.vitrin{position:relative;aspect-ratio:4 / 3;border:8px solid var(--kara);border-radius:var(--r-plaka);overflow:hidden}
+/* Vitrin camının iç sarı fileto ışığı: fotoğrafın üstünde kalsın diye ayrı katman. */
+.vitrin::after{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 1.5px rgba(244,194,13,.8);pointer-events:none}
+/* Oran çerçevenin dış kutusunda (referanstaki gibi); fotoğraf alanı çerçevenin içini doldurur. */
+.vitrin .cam{position:absolute;inset:0;border-radius:0;background:
+  linear-gradient(115deg,transparent 0 30%,rgba(255,255,255,.12) 30% 36%,transparent 36% 40%,rgba(255,255,255,.06) 40% 42%,transparent 42%),
+  radial-gradient(55% 45% at 72% 24%,rgba(244,194,13,.3),transparent 70%),
+  var(--foto-zemin)}
+/* Karanlık camın ardında logo izi tabela yansıması gibi durur; çarpma karışımı koyu zeminde kaybolacağı için düz bindirilir. */
+.vitrin .cam::after{filter:none;mix-blend-mode:normal;opacity:.16}
+@media (prefers-reduced-motion:no-preference){
+  .metin>*{animation:yuksel .6s var(--egri) both}
+  .metin>:nth-child(2){animation-delay:.06s}
+  .metin>:nth-child(3){animation-delay:.12s}
+  .cephe{animation:yuksel .7s .1s var(--egri) both}
+}
+@keyframes yuksel{from{opacity:0;transform:translateY(14px)}}
+@media (min-width:900px) and (max-width:1199px){
+  .eylem{flex:1 1 auto}
+}
+@media (max-width:899px){
+  .metin,.cephe{grid-column:1 / -1}
+  .metin{padding-right:var(--fab-serit)}
+  .cephe{margin-top:44px}
+}
+@media (max-width:639px){
+  .eylemler{display:grid;grid-template-columns:max-content;gap:14px}
+  .vitrin{border-width:6px}
+  .vitrin::after{border-radius:8px}
+}

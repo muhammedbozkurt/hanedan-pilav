@@ -1,0 +1,8 @@
+.foto{position:relative;border-radius:var(--r-plaka);overflow:hidden;background:var(--foto-zemin)}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Yer tutucu: kraft kâğıt lifi ve ortada soluk bir logo izi. Yeni renk yok; kara ve emaye saydamlığı kraft zemine biner. */
+.yer{background:
+  radial-gradient(120% 90% at 28% 18%,rgba(251,247,236,.42),transparent 62%),
+  repeating-linear-gradient(93deg,rgba(21,21,21,.028) 0 1px,transparent 1px 5px,rgba(251,247,236,.22) 5px 6px,transparent 6px 13px),
+  var(--kraft-acik);box-shadow:inset 0 0 0 1px var(--cizgi)}
+.yer::after{content:"";position:absolute;left:50%;top:50%;width:clamp(64px,26%,132px);aspect-ratio:520 / 188;transform:translate(-50%,-50%);background:url("/img/logo-saydam.png") center / contain no-repeat;background-image:image-set(url("/img/logo-saydam.webp") type("image/webp"),url("/img/logo-saydam.png") type("image/png"));filter:grayscale(1);mix-blend-mode:multiply;opacity:.2}

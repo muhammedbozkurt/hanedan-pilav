@@ -1,0 +1,145 @@
+name: Deploy
+
+# Staging: main'e her push'ta otomatik. Production: yalnız elle (workflow_dispatch) ve `production` environment onayıyla.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.event_name == 'workflow_dispatch' && 'production' || 'staging' }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: "8.2"
+          extensions: mbstring
+
+      - name: PHP form testleri
+        run: php tests/php/form-test.php
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Kapı (npm run verify)
+        run: npm run verify
+        env:
+          CI: "true"
+
+  staging:
+    name: staging
+    if: github.event_name == 'push'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: staging
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build (staging)
+        run: npm run build
+        env:
+          SITE_ORTAM: staging
+
+      - name: FTP dizin güvenliği
+        env:
+          FTP_DIR_STAGING: ${{ vars.FTP_DIR_STAGING }}
+          FTP_DIR_PRODUCTION: ${{ vars.FTP_DIR_PRODUCTION }}
+        run: |
+          set -eu
+          for d in "$FTP_DIR_STAGING" "$FTP_DIR_PRODUCTION"; do
+            if [ -z "$d" ] || [ "$d" = "/" ]; then
+              echo "::error::FTP_DIR_STAGING ve FTP_DIR_PRODUCTION dolu olmalı ve '/' olmamalı."
+              exit 1
+            fi
+          done
+          if [ "$FTP_DIR_STAGING" = "$FTP_DIR_PRODUCTION" ]; then
+            echo "::error::FTP_DIR_STAGING ve FTP_DIR_PRODUCTION aynı olamaz."
+            exit 1
+          fi
+
+      - name: FTPS ile yükle (staging)
+        uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./build/client/
+          server-dir: ${{ vars.FTP_DIR_STAGING }}
+
+  production:
+    name: production
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build (production)
+        run: npm run build
+        env:
+          SITE_ORTAM: production
+
+      - name: Canlı yayın kapısı
+        run: npm run check:yayin
+
+      - name: FTP dizin güvenliği
+        env:
+          FTP_DIR_STAGING: ${{ vars.FTP_DIR_STAGING }}
+          FTP_DIR_PRODUCTION: ${{ vars.FTP_DIR_PRODUCTION }}
+        run: |
+          set -eu
+          for d in "$FTP_DIR_STAGING" "$FTP_DIR_PRODUCTION"; do
+            if [ -z "$d" ] || [ "$d" = "/" ]; then
+              echo "::error::FTP_DIR_STAGING ve FTP_DIR_PRODUCTION dolu olmalı ve '/' olmamalı."
+              exit 1
+            fi
+          done
+          if [ "$FTP_DIR_STAGING" = "$FTP_DIR_PRODUCTION" ]; then
+            echo "::error::FTP_DIR_STAGING ve FTP_DIR_PRODUCTION aynı olamaz."
+            exit 1
+          fi
+
+      - name: FTPS ile yükle (production)
+        uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./build/client/
+          server-dir: ${{ vars.FTP_DIR_PRODUCTION }}

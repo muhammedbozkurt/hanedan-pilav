@@ -1,0 +1,38 @@
+.kap{margin:0;background:var(--emaye);border-radius:var(--r-plaka);box-shadow:inset 0 0 0 2px var(--kara);padding:clamp(12px,2vw,28px) clamp(12px,2vw,28px) 12px}
+.tuval{position:relative;width:100%}
+.svg{display:block;width:100%;height:100%;overflow:hidden;border-radius:8px}
+.ilce{fill:var(--kraft-acik);stroke:var(--emaye);stroke-width:1.1;stroke-linejoin:round;vector-effect:non-scaling-stroke;outline:0}
+.vurgulu{fill:var(--sari);stroke:var(--kara);stroke-width:1.6}
+/* Etkileşimli haritada ilçe sınırı bir arayüz sınırıdır: emaye zeminde ve komşu kraft dolguda en az 3:1. */
+.tiklanir{cursor:pointer;stroke:var(--deniz-yazi);stroke-width:1}
+.tiklanir.vurgulu{stroke:var(--kara);stroke-width:1.6}
+.tiklanir:hover{fill:var(--kraft)}
+.tiklanir.vurgulu:hover{fill:var(--sari-acik)}
+.secili,.secili:hover,.tiklanir.secili,.tiklanir.secili:hover{fill:var(--sari);stroke:var(--kara);stroke-width:2.6}
+.tiklanir:focus-visible{stroke:var(--kara);stroke-width:3;fill:var(--kraft)}
+.tiklanir.vurgulu:focus-visible{fill:var(--sari-acik)}
+.tiklanir.secili:focus-visible{fill:var(--sari)}
+.ust{fill:none;stroke:var(--kara);stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none}
+.secili-ust{stroke-width:2.6}
+.odak-ust{stroke-width:3}
+@media (prefers-reduced-motion:no-preference){
+  .ilce{transition:fill .2s,stroke-width .2s}
+}
+.pinler{position:absolute;inset:0;pointer-events:none}
+.pin{position:absolute;width:0;height:0}
+.nokta{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:var(--kara);box-shadow:0 0 0 4px var(--sari),0 0 0 6px var(--kara)}
+.tabela{position:absolute;left:22px;top:-17px;display:flex;align-items:center;white-space:nowrap;background:var(--kara);color:var(--sari);font:750 15px/1 var(--slab);letter-spacing:.07em;text-transform:uppercase;padding:10px 12px 8px;border-radius:6px}
+.tabela::before{content:"";position:absolute;right:100%;top:50%;width:8px;height:2px;background:var(--kara)}
+.kap[data-varyant="mini"] .tuval{container-type:inline-size}
+/* Pin mini haritanın ortasında: tabela sağdaki yarıya sığar, gerekirse kelime arasından ikinci satıra iner. */
+.kap[data-varyant="mini"] .tabela{width:max-content;max-width:calc(50cqw - 26px);white-space:normal;line-height:1.2;overflow-wrap:break-word}
+.pin[data-yon="ust"] .tabela{left:0;top:auto;bottom:22px;transform:translateX(-50%)}
+.kap[data-varyant="mini"] .pin[data-yon="ust"] .tabela{max-width:calc(100cqw - 24px);width:max-content}
+.pin[data-yon="ust"] .tabela::before{right:auto;left:50%;top:100%;width:2px;height:8px}
+.alt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;margin-top:10px;font-size:13px;line-height:1.4;color:var(--ikincil)}
+.atif{position:relative;margin-left:auto;text-decoration:underline;text-underline-offset:3px}
+.atif::after{content:"";position:absolute;inset:-14px -8px}
+@media (max-width:639px){
+  .tabela{font-size:13px;padding:8px 10px 6px;left:20px;top:-14px}
+  .pin[data-yon="ust"] .tabela{left:0;top:auto;bottom:20px}
+}

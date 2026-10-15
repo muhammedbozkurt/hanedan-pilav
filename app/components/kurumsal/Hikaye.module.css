@@ -1,0 +1,26 @@
+.izgara{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.foto{grid-column:1 / span 5}
+.metin{grid-column:7 / span 6}
+.paragraf{margin-top:22px;font-size:18px;line-height:1.6;font-weight:500;color:var(--ikincil);max-width:min(34em,calc(100% - var(--fab-serit)));text-wrap:pretty}
+.paragraf+.paragraf{margin-top:14px}
+.kunye{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:clamp(32px,3.4vw,44px);border-top:2px solid var(--kara)}
+.kalem{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:20px 24px 18px 0;border-bottom:1px solid var(--cizgi)}
+.kalem:nth-child(even){padding-left:24px;padding-right:0;border-left:1px solid var(--cizgi)}
+.kalem dd{font:800 clamp(28px,2.7vw,40px)/1.02 var(--slab);letter-spacing:-.005em;overflow-wrap:break-word}
+.kalem dt{font-size:14px;line-height:1.4;color:var(--ikincil)}
+
+@media (max-width:899px){
+  .foto,.metin{grid-column:1 / -1}
+  /* Gorsel oranı satır içi stil olarak gelir; dar ekranda fotoğraf alanı aynı kareyi daha yatay keser. */
+  .foto{aspect-ratio:16 / 9 !important}
+  .metin{margin-top:36px}
+}
+@media (max-width:639px){
+  .foto{aspect-ratio:4 / 3 !important}
+}
+@media (max-width:479px){
+  .kalem{padding-right:16px}
+  .kalem:nth-child(even){padding-left:16px}
+  .kalem dd{font-size:26px}
+  .kalem dt{font-size:13.5px}
+}
