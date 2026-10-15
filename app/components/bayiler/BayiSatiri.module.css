@@ -1,0 +1,19 @@
+.satir{display:grid;gap:10px;padding:clamp(22px,2.4vw,30px) 0}
+.ust{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.ad{font:750 clamp(26px,2.4vw,34px)/1.05 var(--slab);letter-spacing:-.005em;min-width:0}
+/* Satır içi: uzun ad iki satıra kırıldığında ok, son kelimenin yanında kalır. Dikey dolgu dokunma alanını 44px'e tamamlar. */
+.ad-link{display:inline;padding-block:5px;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:5px;transition:text-decoration-color .15s}
+.ad-link :global(.ikon){display:inline-block;width:24px;height:24px;margin-left:10px;vertical-align:-2px;transition:transform .2s var(--egri)}
+.ad-link:hover{text-decoration-color:currentColor}
+.ad-link:hover :global(.ikon){transform:translateX(4px)}
+.tur{flex:none}
+.mesafe{font:700 14px/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--ikincil)}
+.adres{font-size:16px;line-height:1.55;color:var(--ikincil);max-width:44ch;overflow-wrap:anywhere}
+.eylemler{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.eylem{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:3px 14px 0;font:750 15px/1 var(--slab);letter-spacing:.05em;text-transform:uppercase;border:2px solid var(--kara);border-radius:var(--r-dugme);transition:background-color .15s,transform .12s var(--egri)}
+.eylem:hover{background:var(--emaye)}
+.eylem:active{transform:translateY(1px)}
+.eylem :global(.ikon){width:18px;height:18px;margin-top:-3px}
+@media (max-width:1023px){
+  .satir{padding-right:var(--fab-serit)}
+}
