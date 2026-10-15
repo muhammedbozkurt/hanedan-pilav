@@ -1,6 +1,6 @@
 import { CheckCircleIcon } from "@phosphor-icons/react/CheckCircle";
 import { WarningCircleIcon } from "@phosphor-icons/react/WarningCircle";
-import { type FormEvent, type ReactNode, useEffect, useId, useRef, useState } from "react";
+import { type FormEvent, type ReactNode, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "react-router";
 import { Ikon } from "~/components/Ikon.tsx";
 import { cx } from "~/lib/cx.ts";
@@ -22,7 +22,28 @@ type Durum =
   | { tur: "basari" }
   | { tur: "hata"; metin: string };
 
-type HataTuru = "dogrulama" | "sunucu" | "hiz" | "ag" | "origin";
+type HataTuru = "dogrulama" | "cokHizli" | "sunucu" | "hiz" | "ag" | "origin";
+
+// Sunucunun hata kodu ve JS'siz dönüşteki ?hata= değeri; noscript çapası bundan türer (durum-hata-cok-hizli).
+const SUNUCU_HATALARI = {
+  dogrulama: "dogrulama",
+  cok_hizli: "cokHizli",
+  hiz: "hiz",
+  sunucu: "sunucu",
+  origin: "origin",
+} as const satisfies Record<string, HataTuru>;
+type SunucuHataKodu = keyof typeof SUNUCU_HATALARI;
+const SUNUCU_HATA_KODLARI = Object.keys(SUNUCU_HATALARI) as SunucuHataKodu[];
+
+function sunucuHatasi(kod: unknown): HataTuru | null {
+  return typeof kod === "string" && Object.hasOwn(SUNUCU_HATALARI, kod) ? SUNUCU_HATALARI[kod as SunucuHataKodu] : null;
+}
+
+function hataCapasi(kod: SunucuHataKodu): string {
+  return `durum-hata-${kod.replace("_", "-")}`;
+}
+
+const bosAbonelik = () => () => {};
 
 function hataKodlari(girdi: unknown): Hatalar {
   const cikti: Hatalar = {};
@@ -53,6 +74,9 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
   const dil = useLang();
   const idOnek = useId();
   const formRef = useRef<HTMLFormElement>(null);
+  // Hidrasyonda true, istemci içi geçişte false: ilk yüklemede süre sayfa gezinmesinin başından sayılır.
+  const hidrasyonda = useSyncExternalStore(bosAbonelik, () => false, () => true);
+  const ilkYukleme = useRef(hidrasyonda);
   const acilis = useRef(0);
   const [hazir, setHazir] = useState(false);
   const [hatalar, setHatalar] = useState<Hatalar>({});
@@ -61,7 +85,8 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
   const [arama] = useSearchParams();
 
   useEffect(() => {
-    acilis.current = Date.now();
+    // performance.now() gezinmenin başından (performance.timeOrigin) sayar; yavaş ağda hidrasyon süresi de dâhil olur.
+    acilis.current = ilkYukleme.current ? 0 : performance.now();
     setHazir(true);
   }, []);
 
@@ -70,8 +95,8 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
   useEffect(() => {
     const p = new URLSearchParams(sorgu);
     if (p.get("gonderildi") === "1") setDurum({ tur: "basari" });
-    const h = p.get("hata");
-    if (h === "dogrulama" || h === "sunucu" || h === "hiz" || h === "origin") setDurum({ tur: "hata", metin: m.durum[h] });
+    const h = sunucuHatasi(p.get("hata"));
+    if (h) setDurum({ tur: "hata", metin: m.durum[h] });
   }, [sorgu, m]);
 
   useEffect(() => {
@@ -95,16 +120,20 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
     }
     setDurum({ tur: "gonderiliyor" });
     const veri = new FormData(form);
-    veri.set("gecen_ms", String(Date.now() - acilis.current));
+    veri.set("gecen_ms", String(Math.round(performance.now() - acilis.current)));
     try {
       const yanit = await fetch(FORM_ADRESI, { method: "POST", body: veri, headers: { Accept: "application/json" } });
-      const govde: unknown = await yanit.json().catch(() => null);
-      if (yanit.ok) {
+      const ham: unknown = await yanit.json().catch(() => null);
+      const govde = ham && typeof ham === "object" ? (ham as { ok?: unknown; hata?: unknown; alanlar?: unknown }) : null;
+      // Başarı yalnız sunucu açıkça ok:true dediğinde: 200 dönen bir hata sayfası başarı sayılmaz.
+      if (yanit.ok && govde?.ok === true) {
         form.reset();
-        acilis.current = Date.now();
+        acilis.current = performance.now();
         setDurum({ tur: "basari" });
+      } else if (yanit.status === 422 && sunucuHatasi(govde?.hata) === "cokHizli") {
+        hataGoster("cokHizli");
       } else if (yanit.status === 422) {
-        const sunucuHata = hataKodlari((govde as { alanlar?: unknown } | null)?.alanlar);
+        const sunucuHata = hataKodlari(govde?.alanlar);
         setHatalar(sunucuHata);
         const n = Object.keys(sunucuHata).length;
         if (n > 0) {
@@ -142,14 +171,16 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
         <div id="durum-gonderildi" className={cx(s.durum, s.basari, s.statik)} role="status">
           <Ikon ikon={CheckCircleIcon} />
           <div>
-            <p className={s.durumBaslik}>{m.durum.basariBaslik}</p>
+            <p className={s.durumBaslik}>{m.durum.basariBaslik[tur]}</p>
             <p>{m.durum.basariMetin}</p>
           </div>
         </div>
-        <div id="durum-hata" className={cx(s.durum, s.hataDurum, s.statik)} role="alert">
-          <Ikon ikon={WarningCircleIcon} />
-          <p>{m.durum.dogrulama}</p>
-        </div>
+        {SUNUCU_HATA_KODLARI.map((kod) => (
+          <div key={kod} id={hataCapasi(kod)} className={cx(s.durum, s.hataDurum, s.statik)} role="alert">
+            <Ikon ikon={WarningCircleIcon} />
+            <p>{m.durum[SUNUCU_HATALARI[kod]]}</p>
+          </div>
+        ))}
       </noscript>
       <input type="hidden" name="form" value={tur} />
       <input type="hidden" name="lang" value={dil} />
@@ -173,7 +204,7 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
           <>
             <Ikon ikon={CheckCircleIcon} />
             <div>
-              <p className={s.durumBaslik}>{m.durum.basariBaslik}</p>
+              <p className={s.durumBaslik}>{m.durum.basariBaslik[tur]}</p>
               <p>{m.durum.basariMetin}</p>
             </div>
           </>
