@@ -1,0 +1,17 @@
+.bas{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;padding-right:var(--fab-serit)}
+.serit-kap{margin-top:clamp(28px,3.4vw,48px)}
+.serit{display:flex;gap:16px;align-items:flex-end}
+/* Genişlik oranla orantılı (flex-grow = en/boy), böylece dört kare aynı yükseklikte biter. */
+.serit li{position:relative;flex:var(--oran) 1 0%;min-width:0;aspect-ratio:var(--oran)}
+.serit .kare{position:absolute;inset:0}
+.serit li[data-yari] .kare p{opacity:0}
+/* Yer tutucular referanstaki gibi ışık yönüyle ayrışır; yeni renk yok, emaye saydamlığı ortak zeminin üstüne biner. */
+.serit li:nth-child(2) .kare{background:radial-gradient(90% 80% at 70% 30%,rgba(251,247,236,.1),transparent 65%),var(--foto-zemin)}
+.serit li:nth-child(3) .kare{background:radial-gradient(70% 70% at 50% 45%,rgba(251,247,236,.17),transparent 70%),var(--foto-zemin)}
+.serit li:nth-child(4) .kare{background:radial-gradient(110% 90% at 70% 20%,rgba(251,247,236,.09),transparent 60%),var(--foto-zemin)}
+@media (max-width:1099px){
+  .serit-kap{margin-inline:calc(-1 * var(--kenar));overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--kenar);scrollbar-width:thin;scrollbar-color:var(--kraft-koyu) transparent}
+  .serit-kap:focus-visible{outline-offset:-3px}
+  .serit{gap:12px;width:max-content;padding-inline:var(--kenar);padding-bottom:12px}
+  .serit li{flex:none;height:min(320px,74vw);scroll-snap-align:start}
+}

@@ -1,0 +1,20 @@
+.baslik{padding-right:var(--fab-serit)}
+.liste{margin-top:clamp(32px,4vw,56px);border-top:2px solid var(--kara)}
+.liste>li{border-bottom:1px solid var(--cizgi)}
+.hizmet{display:grid;grid-template-columns:40px minmax(0,1.1fr) minmax(0,1fr) 52px;column-gap:clamp(16px,2.6vw,44px);align-items:center;padding:clamp(24px,2.6vw,34px) calc(16px + var(--fab-serit)) clamp(24px,2.6vw,34px) 16px;margin-inline:-16px;border-radius:var(--r-plaka);transition:background-color .2s}
+.hizmet:hover{background:var(--kraft-acik)}
+.ikon :global(.ikon){width:36px;height:36px}
+.hizmet h3{font:750 clamp(26px,2.7vw,40px)/1.05 var(--slab);letter-spacing:-.005em}
+.hizmet p{font-size:16px;line-height:1.55;color:var(--ikincil);max-width:40ch}
+.ok{width:52px;height:52px;display:grid;place-items:center;border:2px solid var(--kara);border-radius:var(--r-dugme);transition:background-color .2s,color .2s,transform .2s var(--egri)}
+.hizmet:hover .ok{background:var(--kara);color:var(--sari);transform:translateX(4px)}
+.ok-dar{display:none}
+@media (max-width:767px){
+  .hizmet{grid-template-columns:30px minmax(0,1fr);row-gap:8px;padding-left:12px;padding-right:calc(12px + var(--fab-serit));margin-inline:-12px}
+  .ikon{grid-row:1}
+  .ikon :global(.ikon){width:28px;height:28px}
+  .hizmet h3{grid-column:2;grid-row:1}
+  .hizmet p{grid-column:2;grid-row:2}
+  .ok{display:none}
+  .hizmet h3 .ok-dar{display:inline-block;width:.62em;height:.62em;margin-left:.3em;vertical-align:-.02em}
+}
