@@ -1,4 +1,4 @@
-.filtre{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;padding-right:var(--fab-serit)}
+.filtre{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
 .cip{min-height:44px;padding:0 18px;border:2px solid var(--kara);border-radius:999px;background:transparent;color:var(--kara);font:700 14px/1 var(--sans);letter-spacing:.02em;cursor:pointer;transition:background-color .2s,color .2s}
 .cip:hover{background:var(--kraft-acik)}
 .cip[aria-pressed="true"]{background:var(--kara);color:var(--sari)}

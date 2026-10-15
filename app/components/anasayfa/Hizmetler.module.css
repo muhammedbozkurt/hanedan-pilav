@@ -1,7 +1,7 @@
 .baslik{padding-right:var(--fab-serit)}
 .liste{margin-top:clamp(32px,4vw,56px);border-top:2px solid var(--kara)}
 .liste>li{border-bottom:1px solid var(--cizgi)}
-.hizmet{display:grid;grid-template-columns:40px minmax(0,1.1fr) minmax(0,1fr) 52px;column-gap:clamp(16px,2.6vw,44px);align-items:center;padding:clamp(24px,2.6vw,34px) calc(16px + var(--fab-serit)) clamp(24px,2.6vw,34px) 16px;margin-inline:-16px;border-radius:var(--r-plaka);transition:background-color .2s}
+.hizmet{display:grid;grid-template-columns:40px minmax(0,1.1fr) minmax(0,1fr) 52px;column-gap:clamp(16px,2.6vw,44px);align-items:center;padding:clamp(24px,2.6vw,34px) 16px;margin-inline:-16px;border-radius:var(--r-plaka);transition:background-color .2s}
 .hizmet:hover{background:var(--kraft-acik)}
 .ikon :global(.ikon){width:36px;height:36px}
 .hizmet h3{font:750 clamp(26px,2.7vw,40px)/1.05 var(--slab);letter-spacing:-.005em}

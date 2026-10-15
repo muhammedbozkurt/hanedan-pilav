@@ -30,21 +30,7 @@ export function GaleriSeridi() {
     olc();
     const boyut = "ResizeObserver" in window ? new ResizeObserver(olc) : null;
     boyut?.observe(el);
-    // Kısmen görünen karenin çekim notu gizlenir; yarım kesilmiş metin okunmaz.
-    const gozcu =
-      "IntersectionObserver" in window
-        ? new IntersectionObserver(
-            (girdiler) => {
-              for (const g of girdiler) g.target.toggleAttribute("data-yari", g.intersectionRatio < 0.98);
-            },
-            { root: el, threshold: [0.98] },
-          )
-        : null;
-    for (const li of el.querySelectorAll("li")) gozcu?.observe(li);
-    return () => {
-      boyut?.disconnect();
-      gozcu?.disconnect();
-    };
+    return () => boyut?.disconnect();
   }, []);
 
   return (

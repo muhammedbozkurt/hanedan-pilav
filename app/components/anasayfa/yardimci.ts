@@ -1,11 +1,12 @@
+import type { Cekim } from "~/components/Gorsel.tsx";
 import { GALERI, type GaleriOgesi } from "~/content/galeri.ts";
 import type { Dil } from "~/lib/rotalar.ts";
 
-type GorselBilgisi = { konu: string; not: string; src?: string; alt?: string };
+type GorselBilgisi = { konu: string; cekim: Cekim; src?: string; alt?: string };
 
 export function gorselBilgisi(oge: GaleriOgesi, dil: Dil): GorselBilgisi {
-  const metin = oge[dil];
-  return oge.src ? { ...metin, src: oge.src, alt: oge.alt[dil] } : { ...metin };
+  const temel = { konu: oge[dil].konu, cekim: oge.tr };
+  return oge.src ? { ...temel, src: oge.src, alt: oge.alt[dil] } : temel;
 }
 
 // Anasayfadaki fotoğraf yerleri galeri içeriğinden beslenir: galeri öğesine fotoğraf eklenince burada da görünür.

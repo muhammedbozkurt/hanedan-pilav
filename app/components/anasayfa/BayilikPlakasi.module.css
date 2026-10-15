@@ -17,7 +17,6 @@ a.satir:hover .v{text-decoration:underline;text-underline-offset:4px;text-decora
 @media (max-width:639px){
   .plaka{padding:44px 26px 34px;box-shadow:inset 0 0 0 6px var(--sari),inset 0 0 0 8px var(--kara),0 4px 0 rgba(21,21,21,.22)}
   .plaka::before{inset:14px}
-  .metin,.iletisim{padding-right:max(0px,calc(var(--fab-serit) - 26px))}
   .metin .eylem{width:100%}
   .v{font-size:22px}
 }

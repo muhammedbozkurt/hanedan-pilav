@@ -6,6 +6,7 @@ import { TEL_HREF, saatMetni, waHref } from "~/lib/iletisim.ts";
 import { bayilikYolu } from "~/lib/rotalar.ts";
 import s from "./Footer.module.css";
 import { LangSwitch } from "./LangSwitch.tsx";
+import { Logo } from "./Logo.tsx";
 import { NAV_ANAHTARLARI } from "./nav.ts";
 
 export function Footer() {
@@ -16,7 +17,7 @@ export function Footer() {
     <footer className={cx(s.alt, "koyu")} data-arka-plan="">
       <div className={cx("kap", s.ic)}>
         <div className={s.marka}>
-          <img src="/img/logo-saydam.png" width={520} height={188} alt={SITE.marka} loading="lazy" />
+          <Logo alt={SITE.marka} tembel />
           <p>
             <span lang="tr">{t.alt.slogan}</span>: {t.alt.cumle}
           </p>

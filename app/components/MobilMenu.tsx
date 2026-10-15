@@ -11,6 +11,7 @@ import { bayilikYolu } from "~/lib/rotalar.ts";
 import { Buton } from "./Buton.tsx";
 import { Ikon } from "./Ikon.tsx";
 import { LangSwitch } from "./LangSwitch.tsx";
+import { Logo } from "./Logo.tsx";
 import s from "./MobilMenu.module.css";
 import { NAV_ANAHTARLARI } from "./nav.ts";
 import { WaMini } from "./WhatsApp.tsx";
@@ -98,7 +99,7 @@ export function MobilMenu({ acik, kapat }: Props) {
       <div className={s.bar}>
         <div className={cx("kap", s.barIc)}>
           <Link className={s.logo} to={yol("anasayfa")} onClick={linkKapat}>
-            <img src="/img/logo-saydam.png" width={520} height={188} alt={t.genel.logoAlt} />
+            <Logo alt={t.genel.logoAlt} />
           </Link>
           <button ref={kapatRef} className={s.kapat} type="button" onClick={() => kapat(true)}>
             <Ikon ikon={XIcon} />

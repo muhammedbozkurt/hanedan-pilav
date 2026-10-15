@@ -78,7 +78,7 @@ export function Izgara() {
       ) : (
         <ul className={s.izgara} data-galeri-izgara>
           {gorunen.map((o) => {
-            const gorsel = <Gorsel oran={o.oran} konu={o[dil].konu} not={o[dil].not} src={o.src} alt={o.alt?.[dil]} sizes="(min-width: 900px) 33vw, (min-width: 540px) 50vw, 100vw" />;
+            const gorsel = <Gorsel oran={o.oran} konu={o[dil].konu} cekim={o.tr} src={o.src} alt={o.alt?.[dil]} sizes="(min-width: 900px) 33vw, (min-width: 540px) 50vw, 100vw" />;
             const i = kutuOgeleri.findIndex((k) => k.id === o.id);
             return (
               <li key={o.id} className={s.oge} data-yer-tutucu={o.src ? undefined : ""}>

@@ -6,6 +6,8 @@ import { cx } from "~/lib/cx.ts";
 import s from "./Buton.module.css";
 import { Ikon } from "./Ikon.tsx";
 
+// Zemin kuralı (referans E): kraft, emaye ve koyu zeminde birincil eylem sarı, ikincil eylem emaye düğmedir.
+// Kara düğme yalnız sarı zeminde (tente, sarı bant, sarı plaka) birincil eylemdir. tests/e2e/tasarim.spec.ts bunu denetler.
 type Varyant = "sari" | "emaye" | "kara";
 
 type Ortak = {
@@ -34,14 +36,14 @@ export function Buton(props: IcBaglanti | DisBaglanti) {
   );
   if (props.to !== undefined) {
     return (
-      <Link className={sinif} to={props.to} onClick={onClick}>
+      <Link className={sinif} to={props.to} onClick={onClick} data-varyant={varyant}>
         {icerik}
       </Link>
     );
   }
   const yeni = props.yeniSekme === true;
   return (
-    <a className={sinif} href={props.href} onClick={onClick} {...(yeni ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+    <a className={sinif} href={props.href} onClick={onClick} data-varyant={varyant} {...(yeni ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
       {icerik}
       {yeni && props.yeniSekmeMetni ? <span className="sr">{props.yeniSekmeMetni}</span> : null}
     </a>

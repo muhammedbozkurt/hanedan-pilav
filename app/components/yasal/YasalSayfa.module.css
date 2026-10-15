@@ -13,14 +13,16 @@
 .icindekiler a:hover span:last-child{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px}
 .no{font:700 13px/1 var(--sans);letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--ikincil)}
 
-.metin{grid-column:6 / span 7;min-width:0;padding-right:var(--fab-serit)}
+.metin{grid-column:6 / span 7;min-width:0}
 .metin a{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;transition:text-decoration-thickness .15s}
 .metin a:hover{text-decoration-thickness:3px}
 
 .bolum+.bolum{margin-top:clamp(52px,5.4vw,80px)}
 .bolum h2{display:flex;align-items:baseline;gap:14px;font:800 clamp(28px,2.6vw,38px)/1.08 var(--slab);letter-spacing:-.005em;text-wrap:balance}
 .bolum h2 .no{flex:none;font-size:14px;transform:translateY(-.2em)}
+/* FAB şeridi yalnız akan metinde: dar ekranda paragraf sağda FAB kadar pay bırakır; çizgili kalemler ve not kutusu tam genişlikte biter. */
 .bolum p,.liste,.kalem{max-width:68ch}
+.bolum p:not(.not),.liste{max-width:min(68ch,calc(100% - var(--fab-serit)))}
 .bolum p{margin-top:16px;line-height:1.65;text-wrap:pretty}
 .bolum h2+p{margin-top:22px}
 
@@ -44,7 +46,7 @@
 
 @media (max-width:1023px){
   .yerlesim{display:block}
-  .icindekiler{position:static;padding-right:var(--fab-serit);margin-bottom:clamp(52px,7vw,72px)}
+  .icindekiler{position:static;margin-bottom:clamp(52px,7vw,72px)}
 }
 @media (max-width:639px){
   .kalem dl>div{grid-template-columns:minmax(0,1fr)}

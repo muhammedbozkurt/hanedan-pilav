@@ -52,7 +52,7 @@ export default function BayiDetay({ params }: Route.ComponentProps) {
         eylemler={
           <>
             {bayi.telefon ? (
-              <Buton href={`tel:${bayi.telefon.e164}`} varyant="kara" ikon={PhoneIcon}>
+              <Buton href={`tel:${bayi.telefon.e164}`} ikon={PhoneIcon}>
                 {m.ara}
               </Buton>
             ) : null}

@@ -9,7 +9,6 @@
 
 @media (max-width:899px){
   .metin,.foto{grid-column:1 / -1}
-  .metin{padding-right:var(--fab-serit)}
   .foto{margin-top:44px}
 }
 @media (max-width:639px){

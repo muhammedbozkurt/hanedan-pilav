@@ -11,6 +11,7 @@ import { Buton } from "./Buton.tsx";
 import s from "./Header.module.css";
 import { Ikon } from "./Ikon.tsx";
 import { LangSwitch } from "./LangSwitch.tsx";
+import { Logo } from "./Logo.tsx";
 import { MobilMenu } from "./MobilMenu.tsx";
 import { NAV_ANAHTARLARI } from "./nav.ts";
 
@@ -47,7 +48,7 @@ export function Header() {
         <div className={s.sacak}>
           <div className={cx("kap", s.sacakIc)}>
             <Link className={s.logo} to={yol("anasayfa")}>
-              <img src="/img/logo-saydam.png" width={520} height={188} alt={t.genel.logoAlt} />
+              <Logo alt={t.genel.logoAlt} />
             </Link>
             <nav className={s.nav} aria-label={t.genel.navAria}>
               <ul>
