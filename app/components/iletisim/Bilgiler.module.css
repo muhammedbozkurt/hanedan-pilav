@@ -1,0 +1,12 @@
+.kolon{display:grid;gap:36px;align-content:start;min-width:0}
+.liste{display:grid;gap:0;border-top:2px solid var(--kara)}
+.satir{display:grid;gap:8px;padding-block:20px;border-bottom:2px solid var(--kara)}
+.satir dt{display:flex;align-items:center;gap:10px;font:700 12.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ikincil)}
+.satir dt :global(.ikon),.wa{width:18px;height:18px;flex:none}
+.satir dd{font:500 17px/1.55 var(--sans);min-width:0}
+.telefon{display:inline-flex;align-items:center;min-height:44px;font:750 clamp(34px,4.2vw,54px)/1 var(--slab);letter-spacing:.02em;white-space:nowrap}
+.telefon:hover{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:5px}
+.adres{font-style:normal;margin-bottom:10px}
+.metinLink{display:inline-flex;align-items:center;min-height:44px;font:750 16px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding-top:3px;border-bottom:2px solid var(--kara)}
+.metinLink:hover{background:var(--sari)}
+.harita{max-width:420px}
