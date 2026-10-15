@@ -1,18 +1,19 @@
 // Anasayfa sözlüğü. TR tip kaynağıdır; EN aynı tipi sağlar. Metinler onaylı "E Esnaf Tabelası" referansından gelir; olgular app/content/site.ts'ten.
 import type { Dil } from "~/lib/rotalar.ts";
 import { useLang } from "./index.ts";
+import { KURULUS_YILI, kapasiteEn, kapasiteTr, yilEki } from "./olgular.ts";
 
 const tr = {
   meta: {
-    baslik: "Hanedan Pilav · 1998’den beri değişmeyen lezzet",
+    baslik: `Hanedan Pilav · ${yilEki(KURULUS_YILI, "den")} beri değişmeyen lezzet`,
     aciklama:
-      "Hanedan Pilav: 1998’den beri değişmeyen lezzet. Günlük 1 ton üretim kapasitesi, İstanbul geneli şube ve lojistik ağı, bayilik ve toplu yemek hizmeti.",
+      `Hanedan Pilav: ${yilEki(KURULUS_YILI, "den")} beri değişmeyen lezzet. Günlük ${kapasiteTr(" ")} üretim kapasitesi, İstanbul geneli şube ve lojistik ağı, bayilik ve toplu yemek hizmeti.`,
   },
   acilis: {
-    baslikBas: "1998’den beri",
+    baslikBas: `${yilEki(KURULUS_YILI, "den")} beri`,
     baslikSon: "değişmeyen lezzet.",
     giris:
-      "Şubede tabak tabak, organizasyonda kazan kazan. Günlük 1\u00a0ton üretim kapasitesiyle bayilerimize ve kurumsal firmalara hizmet veriyoruz.",
+      `Şubede tabak tabak, organizasyonda kazan kazan. Günlük ${kapasiteTr()} üretim kapasitesiyle bayilerimize ve kurumsal firmalara hizmet veriyoruz.`,
     teklif: "Toplu Yemek Teklifi",
   },
   kunye: {
@@ -42,13 +43,13 @@ const tr = {
   hikaye: {
     etiket: "Kurumsal",
     baslik: "Geleneksel lezzet, modern üretim.",
-    giris: "Hanedan Pilav, kuruluşundan bu yana gıda sektöründe köklü bir güven markası haline geldi.",
+    giris: "Hanedan Pilav, kuruluşundan bu yana gıda sektöründe köklü bir güven markası hâline geldi.",
     ilkeler: {
       lezzet: { baslik: "Lezzet", metin: "Geleneksel pişirme anlayışına bağlı mutfak." },
       hijyen: { baslik: "Hijyen", metin: "Titizlikle uygulanan hijyen standartları." },
       sureklilik: { baslik: "Süreklilik", metin: "Operasyonel sürekliliği önceleyen üretim ve lojistik." },
     },
-    eylem: "Kurumsal hikayemiz",
+    eylem: "Kurumsal hikâyemiz",
   },
   harita: {
     baslik: "İstanbul geneline yayılan bir ağ.",
@@ -77,14 +78,14 @@ export type AnasayfaSozluk = typeof tr;
 
 const en: AnasayfaSozluk = {
   meta: {
-    baslik: "Hanedan Pilav · Made the same way since 1998",
+    baslik: `Hanedan Pilav · Made the same way since ${KURULUS_YILI}`,
     aciklama:
-      "Hanedan Pilav, made the same way since 1998. Franchise opportunities, catering and locations across Istanbul.",
+      `Hanedan Pilav, made the same way since ${KURULUS_YILI}. Franchise opportunities, catering, and locations across Istanbul.`,
   },
   acilis: {
     baslikBas: "Made the same way",
-    baslikSon: "since 1998.",
-    giris: "By the plate or by the pot: one metric\u00a0ton of daily capacity, serving our franchisees and corporate clients.",
+    baslikSon: `since ${KURULUS_YILI}.`,
+    giris: `By the plate or by the pot: ${kapasiteEn()} of daily capacity, serving our franchisees and corporate clients.`,
     teklif: "Get a Catering Quote",
   },
   kunye: {

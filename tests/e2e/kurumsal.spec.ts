@@ -7,7 +7,7 @@ const SAYFALAR = [
     yol: "/kurumsal",
     baslik: /^Kurumsal · Hanedan Pilav$/,
     aciklama: /günlük 1 ton üretim kapasitesi/,
-    teklifAdi: "Teklif İste",
+    teklifAdi: "Toplu Yemek Teklifi",
     teklifYolu: "/iletisim?konu=catering",
     bayilikYolu: "/bayilerimiz#bayimiz-olun",
   },
@@ -15,7 +15,7 @@ const SAYFALAR = [
     yol: "/en/about",
     baslik: /^About Us · Hanedan Pilav$/,
     aciklama: /one metric ton of daily production capacity/,
-    teklifAdi: "Request a Quote",
+    teklifAdi: "Get a Catering Quote",
     teklifYolu: "/en/contact?topic=catering",
     bayilikYolu: "/en/locations#become-a-franchisee",
   },
@@ -69,7 +69,7 @@ for (const s of SAYFALAR) {
       expect(ust).toBeGreaterThanOrEqual(tenteAlt);
     });
 
-    test("Teklif iste ve bayilik bağlantıları doğru yola gider", async ({ page }) => {
+    test("toplu yemek teklifi ve bayilik bağlantıları doğru yola gider", async ({ page }) => {
       await page.goto(s.yol);
       const teklif = page.locator("#catering").getByRole("link", { name: s.teklifAdi, exact: true });
       await expect(teklif).toHaveCount(1);

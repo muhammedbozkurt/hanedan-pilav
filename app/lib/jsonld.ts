@@ -51,15 +51,22 @@ export function kokJsonLd(dil: Dil): JsonLd {
   return { "@context": "https://schema.org", "@graph": [organizasyonJsonLd(), webSiteJsonLd(dil)] };
 }
 
-// Bayi detay sayfası için; sayfaya bağlama ayrı yapılır. Konum bilinmiyorsa geo yazılmaz.
+// Site çalışma saatleri merkezin saatidir; şubeye aktarılmaz. Şubenin kendi saati veride olmadığından şube için saat yoktur.
+export function bayiCalismaSaatleri(bayi: Bayi): typeof SITE.calismaSaatleri | null {
+  return bayi.tur === "merkez" ? SITE.calismaSaatleri : null;
+}
+
+// Bayi detay sayfası için. Konum bilinmiyorsa geo, saat bilinmiyorsa openingHoursSpecification yazılmaz.
+// Şubeler franchise işletmesidir, kuruluşun alt birimi değildir: markaya `brand` ile bağlanır, parentOrganization kullanılmaz.
 export function bayiJsonLd(bayi: Bayi, dil: Dil): JsonLd {
-  const saat = SITE.calismaSaatleri;
+  const saat = bayiCalismaSaatleri(bayi);
+  const url = `${KOK}${yol("bayiDetay", dil, { slug: bayi.slug })}`;
   return {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
-    "@id": `${KOK}${yol("bayiDetay", dil, { slug: bayi.slug })}#bayi`,
-    name: bayi.ad[dil],
-    url: `${KOK}${yol("bayiDetay", dil, { slug: bayi.slug })}`,
+    "@id": `${url}#bayi`,
+    name: `${SITE.marka} ${bayi.ad[dil]}`,
+    url,
     image: `${KOK}${LOGO_YOLU}`,
     address: {
       "@type": "PostalAddress",
@@ -73,13 +80,17 @@ export function bayiJsonLd(bayi: Bayi, dil: Dil): JsonLd {
     ...(bayi.konum
       ? { geo: { "@type": "GeoCoordinates", latitude: bayi.konum.lat, longitude: bayi.konum.lng } }
       : {}),
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [...HAFTA_GUNLERI],
-      opens: saat.acilis,
-      closes: saat.kapanis,
-    },
-    parentOrganization: { "@id": ORGANIZASYON_ID },
+    ...(saat
+      ? {
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [...HAFTA_GUNLERI],
+            opens: saat.acilis,
+            closes: saat.kapanis,
+          },
+        }
+      : {}),
+    brand: { "@id": ORGANIZASYON_ID },
   };
 }
 

@@ -7,8 +7,8 @@ export const haritaTr = {
   bayiYok: "bayi yok",
   secili: "seçili",
   ilceAria: (ad: string, durum: string) => `${ad}, ${durum}`,
-  pinKonumNotu: "İlçe merkezi gösterilir, adres noktası değildir.",
-  atif: "© OpenStreetMap katkıda bulunanları",
+  pinKonumNotu: "İşaret ilçenin ortasını gösterir, tam adresi değil.",
+  atif: "© OpenStreetMap’e katkıda bulunanlar",
   merkezEtiket: "Merkez",
 };
 
@@ -17,11 +17,11 @@ export type HaritaMetni = typeof haritaTr;
 export const haritaEn: HaritaMetni = {
   grupAria: "Istanbul district map",
   sadeceBilgiAria: "Map of Istanbul",
-  bayiVar: "location available",
+  bayiVar: "has a location",
   bayiYok: "no location",
   secili: "selected",
   ilceAria: (ad, durum) => `${ad}, ${durum}`,
-  pinKonumNotu: "Shows the district center, not a street address.",
+  pinKonumNotu: "Pins mark the middle of the district, not the exact address.",
   atif: "© OpenStreetMap contributors",
   merkezEtiket: "Headquarters",
 };

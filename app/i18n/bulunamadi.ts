@@ -16,10 +16,10 @@ export const bulunamadiTr: BulunamadiSozluk = {
   etiket: "404 · Sayfa bulunamadı",
   baslik: "Bu sayfa menüde yok.",
   giris:
-    "Bağlantı eskimiş ya da sayfa taşınmış olabilir. Merak etmeyin, aradığınız lezzet yerinde: aşağıdaki sayfalardan devam edebilirsiniz.",
+    "Bağlantı eskimiş ya da sayfa taşınmış olabilir. Aşağıdaki sayfalardan devam edebilirsiniz.",
   devamBaslik: "Buradan devam edin",
   baglantilar: {
-    anasayfa: { baslik: "Anasayfa", aciklama: "Hanedan Pilav’a baştan göz atın." },
+    anasayfa: { baslik: "Ana sayfa", aciklama: "Hanedan Pilav’a baştan göz atın." },
     bayilerimiz: { baslik: "Bayilerimiz", aciklama: "Size en yakın şubeyi bulun." },
     iletisim: { baslik: "İletişim", aciklama: "Bize ulaşmanın tüm yolları." },
   },
@@ -29,7 +29,7 @@ export const bulunamadiEn: BulunamadiSozluk = {
   etiket: "404 · Page not found",
   baslik: "This page isn’t on the menu.",
   giris:
-    "The link may be out of date, or the page may have moved. Everything else is right where it should be, so pick up from one of the pages below.",
+    "The link may be out of date, or the page may have moved. You can continue from one of the pages below.",
   devamBaslik: "Keep going from here",
   baglantilar: {
     anasayfa: { baslik: "Homepage", aciklama: "Start again from the top." },

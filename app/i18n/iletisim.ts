@@ -11,7 +11,7 @@ const tr = {
   baslik: {
     etiket: "İletişim",
     baslik: "Bize ulaşın.",
-    giris: "Soru, bayilik ve toplu yemek talepleriniz için bize telefonla, WhatsApp’tan ya da formla yazabilirsiniz.",
+    giris: "Sorularınız, bayilik ve toplu yemek talepleriniz için bizi arayabilir, WhatsApp’tan ya da form aracılığıyla yazabilirsiniz.",
   },
   bilgi: {
     baslik: "İletişim bilgileri",
@@ -28,13 +28,13 @@ const tr = {
   },
   form: {
     baslik: "Bize yazın",
-    metin: "Formu doldurun, mesajınız en kısa sürede ilgili ekibe ulaşsın.",
+    metin: "Formu doldurun; mesajınız en kısa sürede ilgili ekibe iletilir.",
   },
   yonlendirme: {
-    baslik: "Başka bir konuda mı yazıyorsunuz?",
+    baslik: "Bayilik ya da toplu yemek için mi yazıyorsunuz?",
     bayilik: {
       baslik: "Bayilik başvurusu",
-      metin: "Bayilik şartlarını ve başvuru formunu Bayilerimiz sayfasında bulabilirsiniz.",
+      metin: "Bayilik hakkındaki bilgileri ve başvuru formunu Bayilerimiz sayfasında bulabilirsiniz.",
       eylem: "Bayilik bilgilerine git",
     },
     catering: {
@@ -51,35 +51,35 @@ const en: IletisimSozluk = {
   meta: {
     baslik: "Contact · Hanedan Pilav",
     aciklama:
-      "Contact Hanedan Pilav: phone, WhatsApp, hours and our Sultangazi, Istanbul headquarters. Send us your franchise inquiries or catering requests.",
+      "Contact Hanedan Pilav: phone, WhatsApp, hours, and our Sultangazi, Istanbul headquarters. Send us your franchise inquiries or catering requests.",
   },
   baslik: {
     etiket: "Contact",
     baslik: "Get in touch.",
-    giris: "Call us, message us on WhatsApp or use the form for questions, franchise inquiries and catering requests.",
+    giris: "Call us, message us on WhatsApp, or use the form for questions, franchise inquiries, and catering requests.",
   },
   bilgi: {
     baslik: "Contact details",
     telefon: "Phone",
     telefonAra: "Phone:",
     whatsapp: "WhatsApp",
-    whatsappEylem: "Message us on WhatsApp",
+    whatsappEylem: "Chat on WhatsApp",
     eposta: "Email",
-    saat: "Business hours",
+    saat: "Hours",
     adres: "Address",
-    yolTarifi: "Get directions",
+    yolTarifi: "Directions",
     yeniSekme: " (opens in a new tab)",
     harita: "District map showing our headquarters in Sultangazi",
   },
   form: {
     baslik: "Send us a message",
-    metin: "Fill in the form and your message will reach the right team as soon as possible.",
+    metin: "Fill out the form and your message will reach the right team as soon as possible.",
   },
   yonlendirme: {
-    baslik: "Writing about something else?",
+    baslik: "Writing about a franchise or catering?",
     bayilik: {
       baslik: "Franchise application",
-      metin: "You can find the franchise requirements and the application form on our Locations page.",
+      metin: "Franchise details and the application form are on our Locations page.",
       eylem: "See franchise details",
     },
     catering: {

@@ -81,7 +81,7 @@ export const yasalTr: YasalSozluk = {
         bloklar: [
           {
             p: [
-              "Kişisel verileriniz, aşağıda unvanı ve iletişim bilgileri yer alan veri sorumlusu tarafından işlenir. Bu metinde geçen “Hanedan Pilav” ve “biz” ifadeleri bu veri sorumlusunu anlatır.",
+              "Kişisel verileriniz, aşağıda unvanı ve iletişim bilgileri yer alan veri sorumlusu tarafından işlenir. Bu metinde geçen “Hanedan Pilav” ve “biz” ifadeleriyle bu veri sorumlusu kastedilir.",
             ],
           },
           {
@@ -246,7 +246,7 @@ export const yasalTr: YasalSozluk = {
               },
               {
                 etiket: "Yetkili kamu kurum ve kuruluşları",
-                deger: ["Yalnız kanunen yetkili bir merciin usulüne uygun talebi halinde ve talebin kapsamıyla sınırlı olarak."],
+                deger: ["Yalnız kanunen yetkili bir merciin usulüne uygun talebi hâlinde ve talebin kapsamıyla sınırlı olarak."],
               },
             ],
           },
@@ -270,7 +270,7 @@ export const yasalTr: YasalSozluk = {
           },
           {
             p: [
-              `Süre dolduğunda veya işleme sebebi ortadan kalktığında kişisel verileriniz, KVKK ${MD}7 ve Kişisel Verilerin Silinmesi, Yok Edilmesi veya Anonim Hale Getirilmesi Hakkında Yönetmelik uyarınca silinir, yok edilir veya anonim hale getirilir.`,
+              `Süre dolduğunda veya işleme sebebi ortadan kalktığında kişisel verileriniz, KVKK ${MD}7 ve Kişisel Verilerin Silinmesi, Yok Edilmesi veya Anonim Hale Getirilmesi Hakkında Yönetmelik uyarınca silinir, yok edilir veya anonim hâle getirilir.`,
             ],
           },
         ],
@@ -292,7 +292,7 @@ export const yasalTr: YasalSozluk = {
               [
                 "İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme",
               ],
-              ["Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız halinde zararın giderilmesini talep etme"],
+              ["Kişisel verilerinizin kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme"],
             ],
           },
         ],
@@ -340,12 +340,12 @@ export const yasalTr: YasalSozluk = {
           { p: ["Talebinizle ilgili bilgi ve belgeleri başvurunuza ekleyebilirsiniz."] },
           {
             p: [
-              "Başvurunuzu, talebin niteliğine göre en kısa sürede ve en geç otuz gün içinde ücretsiz olarak sonuçlandırırız. İşlemin ayrıca bir maliyet gerektirmesi halinde, Kişisel Verileri Koruma Kurulunca belirlenen tarifedeki ücret alınabilir.",
+              "Başvurunuzu, talebin niteliğine göre en kısa sürede ve en geç otuz gün içinde ücretsiz olarak sonuçlandırırız. İşlemin ayrıca bir maliyet gerektirmesi hâlinde, Kişisel Verileri Koruma Kurulunca belirlenen tarifedeki ücret alınabilir.",
             ],
           },
           {
             p: [
-              `Başvurunuzun reddedilmesi, verilen cevabı yetersiz bulmanız veya süresinde cevap verilmemesi hallerinde; cevabı öğrendiğiniz tarihten itibaren otuz gün ve her halde başvuru tarihinden itibaren altmış gün içinde Kişisel Verileri Koruma Kuruluna şikâyette bulunabilirsiniz (KVKK ${MD}14).`,
+              `Başvurunuzun reddedilmesi, verilen cevabı yetersiz bulmanız veya süresinde cevap verilmemesi hâllerinde; cevabı öğrendiğiniz tarihten itibaren otuz gün ve her hâlde başvuru tarihinden itibaren altmış gün içinde Kişisel Verileri Koruma Kuruluna şikâyette bulunabilirsiniz (KVKK ${MD}14).`,
             ],
           },
         ],
@@ -401,7 +401,7 @@ export const yasalTr: YasalSozluk = {
               [{ kalin: "Reklam: " }, "Reklam, yeniden hedefleme veya dönüşüm takibi yoktur."],
               [
                 { kalin: "Üçüncü taraf içerik: " },
-                "Sosyal medya eklentisi, gömülü video veya gömülü harita yoktur. Yazı tipleri dahil tüm dosyalar sitenin kendi sunucusundan yüklenir.",
+                "Sosyal medya eklentisi, gömülü video veya gömülü harita yoktur. Yazı tipleri dâhil tüm dosyalar sitenin kendi sunucusundan yüklenir.",
               ],
               [
                 { kalin: "Harita: " },
@@ -446,7 +446,7 @@ export const yasalTr: YasalSozluk = {
         bloklar: [
           {
             p: [
-              "Sitede WhatsApp sohbeti başlatma ve telefonla arama gibi dış hizmetlere giden bağlantılar bulunur. Bu bağlantılardan birine tıkladığınızda ilgili hizmetin sitesine veya uygulamasına geçersiniz; orada o hizmetin (örneğin WhatsApp’ın) kendi çerez ve gizlilik politikaları geçerlidir.",
+              "Sitede WhatsApp sohbeti başlatma, telefonla arama ve Google Haritalar’da yol tarifi açma gibi dış hizmetlere giden bağlantılar bulunur. Bu bağlantılardan birine tıkladığınızda ilgili hizmetin sitesine veya uygulamasına geçersiniz; orada o hizmetin (örneğin WhatsApp’ın veya Google’ın) kendi çerez ve gizlilik politikaları geçerlidir.",
             ],
           },
           { p: ["Bu bağlantılara tıklamadığınız sürece sitemizden bu hizmetlere herhangi bir istek gönderilmez."] },
@@ -483,7 +483,7 @@ export const yasalTr: YasalSozluk = {
           },
           {
             p: [
-              "Bu politika değişirse güncel hali bu sayfada yayımlanır; son güncelleme tarihi sayfanın başında yer alır.",
+              "Bu politika değişirse güncel hâli bu sayfada yayımlanır; son güncelleme tarihi sayfanın başında yer alır.",
             ],
           },
         ],
@@ -600,7 +600,7 @@ export const yasalEn: YasalSozluk = {
         bloklar: [
           {
             p: [
-              `We process your personal data only for the purposes below, each based on the legal ground under ${ART}5(2) of the KVKK listed next to it.`,
+              `We process your personal data only for the purposes below. Each purpose relies on the legal basis under ${ART}5(2) of the KVKK shown beside it.`,
             ],
           },
           {
@@ -649,7 +649,7 @@ export const yasalEn: YasalSozluk = {
           },
           {
             p: [
-              `We do not rely on your explicit consent for any of these purposes. Each one is based on a legal ground under ${ART}5(2) of the KVKK that does not require consent.`,
+              `We do not rely on your explicit consent for any of these purposes. Each one relies on a legal basis under ${ART}5(2) of the KVKK that does not require consent.`,
             ],
           },
         ],
@@ -676,7 +676,7 @@ export const yasalEn: YasalSozluk = {
         bloklar: [
           {
             p: [
-              `In line with ${ART}8 and ${ART}9 of the KVKK, and only for the purposes above, we share your personal data with the following recipients:`,
+              `In line with ${ART}8 and ${ART}9 of the KVKK, we share your personal data only with the following recipients, and only for the purposes above:`,
             ],
           },
           {
@@ -753,7 +753,7 @@ export const yasalEn: YasalSozluk = {
             tanimlar: [
               {
                 etiket: "In writing",
-                deger: ["Deliver a signed letter in person or send it by mail to: ", { sabit: "adres" }],
+                deger: ["Deliver a request bearing your handwritten signature in person, or send it by mail, to: ", { sabit: "adres" }],
               },
               {
                 etiket: "Registered email (KEP)",
@@ -887,7 +887,7 @@ export const yasalEn: YasalSozluk = {
         bloklar: [
           {
             p: [
-              "This site includes links to outside services, such as starting a WhatsApp chat or placing a phone call. When you select one, you leave this site for that service’s website or app, where its own cookie and privacy policies apply (WhatsApp’s, for example).",
+              "This site includes links to outside services, such as starting a WhatsApp chat, placing a phone call, or getting directions in Google Maps. When you select one, you leave this site for that service’s website or app, where its own cookie and privacy policies apply (WhatsApp’s or Google’s, for example).",
             ],
           },
           { p: ["Unless you select one of these links, this site sends no requests to these services."] },

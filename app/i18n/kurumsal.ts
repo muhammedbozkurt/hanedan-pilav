@@ -1,23 +1,25 @@
 // Kurumsal sayfası sözlüğü. TR tip kaynağıdır; EN aynı tipi sağlar. Olgular yalnız app/content/site.ts ve mevcut sitedeki ifadelerden gelir.
+// Tekrar sınırı: kuruluş yılı, kapasite, "İstanbul geneli" ve hijyen sayfa gövdesinde en fazla iki kez geçer (künye bunlardan biri).
 import type { Dil } from "~/lib/rotalar.ts";
 import { useLang } from "./index.ts";
+import { KURULUS_YILI, kapasiteEn, kapasiteTr, metrikTon, yilEki } from "./olgular.ts";
 
 const tr = {
   meta: {
     baslik: "Kurumsal · Hanedan Pilav",
     aciklama:
-      "1998’den bu yana Hanedan Pilav: günlük 1 ton üretim kapasitesi, titiz hijyen standartları, İstanbul geneli şube ağı ve kurumsal firmalara toplu yemek hizmeti.",
+      `${yilEki(KURULUS_YILI, "den")} bu yana Hanedan Pilav: günlük ${kapasiteTr(" ")} üretim kapasitesi, titiz hijyen standartları, İstanbul geneli şube ağı ve kurumsal firmalara toplu yemek hizmeti.`,
   },
   baslik: {
     etiket: "Kurumsal",
     baslik: "Geleneksel lezzet, modern üretim.",
-    giris: "Hanedan Pilav, 1998’deki kuruluşundan bu yana gıda sektöründe köklü bir güven markası haline geldi.",
+    giris: "Hanedan Pilav, kuruluşundan bu yana gıda sektöründe köklü bir güven markası hâline geldi.",
   },
   hikaye: {
-    baslik: "1998’den bugüne.",
+    baslik: `${yilEki(KURULUS_YILI, "den")} bugüne.`,
     paragraflar: [
-      "Hanedan Pilav’ın temeli 1998’de atıldı. İlk günden bu yana geleneksel lezzet anlayışımızı koruyor, onu modern üretim standartlarıyla birleştiriyoruz.",
-      "Bugün Sultangazi’deki merkezimizden, İstanbul’un geneline yayılan şube ve lojistik ağımızla hem şubelerimize hem de kurumsal firmalara hizmet veriyoruz.",
+      "İlk günden bu yana geleneksel lezzet anlayışımızı koruyor, onu modern üretim standartlarıyla birleştiriyoruz.",
+      "Bugün Sultangazi’deki merkezimizden hem kendi şubelerimize hem de kurumsal firmalara hizmet veriyoruz.",
     ],
     kunye: {
       baslik: "Kısaca Hanedan Pilav",
@@ -35,15 +37,15 @@ const tr = {
     maddeler: {
       uretim: {
         baslik: "Yüksek kapasiteli üretim",
-        metin: "Günlük 1\u00a0ton üretim kapasitemizle hem şubelerimizin hem de toplu yemek siparişlerinin ihtiyacını karşılıyoruz.",
+        metin: `Günlük ${kapasiteTr()} üretim kapasitemiz, şubelerimizin ve toplu yemek siparişlerinin ihtiyacını birlikte karşılar.`,
       },
       hijyen: {
         baslik: "Titiz hijyen standartları",
-        metin: "Yüksek kapasitede üretirken hijyen standartlarından taviz vermiyor, onları üretimin her aşamasında uyguluyoruz.",
+        metin: "Yüksek hacimde üretirken temizlik kurallarından taviz vermiyor, onları üretimin her aşamasında uyguluyoruz.",
       },
       lojistik: {
-        baslik: "İstanbul geneli şube ve lojistik ağı",
-        metin: "Şubelerimiz ve lojistik ağımız İstanbul’un geneline yayılır; bu sayede şehrin her yerine hizmet verebiliyoruz.",
+        baslik: "Şube ve lojistik ağı",
+        metin: "Şubelerimiz ve lojistik ağımız sayesinde İstanbul genelinde hizmet verebiliyoruz.",
       },
     },
   },
@@ -56,7 +58,7 @@ const tr = {
       toplu: "Toplu yemekler",
       organizasyon: "Organizasyonlar",
     },
-    eylem: "Teklif İste",
+    eylem: "Toplu Yemek Teklifi",
     gorsel: { konu: "toplu yemek servisi", not: "Servis hattında kazanlar; geniş plan, sıcak ışık." },
   },
   degerler: {
@@ -82,49 +84,49 @@ const en: KurumsalSozluk = {
   meta: {
     baslik: "About Us · Hanedan Pilav",
     aciklama:
-      "Hanedan Pilav since 1998: one metric ton of daily production capacity, strict hygiene standards, locations across Istanbul and catering for companies.",
+      `Hanedan Pilav since ${KURULUS_YILI}: ${kapasiteEn(" ")} of daily production capacity, rigorous hygiene standards, locations across Istanbul, and catering for companies.`,
   },
   baslik: {
     etiket: "About us",
     baslik: "Traditional flavor, modern production.",
-    giris: "Since its founding in 1998, Hanedan Pilav has grown into a long-trusted name in the food industry.",
+    giris: "Since its founding, Hanedan Pilav has grown into a long-trusted name in the food industry.",
   },
   hikaye: {
-    baslik: "From 1998 to today.",
+    baslik: `From ${KURULUS_YILI} to today.`,
     paragraflar: [
-      "Hanedan Pilav was founded in 1998. From day one, we have held on to a traditional approach to flavor and paired it with modern production standards.",
-      "Today, from our headquarters in Sultangazi, a network of locations and logistics across Istanbul lets us serve our restaurants and corporate clients alike.",
+      "From day one, we have held on to a traditional approach to flavor and paired it with modern production standards.",
+      "Today, from our headquarters in Sultangazi, we supply our own locations and serve corporate clients.",
     ],
     kunye: {
       baslik: "Hanedan Pilav at a glance",
       kurulus: "Founded",
       merkez: "Headquarters",
       kapasite: "Daily production capacity",
-      kapasiteDeger: (miktar) => `${miktar}\u00a0metric ton`,
+      kapasiteDeger: metrikTon,
       hizmetAlani: "Service area",
-      hizmetAlaniDeger: "All of Istanbul",
+      hizmetAlaniDeger: "Across Istanbul",
     },
-    gorsel: { konu: "production kitchen", not: "Wide shot; stainless counters, order and cleanliness." },
+    gorsel: { konu: "production kitchen", not: "Wide shot; stainless counters, order, and cleanliness." },
   },
   calisma: {
     baslik: "How we work.",
     maddeler: {
       uretim: {
         baslik: "High-capacity production",
-        metin: "One metric ton of daily production capacity covers our locations and large catering orders alike.",
+        metin: `Our daily production capacity of ${kapasiteEn()} covers our locations and large catering orders alike.`,
       },
       hijyen: {
         baslik: "Rigorous hygiene standards",
-        metin: "Volume never comes at the expense of hygiene. We apply our standards at every stage of production.",
+        metin: "Volume never comes at the expense of cleanliness. We apply our standards at every stage of production.",
       },
       lojistik: {
-        baslik: "Locations and logistics across Istanbul",
-        metin: "Our locations and logistics network span the city, so we can serve customers anywhere in Istanbul.",
+        baslik: "Locations and logistics network",
+        metin: "Our network of locations and logistics lets us serve customers across Istanbul.",
       },
     },
   },
   catering: {
-    baslik: "Catering for companies and events.",
+    baslik: "Catering and events.",
     metin: "Backed by high production capacity, we offer professional, dependable catering.",
     alanlarBaslik: "Who we serve",
     alanlar: {
@@ -132,7 +134,7 @@ const en: KurumsalSozluk = {
       toplu: "Group meals",
       organizasyon: "Events",
     },
-    eylem: "Request a Quote",
+    eylem: "Get a Catering Quote",
     gorsel: { konu: "catering service", not: "Pots on the serving line; wide shot, warm light." },
   },
   degerler: {
@@ -148,7 +150,7 @@ const en: KurumsalSozluk = {
   },
   kapanis: {
     baslik: "Open your own Hanedan Pilav location.",
-    metin: "You’ll find how to apply on our Locations page.",
+    metin: "Details on how to apply are on our Locations page.",
   },
 };
 

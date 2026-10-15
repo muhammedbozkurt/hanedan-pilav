@@ -2,6 +2,7 @@
 // Bayilik anlatımı yalnız mevcut site olgularına dayanır: süreç adımı, yatırım tutarı veya kazanç vaadi yazılmaz.
 import type { Dil } from "~/lib/rotalar.ts";
 import { useLang } from "./index.ts";
+import { metrikTon } from "./olgular.ts";
 
 const tr = {
   meta: {
@@ -42,7 +43,7 @@ const tr = {
     harita: {
       goster: "Haritayı göster",
       gizle: "Haritayı gizle",
-      sube: (adet: number) => (adet === 1 ? "Şube" : `${adet} şube`),
+      sube: (adet: number) => (adet === 1 ? "Bayi" : `${adet} bayi`),
     },
   },
   satir: {
@@ -66,7 +67,7 @@ const tr = {
     },
     sonrakiBaslik: "Sonraki adım",
     sonraki: "Başvurunuzu aldıktan sonra sizinle iletişime geçiyoruz.",
-    telefonOnce: "Önce sormak istedikleriniz için:",
+    telefonOnce: "Başvurmadan önce sorularınız için:",
     formBaslik: "Başvuru formu",
   },
   detay: {
@@ -80,7 +81,7 @@ const tr = {
     adres: "Adres",
     telefon: "Telefon",
     ara: "Hemen arayın",
-    yolTarifi: "Yol tarifi al",
+    yolTarifi: "Yol tarifi",
     haritaBaslik: "Haritada konum",
   },
 };
@@ -144,7 +145,7 @@ const en: BayilerimizSozluk = {
     olgular: {
       kurulus: "Founded",
       kapasite: "Daily production capacity",
-      kapasiteDeger: (miktar) => `${miktar}\u00a0metric ton`,
+      kapasiteDeger: metrikTon,
       merkez: "Headquarters",
       merkezDeger: "Sultangazi, Istanbul",
     },
@@ -163,7 +164,7 @@ const en: BayilerimizSozluk = {
     adres: "Address",
     telefon: "Phone",
     ara: "Call Now",
-    yolTarifi: "Get Directions",
+    yolTarifi: "Directions",
     haritaBaslik: "Location on the map",
   },
 };

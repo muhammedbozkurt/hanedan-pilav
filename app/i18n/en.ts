@@ -1,5 +1,13 @@
 // English dictionary. Natural corporate American English, not a literal translation of tr.ts.
+import { KURULUS_YILI } from "./olgular.ts";
 import type { Sozluk } from "./tr.ts";
+
+// "09:00" gibi 24 saatlik değer ABD biçimine çevrilir: "9 a.m.", "5:30 p.m.".
+function saat12(hhmm: string): string {
+  const [s = 0, d = 0] = hhmm.split(":").map(Number);
+  const dakika = d ? `:${String(d).padStart(2, "0")}` : "";
+  return `${s % 12 || 12}${dakika} ${s < 12 ? "a.m." : "p.m."}`;
+}
 
 export const en: Sozluk = {
   dil: { ad: "English", kisa: "EN", ogLocale: "en_US" },
@@ -29,66 +37,34 @@ export const en: Sozluk = {
   },
   saat: {
     etiket: "Hours",
-    metin: (acilis, kapanis) => `Every day, ${acilis}-${kapanis}`,
+    metin: (acilis, kapanis) => `Open daily, ${saat12(acilis)} to ${saat12(kapanis)}`,
   },
   alt: {
     slogan: "Lezzet Hanedanlığı",
-    cumle: "pilaf restaurants, franchising and catering.",
+    cumle: "pilaf restaurants, franchising, and catering.",
     merkez: "Headquarters",
     sayfalar: "Pages",
     iletisim: "Contact",
     kvkk: "Privacy Notice (KVKK)",
     cerez: "Cookie Policy",
     yasal: "Legal",
-    telif: (yil) => `© 1998-${yil} Hanedan Pilav`,
+    telif: (yil) => `© ${KURULUS_YILI}-${yil} Hanedan Pilav`,
   },
   gorsel: {
     alan: "Photo slot",
     foto: "Photo",
   },
   sayfalar: {
-    anasayfa: {
-      meta: {
-        baslik: "Hanedan Pilav · Made the same way since 1998",
-        aciklama:
-          "Hanedan Pilav, made the same way since 1998. One metric ton of daily production capacity for franchising and catering, headquartered in Sultangazi, Istanbul.",
-      },
-    },
-    kurumsal: {
-      meta: {
-        baslik: "About Us · Hanedan Pilav",
-        aciklama: "The Hanedan Pilav story, how we cook and what we stand for: flavor, hygiene and continuity.",
-      },
-    },
-    bayilerimiz: {
-      meta: {
-        baslik: "Locations · Hanedan Pilav",
-        aciklama:
-          "Hanedan Pilav locations and franchise inquiries. Find the location nearest you or contact us about opening your own.",
-      },
-    },
-    galeri: {
-      meta: {
-        baslik: "Gallery · Hanedan Pilav",
-        aciklama: "The Hanedan Pilav gallery: our production kitchen, cooks at the pot, event service and pilaf on the plate.",
-      },
-    },
-    iletisim: {
-      meta: {
-        baslik: "Contact · Hanedan Pilav",
-        aciklama: "Contact Hanedan Pilav by phone or WhatsApp, or visit our headquarters in Sultangazi, Istanbul.",
-      },
-    },
     kvkk: {
       meta: {
         baslik: "Privacy Notice · Hanedan Pilav",
-        aciklama: "The Hanedan Pilav privacy notice under Turkey’s Personal Data Protection Law No. 6698 (KVKK).",
+        aciklama: "The Hanedan Pilav privacy notice under Turkish Law No. 6698 on the Protection of Personal Data (KVKK).",
       },
     },
     cerez: {
       meta: {
         baslik: "Cookie Policy · Hanedan Pilav",
-        aciklama: "The Hanedan Pilav website does not use cookies, analytics or third-party trackers.",
+        aciklama: "The Hanedan Pilav website does not use cookies, analytics, or third-party trackers.",
       },
     },
     bulunamadi: {
