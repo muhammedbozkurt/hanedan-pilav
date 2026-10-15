@@ -1,15 +1,15 @@
-import { CameraIcon } from "@phosphor-icons/react/Camera";
 import type { CSSProperties } from "react";
 import type { Oran } from "~/content/galeri.ts";
-import { useT } from "~/i18n/index.ts";
 import { cx } from "~/lib/cx.ts";
 import s from "./Gorsel.module.css";
-import { Ikon } from "./Ikon.tsx";
+
+// Çekim notu her zaman Türkçe tutulur: müşteriden fotoğraf istenirken tek liste çıkar (scripts/cekim-listesi.ts).
+export type Cekim = { readonly konu: string; readonly not: string };
 
 type Props = {
   oran: Oran;
   konu: string;
-  not?: string;
+  cekim?: Cekim;
   src?: string;
   alt?: string;
   genislik?: number;
@@ -23,9 +23,9 @@ function oranSayilari(oran: Oran): [number, number] {
   return [g ?? 1, y ?? 1];
 }
 
-// Fotoğraf yoksa referansın yer tutucu dili (oran + çekim notu); fotoğraf gelince aynı kutuda <img>. Kutu oranı sabit olduğu için yerleşim kaymaz.
-export function Gorsel({ oran, konu, not, src, alt, genislik = 1200, oncelikli, sizes, className }: Props) {
-  const t = useT();
+// Fotoğraf yoksa sakin, markalı bir kraft kutu; çekim notu yalnız data-cekim niteliğinde taşınır, ekranda ve ekran okuyucuda görünmez.
+// Fotoğraf gelince aynı oranlı kutuda <img>; yerleşim kaymaz.
+export function Gorsel({ oran, konu, cekim, src, alt, genislik = 1200, oncelikli, sizes, className }: Props) {
   const [og, oy] = oranSayilari(oran);
   const stil: CSSProperties = { aspectRatio: `${og} / ${oy}` };
   if (src) {
@@ -45,14 +45,11 @@ export function Gorsel({ oran, konu, not, src, alt, genislik = 1200, oncelikli, 
     );
   }
   return (
-    <div className={cx(s.foto, className)} style={stil} role="img" aria-label={`${t.gorsel.alan}: ${konu}`}>
-      <p className={s.cekim} aria-hidden="true">
-        <b>
-          <Ikon ikon={CameraIcon} />
-          <span>{`${t.gorsel.foto}: ${konu}, ${oran}`}</span>
-        </b>
-        {not ? <span>{not}</span> : null}
-      </p>
-    </div>
+    <div
+      className={cx(s.foto, s.yer, className)}
+      style={stil}
+      aria-hidden="true"
+      data-cekim={cekim ? `${oran} | ${cekim.konu} | ${cekim.not}` : oran}
+    />
   );
 }

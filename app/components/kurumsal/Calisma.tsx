@@ -13,18 +13,21 @@ export function Calisma() {
   const m = useKurumsal().calisma;
   return (
     <Bolum baslikId="calisma-baslik" koyu>
-      <h2 id="calisma-baslik" className={s.baslik}>
-        {m.baslik}
-      </h2>
-      <ul className={s.liste}>
-        {SIRA.map((anahtar) => (
-          <li key={anahtar} className={s.madde}>
-            <Ikon ikon={IKONLAR[anahtar]} className={s.ikon} />
-            <h3>{m.maddeler[anahtar].baslik}</h3>
-            <p>{m.maddeler[anahtar].metin}</p>
-          </li>
-        ))}
-      </ul>
+      {/* Asimetrik düzen: başlık solda, üç ilke sağda çizgili satırlar halinde (üç eşit sütun yerine). */}
+      <div className={s.duzen}>
+        <h2 id="calisma-baslik" className={s.baslik}>
+          {m.baslik}
+        </h2>
+        <ul className={s.liste}>
+          {SIRA.map((anahtar) => (
+            <li key={anahtar} className={s.madde}>
+              <Ikon ikon={IKONLAR[anahtar]} className={s.ikon} />
+              <h3>{m.maddeler[anahtar].baslik}</h3>
+              <p>{m.maddeler[anahtar].metin}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </Bolum>
   );
 }

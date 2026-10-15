@@ -1,5 +1,5 @@
 .alt{background:var(--kara);color:var(--soluk);font-size:15px;padding-top:clamp(56px,6vw,88px);padding-bottom:calc(28px + var(--fab-pay))}
-.ic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px;padding-right:calc(var(--kenar) + var(--fab-serit))}
+.ic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px}
 .marka{grid-column:1 / span 4}
 .marka img{width:156px}
 .marka p{margin-top:20px;color:var(--emaye);font-size:16px;line-height:1.55;max-width:24em}
@@ -35,5 +35,4 @@
 }
 @media (max-width:639px){
   .merkez,.sayfalar,.iletisim{grid-column:1 / -1}
-  .ic{padding-right:var(--kenar)}
 }

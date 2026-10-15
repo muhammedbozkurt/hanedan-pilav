@@ -17,7 +17,8 @@
     "test:e2e": "playwright test",
     "test:php": "PHP=8.2 npx -y @php-wasm/cli tests/php/form-test.php",
     "verify": "npm run typecheck && npm run check:metin && npm run test:unit && npm run build && npm run check:rotalar && npm run test:e2e",
-    "test:unit": "node --test \"tests/unit/**/*.test.ts\""
+    "test:unit": "node --test \"tests/unit/**/*.test.ts\"",
+    "cekim-listesi": "node scripts/cekim-listesi.ts"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "5.3.0",

@@ -1,6 +1,6 @@
 // Fotoğraf eklemek için: optimize edilmiş webp dosyasını public/img/galeri/ altına koyun, ilgili öğeye `src` ("/img/galeri/ad.webp")
 // ve iki dilde `alt` ekleyin. Başka kod değişikliği gerekmez; öğe otomatik tıklanır olur ve büyük görünümde açılır.
-// Fotoğrafı olmayan öğeler çekim notuyla yer tutucu olarak görünür.
+// Fotoğrafı olmayan öğeler markalı yer tutucu olarak görünür; Türkçe çekim notu `npm run cekim-listesi` ile listelenir.
 
 export type Oran = "4:3" | "4:5" | "3:2" | "1:1" | "16:9";
 
@@ -44,13 +44,6 @@ export const GALERI: readonly GaleriOgesi[] = [
     en: { konu: "pilaf on the plate", not: "Overhead, natural light." },
   },
   {
-    id: "uretim-alani",
-    kategori: "uretim",
-    oran: "4:5",
-    tr: { konu: "üretim alanında hijyen", not: "Eldiven ve bone, hijyen detayı." },
-    en: { konu: "hygiene on the production floor", not: "Gloves and hairnets, hygiene detail." },
-  },
-  {
     id: "nohutlu-pilav",
     kategori: "urunler",
     oran: "3:2",
@@ -70,26 +63,5 @@ export const GALERI: readonly GaleriOgesi[] = [
     oran: "3:2",
     tr: { konu: "üretim mutfağı", not: "Geniş plan; paslanmaz tezgâhlar, düzen ve temizlik." },
     en: { konu: "production kitchen", not: "Wide shot; stainless counters, order, and cleanliness." },
-  },
-  {
-    id: "toplu-servis-kazanlari",
-    kategori: "organizasyon",
-    oran: "4:5",
-    tr: { konu: "toplu servis kazanları", not: "Sıralı kazanlar, servis öncesi dizilim." },
-    en: { konu: "large-batch serving pots", not: "Pots in a row, set up before service." },
-  },
-  {
-    id: "paket-pilav",
-    kategori: "urunler",
-    oran: "4:5",
-    tr: { konu: "paket servis kutusu", not: "Kapalı ve açık kutu yan yana, sade zemin." },
-    en: { konu: "takeout box", not: "Closed and open box side by side, plain surface." },
-  },
-  {
-    id: "organizasyon-masasi",
-    kategori: "organizasyon",
-    oran: "1:1",
-    tr: { konu: "organizasyon masası", not: "Üstten çekim, tabaklar ve tepsiler." },
-    en: { konu: "event table", not: "Overhead, plates and trays." },
   },
 ];

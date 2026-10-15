@@ -1,5 +1,4 @@
 .govde{padding-block:clamp(48px,5.4vw,80px) var(--bolum)}
-.devam{padding-right:var(--fab-serit)}
 .devam h2{font:700 12.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
 .devam ul{border-top:2px solid var(--kara)}
 .devam li{border-bottom:1px solid var(--cizgi)}

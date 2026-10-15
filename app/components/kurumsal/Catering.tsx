@@ -6,7 +6,7 @@ import { Buton } from "~/components/Buton.tsx";
 import { Gorsel } from "~/components/Gorsel.tsx";
 import { Ikon } from "~/components/Ikon.tsx";
 import { usePaths } from "~/i18n/index.ts";
-import { useKurumsal } from "~/i18n/kurumsal.ts";
+import { kurumsalSozluk, useKurumsal } from "~/i18n/kurumsal.ts";
 import { CATERING_CAPASI, teklifYolu } from "~/lib/rotalar.ts";
 import s from "./Catering.module.css";
 
@@ -38,7 +38,7 @@ export function Catering() {
             {m.eylem}
           </Buton>
         </div>
-        <Gorsel className={s.foto} oran="4:3" konu={m.gorsel.konu} not={m.gorsel.not} />
+        <Gorsel className={s.foto} oran="4:3" konu={m.gorsel.konu} cekim={kurumsalSozluk("tr").catering.gorsel} />
       </div>
     </Bolum>
   );

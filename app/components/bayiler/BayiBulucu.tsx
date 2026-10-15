@@ -220,7 +220,7 @@ export function BayiBulucu() {
               </p>
               <div className={s.bosEylem}>
                 {ilceBos ? (
-                  <Buton to={`${search}#${BAYILIK_CAPASI[dil]}`} varyant="kara">
+                  <Buton to={`${search}#${BAYILIK_CAPASI[dil]}`}>
                     {t.nav.bayilik}
                   </Buton>
                 ) : null}

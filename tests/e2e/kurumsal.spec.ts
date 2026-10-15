@@ -55,7 +55,7 @@ for (const s of SAYFALAR) {
       await expect(kunye).toContainText("1998");
       await expect(kunye).toContainText("Sultangazi");
       await expect(kunye.locator("dt")).toHaveCount(4);
-      await expect(page.locator('main [role="img"]')).toHaveCount(2);
+      await expect(page.locator("main [data-cekim], main img")).toHaveCount(2);
     });
 
     test("#catering çapası bölümü başlığın altında gösterir", async ({ page }) => {

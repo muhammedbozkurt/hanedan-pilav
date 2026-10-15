@@ -1,7 +1,7 @@
 import { Bolum } from "~/components/Bolum.tsx";
 import { Gorsel } from "~/components/Gorsel.tsx";
 import { SITE } from "~/content/site.ts";
-import { useKurumsal } from "~/i18n/kurumsal.ts";
+import { kurumsalSozluk, useKurumsal } from "~/i18n/kurumsal.ts";
 import s from "./Hikaye.module.css";
 
 export function Hikaye() {
@@ -16,7 +16,7 @@ export function Hikaye() {
   return (
     <Bolum baslikId="hikaye-baslik">
       <div className={s.izgara}>
-        <Gorsel className={s.foto} oran="4:5" konu={m.gorsel.konu} not={m.gorsel.not} />
+        <Gorsel className={s.foto} oran="4:5" konu={m.gorsel.konu} cekim={kurumsalSozluk("tr").hikaye.gorsel} />
         <div className={s.metin}>
           <h2 id="hikaye-baslik">{m.baslik}</h2>
           {m.paragraflar.map((p) => (

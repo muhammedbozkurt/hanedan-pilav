@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "@phosphor-icons/react/ArrowLeft";
 import { ArrowRightIcon } from "@phosphor-icons/react/ArrowRight";
 import { XIcon } from "@phosphor-icons/react/X";
-import { type PointerEvent, useEffect, useRef } from "react";
+import { type PointerEvent, useEffect, useId, useRef } from "react";
 import type { Dil } from "~/lib/rotalar.ts";
 import type { GaleriMetin } from "~/i18n/galeri.ts";
 import { Ikon } from "../Ikon.tsx";
@@ -21,6 +21,7 @@ type Props = {
 
 export function Lightbox({ ogeler, indeks, metin, dil, onGit, onKapat }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
+  const sayacId = useId();
   const baslangic = useRef<{ x: number; y: number } | null>(null);
   const acik = indeks !== null;
   const n = ogeler.length;
@@ -68,6 +69,7 @@ export function Lightbox({ ogeler, indeks, metin, dil, onGit, onKapat }: Props) 
       className={s.kutu}
       lang={dil}
       aria-label={metin.etiket}
+      aria-describedby={sayacId}
       onClose={onKapat}
       onCancel={(e) => {
         e.preventDefault();
@@ -78,11 +80,13 @@ export function Lightbox({ ogeler, indeks, metin, dil, onGit, onKapat }: Props) 
         if (e.target === e.currentTarget) onKapat();
       }}
     >
+      {/* Sayaç kalıcı canlı bölgedir: açılışta diyalog açıklaması olarak okunur, gezinmede değişimi duyurulur.
+          Modal açıkken dışarısı erişilebilirlik ağacından çıktığı için bölge diyaloğun içinde, içerikten bağımsız durur. */}
+      <p id={sayacId} className={s.sayac} aria-live="polite" aria-atomic="true">
+        {acik ? sayac(indeks, n) : ""}
+      </p>
       {oge ? (
         <div className={s.ic}>
-          <p className={s.sayac} aria-live="polite">
-            {sayac(indeks ?? 0, n)}
-          </p>
           <button type="button" className={s.kapat} onClick={onKapat} aria-label={metin.kapat}>
             <Ikon ikon={XIcon} />
           </button>

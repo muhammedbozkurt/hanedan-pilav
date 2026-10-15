@@ -118,7 +118,7 @@ for (const s of SAYFALAR) {
       await page.goto(s.yol);
       const serit = page.getByRole("region", { name: s.galeri.serit });
       await expect(serit.locator("li")).toHaveCount(4);
-      await expect(serit.locator('li [role="img"], li img')).toHaveCount(4);
+      await expect(serit.locator("li [data-cekim], li img")).toHaveCount(4);
     });
 
     for (const genislik of [360, 1440]) {

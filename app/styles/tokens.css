@@ -16,7 +16,7 @@
   --soluk:#CFC6B3;
   --deniz-yazi:#776B54;
   --cizgi:rgba(21,21,21,.18);
-  --wa:#1DA851;
+  --wa:#178F44;
   --slab:"Rokkitt",Rockwell,"Roboto Slab",Georgia,serif;
   --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --kenar:clamp(18px,4vw,56px);
@@ -31,7 +31,7 @@
   --bolum:clamp(72px,9vw,128px);
   --fab-d:58px;
   --fab-sag:16px;
-  /* FAB şeridi: metin taşıyan bloklar sağda bu kadar boşluk bırakır, böylece FAB hiçbir kırılımda metnin üstüne düşmez. */
+  /* FAB şeridi: yalnız uzun akan metin max-width ile sağda bu kadar pay bırakır. Çizgi, kutu ve kartlar tam genişlikte biter; FAB kaydırırken üstlerinden geçebilir. */
   --fab-serit:max(0px,calc(var(--fab-d) + var(--fab-sag) + 8px - var(--kenar)));
   --fab-pay:calc(var(--fab-d) + 36px + env(safe-area-inset-bottom));
   --egri:cubic-bezier(.2,.7,.2,1);

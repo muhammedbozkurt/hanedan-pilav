@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import veri from "~/data/harita/istanbul.json";
 import { ILCELER } from "~/content/ilceler.ts";
 import { HARITA_METNI } from "~/i18n/harita.ts";
@@ -42,6 +42,12 @@ export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = nu
   const etkilesimli = varyant === "tam" && onSec !== undefined;
   const vurguKumesi = useMemo(() => new Set(vurgulu), [vurgulu]);
   const pinli = useMemo(() => new Map(pinler.map((p) => [p.ilce, p])), [pinler]);
+  const [odak, setOdak] = useState<string | null>(null);
+  // Salt okunur haritada vurgulu ilçeler sona çizilir ki kalın sınırları komşuların altında kalmasın.
+  const sirali = useMemo(
+    () => (etkilesimli ? veri.ilceler : [...veri.ilceler].sort((a, b) => Number(vurguKumesi.has(a.slug)) - Number(vurguKumesi.has(b.slug)))),
+    [etkilesimli, vurguKumesi],
+  );
 
   const kutu: Kutu = useMemo(() => {
     const secim = kirpma ?? (varyant === "tam" ? "tum" : "cekirdek");
@@ -71,7 +77,7 @@ export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = nu
           role={etkilesimli ? "group" : "img"}
           aria-label={etkilesimli ? m.grupAria : (ariaEtiket ?? m.sadeceBilgiAria)}
         >
-          {veri.ilceler.map((i) => {
+          {sirali.map((i) => {
             const sinif = cx(
               s.ilce,
               vurguKumesi.has(i.slug) && s.vurgulu,
@@ -91,6 +97,8 @@ export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = nu
                 aria-pressed={secili === i.slug}
                 aria-label={m.ilceAria(ad, durum(i.slug))}
                 onClick={sec}
+                onFocus={(e) => setOdak(e.currentTarget.matches(":focus-visible") ? i.slug : null)}
+                onBlur={() => setOdak((o) => (o === i.slug ? null : o))}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
@@ -100,6 +108,13 @@ export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = nu
               />
             );
           })}
+          {/* Etkileşimli haritada sekme sırası DOM sırasıdır; seçili ve odaktaki ilçenin sınırı yol taşınmadan, üste çizilen kopyayla öne alınır. */}
+          {etkilesimli
+            ? [secili, odak].map((slug, k) => {
+                const d = slug ? veri.ilceler.find((i) => i.slug === slug)?.d : undefined;
+                return d ? <path key={k} className={cx(s.ust, k === 0 ? s.seciliUst : s.odakUst)} d={d} aria-hidden="true" /> : null;
+              })
+            : null}
         </svg>
         <div className={s.pinler} aria-hidden="true">
           {pinler.map((p) => {

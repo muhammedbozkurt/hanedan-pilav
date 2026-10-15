@@ -3,6 +3,7 @@ import "./styles/tokens.css";
 import "./styles/global.css";
 
 import jakartaLatin from "@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url";
+import rokkittLatinExt from "@fontsource-variable/rokkitt/files/rokkitt-latin-ext-wght-normal.woff2?url";
 import rokkittLatin from "@fontsource-variable/rokkitt/files/rokkitt-latin-wght-normal.woff2?url";
 import type { ReactNode } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from "react-router";
@@ -36,6 +37,8 @@ export function Layout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: JS_ISARETI }} />
         <Meta />
         <Links />
+        {/* Türkçe sayfada başlık ve menü (İ, Ş, Ğ) ilk boyamada Rokkitt latin-ext ister; EN sayfada gereksiz olduğu için yüklenmez. */}
+        {dil === "tr" ? <link rel="preload" href={rokkittLatinExt} as="font" type="font/woff2" crossOrigin="anonymous" /> : null}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMetni(kokJsonLd(dil)) }} />
       </head>
       <body>
