@@ -1,0 +1,11 @@
+.baslik{padding-right:var(--fab-serit)}
+.liste{margin-top:clamp(32px,4vw,56px);border-top:2px solid var(--kara)}
+.satir{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:baseline;padding:clamp(24px,2.6vw,34px) var(--fab-serit) clamp(24px,2.6vw,34px) 0;border-bottom:1px solid var(--cizgi)}
+.satir h3{grid-column:1 / span 5;font:750 clamp(30px,3.2vw,46px)/1.05 var(--slab);letter-spacing:-.005em}
+.satir p{grid-column:7 / span 6;font-size:18px;line-height:1.55;color:var(--ikincil);max-width:34em;text-wrap:pretty}
+
+@media (max-width:767px){
+  .satir{grid-template-columns:minmax(0,1fr);row-gap:8px}
+  .satir h3,.satir p{grid-column:1}
+  .satir p{font-size:16px}
+}

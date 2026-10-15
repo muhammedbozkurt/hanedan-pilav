@@ -1,0 +1,20 @@
+.baslik{padding-right:var(--fab-serit)}
+.liste{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(36px,4.4vw,64px);padding-right:var(--fab-serit)}
+.madde{padding-inline:clamp(20px,2.6vw,40px);border-left:1px solid color-mix(in srgb,var(--sari) 28%,transparent)}
+.madde:first-child{padding-left:0;border-left:0}
+.madde:last-child{padding-right:0}
+.madde .ikon{width:34px;height:34px;color:var(--sari)}
+.madde h3{margin-top:22px;font:750 clamp(24px,2.2vw,32px)/1.1 var(--slab);letter-spacing:-.005em;color:var(--sari);text-wrap:balance}
+.madde p{margin-top:12px;font-size:16px;line-height:1.6;color:var(--soluk);max-width:30em;text-wrap:pretty}
+
+@media (max-width:899px){
+  .liste{grid-template-columns:minmax(0,1fr)}
+  .madde,.madde:first-child,.madde:last-child{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:18px;padding:26px 0;border-left:0;border-top:1px solid color-mix(in srgb,var(--sari) 22%,transparent)}
+  .madde:last-child{padding-bottom:0}
+  .madde .ikon{grid-row:1 / span 2;margin-top:2px}
+  .madde h3{margin-top:0}
+}
+@media (max-width:479px){
+  .madde,.madde:first-child,.madde:last-child{grid-template-columns:28px minmax(0,1fr);column-gap:14px}
+  .madde .ikon{width:28px;height:28px}
+}
