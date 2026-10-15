@@ -95,3 +95,32 @@ test("Bayilik Başvurusu düğmesi bayimiz-olun bölümüne gider", async ({ pag
   await expect(page).toHaveURL(/\/bayilerimiz#bayimiz-olun$/);
   await expect(page.locator("#bayimiz-olun")).toBeInViewport();
 });
+
+for (const [g, y] of [
+  [768, 1024],
+  [800, 1280],
+  [820, 1180],
+  [834, 1194],
+  [1024, 1366],
+] as const) {
+  for (const yol of ["/bayilerimiz", "/en/locations"]) {
+    test(`${yol} ${g}x${y}: sayfa açılışında FAB görünür`, async ({ page }) => {
+      await page.setViewportSize({ width: g, height: y });
+      await page.goto(yol);
+      const fab = page.locator("[data-wa-fab]");
+      await expect(fab).toHaveAttribute("data-gizli", "false");
+      await expect(fab).toBeVisible();
+    });
+  }
+}
+
+test("anasayfa bayilik plakası görünürken FAB çekilir, üstte görünür", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 520 });
+  await page.goto("/");
+  const fab = page.locator("[data-wa-fab]");
+  await expect(fab).toHaveAttribute("data-gizli", "false");
+  await page.locator("[data-fab-gizle]").first().scrollIntoViewIfNeeded();
+  await expect(fab).toHaveAttribute("data-gizli", "true");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(fab).toHaveAttribute("data-gizli", "false");
+});

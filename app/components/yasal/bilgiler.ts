@@ -49,10 +49,11 @@ export const YASAL_OPSIYONEL: readonly YasalAlan[] = ["kep", "mersisNo"];
 // Düz metin yeterli olan alanlar dilden bağımsızdır; geri kalanı TR ve EN ayrı yazılmalıdır.
 const DILDEN_BAGIMSIZ: readonly YasalAlan[] = ["unvan", "mersisNo", "vergiDairesi", "vergiNo", "eposta", "kep"];
 
-const YER_TUTUCU = /\[[^\]]*\]|\.\.\.|…|^-$|\btodo\b|\bTBD\b|\bTBC\b|\bTBA\b|\bXXX+\b|DE[GĞ][Iİı]?[SŞ][Iİı]?T[Iİı]R|lorem|müşteriden alınacak/i;
+const YER_TUTUCU =
+  /\[[^\]]*\]|\.\.\.|…|^-$|(?<!\p{L})(?:todo|TBD|TBC|TBA|XXX+|lorem|değiştir|degistir)(?!\p{L})|müşteriden alınacak/iu;
 
-const SIFIR_GENISLIK = /[\u200B\u200C\u200D\uFEFF]/;
-const YER_TUTUCU_TAM = new Set(["n/a", "na", "?", "--", "x", "xx"]);
+const SIFIR_GENISLIK = /[\u200B\u200C\u200D\u2060\u00AD\uFEFF]/;
+const YER_TUTUCU_TAM = new Set(["n/a", "na", "n.a.", "n.a", "?", "--", "x", "xx", "yok", "yok.", "belirtilmedi", "belirtilmedi."]);
 
 function metinSorunu(metin: string, alan: YasalAlan): string | null {
   const m = metin.trim();
@@ -61,13 +62,13 @@ function metinSorunu(metin: string, alan: YasalAlan): string | null {
   const kucuk = m.toLocaleLowerCase("tr");
   if (!/[\p{L}\p{N}]/u.test(m)) return "yalnız noktalama veya sembol";
   if (YER_TUTUCU_TAM.has(kucuk)) return "yer tutucu içeriyor";
-  if (YER_TUTUCU.test(m) || YER_TUTUCU.test(kucuk) || kucuk.includes("müşteriden alınacak")) return "yer tutucu içeriyor";
+  if (YER_TUTUCU.test(m) || YER_TUTUCU.test(kucuk) || YER_TUTUCU.test(kucuk.replace(/ı/g, "i")) || kucuk.includes("müşteriden alınacak")) return "yer tutucu içeriyor";
   if (alan === "eposta" && !epostaGecerli(m)) return "geçerli e-posta biçiminde değil";
   return null;
 }
 
 function kopyaAnahtar(m: string): string {
-  return m.toLocaleLowerCase("tr").replace(/[^\p{L}\p{N}\s]/gu, "").replace(/\s+/g, " ").trim();
+  return m.toLocaleLowerCase("tr").replace(/[iıİI]/gu, "i").replace(/[^\p{L}\p{N}\s]/gu, "").replace(/\s+/g, " ").trim();
 }
 
 // Alanın yayına hazır olup olmadığı: sorun yoksa null, varsa nedeni döner.

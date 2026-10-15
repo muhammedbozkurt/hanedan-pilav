@@ -106,13 +106,33 @@ test("TR/EN kopya denetimi noktalama, büyük harf ve boşluk farkını yok saya
   assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki("Iğdır, 2 yıl!", "ığdır 2 yıl") }), ["saklamaSuresi"]);
 });
 
-test("check:yayin IP özeti temizlik görevi bayrağı true olmadan başarısız verir", async () => {
-  const { spawnSync } = await import("node:child_process");
-  const { SITE } = await import("../../app/content/site.ts");
-  const sonuc = spawnSync(process.execPath, ["scripts/check-yayin.ts"], { encoding: "utf8" });
-  assert.equal(typeof SITE.ipTemizlikGorevi.kuruldu, "boolean");
-  if (!SITE.ipTemizlikGorevi.kuruldu) {
-    assert.equal(sonuc.status, 1);
-    assert.match(sonuc.stderr, /Plesk zamanlanmış IP özeti temizlik görevi kurulmadı/);
+test("IP özeti temizlik görevi kapısı her iki bayrak değerinde doğru karar verir", async () => {
+  const { ipGorevHatasi } = await import("../../scripts/yayin-kapi.ts");
+  assert.match(ipGorevHatasi(false) ?? "", /Plesk zamanlanmış IP özeti temizlik görevi kurulmadı/);
+  assert.equal(ipGorevHatasi(true), null);
+});
+
+test("gerçek Türkçe yasal cümleler yer tutucu sayılmaz", () => {
+  const cumleler = [
+    "Mevzuat değiştirildiğinde güncellenir.",
+    "Değiştirilen kayıtlar 2 yıl saklanır.",
+    "Talep sonuçlanana kadar, yok sayılmaz.",
+    "Bu işletmede belirtilmedik bir aktarım yapılmaz.",
+    "Sunucu kayıtları 90 gün tutulur ve sonra otomatik silinir.",
+    "Iğdır, İstanbul ve Ankara dışındaki kayıtlar da aynı sürede silinir.",
+  ];
+  for (const c of cumleler) {
+    assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki(c, `${c} (EN)`) }), [], c);
   }
+});
+
+test("yeni yer tutucular: U+2060, U+00AD, tam değer yok/belirtilmedi/n.a.", () => {
+  for (const yt of ["a\u2060b", "Hane\u00ADdan", "yok", "Yok", "belirtilmedi", "n.a.", "N.A.", "DEĞİŞTİR", "değiştir", "DEGISTIR"]) {
+    assert.deepEqual(alanlar({ ...TAM, unvan: yt }), ["unvan"], yt);
+  }
+});
+
+test("TR/EN kopya karşılaştırması i/ı/İ/I farkını yok sayar", () => {
+  assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki("IĞDIR 2 YIL", "iğdir 2 yil") }), ["saklamaSuresi"]);
+  assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki("İzmir 2 yıl", "Izmir 2 yil") }), ["saklamaSuresi"]);
 });

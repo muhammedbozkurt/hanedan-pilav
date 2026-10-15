@@ -6,8 +6,8 @@ import { WhatsAppGlyph } from "./WhatsApp.tsx";
 import s from "./WhatsAppFab.module.css";
 
 // `data-fab-gizle` taşıyan bir bölüm (ör. kendi WhatsApp/form eylemi olan bölümler) iki durumda FAB'ı çeker:
-// görünür alanın yeterli kısmını kapladığında, ya da FAB'ın kapladığı alt şeritle kesiştiği sürece (şerit kuralı
-// form gibi uzun bölümlerde FAB'ın alanları örttüğü ara konumları kapatır).
+// görünür alanın yeterli kısmını kapladığında, ya da içindeki form FAB'ın kapladığı alt şeritle kesiştiği sürece
+// (şerit kuralı yalnız formu izler; formsuz bölümlerde tablet boylarında sayfa açılışında FAB'ı gereksiz gizlerdi).
 const SERIT_PAYI = 12;
 const ESIKLER = Array.from({ length: 21 }, (_, i) => i / 20);
 
@@ -15,6 +15,13 @@ function yeterinceGorunur(g: IntersectionObserverEntry): boolean {
   if (!g.isIntersecting) return false;
   const olcu = Math.min(g.boundingClientRect.height, window.innerHeight);
   return olcu > 0 && g.intersectionRect.height >= olcu * 0.3;
+}
+
+// Formlu bölümde iki kural da formu izler: uzun bölümün yalnız üst kısmı görünürken FAB boş yere gizlenmez.
+function izle(el: Element, oranGozcu: IntersectionObserver, seritGozcu: IntersectionObserver) {
+  const form = el.querySelector("form");
+  oranGozcu.observe(form ?? el);
+  if (form) seritGozcu.observe(form);
 }
 
 export function WhatsAppFab() {
@@ -57,22 +64,26 @@ export function WhatsAppFab() {
         { rootMargin: `-${Math.max(0, window.innerHeight - yukseklik)}px 0px 0px 0px` },
       );
       gozculer = [oranGozcu, seritGozcu];
-      for (const el of izlenen) for (const g of gozculer) g.observe(el);
+      for (const el of izlenen) izle(el, oranGozcu, seritGozcu);
     };
     kur();
     const tara = () => {
       for (const el of document.querySelectorAll("[data-fab-gizle]")) {
         if (!izlenen.has(el)) {
           izlenen.add(el);
-          for (const g of gozculer) g.observe(el);
+          if (gozculer[0] && gozculer[1]) izle(el, gozculer[0], gozculer[1]);
         }
       }
       for (const el of izlenen) {
         if (!el.isConnected) {
-          for (const g of gozculer) g.unobserve(el);
+          const form = el.querySelector("form");
+          gozculer[0]?.unobserve(form ?? el);
+          if (form) {
+            gozculer[1]?.unobserve(form);
+            serit.delete(form);
+          }
           izlenen.delete(el);
-          oran.delete(el);
-          serit.delete(el);
+          oran.delete(form ?? el);
         }
       }
       guncelle();

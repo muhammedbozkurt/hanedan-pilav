@@ -4,13 +4,17 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { YASAL_EKSIKLER } from "../app/components/yasal/bilgiler.ts";
 import { SITE } from "../app/content/site.ts";
+import { ipGorevHatasi } from "./yayin-kapi.ts";
 
 const kok = resolve(process.argv[2] ?? "build/client");
 const hatalar: string[] = [];
 
 for (const e of YASAL_EKSIKLER) hatalar.push(`yasal bilgi eksik [${e.alan}]: ${e.not}`);
 if (!SITE.whatsapp.dogrulandi) hatalar.push(`WhatsApp numarası (${SITE.whatsapp.numara}) doğrulanmadı (site.ts whatsapp.dogrulandi).`);
-if (!SITE.ipTemizlikGorevi.kuruldu) hatalar.push("Plesk zamanlanmış IP özeti temizlik görevi kurulmadı; README yayın bölümüne bakın.");
+{
+  const ipHata = ipGorevHatasi(SITE.ipTemizlikGorevi.kuruldu);
+  if (ipHata) hatalar.push(ipHata);
+}
 if (!SITE.eposta) hatalar.push("Kurumsal e-posta yok (site.ts eposta).");
 
 async function oku(ad: string): Promise<string | null> {
