@@ -1,0 +1,3 @@
+PHPMailer 6.12.0
+Kaynak: https://github.com/PHPMailer/PHPMailer/releases/tag/v6.12.0
+Dosyalar: src/PHPMailer.php, src/SMTP.php, src/Exception.php, LICENSE (LGPL-2.1). Tek değişiklik: PHPMailer.php içindeki bir yorum satırında orta tire (U+2013) düz tire yapıldı (metin kapısı için); kod aynı.

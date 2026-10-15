@@ -13,6 +13,7 @@
     "check:rotalar": "node scripts/check-rotalar.ts",
     "serve": "node scripts/sunucu.ts build/client 8781",
     "test:e2e": "playwright test",
+    "test:php": "PHP=8.2 npx -y @php-wasm/cli tests/php/form-test.php",
     "verify": "npm run typecheck && npm run check:metin && npm run build && npm run check:rotalar && npm run test:e2e"
   },
   "dependencies": {

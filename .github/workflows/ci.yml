@@ -24,6 +24,13 @@ jobs:
       - name: Bağımlılıklar
         run: npm ci
 
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: PHP form testleri
+        run: php tests/php/form-test.php
+
       - name: Playwright Chromium
         run: npx playwright install --with-deps chromium
 
