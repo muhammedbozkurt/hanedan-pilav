@@ -43,10 +43,6 @@ export const tr = {
     yasal: "Yasal",
     telif: (yil: number) => `© ${KURULUS_YILI}-${yil} Hanedan Pilav`,
   },
-  gorsel: {
-    alan: "Fotoğraf alanı",
-    foto: "Fotoğraf",
-  },
   sayfalar: {
     kvkk: {
       meta: {

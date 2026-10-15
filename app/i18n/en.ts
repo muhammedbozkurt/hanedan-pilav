@@ -50,10 +50,6 @@ export const en: Sozluk = {
     yasal: "Legal",
     telif: (yil) => `© ${KURULUS_YILI}-${yil} Hanedan Pilav`,
   },
-  gorsel: {
-    alan: "Photo slot",
-    foto: "Photo",
-  },
   sayfalar: {
     kvkk: {
       meta: {
