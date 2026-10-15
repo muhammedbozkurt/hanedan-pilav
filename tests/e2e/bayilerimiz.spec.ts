@@ -274,7 +274,7 @@ const DETAYLAR = [
     yolTarifi: /^Yol tarifi al \(yeni sekmede açılır\)$/,
     not: "İlçe merkezi gösterilir, adres noktası değildir.",
     geri: "Tüm bayiler",
-    bulunamadi: "Sayfa bulunamadı.",
+    bulunamadi: "Bu sayfa menüde yok.",
   },
   {
     yol: "/en/locations/sultangazi-merkez",
@@ -286,7 +286,7 @@ const DETAYLAR = [
     yolTarifi: /^Get Directions \(opens in a new tab\)$/,
     not: "Shows the district center, not a street address.",
     geri: "All locations",
-    bulunamadi: "Page not found.",
+    bulunamadi: "This page isn’t on the menu.",
   },
 ] as const;
 
