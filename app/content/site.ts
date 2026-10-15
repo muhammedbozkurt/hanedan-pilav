@@ -56,7 +56,11 @@ export const SITE = {
       "Yurt dışına aktarım cümlesi (TR/EN). Sağlayıcılardan biri yurt dışındaysa KVKK md. 9 dayanağı (yeterlilik kararı, Kurula bildirilen standart sözleşme vb.) yazılır; yoksa 'yurt dışına aktarılmaz' denir.",
     ),
     saklamaSuresi: todo("Form e-postalarının saklama süresi (TR/EN), örneğin talebin sonuçlanmasından itibaren kaç ay/yıl."),
-    ipSuresi: todo("Hız sınırı için IP adresinin tutulduğu süre (TR/EN); form betiğindeki değerle aynı olmalı."),
+    // Form betiğinin gerçek davranışı: yalnız geçerli gönderimde IP'nin HMAC özeti oluşur, pencere_sn (600) dolunca betiğe gelen ilk istekte silinir.
+    ipSuresi: {
+      tr: "IP adresinizin kendisi değil, ondan türetilen tek yönlü bir özet 10 dakikalık hız sınırı penceresi boyunca kullanılır; pencere dolduktan sonra form betiğine gelen ilk istekte kalıcı olarak silinir.",
+      en: "Not your IP address itself but a one-way hash derived from it is used for the 10-minute rate-limit window; once the window has passed, it is permanently deleted on the next request to the form script.",
+    },
     sunucuKayitlari: todo(
       "Barındırma sunucusunun erişim kaydı (IP, tarih/saat, istenen sayfa) tutup tutmadığı ve saklama süresi (TR/EN).",
     ),

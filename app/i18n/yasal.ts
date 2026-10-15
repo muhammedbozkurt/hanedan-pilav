@@ -124,7 +124,7 @@ export const yasalTr: YasalSozluk = {
               {
                 etiket: "Başvuru bilgisi",
                 deger: [
-                  "Seçtiğiniz ilçe, mevcut bir işletmenizin olup olmadığı, düşündüğünüz lokasyon ve mesajınızın içeriği",
+                  "Seçtiğiniz ilçe, mevcut bir işletmenizin olup olmadığı, düşündüğünüz bölge ve mesajınızın içeriği",
                 ],
               },
             ],
