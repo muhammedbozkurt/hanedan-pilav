@@ -7,15 +7,8 @@ import { Gorsel } from "~/components/Gorsel.tsx";
 import { Ikon } from "~/components/Ikon.tsx";
 import { usePaths } from "~/i18n/index.ts";
 import { useKurumsal } from "~/i18n/kurumsal.ts";
-import type { Dil } from "~/lib/rotalar.ts";
+import { CATERING_CAPASI, teklifYolu } from "~/lib/rotalar.ts";
 import s from "./Catering.module.css";
-
-// Çapa iki dilde aynıdır, dış bağlantılar /kurumsal#catering ve /en/about#catering olarak kurulabilir.
-const CAPA = "catering";
-
-// İletişim sayfası konu ön seçimini bu sorgu anahtarından okur (TR ?konu=, EN ?topic=).
-const KONU_ANAHTARI: Readonly<Record<Dil, string>> = { tr: "konu", en: "topic" };
-const TEKLIF_KONUSU = "catering";
 
 const ALANLAR = [
   { anahtar: "kurumsal", ikon: BuildingsIcon },
@@ -25,10 +18,9 @@ const ALANLAR = [
 
 export function Catering() {
   const m = useKurumsal().catering;
-  const { dil, yol } = usePaths();
-  const teklifYolu = `${yol("iletisim")}?${new URLSearchParams({ [KONU_ANAHTARI[dil]]: TEKLIF_KONUSU })}`;
+  const { dil } = usePaths();
   return (
-    <Bolum id={CAPA} baslikId="catering-baslik">
+    <Bolum id={CATERING_CAPASI} baslikId="catering-baslik">
       <div className={s.izgara}>
         <div className={s.metin}>
           <h2 id="catering-baslik">{m.baslik}</h2>
@@ -42,7 +34,7 @@ export function Catering() {
               </li>
             ))}
           </ul>
-          <Buton to={teklifYolu} className={s.eylem}>
+          <Buton to={teklifYolu(dil)} className={s.eylem}>
             {m.eylem}
           </Buton>
         </div>

@@ -57,6 +57,7 @@ const tr = {
     pin: "Merkez",
     karadeniz: "Karadeniz",
     marmara: "Marmara Denizi",
+    ariaEtiket: (merkez: string) => `İstanbul haritası, merkez: ${merkez}`,
   },
   galeri: {
     baslik: "Kazandan tabağa.",
@@ -128,6 +129,7 @@ const en: AnasayfaSozluk = {
     pin: "HQ",
     karadeniz: "Black Sea",
     marmara: "Sea of Marmara",
+    ariaEtiket: (merkez) => `Map of Istanbul, headquarters: ${merkez}`,
   },
   galeri: {
     baslik: "From the pot to the plate.",

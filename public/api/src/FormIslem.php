@@ -146,10 +146,6 @@ final class FormIslem
         }
         $v['mesaj'] = $mesaj;
 
-        if (self::metin($post['kvkk'] ?? '') === '') {
-            $hata['kvkk'] = 'bos';
-        }
-
         if ($tur === 'iletisim') {
             $konu = self::metin($post['konu'] ?? '');
             if (!array_key_exists($konu, self::KONULAR)) {
@@ -300,7 +296,6 @@ final class FormIslem
                 $satirlar[] = 'Düşünülen lokasyon: ' . $v['lokasyon'];
             }
         }
-        $satirlar[] = 'KVKK Aydınlatma Metni okundu: Evet';
         if ($v['mesaj'] !== '') {
             $satirlar[] = '';
             $satirlar[] = 'Mesaj:';

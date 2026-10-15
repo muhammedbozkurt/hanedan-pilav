@@ -1,6 +1,6 @@
 .sayfa-baslik{padding-top:clamp(32px,4.4vw,60px)}
 .ic{padding-bottom:clamp(40px,5vw,72px);padding-right:var(--fab-serit);border-bottom:2px solid var(--kara)}
-.geri{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-bottom:12px;font:750 15px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+.geri{display:flex;width:fit-content;align-items:center;gap:8px;min-height:44px;margin-bottom:12px;font:750 15px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
 .geri :global(.ikon){width:18px;height:18px;margin-top:-3px;transition:transform .2s var(--egri)}
 .geri:hover :global(.ikon){transform:translateX(-3px)}
 .etiket{margin-bottom:20px}

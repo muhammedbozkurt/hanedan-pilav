@@ -36,6 +36,11 @@ export const BAYILIK_CAPASI: Readonly<Record<Dil, string>> = {
   en: "become-a-franchisee",
 };
 
+// Kurumsal sayfadaki toplu yemek bölümünün çapası (iki dilde aynı) ve iletişim formunun konu ön seçimi sözleşmesi.
+export const CATERING_CAPASI = "catering";
+export const KONU_SORGU_ANAHTARI: Readonly<Record<Dil, string>> = { tr: "konu", en: "topic" };
+export const TEKLIF_KONUSU = "catering";
+
 export function rotaId(dil: Dil, anahtar: SayfaAnahtari): string {
   return `${dil}.${anahtar}`;
 }
@@ -69,6 +74,14 @@ export function yol(anahtar: SayfaAnahtari, dil: Dil, params: Parametreler = {})
 
 export function bayilikYolu(dil: Dil): string {
   return `${yol("bayilerimiz", dil)}#${BAYILIK_CAPASI[dil]}`;
+}
+
+export function cateringYolu(dil: Dil): string {
+  return `${yol("kurumsal", dil)}#${CATERING_CAPASI}`;
+}
+
+export function teklifYolu(dil: Dil): string {
+  return `${yol("iletisim", dil)}?${new URLSearchParams({ [KONU_SORGU_ANAHTARI[dil]]: TEKLIF_KONUSU })}`;
 }
 
 export function sayfaYollari(anahtar: SayfaAnahtari, dil: Dil): string[] {

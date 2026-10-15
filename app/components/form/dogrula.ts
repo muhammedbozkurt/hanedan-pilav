@@ -10,8 +10,7 @@ export type AlanAdi =
   | "mesaj"
   | "ilce"
   | "mevcut_isletme"
-  | "lokasyon"
-  | "kvkk";
+  | "lokasyon";
 export type HataKodu = "bos" | "uzun" | "gecersiz";
 export type Hatalar = Partial<Record<AlanAdi, HataKodu>>;
 
@@ -69,8 +68,6 @@ export function dogrula(tur: FormTuru, v: Readonly<Record<string, string>>): Hat
   if (KONTROL.test(mesaj)) h.mesaj = "gecersiz";
   else if (mesaj === "" && tur === "iletisim") h.mesaj = "bos";
   else if ([...mesaj].length > LIMIT.mesaj) h.mesaj = "uzun";
-
-  if (al("kvkk") === "") h.kvkk = "bos";
 
   if (tur === "iletisim") {
     if (!konuCoz(al("konu"))) h.konu = "gecersiz";

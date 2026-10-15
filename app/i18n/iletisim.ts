@@ -6,7 +6,7 @@ const tr = {
   meta: {
     baslik: "İletişim · Hanedan Pilav",
     aciklama:
-      "Hanedan Pilav iletişim bilgileri: telefon, WhatsApp, çalışma saatleri ve Sultangazi’deki merkez adresimiz. Soru, bayilik ve toplu yemek talepleriniz için formu doldurun.",
+      "Hanedan Pilav iletişim: telefon, WhatsApp, çalışma saatleri ve Sultangazi’deki merkez adresimiz. Bayilik ve toplu yemek talepleriniz için formu doldurun.",
   },
   baslik: {
     etiket: "İletişim",
@@ -51,7 +51,7 @@ const en: IletisimSozluk = {
   meta: {
     baslik: "Contact · Hanedan Pilav",
     aciklama:
-      "Contact Hanedan Pilav: phone, WhatsApp, business hours and our headquarters address in Sultangazi, Istanbul. Send us your questions, franchise inquiries or catering requests.",
+      "Contact Hanedan Pilav: phone, WhatsApp, hours and our Sultangazi, Istanbul headquarters. Send us your franchise inquiries or catering requests.",
   },
   baslik: {
     etiket: "Contact",

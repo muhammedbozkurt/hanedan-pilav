@@ -30,6 +30,7 @@ export function HaritaTanitim() {
             kirpma="tum"
             vurgulu={merkez ? [merkez.slug] : []}
             pinler={merkez ? [{ ilce: merkez.slug, etiket: `${m.pin} · ${SITE.adres.ilce}` }] : []}
+            ariaEtiket={m.ariaEtiket(SITE.adres.ilce)}
             className={s.harita}
           />
           <span className={cx(s.deniz, s.karadeniz)} aria-hidden="true">

@@ -3,9 +3,9 @@ import { Buton } from "~/components/Buton.tsx";
 import { Gorsel } from "~/components/Gorsel.tsx";
 import { useAnasayfa } from "~/i18n/anasayfa.ts";
 import { useLang, useT } from "~/i18n/index.ts";
-import { bayilikYolu } from "~/lib/rotalar.ts";
+import { bayilikYolu, teklifYolu } from "~/lib/rotalar.ts";
 import s from "./Acilis.module.css";
-import { galeriGorseli, teklifYolu } from "./yardimci.ts";
+import { galeriGorseli } from "./yardimci.ts";
 
 // Dükkân cephesi: sayfanın tek h1'i, iki eylem ve vitrin çerçeveli açılış fotoğrafı (vitrin motifi yalnız burada).
 export function Acilis() {

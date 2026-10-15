@@ -17,7 +17,6 @@ async function doldur(page: Page) {
   await page.getByLabel(/^(Telefon|Phone)/).fill("0532 123 45 67");
   await page.getByLabel(/^(E-posta|Email)/).fill("ayse@example.com");
   await page.getByLabel(/^(Mesajınız|Your message)/).fill("100 kişilik yemek için fiyat almak istiyoruz.");
-  await page.getByRole("checkbox").check();
 }
 
 test.describe("iletişim formu: doğrulama ve odak", () => {
@@ -29,15 +28,14 @@ test.describe("iletişim formu: doğrulama ve odak", () => {
 
     const ad = page.getByLabel(/^Ad soyad/);
     await expect(ad).toBeFocused();
-    for (const alan of [ad, page.getByLabel(/^Telefon/), page.getByLabel(/^E-posta/), page.getByLabel(/^Mesajınız/), page.getByRole("checkbox")]) {
+    for (const alan of [ad, page.getByLabel(/^Telefon/), page.getByLabel(/^E-posta/), page.getByLabel(/^Mesajınız/)]) {
       await expect(alan).toHaveAttribute("aria-invalid", "true");
       const tarif = await alan.getAttribute("aria-describedby");
       expect(tarif).toBeTruthy();
       for (const id of (tarif ?? "").split(" ")) await expect(page.locator(`[id="${id}"]`)).toBeVisible();
     }
     await expect(page.getByText("Lütfen adınızı ve soyadınızı yazın.")).toBeVisible();
-    await expect(page.getByText("Göndermek için KVKK")).toBeVisible();
-    await expect(page.getByRole("status").filter({ hasText: "5 alanda düzeltme gerekiyor." })).toBeVisible();
+    await expect(page.getByRole("status").filter({ hasText: "4 alanda düzeltme gerekiyor." })).toBeVisible();
     await expect(page.getByLabel(/^Firma/)).not.toHaveAttribute("aria-invalid", "true");
   });
 
@@ -58,7 +56,7 @@ test.describe("iletişim formu: doğrulama ve odak", () => {
     await page.getByRole("button", { name: "Send" }).click();
     await expect(page.getByLabel(/^Full name/)).toBeFocused();
     await expect(page.getByText("Please enter your full name.")).toBeVisible();
-    await expect(page.getByText("To send the form, please confirm that you have read the KVKK Privacy Notice.")).toBeVisible();
+    await expect(page.getByRole("status").filter({ hasText: "4 fields need your attention." })).toBeVisible();
   });
 });
 
@@ -78,11 +76,18 @@ test.describe("iletişim formu: konu önseçimi", () => {
     });
   }
 
-  test("KVKK bağlantısı dile göre doğru sayfaya gider", async ({ page }) => {
+  test("bilgi notu gönder düğmesinin üstünde, bağlantısı dile göre doğru sayfaya gider; onay kutusu yok", async ({ page }) => {
     await page.goto(TR);
-    await expect(page.locator("form").getByRole("link", { name: "KVKK Aydınlatma Metni" })).toHaveAttribute("href", "/kvkk");
+    const trForm = page.locator("form");
+    await expect(trForm.getByRole("checkbox")).toHaveCount(0);
+    await expect(trForm.getByText("Kişisel verileriniz, talebinizi yanıtlamak için KVKK Aydınlatma Metni’nde açıklandığı şekilde işlenir.")).toBeVisible();
+    await expect(trForm.getByRole("link", { name: "KVKK Aydınlatma Metni" })).toHaveAttribute("href", "/kvkk");
+    const not = await trForm.getByRole("link", { name: "KVKK Aydınlatma Metni" }).boundingBox();
+    const dugme = await trForm.getByRole("button", { name: "Gönder" }).boundingBox();
+    expect(not!.y).toBeLessThan(dugme!.y);
     await page.goto(EN);
-    await expect(page.locator("form").getByRole("link", { name: "KVKK Privacy Notice" })).toHaveAttribute("href", "/en/privacy");
+    await expect(page.locator("form").getByText("Your personal data is processed to respond to your request, as described in our Privacy Notice.")).toBeVisible();
+    await expect(page.locator("form").getByRole("link", { name: "Privacy Notice" })).toHaveAttribute("href", "/en/privacy");
   });
 });
 
@@ -109,7 +114,7 @@ test.describe("iletişim formu: spam tuzağı ve JS'siz çalışma", () => {
     await expect(form.locator('input[name="form"]')).toHaveValue("iletisim");
     await expect(form.locator('input[name="lang"]')).toHaveValue("tr");
     await expect(page.getByLabel(/^Ad soyad/)).toHaveAttribute("required", "");
-    await expect(page.getByRole("checkbox")).toHaveAttribute("required", "");
+    await expect(page.getByRole("checkbox")).toHaveCount(0);
     await baglam.close();
   });
 
@@ -153,7 +158,7 @@ test.describe("iletişim formu: gönderim (fetch taklidi)", () => {
     await expect(durum).toBeVisible();
     expect(istek).not.toBeNull();
     expect(istek!.accept).toContain("application/json");
-    for (const parca of ['name="konu"\r\n\r\ncatering', 'name="kurum_kodu"\r\n\r\n\r\n', 'name="gecen_ms"', 'name="form"\r\n\r\niletisim', 'name="kvkk"']) {
+    for (const parca of ['name="konu"\r\n\r\ncatering', 'name="kurum_kodu"\r\n\r\n\r\n', 'name="gecen_ms"', 'name="form"\r\n\r\niletisim']) {
       expect(istek!.govde).toContain(parca);
     }
     await expect(page.getByLabel(/^Ad soyad/)).toHaveValue("");
@@ -218,19 +223,18 @@ test.describe("doğrulama kuralları (bayilik dahil) ve PHP ile eşleşme", () =
     telefon: "+90 532 123 45 67",
     eposta: "can@example.com",
     ilce: "Şişli",
-    kvkk: "on",
   };
 
-  test("bayilik: geçerli kayıt hatasız, eksik ilçe ve KVKK hatalı", () => {
+  test("bayilik: geçerli kayıt hatasız, eksik ilçe hatalı", () => {
     expect(dogrula("bayilik", gecerliBayilik)).toEqual({});
-    expect(dogrula("bayilik", { ...gecerliBayilik, ilce: "", kvkk: "" })).toEqual({ ilce: "bos", kvkk: "bos" });
+    expect(dogrula("bayilik", { ...gecerliBayilik, ilce: "" })).toEqual({ ilce: "bos" });
     expect(dogrula("bayilik", { ...gecerliBayilik, ilce: ISTANBUL_DISI, mevcut_isletme: "evet" })).toEqual({});
     expect(dogrula("bayilik", { ...gecerliBayilik, mevcut_isletme: "belki" })).toEqual({ mevcut_isletme: "gecersiz" });
     expect(dogrula("bayilik", { ...gecerliBayilik, lokasyon: "x".repeat(201) })).toEqual({ lokasyon: "uzun" });
   });
 
   test("iletişim: mesaj zorunlu, konu geçerli olmalı, satır sonu reddedilir", () => {
-    const temel = { konu: "genel", ad: "A", telefon: "05321234567", eposta: "a@b.co", mesaj: "m", kvkk: "on" };
+    const temel = { konu: "genel", ad: "A", telefon: "05321234567", eposta: "a@b.co", mesaj: "m" };
     expect(dogrula("iletisim", temel)).toEqual({});
     expect(dogrula("iletisim", { ...temel, mesaj: " " })).toEqual({ mesaj: "bos" });
     expect(dogrula("iletisim", { ...temel, konu: "x" })).toEqual({ konu: "gecersiz" });

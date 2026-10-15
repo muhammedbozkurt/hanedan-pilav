@@ -170,37 +170,17 @@ export function SecenekGrubu({
   );
 }
 
-export function KvkkOnayi({ idOnek, hata }: { idOnek: string; hata?: string | undefined }) {
+export function BilgiNotu() {
   const m = useFormT();
   const { yol } = usePaths();
-  const id = alanId(idOnek, "kvkk");
-  const hataId = hata ? `${id}-hata` : undefined;
   return (
-    <div className={s.alan}>
-      <div className={s.onay}>
-        <input
-          id={id}
-          name="kvkk"
-          type="checkbox"
-          value="on"
-          required
-          aria-invalid={Boolean(hata)}
-          aria-describedby={hataId}
-        />
-        <label htmlFor={id}>
-          {m.kvkk.once}
-          <Link className={s.baglanti} to={yol("kvkk")}>
-            {m.kvkk.link}
-          </Link>
-          {m.kvkk.sonra}
-          <span className={s.yildiz} aria-hidden="true">
-            {" "}
-            {m.zorunluIsaret}
-          </span>
-        </label>
-      </div>
-      {hata && hataId ? <HataMetni id={hataId} metin={hata} /> : null}
-    </div>
+    <p className={s.bilgiNotu}>
+      {m.bilgiNotu.once}
+      <Link className={s.baglanti} to={yol("kvkk")}>
+        {m.bilgiNotu.link}
+      </Link>
+      {m.bilgiNotu.sonra}
+    </p>
   );
 }
 

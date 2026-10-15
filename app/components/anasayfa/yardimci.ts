@@ -1,18 +1,5 @@
 import { GALERI, type GaleriOgesi } from "~/content/galeri.ts";
-import { type Dil, yol } from "~/lib/rotalar.ts";
-
-// Kurumsal sayfadaki Catering bölümüyle aynı sözleşme (app/components/kurumsal/Catering.tsx): bölüm çapası ve iletişim formunun konu anahtarı.
-const CATERING_CAPASI = "catering";
-const KONU_ANAHTARI: Readonly<Record<Dil, string>> = { tr: "konu", en: "topic" };
-const TEKLIF_KONUSU = "catering";
-
-export function cateringYolu(dil: Dil): string {
-  return `${yol("kurumsal", dil)}#${CATERING_CAPASI}`;
-}
-
-export function teklifYolu(dil: Dil): string {
-  return `${yol("iletisim", dil)}?${new URLSearchParams({ [KONU_ANAHTARI[dil]]: TEKLIF_KONUSU })}`;
-}
+import type { Dil } from "~/lib/rotalar.ts";
 
 type GorselBilgisi = { konu: string; not: string; src?: string; alt?: string };
 

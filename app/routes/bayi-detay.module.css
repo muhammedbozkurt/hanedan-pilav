@@ -1,6 +1,4 @@
 .bolum{padding-top:clamp(36px,4.4vw,64px)}
-/* Geri bağlantısı ile tür etiketi aynı satıra düşmesin: etiket kendi satırına iner. */
-.ust-baslik a:first-child+span{display:flex;width:fit-content}
 .duzen{display:grid;gap:40px}
 /* Üstteki çizgi sayfa başlığının alt kenarıdır; liste ikinci bir kalın çizgiyle açılmaz. */
 .bilgi{padding-right:var(--fab-serit)}

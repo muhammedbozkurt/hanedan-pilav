@@ -82,7 +82,7 @@ const en: KurumsalSozluk = {
   meta: {
     baslik: "About Us · Hanedan Pilav",
     aciklama:
-      "Hanedan Pilav since 1998: one metric ton of daily production capacity, rigorous hygiene standards, locations across Istanbul and catering for companies and events.",
+      "Hanedan Pilav since 1998: one metric ton of daily production capacity, strict hygiene standards, locations across Istanbul and catering for companies.",
   },
   baslik: {
     etiket: "About us",

@@ -23,6 +23,8 @@ test.describe("seo meta", () => {
       const aciklama = (await meta(page, 'meta[name="description"]')) ?? "";
       expect(aciklama.length).toBeGreaterThan(0);
       expect(aciklama.length, "description <= 160").toBeLessThanOrEqual(160);
+      expect(aciklama.endsWith("…"), "description sözlükte kısaltılmış olmalı, seo.ts kesmesine düşmemeli").toBe(false);
+      expect(baslik.endsWith("…"), "title seo.ts kesmesine düşmemeli").toBe(false);
 
       const url = `${SITE.alanAdi}${yol}`;
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", url);

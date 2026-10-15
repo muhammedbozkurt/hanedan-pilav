@@ -26,7 +26,7 @@ export const formTr = {
   ipucu: { telefon: "Örnek: 0532 123 45 67", lokasyon: "Mahalle, cadde ya da semt" },
   ilce: { sec: "İlçe seçin", istanbulDisi: "İstanbul dışı" },
   isletme: { evet: "Evet", hayir: "Hayır" },
-  kvkk: { once: "", link: "KVKK Aydınlatma Metni", sonra: "’ni okudum." },
+  bilgiNotu: { once: "Kişisel verileriniz, talebinizi yanıtlamak için ", link: "KVKK Aydınlatma Metni", sonra: "’nde açıklandığı şekilde işlenir." },
   hata: {
     konu: { bos: "Lütfen bir konu seçin.", gecersiz: "Lütfen listeden bir konu seçin." },
     ad: { bos: "Lütfen adınızı ve soyadınızı yazın.", uzun: "Ad soyad en fazla 100 karakter olabilir.", gecersiz: "Ad soyad satır sonu içeremez." },
@@ -45,7 +45,6 @@ export const formTr = {
     ilce: { bos: "Lütfen ilçenizi seçin.", gecersiz: "Lütfen listeden bir ilçe seçin." },
     mevcut_isletme: { gecersiz: "Lütfen Evet ya da Hayır seçin." },
     lokasyon: { uzun: "Lokasyon en fazla 200 karakter olabilir.", gecersiz: "Lokasyon satır sonu içeremez." },
-    kvkk: { bos: "Göndermek için KVKK Aydınlatma Metni’ni okuduğunuzu onaylayın." },
     varsayilan: "Bu alanı kontrol edin.",
   },
   durum: {
@@ -88,7 +87,7 @@ export const formEn: FormMetni = {
   ipucu: { telefon: "Example: +90 532 123 45 67", lokasyon: "Neighborhood, street, or area" },
   ilce: { sec: "Select a district", istanbulDisi: "Outside Istanbul" },
   isletme: { evet: "Yes", hayir: "No" },
-  kvkk: { once: "I have read the ", link: "KVKK Privacy Notice", sonra: "." },
+  bilgiNotu: { once: "Your personal data is processed to respond to your request, as described in our ", link: "Privacy Notice", sonra: "." },
   hata: {
     konu: { bos: "Please choose a topic.", gecersiz: "Please choose a topic from the list." },
     ad: { bos: "Please enter your full name.", uzun: "Your name can be up to 100 characters.", gecersiz: "Your name cannot contain line breaks." },
@@ -107,7 +106,6 @@ export const formEn: FormMetni = {
     ilce: { bos: "Please select your district.", gecersiz: "Please select a district from the list." },
     mevcut_isletme: { gecersiz: "Please choose Yes or No." },
     lokasyon: { uzun: "Location can be up to 200 characters.", gecersiz: "Location cannot contain line breaks." },
-    kvkk: { bos: "To send the form, please confirm that you have read the KVKK Privacy Notice." },
     varsayilan: "Please check this field.",
   },
   durum: {

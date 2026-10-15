@@ -47,6 +47,18 @@ export const SITE = {
     vergiDairesi: todo("Vergi dairesi müşteriden alınacak."),
     vergiNo: todo("Vergi numarası müşteriden alınacak."),
     mersisNo: todo("MERSİS numarası müşteriden alınacak."),
+    eposta: todo("Kurumsal e-posta adresi: KVKK başvuruları buraya gelir, formlar buraya iletilir."),
+    kep: todo("KEP adresi. İşletmenin KEP adresi yoksa null yapılır, başvuru yollarından KEP satırı kalkar."),
+    barindirma: todo("Barındırma sağlayıcısının unvanı ve sunucunun bulunduğu ülke."),
+    epostaSaglayici: todo("Kurumsal e-posta hizmeti sağlayıcısının unvanı ve sunucularının bulunduğu ülke."),
+    yurtDisiAktarim: todo(
+      "Yurt dışına aktarım cümlesi (TR/EN). Sağlayıcılardan biri yurt dışındaysa KVKK md. 9 dayanağı (yeterlilik kararı, Kurula bildirilen standart sözleşme vb.) yazılır; yoksa 'yurt dışına aktarılmaz' denir.",
+    ),
+    saklamaSuresi: todo("Form e-postalarının saklama süresi (TR/EN), örneğin talebin sonuçlanmasından itibaren kaç ay/yıl."),
+    ipSuresi: todo("Hız sınırı için IP adresinin tutulduğu süre (TR/EN); form betiğindeki değerle aynı olmalı."),
+    sunucuKayitlari: todo(
+      "Barındırma sunucusunun erişim kaydı (IP, tarih/saat, istenen sayfa) tutup tutmadığı ve saklama süresi (TR/EN).",
+    ),
   },
 } as const;
 

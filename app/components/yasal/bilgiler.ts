@@ -23,28 +23,20 @@ export const YASAL_ALANLAR = [
 
 export type YasalAlan = (typeof YASAL_ALANLAR)[number];
 
-function eksik(not: string): Todo {
-  return { todo: not };
-}
-
-// site.ts'de karşılığı olan alanlar oradan okunur; site.ts'de henüz yeri olmayanlar burada tanımlıdır.
+// Tüm değerler site.ts `yasal` altından okunur; doldurulacak yer orasıdır.
 export const YASAL_BILGI: Readonly<Record<YasalAlan, YasalDeger>> = {
   unvan: SITE.yasal.unvan,
   mersisNo: SITE.yasal.mersisNo,
   vergiDairesi: SITE.yasal.vergiDairesi,
   vergiNo: SITE.yasal.vergiNo,
-  eposta: SITE.eposta ?? eksik("Kurumsal e-posta adresi: KVKK başvuruları buraya gelir, formlar buraya iletilir."),
-  kep: eksik("KEP adresi. İşletmenin KEP adresi yoksa null yapılır, başvuru yollarından KEP satırı kalkar."),
-  barindirma: eksik("Barındırma sağlayıcısının unvanı ve sunucunun bulunduğu ülke."),
-  epostaSaglayici: eksik("Kurumsal e-posta hizmeti sağlayıcısının unvanı ve sunucularının bulunduğu ülke."),
-  yurtDisiAktarim: eksik(
-    "Yurt dışına aktarım cümlesi (TR/EN). Sağlayıcılardan biri yurt dışındaysa KVKK md. 9 dayanağı (yeterlilik kararı, Kurula bildirilen standart sözleşme vb.) yazılır; yoksa 'yurt dışına aktarılmaz' denir.",
-  ),
-  saklamaSuresi: eksik("Form e-postalarının saklama süresi (TR/EN), örneğin talebin sonuçlanmasından itibaren kaç ay/yıl."),
-  ipSuresi: eksik("Hız sınırı için IP adresinin tutulduğu süre (TR/EN); form betiğindeki değerle aynı olmalı."),
-  sunucuKayitlari: eksik(
-    "Barındırma sunucusunun erişim kaydı (IP, tarih/saat, istenen sayfa) tutup tutmadığı ve saklama süresi (TR/EN).",
-  ),
+  eposta: SITE.eposta ?? SITE.yasal.eposta,
+  kep: SITE.yasal.kep,
+  barindirma: SITE.yasal.barindirma,
+  epostaSaglayici: SITE.yasal.epostaSaglayici,
+  yurtDisiAktarim: SITE.yasal.yurtDisiAktarim,
+  saklamaSuresi: SITE.yasal.saklamaSuresi,
+  ipSuresi: SITE.yasal.ipSuresi,
+  sunucuKayitlari: SITE.yasal.sunucuKayitlari,
 };
 
 export type YasalEksik = { readonly alan: YasalAlan; readonly not: string };

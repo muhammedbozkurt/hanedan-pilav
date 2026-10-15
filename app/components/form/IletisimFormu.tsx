@@ -1,15 +1,16 @@
 import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router";
-import { Ikili, ListeAlani, KvkkOnayi, MesajAlani, MetinAlani } from "./alanlar.tsx";
+import { Ikili, ListeAlani, MesajAlani, MetinAlani } from "./alanlar.tsx";
 import { KONULAR, LIMIT, konuCoz } from "./dogrula.ts";
 import { FormKabugu } from "./FormKabugu.tsx";
 import { useFormT } from "~/i18n/form.ts";
+import { KONU_SORGU_ANAHTARI } from "~/lib/rotalar.ts";
 
 // Konu önseçimi: TR ?konu=, EN ?topic= (ikisi de iki dilde çalışır). Sayfa prerender edildiği için istemcide uygulanır.
 function useKonuOnSecimi() {
   const ref = useRef<HTMLSelectElement>(null);
   const [arama] = useSearchParams();
-  const deger = konuCoz(arama.get("konu") ?? arama.get("topic"));
+  const deger = konuCoz(arama.get(KONU_SORGU_ANAHTARI.tr) ?? arama.get(KONU_SORGU_ANAHTARI.en));
   useEffect(() => {
     if (deger && ref.current) ref.current.value = deger;
   }, [deger]);
@@ -49,7 +50,6 @@ export function IletisimFormu({ className }: { className?: string }) {
             <MetinAlani ad="eposta" etiket={m.alanlar.eposta} idOnek={idOnek} tip="email" zorunlu autoComplete="email" maxLength={LIMIT.eposta} hata={hata("eposta")} />
           </Ikili>
           <MesajAlani ad="mesaj" etiket={m.alanlar.mesaj} idOnek={idOnek} zorunlu maxLength={LIMIT.mesaj} hata={hata("mesaj")} />
-          <KvkkOnayi idOnek={idOnek} hata={hata("kvkk")} />
         </>
       )}
     </FormKabugu>

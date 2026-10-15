@@ -55,7 +55,7 @@ function gecerliIletisim(array $ek = []): array
         'form' => 'iletisim', 'lang' => 'tr', 'konu' => 'catering',
         'ad' => 'Ayşe Yılmaz', 'firma' => 'Örnek A.Ş.', 'telefon' => '0 (532) 123 45 67',
         'eposta' => 'ayse@example.test', 'mesaj' => "Merhaba,\n100 kişilik yemek istiyoruz.",
-        'kvkk' => 'on', 'kurum_kodu' => '', 'gecen_ms' => '8000',
+        'kurum_kodu' => '', 'gecen_ms' => '8000',
     ], $ek);
 }
 
@@ -64,7 +64,7 @@ function gecerliBayilik(array $ek = []): array
     return array_replace([
         'form' => 'bayilik', 'lang' => 'en', 'ad' => 'Can Demir', 'telefon' => '+90 532 123 45 67',
         'eposta' => 'can@example.test', 'ilce' => 'Şişli', 'mevcut_isletme' => 'evet',
-        'lokasyon' => 'Mecidiyeköy', 'mesaj' => '', 'kvkk' => 'on', 'kurum_kodu' => '', 'gecen_ms' => '9000',
+        'lokasyon' => 'Mecidiyeköy', 'mesaj' => '', 'kurum_kodu' => '', 'gecen_ms' => '9000',
     ], $ek);
 }
 
@@ -83,9 +83,9 @@ function logOku(string $log): string
 $cfg = yapilandirma($tmp, $log);
 
 echo "Doğrulama\n";
-$s = FormIslem::isle(sunucu(), gecerliIletisim(['ad' => '', 'eposta' => '', 'mesaj' => '', 'kvkk' => '']), $cfg);
+$s = FormIslem::isle(sunucu(), gecerliIletisim(['ad' => '', 'eposta' => '', 'mesaj' => '']), $cfg);
 kontrol('eksik alan 422', $s['kod'] === 422);
-kontrol('eksik alan kodlari', ($s['json']['alanlar']['ad'] ?? '') === 'bos' && ($s['json']['alanlar']['kvkk'] ?? '') === 'bos' && ($s['json']['alanlar']['mesaj'] ?? '') === 'bos');
+kontrol('eksik alan kodlari', ($s['json']['alanlar']['ad'] ?? '') === 'bos' && ($s['json']['alanlar']['mesaj'] ?? '') === 'bos');
 kontrol('eksik alan posta yazmadi', logOku($log) === '');
 
 $s = FormIslem::isle(sunucu(), gecerliIletisim(['eposta' => 'yanlis@']), $cfg);

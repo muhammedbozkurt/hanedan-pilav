@@ -21,12 +21,11 @@
 .secenekler{display:flex;flex-wrap:wrap;gap:12px}
 .secenek{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:6px 18px 6px 14px;font:600 16px/1.2 var(--sans);background:var(--kraft-acik);border:2px solid var(--kara);border-radius:var(--r-dugme);cursor:pointer}
 .secenek:hover{background:var(--emaye)}
-.secenek input,.onay input{width:22px;height:22px;flex:none;accent-color:var(--kara)}
-.onay{display:flex;align-items:flex-start;gap:12px;font:500 16px/1.5 var(--sans)}
-.onay input{margin-top:2px}
-.onay label{cursor:pointer;padding-block:2px}
+.secenek input{width:22px;height:22px;flex:none;accent-color:var(--kara)}
 .baglanti{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 .baglanti:hover{background:var(--sari)}
+.bilgi-notu{margin-top:28px;font:500 14px/1.5 var(--sans);color:var(--ikincil)}
+.bilgi-notu+.eylem{margin-top:14px}
 .tuzak{position:absolute;left:-10000px;top:auto;width:0;height:0;overflow:hidden;visibility:hidden;pointer-events:none}
 .eylem{margin-top:28px}
 .gonder{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:3px 28px 0;font:750 17px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;color:var(--kara);background:var(--sari);border:2px solid var(--kara);border-radius:var(--r-dugme);box-shadow:0 4px 0 var(--kara);transition:transform .12s var(--egri),box-shadow .12s var(--egri),background-color .15s}

@@ -6,7 +6,7 @@ import { Ikon } from "~/components/Ikon.tsx";
 import { cx } from "~/lib/cx.ts";
 import { type FormMetni, hataMetni, useFormT } from "~/i18n/form.ts";
 import { useLang } from "~/i18n/index.ts";
-import { Tuzak } from "./alanlar.tsx";
+import { BilgiNotu, Tuzak } from "./alanlar.tsx";
 import { type AlanAdi, FORM_ADRESI, type FormTuru, type Hatalar, type HataKodu, dogrula } from "./dogrula.ts";
 import s from "./Form.module.css";
 
@@ -156,6 +156,7 @@ export function FormKabugu({ tur, gonderEtiket, children, className }: Props) {
       <Tuzak />
       <p className={s.zorunluNot}>{m.zorunluNot}</p>
       <div className={s.alanlar}>{children(baglam)}</div>
+      <BilgiNotu />
       <div className={s.eylem}>
         <button type="submit" className={s.gonder} aria-disabled={gonderiliyor}>
           {gonderiliyor ? m.gonder.gonderiliyor : gonderEtiket}

@@ -1,6 +1,6 @@
 import { ILCELER } from "~/content/ilceler.ts";
 import { useFormT } from "~/i18n/form.ts";
-import { Ikili, KvkkOnayi, ListeAlani, MesajAlani, MetinAlani, SecenekGrubu } from "./alanlar.tsx";
+import { Ikili, ListeAlani, MesajAlani, MetinAlani, SecenekGrubu } from "./alanlar.tsx";
 import { ISTANBUL_DISI, LIMIT } from "./dogrula.ts";
 import { FormKabugu } from "./FormKabugu.tsx";
 
@@ -46,7 +46,6 @@ export function BayilikFormu({ className }: { className?: string }) {
           />
           <MetinAlani ad="lokasyon" etiket={m.alanlar.lokasyon} idOnek={idOnek} maxLength={LIMIT.lokasyon} ipucu={m.ipucu.lokasyon} hata={hata("lokasyon")} />
           <MesajAlani ad="mesaj" etiket={m.alanlar.mesaj} idOnek={idOnek} maxLength={LIMIT.mesaj} hata={hata("mesaj")} />
-          <KvkkOnayi idOnek={idOnek} hata={hata("kvkk")} />
         </>
       )}
     </FormKabugu>

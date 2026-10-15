@@ -7,9 +7,8 @@ import { Bolum } from "~/components/Bolum.tsx";
 import { Ikon } from "~/components/Ikon.tsx";
 import { useAnasayfa } from "~/i18n/anasayfa.ts";
 import { usePaths } from "~/i18n/index.ts";
-import { bayilikYolu } from "~/lib/rotalar.ts";
+import { bayilikYolu, cateringYolu } from "~/lib/rotalar.ts";
 import s from "./Hizmetler.module.css";
-import { cateringYolu } from "./yardimci.ts";
 
 export function Hizmetler() {
   const m = useAnasayfa().hizmetler;

@@ -14,6 +14,7 @@ export type HaritaPin = {
 };
 
 export type HaritaKirpma = "tum" | "cekirdek";
+export type PinYonu = "sag" | "ust";
 export type HaritaVaryant = "tanitim" | "tam" | "mini";
 
 type Props = {
@@ -23,6 +24,10 @@ type Props = {
   secili?: string | null;
   onSec?: (slug: string) => void;
   kirpma?: HaritaKirpma;
+  // Salt okunur haritanın ekran okuyucu etiketi; verilmezse genel metin kullanılır.
+  ariaEtiket?: string;
+  // Pin etiketinin noktaya göre yönü.
+  pinYonu?: PinYonu;
   className?: string;
 };
 
@@ -31,7 +36,7 @@ const ILCE_ADI = new Map(ILCELER.map((i) => [i.slug, i.ad]));
 const MERKEZ = new Map(veri.ilceler.map((i) => [i.slug, i.merkez as readonly number[]]));
 const MINI_GENISLIK = 300;
 
-export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = null, onSec, kirpma, className }: Props) {
+export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = null, onSec, kirpma, ariaEtiket, pinYonu = "sag", className }: Props) {
   const dil = useLang();
   const m = HARITA_METNI[dil];
   const etkilesimli = varyant === "tam" && onSec !== undefined;
@@ -64,7 +69,7 @@ export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = nu
           className={s.svg}
           viewBox={`${kutu.x} ${kutu.y} ${kutu.g} ${kutu.h}`}
           role={etkilesimli ? "group" : "img"}
-          aria-label={etkilesimli ? m.grupAria : m.sadeceBilgiAria}
+          aria-label={etkilesimli ? m.grupAria : (ariaEtiket ?? m.sadeceBilgiAria)}
         >
           {veri.ilceler.map((i) => {
             const sinif = cx(
@@ -106,6 +111,7 @@ export function IstanbulHarita({ varyant, vurgulu = [], pinler = [], secili = nu
               <span
                 key={p.ilce}
                 className={s.pin}
+                data-yon={pinYonu}
                 style={{ left: `${((nx - kutu.x) / kutu.g) * 100}%`, top: `${((ny - kutu.y) / kutu.h) * 100}%` }}
               >
                 <span className={s.nokta} />
