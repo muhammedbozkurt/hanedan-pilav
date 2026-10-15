@@ -86,3 +86,33 @@ test("eposta geçerli e-posta biçiminde olmalı", () => {
   }
   assert.deepEqual(alanlar({ ...TAM, eposta: "info@hanedanpilav.com" }), []);
 });
+
+test("yalnız noktalama/sembol, kısa yer tutucular ve sıfır genişlikli karakterler reddedilir", () => {
+  for (const yt of ["N/A", "n/a", "?", "--", "x", "XX", "!!!", "***", "·", "\u200B", "\uFEFF", "Hanedan\u200BLtd", "\u200CAnkara", "a\u200Db"]) {
+    assert.deepEqual(alanlar({ ...TAM, unvan: yt }), ["unvan"], JSON.stringify(yt));
+    assert.deepEqual(alanlar({ ...TAM, barindirma: iki(yt, "Hosting Inc.") }), ["barindirma"], JSON.stringify(yt));
+  }
+  assert.deepEqual(alanlar({ ...TAM, unvan: "X Gıda A.Ş." }), []);
+});
+
+test("Türkçe yer tutucu büyük İ ile de yakalanır", () => {
+  for (const yt of ["MÜŞTERİDEN ALINACAK", "Müşteriden Alınacak", "müşteriden alınacak"]) {
+    assert.deepEqual(alanlar({ ...TAM, unvan: yt }), ["unvan"], yt);
+  }
+});
+
+test("TR/EN kopya denetimi noktalama, büyük harf ve boşluk farkını yok sayar", () => {
+  assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki("2 YIL.", "2  yıl") }), ["saklamaSuresi"]);
+  assert.deepEqual(alanlar({ ...TAM, saklamaSuresi: iki("Iğdır, 2 yıl!", "ığdır 2 yıl") }), ["saklamaSuresi"]);
+});
+
+test("check:yayin IP özeti temizlik görevi bayrağı true olmadan başarısız verir", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const { SITE } = await import("../../app/content/site.ts");
+  const sonuc = spawnSync(process.execPath, ["scripts/check-yayin.ts"], { encoding: "utf8" });
+  assert.equal(typeof SITE.ipTemizlikGorevi.kuruldu, "boolean");
+  if (!SITE.ipTemizlikGorevi.kuruldu) {
+    assert.equal(sonuc.status, 1);
+    assert.match(sonuc.stderr, /Plesk zamanlanmış IP özeti temizlik görevi kurulmadı/);
+  }
+});

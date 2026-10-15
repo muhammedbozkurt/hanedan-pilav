@@ -27,6 +27,8 @@ export const SITE = {
     // Numaranın WhatsApp hesabına bağlı olduğu müşteriyle henüz doğrulanmadı.
     dogrulandi: false,
   },
+  // Plesk zamanlanmış IP özeti temizlik görevi kurulunca true yapılır (README, "IP özeti temizliği").
+  ipTemizlikGorevi: { kuruldu: false },
   adres: {
     mahalle: "Yunus Emre Mah.",
     cadde: "Adem Yavuz Cd.",

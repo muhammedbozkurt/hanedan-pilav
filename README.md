@@ -114,7 +114,7 @@ Güvenlik önerileri:
 - [ ] Mevcut WordPress sitesinin dosya ve veritabanı yedeği alındı (elle, otomatikleştirilmez).
 - [ ] Canlı `httpdocs` içeriği yedekten sonra temizlendi (elle; `hanedan-config.php` web kökünün üstünde kalır).
 - [ ] `hanedan-config.php` canlı hesapta web kökünün bir üstünde, form e-posta ayarları doğru.
-- [ ] Plesk zamanlanmış görevi (aşağıdaki "IP özeti temizliği") kurulu ve çalışıyor; zorunludur, çünkü gizlilik metni özetin 10 dakikada bir silindiğini söyler.
+- [ ] Plesk zamanlanmış görevi (aşağıdaki "IP özeti temizliği") kurulu ve çalışıyor; görev kurulduktan sonra `app/content/site.ts` içinde `ipTemizlikGorevi.kuruldu` true yapılır (`check:yayin` bunu denetler); zorunludur, çünkü gizlilik metni özetin 10 dakikada bir silindiğini söyler.
 - [ ] `FTP_DIR_PRODUCTION` ayarlı, `production` environment onay kuralı tanımlı.
 - [ ] Actions sekmesinden "Deploy" elle çalıştırıldı ve onaylandı.
 - [ ] `scripts/yayin-kontrol.sh https://www.hanedanpilav.com production` hatasız.

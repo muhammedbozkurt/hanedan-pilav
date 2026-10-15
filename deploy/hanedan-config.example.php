@@ -43,7 +43,9 @@ return [
 
     // Hız sınırı özet dosyalarının dizini. Web kökünün DIŞINDA olmalı (ör. /var/www/vhosts/ALANADI/hanedan-hiz).
     // null ise sistem geçici dizini altında hanedan-hiz kullanılır (dizin bu PHP kullanıcısına ait ve 0700 değilse sınır uygulanmaz). Dizin yazılamazsa form çalışmayı sürdürür, sınır uygulanmaz.
-    'hiz_dizini' => null,
+    // Paylaşılan /tmp yerine bu önerilir: /tmp'de başka hesapların süreçleri dizini önceden açabilir ya da izlerini okuyabilir,
+    // bu durumda güvenlik denetimi sınırı sessizce devre dışı bırakır. Kendi hesabınıza ait özel bir dizin bunu önler.
+    'hiz_dizini' => dirname($_SERVER['DOCUMENT_ROOT'] ?? __DIR__) . '/hanedan-hiz',
 
     // Zorunlu: en az 32 karakterlik rastgele bir dize (ör. `openssl rand -hex 32` çıktısı). Boş, 32 karakterden
     // kısa ya da "DEGISTIR" içerirse form 500 döner.

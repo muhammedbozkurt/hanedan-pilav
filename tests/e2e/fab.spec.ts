@@ -43,29 +43,50 @@ test("data-fab-gizle bölümü görünürken FAB çekilir", async ({ page }) => 
   await expect(fab).toHaveAttribute("data-gizli", "false");
 });
 
-test("iletişim formu görünürken FAB çekilir ve form alanlarını hiçbir kaydırma konumunda örtmez (390)", async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 780 });
-  await page.goto("/iletisim");
-  const fab = page.locator("[data-wa-fab]");
-  const form = page.locator("form").first();
-  await form.scrollIntoViewIfNeeded();
-  await expect(fab).toHaveAttribute("data-gizli", "true");
-  const alanlar = form.locator("input:not([type=hidden]), textarea, select, button[type=submit]");
-  const adet = await alanlar.count();
-  expect(adet).toBeGreaterThan(3);
-  for (let i = 0; i < adet; i++) {
-    const alan = alanlar.nth(i);
-    if (!(await alan.isVisible())) continue;
-    await alan.scrollIntoViewIfNeeded();
-    const f = await fab.boundingBox();
-    const b = await alan.boundingBox();
-    if (!f || !b || !(await fab.isVisible())) continue;
-    const kesisir = f.x < b.x + b.width && f.x + f.width > b.x && f.y < b.y + b.height && f.y + f.height > b.y;
-    expect(kesisir, `FAB ${i}. alanı örtüyor`).toBe(false);
-  }
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await expect(fab).toHaveAttribute("data-gizli", "false");
-});
+for (const [yol, genislik] of [
+  ["/iletisim", 360],
+  ["/iletisim", 390],
+  ["/en/contact", 360],
+  ["/en/contact", 390],
+] as const) {
+  test(`${yol} ${genislik}px: FAB form alanlarını ve etiketlerini hiçbir kaydırma konumunda örtmez (8 px adım)`, async ({ page }) => {
+    await page.setViewportSize({ width: genislik, height: 780 });
+    await page.goto(yol);
+    const fab = page.locator("[data-wa-fab]");
+    await expect(fab).toHaveAttribute("data-gizli", "false");
+    const sonuc = await page.evaluate(async () => {
+      const fabEl = document.querySelector("[data-wa-fab]") as HTMLElement;
+      const form = document.querySelector("form") as HTMLElement;
+      const kare = () => new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())));
+      const hedefler = Array.from(form.querySelectorAll("label, input:not([type=hidden]), textarea, select, button[type=submit]")) as HTMLElement[];
+      const ihlaller: string[] = [];
+      let gizliKare = 0;
+      const son = document.documentElement.scrollHeight - window.innerHeight;
+      for (let y = 0; y <= son + 8; y += 8) {
+        window.scrollTo(0, Math.min(y, son));
+        await kare();
+        const gizli = fabEl.getAttribute("data-gizli") === "true";
+        if (gizli) gizliKare++;
+        else {
+          const f = fabEl.getBoundingClientRect();
+          for (const h of hedefler) {
+            const b = h.getBoundingClientRect();
+            if (b.width === 0 || b.height === 0) continue;
+            if (f.left < b.right && f.right > b.left && f.top < b.bottom && f.bottom > b.top) {
+              ihlaller.push(`y=${Math.round(window.scrollY)} ${h.tagName.toLowerCase()}#${h.id || h.getAttribute("name") || h.textContent?.trim().slice(0, 20)}`);
+              break;
+            }
+          }
+        }
+      }
+      return { ihlaller, gizliKare };
+    });
+    expect(sonuc.ihlaller, "FAB görünürken örtülen alanlar").toEqual([]);
+    expect(sonuc.gizliKare).toBeGreaterThan(5);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(fab).toHaveAttribute("data-gizli", "false");
+  });
+}
 
 test("Bayilik Başvurusu düğmesi bayimiz-olun bölümüne gider", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });

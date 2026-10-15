@@ -51,12 +51,23 @@ const DILDEN_BAGIMSIZ: readonly YasalAlan[] = ["unvan", "mersisNo", "vergiDaires
 
 const YER_TUTUCU = /\[[^\]]*\]|\.\.\.|…|^-$|\btodo\b|\bTBD\b|\bTBC\b|\bTBA\b|\bXXX+\b|DE[GĞ][Iİı]?[SŞ][Iİı]?T[Iİı]R|lorem|müşteriden alınacak/i;
 
+const SIFIR_GENISLIK = /[\u200B\u200C\u200D\uFEFF]/;
+const YER_TUTUCU_TAM = new Set(["n/a", "na", "?", "--", "x", "xx"]);
+
 function metinSorunu(metin: string, alan: YasalAlan): string | null {
   const m = metin.trim();
   if (m === "") return "boş";
-  if (YER_TUTUCU.test(m)) return "yer tutucu içeriyor";
+  if (SIFIR_GENISLIK.test(m)) return "sıfır genişlikli karakter içeriyor";
+  const kucuk = m.toLocaleLowerCase("tr");
+  if (!/[\p{L}\p{N}]/u.test(m)) return "yalnız noktalama veya sembol";
+  if (YER_TUTUCU_TAM.has(kucuk)) return "yer tutucu içeriyor";
+  if (YER_TUTUCU.test(m) || YER_TUTUCU.test(kucuk) || kucuk.includes("müşteriden alınacak")) return "yer tutucu içeriyor";
   if (alan === "eposta" && !epostaGecerli(m)) return "geçerli e-posta biçiminde değil";
   return null;
+}
+
+function kopyaAnahtar(m: string): string {
+  return m.toLocaleLowerCase("tr").replace(/[^\p{L}\p{N}\s]/gu, "").replace(/\s+/g, " ").trim();
 }
 
 // Alanın yayına hazır olup olmadığı: sorun yoksa null, varsa nedeni döner.
@@ -73,7 +84,7 @@ export function alanSorunu(alan: YasalAlan, deger: YasalDeger | undefined): stri
     const sorun = typeof deger[dil] === "string" ? metinSorunu(deger[dil], alan) : "yok";
     if (sorun !== null) return `${dil.toUpperCase()} değeri ${sorun}`;
   }
-  if (!DILDEN_BAGIMSIZ.includes(alan) && deger.tr.trim() === deger.en.trim()) return "TR ve EN değer aynı (çeviri eksik olabilir)";
+  if (!DILDEN_BAGIMSIZ.includes(alan) && kopyaAnahtar(deger.tr) === kopyaAnahtar(deger.en)) return "TR ve EN değer aynı (çeviri eksik olabilir)";
   return null;
 }
 

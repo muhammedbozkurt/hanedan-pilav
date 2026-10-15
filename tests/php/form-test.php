@@ -301,7 +301,7 @@ flock($ya, LOCK_EX);
 $kilitDestegi = !flock($yb, LOCK_EX | LOCK_NB);
 fclose($ya);
 fclose($yb);
-$sahipDestegi = fileowner($tmp . '/yetenek') === getmyuid();
+$sahipDestegi = fileowner($tmp . '/yetenek') === (function_exists('posix_geteuid') ? posix_geteuid() : getmyuid());
 
 if ($kilitDestegi) {
     $cfgK = yapilandirma($tmp, $log, ['hiz_dizini' => $tmp . '/hiz-kilit']);
@@ -323,7 +323,7 @@ if ($kilitDestegi) {
     FormIslem::isle(sunucu(), gecerliIletisim(), $cfgK, 7001);
     kontrol('kilit serbest kalinca ozet yazilir', count(hizDosyalari($tmp . '/hiz-kilit')) === 1);
 } else {
-    kontrol('kilit sinamasi atlandi (flock engellemiyor)', true);
+    echo "  ATLANDI: kilit sinamasi (bu calisma ortaminda flock engellemiyor, php-wasm)\n";
 }
 
 if ($sahipDestegi) {
@@ -335,25 +335,22 @@ if ($sahipDestegi) {
     kontrol('dizinGuvenli: 0700 ve kendi dizinimiz', $guvenli->invoke(null, $tmp . '/g700') === true);
     kontrol('dizinGuvenli: 0755 reddedilir', $guvenli->invoke(null, $tmp . '/g755') === false);
 
-    $eskiTmp = getenv('TMPDIR');
-    $tmpK = $tmp . '/sistem-gecici';
-    mkdir($tmpK, 0700);
-    putenv('TMPDIR=' . $tmpK);
-    if (sys_get_temp_dir() === $tmpK) {
-        $cfgD = yapilandirma($tmp, $log);
-        unset($cfgD['hiz_dizini']);
-        mkdir($tmpK . '/hanedan-hiz', 0755);
-        chmod($tmpK . '/hanedan-hiz', 0755);
-        $s = FormIslem::isle(sunucu(), gecerliIletisim(), $cfgD, 7100);
-        kontrol('varsayilan dizin 0755 ise sinir atlanir, form calisir', $s['kod'] === 200 && hizDosyalari($tmpK . '/hanedan-hiz') === []);
-        chmod($tmpK . '/hanedan-hiz', 0700);
-        FormIslem::isle(sunucu(), gecerliIletisim(), $cfgD, 7101);
-        kontrol('varsayilan dizin 0700 ise sinir uygulanir', count(hizDosyalari($tmpK . '/hanedan-hiz')) === 1);
-    }
-    putenv($eskiTmp === false ? 'TMPDIR' : 'TMPDIR=' . $eskiTmp);
+    // sys_get_temp_dir() süreç boyunca önbelleğe alındığından varsayılan dizin yerine hizSiniriGec doğrudan
+    // varsayilan=true ve açık dizinle çağrılır; sahiplik ve izin dalı önbellekten bağımsız sınanır.
+    $sinir = new ReflectionMethod(FormIslem::class, 'hizSiniriGec');
+    $sinir->setAccessible(true);
+    $hizAyar = static fn (string $dizin): array => ['adet' => 5, 'pencere' => 600, 'dizin' => $dizin, 'varsayilan' => true];
+    $tuzV = 'test-tuzu-test-tuzu-test-tuzu-test-tuzu';
+    mkdir($tmp . '/v755', 0700);
+    chmod($tmp . '/v755', 0755);
+    kontrol('varsayilan dizin 0755 ise sinir atlanir, form calisir', $sinir->invoke(null, '203.0.113.9', $hizAyar($tmp . '/v755'), $tuzV, 7100) === true && hizDosyalari($tmp . '/v755') === []);
+    mkdir($tmp . '/v700', 0700);
+    $sinir->invoke(null, '203.0.113.9', $hizAyar($tmp . '/v700'), $tuzV, 7101);
+    kontrol('varsayilan dizin 0700 ise sinir uygulanir', count(hizDosyalari($tmp . '/v700')) === 1);
 } else {
     $guvenli = new ReflectionMethod(FormIslem::class, 'dizinGuvenli');
     $guvenli->setAccessible(true);
+    echo "  ATLANDI: dizinGuvenli 0700/0755 ve varsayilan dizin sinamalari (fileowner() bu ortamda getmyuid() ile eslesmiyor, php-wasm)\n";
     kontrol('sahip denetimi: sahip uyusmazsa dizin guvensiz sayilir (wasm)', $guvenli->invoke(null, $tmp . '/yetenek') === false);
 }
 

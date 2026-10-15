@@ -81,7 +81,7 @@ final class FormIslem
         if (!self::originIzinli($sunucu, $cfg)) {
             return $hata('origin', 403);
         }
-        $tuz = self::metin($cfg['hiz_tuzu'] ?? '');
+        $tuz = trim(self::metin($cfg['hiz_tuzu'] ?? ''));
         if (!self::tuzGecerli($tuz)) {
             error_log('hanedan-form: hiz_tuzu_gecersiz');
             return $hata('sunucu', 500);
@@ -331,7 +331,7 @@ final class FormIslem
 
     private static function tuzGecerli(string $tuz): bool
     {
-        return strlen($tuz) >= self::TUZ_EN_AZ && stripos($tuz, 'DEGISTIR') === false;
+        return strlen(trim($tuz)) >= self::TUZ_EN_AZ && stripos($tuz, 'DEGISTIR') === false;
     }
 
     /**
@@ -453,7 +453,7 @@ final class FormIslem
     private static function dizinGuvenli(string $dizin): bool
     {
         clearstatcache(true, $dizin);
-        $uid = getmyuid();
+        $uid = function_exists('posix_geteuid') ? posix_geteuid() : getmyuid();
         $sahip = @fileowner($dizin);
         $izin = @fileperms($dizin);
         return !is_link($dizin)
