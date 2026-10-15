@@ -1,0 +1,23 @@
+.plaka{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px 24px;align-items:center;background:var(--sari);border-radius:var(--r-plaka);box-shadow:inset 0 0 0 7px var(--sari),inset 0 0 0 9px var(--kara),0 5px 0 rgba(21,21,21,.22);padding:clamp(40px,5.6vw,84px)}
+.plaka::before{content:"";position:absolute;inset:17px;pointer-events:none;background:var(--vida) top left/10px 10px no-repeat,var(--vida) top right/10px 10px no-repeat,var(--vida) bottom left/10px 10px no-repeat,var(--vida) bottom right/10px 10px no-repeat}
+.metin{grid-column:1 / span 7}
+.metin h2{margin-top:20px;font-size:clamp(38px,5.2vw,76px);line-height:.96}
+.metin p{margin-top:20px;font-size:18px;line-height:1.55;font-weight:500;max-width:32em;text-wrap:pretty}
+.eylem{margin-top:32px}
+.iletisim{grid-column:9 / span 4;border-top:2px solid var(--kara)}
+.iletisim li{border-bottom:1px solid rgba(21,21,21,.28)}
+.satir{display:grid;grid-template-columns:30px minmax(0,1fr);gap:2px 14px;align-items:center;padding:16px 0 15px}
+.satir .simge{grid-row:1 / span 2;width:26px;height:26px}
+.k{font:700 12px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.v{font:750 24px/1.15 var(--slab);letter-spacing:.01em}
+a.satir:hover .v{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+@media (max-width:899px){
+  .metin,.iletisim{grid-column:1 / -1}
+}
+@media (max-width:639px){
+  .plaka{padding:44px 26px 34px;box-shadow:inset 0 0 0 6px var(--sari),inset 0 0 0 8px var(--kara),0 4px 0 rgba(21,21,21,.22)}
+  .plaka::before{inset:14px}
+  .metin,.iletisim{padding-right:max(0px,calc(var(--fab-serit) - 26px))}
+  .metin .eylem{width:100%}
+  .v{font-size:22px}
+}

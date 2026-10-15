@@ -1,33 +1,32 @@
-import { MapPinIcon } from "@phosphor-icons/react/MapPin";
-import { Buton } from "~/components/Buton.tsx";
-import { SayfaBasligi } from "~/components/SayfaBasligi.tsx";
-import { usePaths, useT } from "~/i18n/index.ts";
-import { bayilikYolu } from "~/lib/rotalar.ts";
-import { sayfaSeo } from "~/lib/seo.ts";
+import { Acilis } from "~/components/anasayfa/Acilis.tsx";
+import { BayilikPlakasi } from "~/components/anasayfa/BayilikPlakasi.tsx";
+import { GaleriSeridi } from "~/components/anasayfa/GaleriSeridi.tsx";
+import { HaritaTanitim } from "~/components/anasayfa/HaritaTanitim.tsx";
+import { HikayeOzet } from "~/components/anasayfa/HikayeOzet.tsx";
+import { Hizmetler } from "~/components/anasayfa/Hizmetler.tsx";
+import { Kunye } from "~/components/anasayfa/Kunye.tsx";
+import { anasayfaSozluk } from "~/i18n/anasayfa.ts";
+import { dilBul } from "~/lib/rotalar.ts";
+import { seo } from "~/lib/seo.ts";
 import type { Route } from "./+types/anasayfa";
 
-export const meta: Route.MetaFunction = ({ location }) => sayfaSeo("anasayfa", location.pathname);
+export const meta: Route.MetaFunction = ({ location }) => {
+  const dil = dilBul(location.pathname);
+  const m = anasayfaSozluk(dil).meta;
+  return seo({ anahtar: "anasayfa", dil, baslik: m.baslik, aciklama: m.aciklama });
+};
 
+// Bölüm sırası onaylı "E Esnaf Tabelası" referansıyla birebir aynıdır.
 export default function Anasayfa() {
-  const t = useT();
-  const { dil, yol } = usePaths();
-  const m = t.sayfalar.anasayfa;
   return (
-    <SayfaBasligi
-      baslik={
-        <>
-          {m.baslikBas} <span className="nw">{m.baslikSon}</span>
-        </>
-      }
-      giris={m.giris}
-      eylemler={
-        <>
-          <Buton to={bayilikYolu(dil)}>{t.nav.bayilik}</Buton>
-          <Buton to={yol("bayilerimiz")} varyant="emaye" ikon={MapPinIcon}>
-            {m.bayilerEylem}
-          </Buton>
-        </>
-      }
-    />
+    <>
+      <Acilis />
+      <Kunye />
+      <Hizmetler />
+      <HikayeOzet />
+      <HaritaTanitim />
+      <GaleriSeridi />
+      <BayilikPlakasi />
+    </>
   );
 }
