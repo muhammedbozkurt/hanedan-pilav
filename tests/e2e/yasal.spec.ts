@@ -90,7 +90,7 @@ test.describe("404 sayfaları", () => {
 
   // Bilinmeyen adreste sunucu prerender edilmiş /404 HTML'ini döner; istemci ise kök hata sınırını çizer.
   // HataIcerik.tsx'teki BulunamadiIcerik bu sayfanın gövdesini (SayfaBulunamadi) kullanana dek iki çıktı ayrışır.
-  test.fixme("bilinmeyen adreste 404 gövdesi hidrasyonda korunur, React hatası yok", async ({ page }) => {
+  test("bilinmeyen adreste 404 gövdesi hidrasyonda korunur, React hatası yok", async ({ page }) => {
     const hatalar: string[] = [];
     page.on("pageerror", (e) => hatalar.push(e.message));
     for (const y of ["/olmayan-sayfa", "/en/missing-page"]) {

@@ -1,20 +1,11 @@
 import { usePaths, useT } from "~/i18n/index.ts";
 import { Buton } from "./Buton.tsx";
 import { SayfaBasligi } from "./SayfaBasligi.tsx";
+import { SayfaBulunamadi } from "./yasal/SayfaBulunamadi.tsx";
 
-// 404 rotası ve kök hata sınırı aynı görünümü kullanır.
+// 404 rotası ve kök hata sınırı aynı görünümü kullanmalı; farklı olursa prerender HTML ile hidrasyon çakışır.
 export function BulunamadiIcerik() {
-  const t = useT();
-  const { yol } = usePaths();
-  const m = t.sayfalar.bulunamadi;
-  return (
-    <SayfaBasligi
-      etiket={m.etiket}
-      baslik={m.baslik}
-      giris={m.giris}
-      eylemler={<Buton to={yol("anasayfa")}>{m.eylem}</Buton>}
-    />
-  );
+  return <SayfaBulunamadi />;
 }
 
 export function HataIcerik({ ayrinti }: { ayrinti?: string }) {
