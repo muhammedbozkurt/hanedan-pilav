@@ -1,0 +1,2 @@
+.atla{position:fixed;left:12px;top:12px;z-index:100;background:var(--kara);color:var(--sari);font:700 15px/1 var(--sans);padding:14px 18px;border-radius:var(--r-dugme);transform:translateY(-200%);transition:transform .2s}
+.atla:focus{transform:none}

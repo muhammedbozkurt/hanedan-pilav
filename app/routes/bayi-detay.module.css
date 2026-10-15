@@ -1,0 +1,8 @@
+.bilgi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-right:var(--fab-serit)}
+.bilgi>div{border-top:2px solid var(--kara);padding-top:16px}
+.bilgi dt{display:flex;align-items:center;gap:10px;font:700 12.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.bilgi dt :global(.ikon){width:20px;height:20px}
+.bilgi dd{margin-top:10px;font:750 clamp(20px,1.8vw,24px)/1.3 var(--slab)}
+.bilgi dd a{display:inline-flex;align-items:center;min-height:44px}
+.bilgi dd a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+@media (max-width:899px){.bilgi{grid-template-columns:minmax(0,1fr)}}

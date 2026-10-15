@@ -1,0 +1,5 @@
+.foto{position:relative;border-radius:var(--r-plaka);overflow:hidden;background:var(--foto-zemin)}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cekim{position:absolute;left:clamp(16px,2.2vw,28px);right:clamp(16px,2.2vw,28px);bottom:clamp(16px,2.2vw,26px);display:grid;gap:4px;max-width:30em;font-size:13px;line-height:1.45;color:rgba(251,247,236,.66);transition:opacity .2s}
+.cekim b{display:flex;align-items:center;gap:8px;font-weight:600;color:rgba(251,247,236,.9)}
+.cekim b :global(.ikon){width:16px;height:16px;opacity:.85}

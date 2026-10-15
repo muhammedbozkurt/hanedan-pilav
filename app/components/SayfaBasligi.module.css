@@ -1,0 +1,19 @@
+.sayfa-baslik{padding-top:clamp(32px,4.4vw,60px)}
+.ic{padding-bottom:clamp(40px,5vw,72px);padding-right:var(--fab-serit);border-bottom:2px solid var(--kara)}
+.geri{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-bottom:12px;font:750 15px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+.geri :global(.ikon){width:18px;height:18px;margin-top:-3px;transition:transform .2s var(--egri)}
+.geri:hover :global(.ikon){transform:translateX(-3px)}
+.etiket{margin-bottom:20px}
+.ic h1{max-width:15em}
+.giris{margin-top:24px;font-size:clamp(16px,1.3vw,19px);line-height:1.55;font-weight:500;color:var(--ikincil);max-width:34em;text-wrap:pretty}
+.eylemler{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
+@media (max-width:639px){
+  .eylemler{display:grid;grid-template-columns:max-content;gap:14px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .ic>*{animation:yuksel .6s var(--egri) both}
+  .ic>:nth-child(2){animation-delay:.06s}
+  .ic>:nth-child(3){animation-delay:.12s}
+  .ic>:nth-child(4){animation-delay:.18s}
+}
+@keyframes yuksel{from{opacity:0;transform:translateY(14px)}}

@@ -1,0 +1,24 @@
+.mm{position:fixed;inset:0;z-index:60;background:var(--kara);color:var(--emaye);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.mm[hidden]{display:none}
+.bar{position:sticky;top:0;z-index:1;background:var(--sari);color:var(--kara);padding-bottom:var(--sacak-r);flex:none;
+  -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--sacak-r)) no-repeat,radial-gradient(circle at 50% 0,#000 calc(var(--sacak-r) - .5px),transparent var(--sacak-r)) bottom left/calc(2 * var(--sacak-r)) var(--sacak-r) repeat-x;
+  mask:linear-gradient(#000 0 0) top/100% calc(100% - var(--sacak-r)) no-repeat,radial-gradient(circle at 50% 0,#000 calc(var(--sacak-r) - .5px),transparent var(--sacak-r)) bottom left/calc(2 * var(--sacak-r)) var(--sacak-r) repeat-x}
+.bar-ic{height:calc(var(--bar-h) - var(--kisalt));display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bar :focus-visible{outline-color:var(--kara)}
+.logo{flex:none;display:flex;align-items:center;min-height:44px;border-radius:6px}
+.logo img{height:38px;width:auto}
+.kapat{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:3px 14px 0;border:2px solid var(--kara);border-radius:var(--r-dugme);font:750 16px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase}
+.kapat :global(.ikon){margin-top:-3px}
+.govde{flex:1;display:flex;flex-direction:column;gap:32px;padding-top:20px}
+.nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;font:800 clamp(34px,9vw,46px)/1.05 var(--slab);padding:16px 0 13px;border-bottom:1px solid rgba(251,247,236,.14)}
+.nav a[aria-current="page"]{color:var(--sari)}
+.nav a :global(.ikon){width:26px;height:26px;color:var(--sari)}
+.govde .cta{width:100%}
+.alt{display:grid;gap:14px;font-size:15px;color:var(--soluk)}
+.alt>a{display:inline-flex;align-items:center;gap:12px;min-height:44px;font:750 20px/1 var(--slab);color:var(--emaye);letter-spacing:.02em}
+.alt>a :global(.ikon){color:var(--sari)}
+.satir{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:8px}
+@media (prefers-reduced-motion:no-preference){
+  .mm:not([hidden]){animation:mm-gir .22s var(--egri)}
+}
+@keyframes mm-gir{from{opacity:0;transform:translateY(-8px)}}

@@ -1,0 +1,8 @@
+.fab{position:fixed;z-index:30;right:max(var(--fab-sag),calc(env(safe-area-inset-right) + 12px));bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px));display:block;border-radius:50%;transition:opacity .25s,transform .25s var(--egri),visibility .25s}
+.gizli{opacity:0;visibility:hidden;transform:translateY(14px)}
+.disk{width:var(--fab-d);height:var(--fab-d);display:grid;place-items:center;border-radius:50%;background:var(--wa);color:#fff;border:2px solid var(--kara);box-shadow:0 4px 0 var(--kara);transition:transform .15s var(--egri)}
+.glif{width:52%;height:52%}
+.etiket{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);padding:10px 12px 8px;background:var(--emaye);color:var(--kara);font:750 15px/1 var(--slab);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;border:2px solid var(--kara);border-radius:var(--r-dugme);opacity:0;pointer-events:none;transition:opacity .15s}
+.fab:hover .disk{transform:translateY(-2px)}
+.fab:hover .etiket,.fab:focus-visible .etiket{opacity:1}
+.fab:focus-visible{outline:3px solid var(--kara);outline-offset:6px;box-shadow:0 0 0 6px var(--sari);border-radius:50%}

@@ -1,0 +1,49 @@
+/*
+  "E Esnaf Tabelası" token'ları. Tek kaynak: renk, yazı, ölçü ve hareket burada tanımlanır; bileşenler yalnız bu değişkenleri kullanır.
+  Biçim kuralı: plakalar ve paneller 14px, düğmeler 8px, etiketler hap, WhatsApp diski daire.
+  Motif bütçesi: tente yalnız başlıkta, vitrin çerçevesi yalnız açılış fotoğrafında, vidalı emaye plaka yalnız bayilik kapanışında.
+*/
+:root{
+  --kraft:#D9C7A1;
+  --kraft-acik:#E5D6B6;
+  --kraft-koyu:#C4AF86;
+  --emaye:#FBF7EC;
+  --sari:#F4C20D;
+  --sari-acik:#FFD43B;
+  --kara:#151515;
+  --kara-hover:#2A2927;
+  --ikincil:#4A4234;
+  --soluk:#CFC6B3;
+  --deniz-yazi:#776B54;
+  --cizgi:rgba(21,21,21,.18);
+  --wa:#1DA851;
+  --slab:"Rokkitt",Rockwell,"Roboto Slab",Georgia,serif;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --kenar:clamp(18px,4vw,56px);
+  --kap:1320px;
+  --r-plaka:14px;
+  --r-dugme:8px;
+  --kanvas-h:10px;
+  --bar-h:72px;
+  --sacak-r:8px;
+  --kisalt:16px;
+  --ust-h:calc(var(--kanvas-h) + var(--bar-h) + var(--sacak-r));
+  --bolum:clamp(72px,9vw,128px);
+  --fab-d:58px;
+  --fab-sag:16px;
+  /* FAB şeridi: metin taşıyan bloklar sağda bu kadar boşluk bırakır, böylece FAB hiçbir kırılımda metnin üstüne düşmez. */
+  --fab-serit:max(0px,calc(var(--fab-d) + var(--fab-sag) + 8px - var(--kenar)));
+  --fab-pay:calc(var(--fab-d) + 36px + env(safe-area-inset-bottom));
+  --egri:cubic-bezier(.2,.7,.2,1);
+  --vida:radial-gradient(circle at 50% 50%,#fff 0 .9px,#8F877A 1.4px 3.6px,transparent 4.1px);
+  --foto-zemin:radial-gradient(110% 90% at 30% 15%,#5A5241,#2C2924 58%,#1C1B18);
+}
+@media (max-width:1099px){
+  :root{--bar-h:66px;--kanvas-h:8px;--kisalt:10px;--sacak-r:7px}
+}
+@media (max-width:1023px){
+  :root{--fab-d:52px;--fab-sag:12px}
+}
+@media (max-width:639px){
+  :root{--bar-h:62px;--kanvas-h:6px;--kisalt:8px;--sacak-r:6px;--bolum:76px}
+}
