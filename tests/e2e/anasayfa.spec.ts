@@ -10,7 +10,7 @@ const SAYFALAR = [
     bayilik: { ad: "Bayilik Başvurusu", yol: "/bayilerimiz#bayimiz-olun" },
     teklif: { ad: "Toplu Yemek Teklifi", yol: "/iletisim?konu=catering" },
     hizmetler: ["/bayilerimiz#bayimiz-olun", "/kurumsal#catering", "/bayilerimiz"],
-    kurumsal: { ad: "Kurumsal hikayemiz", yol: "/kurumsal" },
+    kurumsal: { ad: "Kurumsal hikâyemiz", yol: "/kurumsal" },
     bayiBul: { ad: "En Yakın Bayiyi Bul", yol: "/bayilerimiz" },
     galeri: { ad: "Tüm galeri", yol: "/galeri", serit: "Galeri şeridi" },
     pin: "Merkez · Sultangazi",
@@ -19,7 +19,7 @@ const SAYFALAR = [
   {
     yol: "/en",
     baslik: /^Hanedan Pilav · Made the same way since 1998$/,
-    aciklama: /Franchise opportunities, catering and locations across Istanbul/,
+    aciklama: /Franchise opportunities, catering, and locations across Istanbul/,
     bayilik: { ad: "Become a Franchisee", yol: "/en/locations#become-a-franchisee" },
     teklif: { ad: "Get a Catering Quote", yol: "/en/contact?topic=catering" },
     hizmetler: ["/en/locations#become-a-franchisee", "/en/about#catering", "/en/locations"],

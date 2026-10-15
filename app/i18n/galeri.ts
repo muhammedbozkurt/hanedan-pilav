@@ -40,11 +40,11 @@ export type GaleriMetin = typeof tr;
 const en: GaleriMetin = {
   meta: {
     baslik: "Gallery · Hanedan Pilav",
-    aciklama: "The Hanedan Pilav gallery: our production kitchen, the cook at the pot, event service and pilaf on the plate.",
+    aciklama: "The Hanedan Pilav gallery: our production kitchen, the cook at the pot, event service, and pilaf on the plate.",
   },
   etiket: "Gallery",
   baslik: "From the pot to the plate.",
-  giris: "From the pot to the serving table, frames from the Hanedan Pilav kitchen.",
+  giris: "From the pot to the serving table: scenes from the Hanedan Pilav kitchen.",
   filtre: {
     grup: "Filter by category",
     param: "category",
@@ -53,10 +53,10 @@ const en: GaleriMetin = {
       urunler: "Products",
       uretim: "Production",
       organizasyon: "Events",
-      bayiler: "Dealers",
+      bayiler: "Locations",
     },
   },
-  adet: (n: number) => (n === 1 ? "Showing 1 frame" : `Showing ${n} frames`),
+  adet: (n: number) => (n === 1 ? "Showing 1 photo" : `Showing ${n} photos`),
   bos: {
     baslik: "No photos in this category yet.",
     metin: "New photos will appear here as we shoot them.",

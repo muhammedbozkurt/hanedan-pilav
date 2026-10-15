@@ -21,6 +21,7 @@ for (const sayfa of SAYFALAR) {
       await expect(wa).toHaveAttribute("target", "_blank");
       await expect(wa).toHaveAttribute("rel", "noopener noreferrer");
       await expect(wa).toContainText(sayfa.dil === "tr" ? "yeni sekmede açılır" : "opens in a new tab");
+      await expect(wa).toContainText(sayfa.dil === "tr" ? "WhatsApp’tan yazın" : "Chat on WhatsApp");
     });
 
     test("yol tarifi bağlantısı kodlanmış adresle yeni sekmede açılır", async ({ page }) => {
@@ -53,7 +54,7 @@ for (const sayfa of SAYFALAR) {
       await page.goto(sayfa.yol);
       const harita = page.locator('main figure[data-varyant="mini"]');
       await expect(harita).toHaveCount(1);
-      await expect(harita).toContainText(sayfa.dil === "tr" ? "adres noktası değildir" : "not a street address");
+      await expect(harita).toContainText(sayfa.dil === "tr" ? "tam adresi değil" : "not the exact address");
       const atif = harita.getByRole("link", { name: /OpenStreetMap/ });
       await expect(atif).toHaveAttribute("href", /openstreetmap\.org/);
     });

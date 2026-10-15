@@ -1,6 +1,6 @@
 import type { MetaDescriptor } from "react-router";
 import { SITE } from "~/content/site.ts";
-import { sozluk } from "~/i18n/index.ts";
+import { type Sozluk, sozluk } from "~/i18n/index.ts";
 import { ACIKLAMA_UST_SINIR, BASLIK_UST_SINIR, sinirla } from "./metin-sinir.ts";
 import { DILLER, type Dil, type Parametreler, type SayfaAnahtari, VARSAYILAN_DIL, dilBul, yol } from "./rotalar.ts";
 
@@ -67,7 +67,8 @@ export function seo({ anahtar, dil, baslik: hamBaslik, aciklama: hamAciklama, pa
   return etiketler;
 }
 
-type SabitMetaliSayfa = Exclude<SayfaAnahtari, "bayiDetay">;
+// Yalnız metası genel sözlükte duran sayfalar; diğerleri metayı kendi sözlüğünden `seo()` ile verir.
+type SabitMetaliSayfa = keyof Sozluk["sayfalar"] & SayfaAnahtari;
 
 // Sabit başlık/açıklamalı sayfalar için kısa yol: dil, yoldan çözülür.
 export function sayfaSeo(anahtar: SabitMetaliSayfa, pathname: string, secenek: { indeksle?: boolean } = {}): MetaDescriptor[] {

@@ -271,8 +271,8 @@ const DETAYLAR = [
     ad: "Sultangazi Merkez",
     tur: "Merkez",
     saat: "Her gün 09:00-17:00",
-    yolTarifi: /^Yol tarifi al \(yeni sekmede açılır\)$/,
-    not: "İlçe merkezi gösterilir, adres noktası değildir.",
+    yolTarifi: /^Yol tarifi \(yeni sekmede açılır\)$/,
+    not: "İşaret ilçenin ortasını gösterir, tam adresi değil.",
     geri: "Tüm bayiler",
     bulunamadi: "Bu sayfa menüde yok.",
   },
@@ -282,9 +282,9 @@ const DETAYLAR = [
     baslik: /^Sultangazi Headquarters · Hanedan Pilav$/,
     ad: "Sultangazi Headquarters",
     tur: "Headquarters",
-    saat: "Every day, 09:00-17:00",
-    yolTarifi: /^Get Directions \(opens in a new tab\)$/,
-    not: "Shows the district center, not a street address.",
+    saat: "Open daily, 9 a.m. to 5 p.m.",
+    yolTarifi: /^Directions \(opens in a new tab\)$/,
+    not: "Pins mark the middle of the district, not the exact address.",
     geri: "All locations",
     bulunamadi: "This page isn’t on the menu.",
   },
@@ -317,11 +317,15 @@ for (const d of DETAYLAR) {
       await expect(page.getByRole("link", { name: d.geri, exact: true })).toHaveAttribute("href", d.liste);
     });
 
-    test("detay sayfası bayi JSON-LD'si içerir", async ({ page }) => {
+    test("detay sayfası bayi JSON-LD'si içerir: markalı ad, brand bağı", async ({ page }) => {
       await page.goto(d.yol);
       const bloklar = await page.locator('script[type="application/ld+json"]').allTextContents();
-      const bayi = bloklar.map((b) => JSON.parse(b) as { "@type"?: string; url?: string }).find((v) => v["@type"] === "FoodEstablishment");
+      type BayiLd = { "@type"?: string; url?: string; name?: string; brand?: unknown; parentOrganization?: unknown };
+      const bayi = bloklar.map((b) => JSON.parse(b) as BayiLd).find((v) => v["@type"] === "FoodEstablishment");
       expect(bayi?.url).toBe(`https://www.hanedanpilav.com${d.yol}`);
+      expect(bayi?.name).toBe(`Hanedan Pilav ${d.ad}`);
+      expect(bayi?.brand).toEqual({ "@id": "https://www.hanedanpilav.com/#organization" });
+      expect(bayi?.parentOrganization).toBeUndefined();
     });
 
     test("listeden detaya ve geri istemci tarafında geçilir", async ({ page }) => {

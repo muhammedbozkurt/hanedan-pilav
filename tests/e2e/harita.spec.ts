@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { ILCELER } from "../../app/content/ilceler.ts";
 
 const SAYFALAR = [
-  { yol: "/bayilerimiz", merkez: "Sultangazi, merkez", yok: "Esenler, bayi yok", atif: "© OpenStreetMap katkıda bulunanları" },
+  { yol: "/bayilerimiz", merkez: "Sultangazi, merkez", yok: "Esenler, bayi yok", atif: "© OpenStreetMap’e katkıda bulunanlar" },
   { yol: "/en/locations", merkez: "Sultangazi, headquarters", yok: "Esenler, no location", atif: "© OpenStreetMap contributors" },
 ];
 

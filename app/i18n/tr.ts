@@ -1,10 +1,12 @@
 // Türkçe sözlük. Tip kaynağıdır: en.ts bu tipi birebir sağlamak zorundadır.
+// `sayfalar` yalnız kendi sözlüğü olmayan sayfaların metasını tutar; diğer sayfaların metası kendi sözlüklerindedir.
+import { KURULUS_YILI } from "./olgular.ts";
 
 export const tr = {
   dil: { ad: "Türkçe", kisa: "TR", ogLocale: "tr_TR" },
   genel: {
     atla: "İçeriğe geç",
-    logoAlt: "Hanedan Pilav anasayfa",
+    logoAlt: "Hanedan Pilav ana sayfa",
     navAria: "Ana menü",
     dilAria: "Dil",
     secili: "seçili",
@@ -39,45 +41,13 @@ export const tr = {
     kvkk: "KVKK Aydınlatma Metni",
     cerez: "Çerez Politikası",
     yasal: "Yasal",
-    telif: (yil: number) => `© 1998-${yil} Hanedan Pilav`,
+    telif: (yil: number) => `© ${KURULUS_YILI}-${yil} Hanedan Pilav`,
   },
   gorsel: {
     alan: "Fotoğraf alanı",
     foto: "Fotoğraf",
   },
   sayfalar: {
-    anasayfa: {
-      meta: {
-        baslik: "Hanedan Pilav · 1998’den beri değişmeyen lezzet",
-        aciklama:
-          "Hanedan Pilav: 1998’den beri değişmeyen lezzet. Günlük 1 ton üretim kapasitesiyle bayilik ve toplu yemek hizmeti; merkezimiz Sultangazi, İstanbul.",
-      },
-    },
-    kurumsal: {
-      meta: {
-        baslik: "Kurumsal · Hanedan Pilav",
-        aciklama: "Hanedan Pilav’ın hikâyesi, üretim anlayışı ve ilkeleri: lezzet, hijyen ve süreklilik.",
-      },
-    },
-    bayilerimiz: {
-      meta: {
-        baslik: "Bayilerimiz · Hanedan Pilav",
-        aciklama:
-          "Hanedan Pilav şubeleri ve bayilik başvurusu. Size en yakın şubeyi bulun ya da kendi Hanedan Pilav şubenizi açmak için bize ulaşın.",
-      },
-    },
-    galeri: {
-      meta: {
-        baslik: "Galeri · Hanedan Pilav",
-        aciklama: "Hanedan Pilav galerisi: üretim mutfağı, kazan başı, organizasyon servisi ve tabakta pilav.",
-      },
-    },
-    iletisim: {
-      meta: {
-        baslik: "İletişim · Hanedan Pilav",
-        aciklama: "Hanedan Pilav iletişim bilgileri: telefon, WhatsApp ve Sultangazi’deki merkez adresimiz.",
-      },
-    },
     kvkk: {
       meta: {
         baslik: "KVKK Aydınlatma Metni · Hanedan Pilav",
@@ -95,7 +65,7 @@ export const tr = {
         baslik: "Sayfa bulunamadı · Hanedan Pilav",
         aciklama: "Aradığınız sayfa bulunamadı.",
       },
-      eylem: "Anasayfaya Dön",
+      eylem: "Ana Sayfaya Dön",
     },
   },
   hata: {
