@@ -1,5 +1,6 @@
 // Küçük statik sunucu: build/client çıktısını, LiteSpeed/Apache'de planlanan davranışla servis eder.
 // "/yol" dizinse yönlendirme yapmadan "/yol/index.html" döner; dosya yoksa dile göre 404 sayfası 404 koduyla döner.
+// Bayi detay alt ağaçlarında (/bayilerimiz/x, /en/locations/x) 404 içeriği yerine içeriksiz kabuk döner (public/**/.htaccess ile aynı).
 // Kullanım: node scripts/sunucu.ts <kök> <port>
 import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
@@ -53,7 +54,12 @@ const sunucu = createServer(async (istek, yanit) => {
     if (!dosya) {
       durum = 404;
       const en = url.pathname === "/en" || url.pathname.startsWith("/en/");
-      dosya = await coz(en ? "/en/404/index.html" : "/404/index.html");
+      const bayiKabugu = /^\/bayilerimiz\/[^/]+\/?$/.test(url.pathname)
+        ? "/__spa-fallback.html"
+        : /^\/en\/locations\/[^/]+\/?$/.test(url.pathname)
+          ? "/en/locations/__bilinmeyen.html"
+          : null;
+      dosya = await coz(bayiKabugu ?? (en ? "/en/404/index.html" : "/404/index.html"));
     }
     if (!dosya) {
       yanit.writeHead(404, { "content-type": "text/plain; charset=utf-8" }).end("404");

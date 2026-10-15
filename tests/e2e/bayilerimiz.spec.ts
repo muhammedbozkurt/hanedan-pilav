@@ -335,20 +335,17 @@ for (const d of DETAYLAR) {
     });
 
     test("bilinmeyen bayi 404 döner, konsolda React hatası yok", async ({ page }) => {
-      // Bilinen sınırlama: sunucu bilinmeyen adreste prerender /404 HTML'ini döner, istemci ise bayi-detay rotasını eşler; <head> içindeki
-      // rota CSS/modulepreload bağlantıları ayrıştığı için React #418 hidrasyon uyarısı verir ve istemci çizimine geri döner.
-      // Kapsam dışı (public/.htaccess, scripts/**) bir çözüm gerektirir; bu yüzden yalnız #418 ve belge 404 satırı ayıklanır.
       const hatalar: string[] = [];
-      const bilinen = /Minified React error #418|Failed to load resource: the server responded with a status of 404/;
       page.on("pageerror", (e) => hatalar.push(e.message));
+      // Tarayıcı, 404 kodlu belge için kendi "Failed to load resource" satırını yazar; yalnız belgenin kendi adresi ayıklanır.
       page.on("console", (c) => {
-        if (c.type() === "error") hatalar.push(c.text());
+        if (c.type() === "error" && c.location().url !== page.url()) hatalar.push(c.text());
       });
       const yanit = await page.goto(d.yol.replace("sultangazi-merkez", "olmayan-bayi"));
       expect(yanit?.status()).toBe(404);
       await expect(page.locator("h1")).toHaveText(d.bulunamadi);
       await page.waitForLoadState("networkidle");
-      expect(hatalar.filter((h) => !bilinen.test(h))).toEqual([]);
+      expect(hatalar).toEqual([]);
     });
   });
 }

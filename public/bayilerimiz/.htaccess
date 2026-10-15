@@ -1,0 +1,4 @@
+# Bilinmeyen bayi adresleri prerender 404 sayfasıyla değil içeriksiz SPA kabuğuyla yanıtlanır (gerçek 404 koduyla):
+# istemci router'ı bayi-detay rotasını eşleyip 404 içeriğini çizer, böylece React hidrasyon uyuşmazlığı oluşmaz.
+# Yalnız ErrorDocument içerir; kök .htaccess kuralları bu dizinde de geçerli kalır.
+ErrorDocument 404 /__spa-fallback.html

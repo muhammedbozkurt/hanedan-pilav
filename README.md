@@ -71,7 +71,7 @@ tests/e2e/            Playwright testleri
 
 ### Sunucu yapısı ve gizli yapılandırma
 
-- Web kökü (`httpdocs` veya alt alan adının kökü) `build/client` içeriğini alır. Sunucuda `.htaccess` kökte ve `en/` altında olmalıdır.
+- Web kökü (`httpdocs` veya alt alan adının kökü) `build/client` içeriğini alır. Sunucuda `.htaccess` kökte, `en/`, `en/locations/` ve `bayilerimiz/` altında olmalıdır (son ikisi bilinmeyen bayi adreslerini `ErrorDocument` ile 404 koduyla yanıtlar: TR `__spa-fallback.html`, EN `postbuild`in ürettiği `en/locations/__bilinmeyen.html`).
 - `hanedan-config.php` (örnek: `deploy/hanedan-config.example.php`) web kökünün bir üst dizinine elle konur; FTP dağıtımı web kökünün dışına dokunmaz ve bu dosyayı yüklemez.
 - FTP hesabının kök dizini web kökünün üstünü de görebiliyorsa `FTP_DIR_*` değişkeni yalnız web kökünü göstermelidir.
 
