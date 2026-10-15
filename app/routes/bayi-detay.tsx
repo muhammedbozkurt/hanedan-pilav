@@ -13,7 +13,7 @@ import { bayiBul } from "~/content/bayiler.ts";
 import { bayilerimizSozluk, useBayilerimiz } from "~/i18n/bayilerimiz.ts";
 import { usePaths, useT } from "~/i18n/index.ts";
 import { saatMetni } from "~/lib/iletisim.ts";
-import { bayiJsonLd, jsonLdMetni } from "~/lib/jsonld.ts";
+import { bayiCalismaSaatleri, bayiJsonLd, jsonLdMetni } from "~/lib/jsonld.ts";
 import { dilBul } from "~/lib/rotalar.ts";
 import { sayfaSeo, seo } from "~/lib/seo.ts";
 import type { Route } from "./+types/bayi-detay";
@@ -89,13 +89,15 @@ export default function BayiDetay({ params }: Route.ComponentProps) {
                   </dd>
                 </div>
               ) : null}
-              <div>
-                <dt>
-                  <Ikon ikon={ClockIcon} />
-                  {t.saat.etiket}
-                </dt>
-                <dd>{saatMetni(t)}</dd>
-              </div>
+              {bayiCalismaSaatleri(bayi) ? (
+                <div>
+                  <dt>
+                    <Ikon ikon={ClockIcon} />
+                    {t.saat.etiket}
+                  </dt>
+                  <dd>{saatMetni(t)}</dd>
+                </div>
+              ) : null}
             </dl>
           </div>
           {ilce ? (
