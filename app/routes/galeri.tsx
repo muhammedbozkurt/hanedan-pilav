@@ -1,28 +1,25 @@
 import { Bolum } from "~/components/Bolum.tsx";
-import { Gorsel } from "~/components/Gorsel.tsx";
+import { Izgara } from "~/components/galeri/Izgara.tsx";
 import { SayfaBasligi } from "~/components/SayfaBasligi.tsx";
-import { GALERI } from "~/content/galeri.ts";
-import { useLang, useT } from "~/i18n/index.ts";
-import { sayfaSeo } from "~/lib/seo.ts";
+import { galeriMetin } from "~/i18n/galeri.ts";
+import { useLang } from "~/i18n/index.ts";
+import { dilBul } from "~/lib/rotalar.ts";
+import { seo } from "~/lib/seo.ts";
 import type { Route } from "./+types/galeri";
-import s from "./galeri.module.css";
 
-export const meta: Route.MetaFunction = ({ location }) => sayfaSeo("galeri", location.pathname);
+export const meta: Route.MetaFunction = ({ location }) => {
+  const dil = dilBul(location.pathname);
+  const m = galeriMetin(dil).meta;
+  return seo({ anahtar: "galeri", dil, baslik: m.baslik, aciklama: m.aciklama });
+};
 
 export default function Galeri() {
-  const dil = useLang();
-  const m = useT().sayfalar.galeri;
+  const m = galeriMetin(useLang());
   return (
     <>
       <SayfaBasligi etiket={m.etiket} baslik={m.baslik} giris={m.giris} />
       <Bolum>
-        <ul className={s.izgara}>
-          {GALERI.map((oge) => (
-            <li key={oge.id}>
-              <Gorsel oran={oge.oran} konu={oge[dil].konu} not={oge[dil].not} src={oge.src} />
-            </li>
-          ))}
-        </ul>
+        <Izgara />
       </Bolum>
     </>
   );
