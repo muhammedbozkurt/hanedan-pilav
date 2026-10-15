@@ -14,6 +14,7 @@ import { RotaOdak } from "./components/RotaOdak.tsx";
 import { SkipLink } from "./components/SkipLink.tsx";
 import { WhatsAppFab } from "./components/WhatsAppFab.tsx";
 import { useLang, useT } from "./i18n/index.ts";
+import { jsonLdMetni, kokJsonLd } from "./lib/jsonld.ts";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preload", href: rokkittLatin, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
@@ -35,6 +36,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: JS_ISARETI }} />
         <Meta />
         <Links />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMetni(kokJsonLd(dil)) }} />
       </head>
       <body>
         <SkipLink />

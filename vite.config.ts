@@ -11,6 +11,7 @@ export default defineConfig({
     // Telif yılı derleme anında sabitlenir; prerender HTML'i ile istemci paketi aynı değeri görür, hidrasyon uyuşmazlığı olmaz.
     __YAPIM_YILI__: JSON.stringify(new Date().getFullYear()),
   },
+  build: { sourcemap: false },
   css: {
     modules: { localsConvention: "camelCaseOnly" },
   },

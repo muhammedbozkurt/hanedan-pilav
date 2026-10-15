@@ -1,6 +1,7 @@
 import type { MetaDescriptor } from "react-router";
 import { SITE } from "~/content/site.ts";
 import { sozluk } from "~/i18n/index.ts";
+import { ACIKLAMA_UST_SINIR, BASLIK_UST_SINIR, sinirla } from "./metin-sinir.ts";
 import { DILLER, type Dil, type Parametreler, type SayfaAnahtari, VARSAYILAN_DIL, dilBul, yol } from "./rotalar.ts";
 
 export const SITE_URL = SITE.alanAdi;
@@ -21,7 +22,9 @@ function mutlak(yolVeyaUrl: string): string {
   return /^https?:\/\//.test(yolVeyaUrl) ? yolVeyaUrl : `${SITE_URL}${yolVeyaUrl}`;
 }
 
-export function seo({ anahtar, dil, baslik, aciklama, params, gorsel, indeksle = true }: SeoGirdisi): MetaDescriptor[] {
+export function seo({ anahtar, dil, baslik: hamBaslik, aciklama: hamAciklama, params, gorsel, indeksle = true }: SeoGirdisi): MetaDescriptor[] {
+  const baslik = sinirla(hamBaslik, BASLIK_UST_SINIR);
+  const aciklama = sinirla(hamAciklama, ACIKLAMA_UST_SINIR);
   const url = mutlak(yol(anahtar, dil, params));
   const gorselUrl = mutlak(gorsel ?? OG_GORSEL.yol);
   const t = sozluk(dil);
@@ -49,9 +52,13 @@ export function seo({ anahtar, dil, baslik, aciklama, params, gorsel, indeksle =
       (d): MetaDescriptor => ({ property: "og:locale:alternate", content: sozluk(d).dil.ogLocale }),
     ),
     { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: baslik },
+    { name: "twitter:description", content: aciklama },
+    { name: "twitter:image", content: gorselUrl },
   ];
   if (!gorsel) {
     etiketler.push(
+      { property: "og:image:alt", content: SITE.marka },
       { property: "og:image:width", content: String(OG_GORSEL.genislik) },
       { property: "og:image:height", content: String(OG_GORSEL.yukseklik) },
     );

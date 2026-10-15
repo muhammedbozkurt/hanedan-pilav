@@ -1,0 +1,3 @@
+# /en altındaki var olmayan adresler İngilizce 404 sayfasıyla, gerçek 404 koduyla yanıtlanır.
+# Yalnız ErrorDocument içerir; kök .htaccess'teki rewrite kuralları bu dizinde de geçerli kalır.
+ErrorDocument 404 /en/404/index.html
