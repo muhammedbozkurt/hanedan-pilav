@@ -125,20 +125,96 @@ test.describe("iletişim formu: spam tuzağı ve JS'siz çalışma", () => {
     // Playwright metin sorguları noscript içeriğini atlar: kimlikle bakılır.
     await expect(page.locator("#durum-gonderildi")).toBeVisible();
     await expect(page.locator("#durum-gonderildi")).toContainText("Mesajınız bize ulaştı.");
-    await expect(page.locator("#durum-hata")).toBeHidden();
-    await page.goto(`${TR}?hata=dogrulama#durum-hata`);
-    await expect(page.locator("#durum-hata")).toBeVisible();
-    await expect(page.locator("#durum-hata")).toContainText("Gönderilemedi.");
+    await expect(page.locator("[id^='durum-hata-']:visible")).toHaveCount(0);
     await page.goto(TR);
     await expect(page.locator("#durum-gonderildi")).toBeHidden();
     await baglam.close();
   });
 
-  test("JS açıkken ?gonderildi=1 ve ?hata=hiz durumu canlı bölgede gösterilir", async ({ page }) => {
+  // PHP her hata türü için ayrı çapaya 303 ile döner (public/api/src/FormIslem.php); her çapa kendi mesajını gösterir.
+  const JSSIZ_HATALAR = [
+    ["dogrulama", "durum-hata-dogrulama", "Gönderilemedi. Zorunlu alanları"],
+    ["cok_hizli", "durum-hata-cok-hizli", "Form çok hızlı gönderildi."],
+    ["hiz", "durum-hata-hiz", "Kısa sürede çok fazla gönderim"],
+    ["sunucu", "durum-hata-sunucu", "şu anda gönderilemedi"],
+    ["origin", "durum-hata-origin", "Gönderim bu adresten kabul edilmiyor."],
+  ] as const;
+
+  test("JS kapalıyken her hata türü kendi çapasında kendi mesajını gösterir", async ({ browser }) => {
+    const baglam = await browser.newContext({ javaScriptEnabled: false });
+    const page = await baglam.newPage();
+    for (const [kod, capa, metin] of JSSIZ_HATALAR) {
+      await page.goto(`${TR}?hata=${kod}#${capa}`);
+      await expect(page.locator(`#${capa}`), kod).toBeVisible();
+      await expect(page.locator(`#${capa}`), kod).toContainText(metin);
+      await expect(page.locator("[id^='durum-hata-']:visible"), kod).toHaveCount(1);
+      await expect(page.locator("#durum-gonderildi")).toBeHidden();
+    }
+    await baglam.close();
+  });
+
+  test("JS kapalıyken bayilik başarı dönüşü başvuru metnini gösterir", async ({ browser }) => {
+    const baglam = await browser.newContext({ javaScriptEnabled: false });
+    const page = await baglam.newPage();
+    await page.goto("/bayilerimiz?gonderildi=1#durum-gonderildi");
+    await expect(page.locator("#durum-gonderildi")).toContainText("Başvurunuz bize ulaştı.");
+    await page.goto("/en/locations?gonderildi=1#durum-gonderildi");
+    await expect(page.locator("#durum-gonderildi")).toContainText("We’ve received your application.");
+    await baglam.close();
+  });
+
+  test("JS açıkken ?gonderildi=1 ve ?hata=... durumu canlı bölgede gösterilir", async ({ page }) => {
     await page.goto(`${TR}?gonderildi=1`);
     await expect(page.getByRole("status").filter({ hasText: "Mesajınız bize ulaştı." })).toBeVisible();
+    await page.goto(`${EN}?gonderildi=1`);
+    await expect(page.getByRole("status").filter({ hasText: "We’ve received your message." })).toBeVisible();
     await page.goto(`${EN}?hata=hiz`);
     await expect(page.getByRole("status").filter({ hasText: "Too many submissions" })).toBeVisible();
+    await page.goto(`${TR}?hata=cok_hizli`);
+    await expect(page.getByRole("status").filter({ hasText: "Form çok hızlı gönderildi." })).toBeVisible();
+    await page.goto(`${EN}?hata=origin`);
+    await expect(page.getByRole("status").filter({ hasText: "Submissions from this address are not accepted." })).toBeVisible();
+  });
+});
+
+function gecenMs(govde: string): number {
+  const eslesme = /name="gecen_ms"\r\n\r\n(\d+)\r\n/.exec(govde);
+  if (!eslesme?.[1]) throw new Error("gecen_ms gönderilmedi");
+  return Number(eslesme[1]);
+}
+
+test.describe("iletişim formu: süre ölçümü", () => {
+  test("ilk yüklemede süre sayfa gezinmesinin başından sayılır (hidrasyon dâhil)", async ({ page }) => {
+    let govde = "";
+    await page.route("**/api/form.php", async (rota) => {
+      govde = rota.request().postData() ?? "";
+      await rota.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+    });
+    await formHazir(page, TR);
+    await doldur(page);
+    const once = await page.evaluate(() => performance.now());
+    await page.getByRole("button", { name: "Gönder" }).click();
+    await expect(page.getByRole("status").filter({ hasText: "Mesajınız bize ulaştı." })).toBeVisible();
+    expect(gecenMs(govde)).toBeGreaterThanOrEqual(Math.floor(once));
+  });
+
+  test("istemci içi geçişte süre formun açılışından sayılır", async ({ page }) => {
+    let govde = "";
+    await page.route("**/api/form.php", async (rota) => {
+      govde = rota.request().postData() ?? "";
+      await rota.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
+    });
+    await page.goto("/");
+    await expect(page.locator("main")).toBeVisible();
+    await page.waitForTimeout(800);
+    await page.getByRole("banner").getByRole("link", { name: "İletişim" }).filter({ visible: true }).first().click();
+    await expect(page).toHaveURL(/\/iletisim$/);
+    await expect(page.locator("form")).toHaveAttribute("novalidate", "");
+    await doldur(page);
+    await page.getByRole("button", { name: "Gönder" }).click();
+    await expect(page.getByRole("status").filter({ hasText: "Mesajınız bize ulaştı." })).toBeVisible();
+    const sonra = await page.evaluate(() => performance.now());
+    expect(gecenMs(govde)).toBeLessThan(sonra - 700);
   });
 });
 
@@ -176,12 +252,16 @@ test.describe("iletişim formu: gönderim (fetch taklidi)", () => {
     await expect(page.getByText("Geçerli bir e-posta adresi yazın.")).toBeVisible();
   });
 
-  for (const [kod, metin] of [
-    [429, "Kısa sürede çok fazla gönderim"],
-    [500, "şu anda gönderilemedi"],
+  for (const [kod, govde, metin] of [
+    [429, '{"ok":false,"hata":"hiz"}', "Kısa sürede çok fazla gönderim"],
+    [500, '{"ok":false,"hata":"sunucu"}', "şu anda gönderilemedi"],
+    [422, '{"ok":false,"hata":"cok_hizli"}', "Form çok hızlı gönderildi. Lütfen birkaç saniye bekleyip yeniden deneyin."],
+    [403, '{"ok":false,"hata":"origin"}', "Gönderim bu adresten kabul edilmiyor."],
+    [200, '<!doctype html><title>hata</title>', "şu anda gönderilemedi"],
+    [200, '{"ok":false}', "şu anda gönderilemedi"],
   ] as const) {
-    test(`sunucu ${kod} durumu duyurulur ve girilen veri korunur`, async ({ page }) => {
-      await page.route("**/api/form.php", (rota) => rota.fulfill({ status: kod, contentType: "application/json", body: '{"ok":false}' }));
+    test(`sunucu ${kod} ${govde.slice(0, 24)} durumu duyurulur ve girilen veri korunur`, async ({ page }) => {
+      await page.route("**/api/form.php", (rota) => rota.fulfill({ status: kod, contentType: "application/json", body: govde }));
       await formHazir(page, TR);
       await doldur(page);
       await page.getByRole("button", { name: "Gönder" }).click();
@@ -215,6 +295,26 @@ test.describe("iletişim formu: gönderim (fetch taklidi)", () => {
     await expect(page.getByRole("status").filter({ hasText: "Mesajınız bize ulaştı." })).toBeVisible();
     expect(adet).toBe(1);
   });
+});
+
+test.describe("bayilik formu: başarı metni", () => {
+  for (const [yol, alanlar, dugme, basari] of [
+    ["/bayilerimiz", { ad: /^Ad soyad/, telefon: /^Telefon/, eposta: /^E-posta/, ilce: /^İlçe/ }, "Başvuruyu gönder", "Başvurunuz bize ulaştı."],
+    ["/en/locations", { ad: /^Full name/, telefon: /^Phone/, eposta: /^Email/, ilce: /^District/ }, "Submit application", "We’ve received your application."],
+  ] as const) {
+    test(`${yol}: başarıda başvuru metni`, async ({ page }) => {
+      await page.route("**/api/form.php", (rota) => rota.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }));
+      await page.goto(yol);
+      const form = page.locator("main form");
+      await expect(form).toHaveAttribute("novalidate", "");
+      await form.getByLabel(alanlar.ad).fill("Can Demir");
+      await form.getByLabel(alanlar.telefon).fill("0532 123 45 67");
+      await form.getByLabel(alanlar.eposta).fill("can@example.com");
+      await form.getByLabel(alanlar.ilce).selectOption("Şişli");
+      await form.getByRole("button", { name: dugme }).click();
+      await expect(form.getByRole("status").filter({ hasText: basari })).toBeVisible();
+    });
+  }
 });
 
 test.describe("doğrulama kuralları (bayilik dahil) ve PHP ile eşleşme", () => {
