@@ -44,9 +44,13 @@ Options -Indexes
   RewriteRule \.map$ - [F,L]
 
   # Kanonik adres: /yol/index.html -> /yol, /yol/ -> /yol (301). Kök (/) etkilenmez.
+  # Hedefler her zaman kendi host'una mutlak URL'dir; "//kotu.com/" gibi yollar açık yönlendirme üretemez.
+  # Baştaki çoklu eğik çizgi önce sadeleştirilir.
+  RewriteCond %{THE_REQUEST} ^[A-Z]+\s//+
+  RewriteRule ^/*(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
   RewriteCond %{THE_REQUEST} \s/(?:\S*/)?index\.html[\s?]
-  RewriteRule ^(?:(.*)/)?index\.html$ /$1 [R=301,L]
-  RewriteRule ^(.+)/$ /$1 [R=301,L]
+  RewriteRule ^(?:(.*)/)?index\.html$ https://%{HTTP_HOST}/$1 [R=301,L]
+  RewriteRule ^(.+?)/+$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # /yol -> /yol/index.html (iç yeniden yazım, adres çubuğu değişmez).
   RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f

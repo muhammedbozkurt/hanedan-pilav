@@ -89,6 +89,16 @@ tests/e2e/            Playwright testleri
 
 `.github/workflows/deploy.yml`: `main`'e push'ta `verify` sonra staging'e otomatik yükleme. Production yalnız Actions sekmesinden "Deploy" iş akışı elle çalıştırılınca (`main` dalında) ve `production` environment onayından sonra yüklenir; önce `npm run check:yayin` koşar. Dağıtım eylemi sunucuda `.ftp-deploy-sync-state.json` tutar; `.htaccess` nokta dosyalarını dışarıya kapattığı için erişilemez.
 
+Güvenlik önerileri:
+
+- Sırlar (`FTP_*`) repo düzeyinde değil, `staging` ve `production` environment düzeyinde tutulur; production sırları staging işine görünmez.
+- Ortam başına ayrı FTP hesabı açılır ve her hesap yalnız kendi web köküne kısıtlanır (Plesk'te hesabın ana dizini olarak ayarlanır).
+- `production` environment'ında "Required reviewers" zorunludur ve "Deployment branches" yalnız `main` ile sınırlanır.
+- Deploy iş akışı `FTP_DIR_STAGING`/`FTP_DIR_PRODUCTION` boşsa, `/` ise veya ikisi aynıysa yüklemeden önce durur. Production işi yalnız `refs/heads/main` dalından çalışır.
+- İş akışlarındaki tüm eylemler tam commit SHA'sına sabitlidir (yanında etiket yorumu); güncellerken SHA `git ls-remote` ile doğrulanır. Yetki varsayılanı `contents: read`'dir.
+- `verify` işi PHP 8.2 (mbstring) ile `php tests/php/form-test.php` koşar.
+- `npm run check:yayin` boş, `null` (yalnız `kep` ve `mersisNo` hariç), yer tutuculu (`[...]`, `todo`, `DEGISTIR`, `TBD`) veya EN karşılığı eksik yasal alanlarda hata verir.
+
 ### Plesk: test ortamı
 
 1. Alan adı altında test için alt alan adı oluşturun (ör. `test.hanedanpilav.com`), PHP 8.2 seçin, SSL sertifikası (Let's Encrypt) ekleyin.

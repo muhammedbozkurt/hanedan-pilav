@@ -1,29 +1,29 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { SITE, adresTekSatir, isTodo } from "~/content/site.ts";
+import { SITE, adresTekSatir } from "~/content/site.ts";
 import { usePaths } from "~/i18n/index.ts";
 import type { Blok, Parca, Satir, YasalBolum, YasalSozluk } from "~/i18n/yasal.ts";
 import { TEL_HREF } from "~/lib/iletisim.ts";
-import { YASAL_BILGI, type YasalAlan } from "./bilgiler.ts";
+import { YASAL_BILGI, type YasalAlan, alanSorunu } from "./bilgiler.ts";
 import s from "./YasalSayfa.module.css";
 
 // Değeri `null` olan alan "bu işletmede yok" demektir: o alanı taşıyan satır hiç çizilmez.
 function satirGorunur(satir: Satir): boolean {
-  return satir.every((p) => typeof p === "string" || !("alan" in p) || YASAL_BILGI[p.alan] !== null);
+  return satir.every((p) => typeof p === "string" || !("alan" in p) || YASAL_BILGI[p.alan] !== null || alanSorunu(p.alan, null) !== null);
 }
 
 function AlanDegeri({ alan, ortak }: { alan: YasalAlan; ortak: YasalSozluk["ortak"] }) {
   const { dil } = usePaths();
   const deger = YASAL_BILGI[alan];
-  if (deger === null) return null;
-  if (isTodo(deger)) {
+  if (deger === null && alanSorunu(alan, deger) === null) return null;
+  if (deger === null || alanSorunu(alan, deger) !== null) {
     return (
       <mark className={s.eksik} data-yasal-eksik={alan}>
         [{ortak.eksik[alan]}]
       </mark>
     );
   }
-  const metin = typeof deger === "string" ? deger : deger[dil];
+  const metin = typeof deger === "string" ? deger : (deger as { tr: string; en: string })[dil];
   if (alan === "eposta") return <a href={`mailto:${metin}`}>{metin}</a>;
   return <>{metin}</>;
 }
@@ -113,7 +113,7 @@ export function YasalBolumGoster({ bolum, no, ortak }: { bolum: YasalBolum; no: 
 export function eksikAlanlar(bolumler: readonly YasalBolum[]): YasalAlan[] {
   const alanlar = new Set<YasalAlan>();
   const tara = (satir: Satir) => {
-    for (const p of satir) if (typeof p !== "string" && "alan" in p && isTodo(YASAL_BILGI[p.alan])) alanlar.add(p.alan);
+    for (const p of satir) if (typeof p !== "string" && "alan" in p && alanSorunu(p.alan, YASAL_BILGI[p.alan]) !== null) alanlar.add(p.alan);
   };
   for (const bolum of bolumler) {
     for (const blok of bolum.bloklar) {

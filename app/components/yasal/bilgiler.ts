@@ -1,5 +1,6 @@
 // Yasal sayfaların künye ve süreç bilgileri için tek liste. Bilinmeyen değer uydurulmaz: `todo` kalır, sayfada "[...]"
-// yer tutucusu olarak görünür ve YASAL_EKSIKLER'e girer. `null` "bu işletme için geçerli değil" demektir; o satır sayfadan kalkar.
+// yer tutucusu olarak görünür ve YASAL_EKSIKLER'e girer. `null` yalnız kep ve mersisNo için "bu işletmede yok" demektir; o satır sayfadan kalkar. Diğer alanlarda boş, null,
+// yer tutucu veya eksik EN değer yayın kapısını (check:yayin) düşürür.
 // Yayın öncesi denetim betiği bu dosyayı Node ile doğrudan içe aktarır: yalnız göreli `.ts` içe aktarma ve tip silinebilir sözdizimi.
 import { SITE, type Todo, isTodo } from "../../content/site.ts";
 
@@ -41,10 +42,46 @@ export const YASAL_BILGI: Readonly<Record<YasalAlan, YasalDeger>> = {
 
 export type YasalEksik = { readonly alan: YasalAlan; readonly not: string };
 
-export const YASAL_EKSIKLER: readonly YasalEksik[] = YASAL_ALANLAR.flatMap((alan) => {
-  const deger = YASAL_BILGI[alan];
-  return isTodo(deger) ? [{ alan, not: deger.todo }] : [];
-});
+// `null` ("bu işletmede yok") yalnız bu alanlar için geçerlidir; diğer alanlar dolu olmak zorundadır.
+export const YASAL_OPSIYONEL: readonly YasalAlan[] = ["kep", "mersisNo"];
+
+// Düz metin yeterli olan alanlar dilden bağımsızdır; geri kalanı TR ve EN ayrı yazılmalıdır.
+const DILDEN_BAGIMSIZ: readonly YasalAlan[] = ["unvan", "mersisNo", "vergiDairesi", "vergiNo", "eposta", "kep"];
+
+const YER_TUTUCU = /\[[^\]]*\]|\.\.\.|\btodo\b|\bTBD\b|\bTBC\b|\bXXX+\b|DE[GĞ][Iİı]?[SŞ][Iİı]?T[Iİı]R|lorem|müşteriden alınacak/i;
+
+function metinSorunu(metin: string): string | null {
+  const m = metin.trim();
+  if (m === "") return "boş";
+  if (YER_TUTUCU.test(m)) return "yer tutucu içeriyor";
+  return null;
+}
+
+// Alanın yayına hazır olup olmadığı: sorun yoksa null, varsa nedeni döner.
+export function alanSorunu(alan: YasalAlan, deger: YasalDeger | undefined): string | null {
+  if (deger === null) return YASAL_OPSIYONEL.includes(alan) ? null : "null yalnız kep ve mersisNo için izinli";
+  if (deger === undefined) return "değer yok";
+  if (isTodo(deger)) return deger.todo;
+  if (typeof deger === "string") {
+    if (!DILDEN_BAGIMSIZ.includes(alan)) return "TR ve EN değer ayrı verilmeli ({ tr, en })";
+    return metinSorunu(deger);
+  }
+  if (typeof deger !== "object") return "geçersiz değer";
+  for (const dil of ["tr", "en"] as const) {
+    const sorun = typeof deger[dil] === "string" ? metinSorunu(deger[dil]) : "yok";
+    if (sorun !== null) return `${dil.toUpperCase()} değeri ${sorun}`;
+  }
+  return null;
+}
+
+export function yasalEksikleri(bilgi: Readonly<Record<YasalAlan, YasalDeger | undefined>>): YasalEksik[] {
+  return YASAL_ALANLAR.flatMap((alan) => {
+    const not = alanSorunu(alan, bilgi[alan]);
+    return not === null ? [] : [{ alan, not }];
+  });
+}
+
+export const YASAL_EKSIKLER: readonly YasalEksik[] = yasalEksikleri(YASAL_BILGI);
 
 // Yasal metinlerin "son güncelleme" tarihi (YYYY-AA-GG). Metin değiştiğinde yalnız burası güncellenir.
 export const SON_GUNCELLEME = "2026-10-15";

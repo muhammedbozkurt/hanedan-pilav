@@ -63,6 +63,11 @@ beklenen_durum "/en/about" 200 "/en/about yönlendirmesiz 200"
 beklenen_durum "/" 200 "anasayfa 200"
 yonlendirme "/kurumsal/" "/kurumsal" "/kurumsal/ -> /kurumsal"
 yonlendirme "/en/about/" "/en/about" "/en/about/ -> /en/about"
+# Açık yönlendirme denemeleri: Location ya hiç olmamalı ya da kendi host'umuza gitmeli.
+for y in "//evil.example/" "/x//" "//evil.example/index.html"; do
+  k="$(curl -s -I --max-time 20 ${KIMLIK[@]+"${KIMLIK[@]}"} --path-as-is "$TABAN$y" | tr -d '\r' | awk 'tolower($1)=="location:" {print $2; exit}')"
+  if [[ -z "$k" || "$k" == "$TABAN"/* ]]; then ok "açık yönlendirme yok: $y (${k:-yönlendirme yok})"; else hata "açık yönlendirme: $y -> $k"; fi
+done
 yonlendirme "/kurumsal/index.html" "/kurumsal" "/kurumsal/index.html -> /kurumsal"
 yonlendirme "/about-us/" "/kurumsal" "WordPress /about-us/"
 yonlendirme "/contact/" "/iletisim" "WordPress /contact/"

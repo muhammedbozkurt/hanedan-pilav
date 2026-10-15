@@ -42,11 +42,12 @@ export const SITE = {
   },
   eposta: null as string | null,
   sosyal: [] as readonly SosyalHesap[],
+  // Dolu olmayan alan yayın kapısını düşürür: null yalnız kep ve mersisNo içindir; diğerleri boş olmayan TR ve EN değer ister.
   yasal: {
     unvan: todo("Ticari unvan müşteriden alınacak (KVKK veri sorumlusu bilgisi için gerekli)."),
     vergiDairesi: todo("Vergi dairesi müşteriden alınacak."),
     vergiNo: todo("Vergi numarası müşteriden alınacak."),
-    mersisNo: todo("MERSİS numarası müşteriden alınacak."),
+    mersisNo: todo("MERSİS numarası müşteriden alınacak. Yoksa null yapılır (null yalnız kep ve mersisNo için izinli)."),
     eposta: todo("Kurumsal e-posta adresi: KVKK başvuruları buraya gelir, formlar buraya iletilir."),
     kep: todo("KEP adresi. İşletmenin KEP adresi yoksa null yapılır, başvuru yollarından KEP satırı kalkar."),
     barindirma: todo("Barındırma sağlayıcısının unvanı ve sunucunun bulunduğu ülke."),
